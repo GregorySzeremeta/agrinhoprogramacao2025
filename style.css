@@ -1,0 +1,114 @@
+/* Resetzinho básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fef6ed;
+}
+
+/* Header com o menu hamburguer */
+header {
+  background-color: #999;
+  padding: 10px;
+}
+
+.menu {
+  background-color: black;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Imagem topo */
+.topo {
+  background-color: #a7c8b7;
+  text-align: center;
+  padding: 20px;
+}
+
+.topo img {
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Título principal */
+h1 {
+  background-color: #aaa88a;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  font-size: 24px;
+}
+
+/* Grade de categorias */
+.categorias {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Cada caixinha de categoria */
+.box {
+  border: 2px solid #000;
+  padding: 15px;
+  border-radius: 12px;
+  background-color: white;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.box img {
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+.box:hover {
+  transform: scale(1.03);
+}
+
+/* Botões de categoria */
+.botao {
+  background-color: #d88c00;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.botao:hover {
+  background-color: #b46f00;
+}
+
+/* Seção do "Plante" */
+.plante {
+  background-color: #5e8f02;
+  color: white;
+  padding: 30px 20px;
+  margin: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.plante h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Rodapé */
+footer {
+  background-color: #dc9200;
+  color: black;
+  text-align: center;
+  padding: 15px;
+  font-size: 16px;
+}
