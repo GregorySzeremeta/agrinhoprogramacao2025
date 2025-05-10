@@ -1,81 +1,107 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feira da Conexão</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conexão entre o campo e a cidade, produtos e cultura">
+    <meta name="author" content="Seu Nome">
+    <title>Conexão Campo e Cidade</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Feira da Conexão</h1>
-    <p>Explorando conhecimento, criatividade e inovação</p>
-    <nav>
-      <ul>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#animacao">Plante Uma Arvore</a></li>
-        <li><a href="#produtos">Loja</a></li>
-      </ul>
+
+<!-- Header Section -->
+<header class="main-header">
+    <div class="logo">
+        <h1>Conexão Campo & Cidade</h1>
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#home" class="scroll">Home</a></li>
+            <li><a href="#about" class="scroll">Sobre</a></li>
+            <li><a href="#shop" class="scroll">Loja</a></li>
+            <li><a href="#blog" class="scroll">Blog</a></li>
+            <li><a href="#contact" class="scroll">Contato</a></li>
+        </ul>
     </nav>
-  </header>
+    <div class="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</header>
 
-  <main>
-    <section id="sobre">
-      <h2>Bem-vindo à Feira!</h2>
-      <p>Descubra um mundo de ideias transformadoras apresentadas por mentes criativas. Aqui, cada projeto é uma semente de futuro.</p>
-      <button onclick="scrollToSection('produtos')">Comprar Agora</button>
-    </section>
+<!-- Hero Section -->
+<section id="home" class="hero-section">
+    <div class="hero-content">
+        <h2>Transformando o Campo e a Cidade em um Só Mundo</h2>
+        <p>Descubra a união de dois mundos distintos e suas histórias, produtos e culturas.</p>
+        <a href="#shop" class="cta-button">Explore os Produtos</a>
+    </div>
+</section>
 
-    <section id="animacao" class="animacao-arvore">
-      <h2>Plante sua ideia</h2>
-      <p>Clique no solo para plantar uma semente e ver sua ideia crescer!</p>
-      <div class="cenario" onclick="plantar()">
-        <div class="tronco" id="tronco"></div>
-        <div class="folhas" id="folhas"></div>
-      </div>
-    </section>
-
-    <section id="produtos">
-      <h2>Produtos em Destaque</h2>
-      <div class="loja">
-        <div class="produto">
-          <img src="https://via.placeholder.com/300x200.png?text=Produto+1" alt="Produto 1">
-          <h3>Produto Inovador</h3>
-          <p>Descrição do produto com foco educacional ou tecnológico.</p>
-          <button>Comprar</button>
+<!-- About Section -->
+<section id="about" class="about-section">
+    <h2>Sobre o Projeto</h2>
+    <div class="content-about">
+        <p>O campo e a cidade representam duas realidades que se conectam e influenciam uma à outra, criando uma rica cultura híbrida que combina a tradição e a modernidade.</p>
+        <div class="images-gallery">
+            <img src="campo-imagem.jpg" alt="Campo">
+            <img src="cidade-imagem.jpg" alt="Cidade">
         </div>
-        <div class="produto">
-          <img src="https://via.placeholder.com/300x200.png?text=Produto+2" alt="Produto 2">
-          <h3>Criação Criativa</h3>
-          <p>Produto desenvolvido por estudantes com alto potencial.</p>
-          <button>Comprar</button>
+    </div>
+</section>
+
+<!-- Shop Section -->
+<section id="shop" class="shop-section">
+    <h2>Loja de Produtos</h2>
+    <div class="product-list">
+        <div class="product-item">
+            <img src="campo-produto.jpg" alt="Produto Campo">
+            <h3>Produto do Campo</h3>
+            <p>Produto cultivado com amor e dedicação no campo.</p>
+            <button class="buy-button">Comprar</button>
         </div>
-        <div class="produto">
-          <img src="https://via.placeholder.com/300x200.png?text=Produto+3" alt="Produto 3">
-          <h3>Ideia Sustentável</h3>
-          <p>Produto com foco em sustentabilidade e inovação ecológica.</p>
-          <button>Comprar</button>
+        <div class="product-item">
+            <img src="cidade-produto.jpg" alt="Produto Cidade">
+            <h3>Produto da Cidade</h3>
+            <p>Produto inovador, moderno e feito na cidade.</p>
+            <button class="buy-button">Comprar</button>
         </div>
-      </div>
-    </section>
-  </main>
+    </div>
+</section>
 
-  <footer>
-    <p>Site desenvolvido por <strong>Gregory Szeremeta Sass</strong> com orientação de <strong>Regiane Plen</strong>.</p>
-    <p>&copy; 2025 Feira da Conexão</p>
-  </footer>
+<!-- Blog Section -->
+<section id="blog" class="blog-section">
+    <h2>Blog</h2>
+    <div class="blog-articles">
+        <div class="article">
+            <h3>O Encontro Entre o Campo e a Cidade</h3>
+            <p>Leia sobre como esses dois mundos se conectam e trocam influências.</p>
+        </div>
+        <div class="article">
+            <h3>Benefícios da Agricultura Urbana</h3>
+            <p>Explore as vantagens de levar o campo para dentro da cidade.</p>
+        </div>
+    </div>
+</section>
 
-  <script>
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    }
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <h2>Entre em Contato</h2>
+    <form action="#">
+        <input type="text" placeholder="Seu Nome" required>
+        <input type="email" placeholder="Seu Email" required>
+        <textarea placeholder="Sua Mensagem" required></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+</section>
 
-    function plantar() {
-      const tronco = document.getElementById('tronco');
-      const folhas = document.getElementById('folhas');
-      tronco.classList.add('crescendo');
-      folhas.classList.add('aparecendo');
-    }
-  </script>
+<!-- Footer Section -->
+<footer class="main-footer">
+    <p>&copy; 2025 Conexão Campo e Cidade - Todos os direitos reservados.</p>
+</footer>
+
 </body>
 </html>

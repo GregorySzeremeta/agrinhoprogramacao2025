@@ -1,33 +1,22 @@
-// Função para scroll suave até a seção desejada
-function scrollToSection(id) {
-  const section = document.getElementById(id);
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth' });
-  }
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const scrollLinks = document.querySelectorAll('.scroll');
+    scrollLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            window.scrollTo({
+                top: targetElement.offsetTop,
+                behavior: 'smooth'
+            });
+        });
+    });
 
-// Função para animar crescimento da árvore
-function plantar() {
-  const tronco = document.getElementById('tronco');
-  const folhas = document.getElementById('folhas');
-
-  tronco.classList.add('crescendo');
-  folhas.classList.add('aparecendo');
-
-  // Efeito sonoro (opcional)
-  // const audio = new Audio('semente.mp3');
-  // audio.play();
-}
-
-// Adicionar evento aos botões "Comprar"
-document.addEventListener('DOMContentLoaded', () => {
-  const botoesComprar = document.querySelectorAll('button');
-
-  botoesComprar.forEach(botao => {
-    if (botao.textContent.toLowerCase().includes('comprar')) {
-      botao.addEventListener('click', () => {
-        scrollToSection('produtos');
-      });
-    }
-  });
+    // Hamburger Menu
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const mainNav = document.querySelector('.main-nav');
+    
+    hamburgerMenu.addEventListener('click', function () {
+        mainNav.classList.toggle('active');
+    });
 });
