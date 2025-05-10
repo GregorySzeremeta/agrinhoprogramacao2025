@@ -1,4 +1,4 @@
-// Rolagem suave para seções do site
+// Função para scroll suave até a seção desejada
 function scrollToSection(id) {
   const section = document.getElementById(id);
   if (section) {
@@ -6,17 +6,28 @@ function scrollToSection(id) {
   }
 }
 
-// Animação de árvore crescendo
-function plantarArvore() {
+// Função para animar crescimento da árvore
+function plantar() {
   const tronco = document.getElementById('tronco');
   const folhas = document.getElementById('folhas');
 
   tronco.classList.add('crescendo');
   folhas.classList.add('aparecendo');
+
+  // Efeito sonoro (opcional)
+  // const audio = new Audio('semente.mp3');
+  // audio.play();
 }
 
-// Redirecionamento para página de compra
-function comprarProduto() {
-  // Você pode substituir essa URL por uma real
-  window.location.href = "https://www.exemplo.com/compra";
-}
+// Adicionar evento aos botões "Comprar"
+document.addEventListener('DOMContentLoaded', () => {
+  const botoesComprar = document.querySelectorAll('button');
+
+  botoesComprar.forEach(botao => {
+    if (botao.textContent.toLowerCase().includes('comprar')) {
+      botao.addEventListener('click', () => {
+        scrollToSection('produtos');
+      });
+    }
+  });
+});

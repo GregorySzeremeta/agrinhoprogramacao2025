@@ -8,62 +8,61 @@
 </head>
 <body>
   <header>
-    <h1>🌐 Feira da Conexão</h1>
+    <h1>Feira da Conexão</h1>
+    <p>Explorando conhecimento, criatividade e inovação</p>
     <nav>
       <ul>
         <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#expositores">Expositores</a></li>
-        <li><a href="#compras">Comprar</a></li>
-        <li><a href="#plantar">Plantar</a></li>
-        <li><a href="#creditos">Créditos</a></li>
+        <li><a href="#animacao">Plante Uma Ideia</a></li>
+        <li><a href="#produtos">Loja</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
     <section id="sobre">
-      <h2>Descubra a Feira</h2>
-      <p>Bem-vindo à <strong>Feira da Conexão</strong> — um espaço onde ideias ganham vida, alunos viram criadores e o futuro começa agora. 🚀</p>
-      <p>Explore, interaja, participe e inspire-se com as mentes brilhantes que estão mudando o mundo ao nosso redor.</p>
-      <button onclick="scrollToSection('expositores')">Quero ver os projetos!</button>
+      <h2>Bem-vindo à Feira!</h2>
+      <p>Descubra um mundo de ideias transformadoras apresentadas por mentes criativas. Aqui, cada projeto é uma semente de futuro.</p>
+      <button onclick="scrollToSection('produtos')">Comprar Agora</button>
     </section>
 
-    <section id="expositores">
-      <h2>Projetos em Destaque</h2>
-      <p>💡 De soluções tecnológicas até ações sociais, aqui estão os projetos dos nossos expositores:</p>
-      <ul>
-        <li>🌱 Sustentabilidade com impacto real</li>
-        <li>📲 Aplicativos feitos por jovens desenvolvedores</li>
-        <li>🎨 Artes e criações culturais</li>
-        <li>🤖 Robôs e protótipos incríveis</li>
-      </ul>
-    </section>
-
-    <section id="compras">
-      <h2>🛒 Apoie comprando</h2>
-      <p>Ao adquirir um produto, você investe no sonho de um aluno. Que tal fazer parte disso?</p>
-      <button onclick="alert('Você será redirecionado para a área de compra em breve.')">Comprar Agora</button>
-    </section>
-
-    <section id="plantar" class="animacao-arvore">
-      <h2>🌳 Plante sua árvore virtual</h2>
-      <p>Clique na área abaixo para plantar uma semente e ver sua árvore crescer. Uma metáfora viva sobre como ideias crescem com cuidado e apoio!</p>
-      <div class="cenario" onclick="plantarArvore()">
-        <div class="semente" id="semente"></div>
+    <section id="animacao" class="animacao-arvore">
+      <h2>Plante sua ideia</h2>
+      <p>Clique no solo para plantar uma semente e ver sua ideia crescer!</p>
+      <div class="cenario" onclick="plantar()">
         <div class="tronco" id="tronco"></div>
         <div class="folhas" id="folhas"></div>
       </div>
     </section>
 
-    <section id="creditos">
-      <h2>✨ Créditos</h2>
-      <p>Este site foi desenvolvido por <strong>Gregory Szeremeta Sass</strong>, com a orientação inspiradora da professora <strong>Regiane Plen</strong>.</p>
-      <p>Projeto criado para a Feira da Conexão — onde ideias se encontram.</p>
+    <section id="produtos">
+      <h2>Produtos em Destaque</h2>
+      <div class="loja">
+        <div class="produto">
+          <img src="https://via.placeholder.com/300x200.png?text=Produto+1" alt="Produto 1">
+          <h3>Produto Inovador</h3>
+          <p>Descrição do produto com foco educacional ou tecnológico.</p>
+          <button>Comprar</button>
+        </div>
+        <div class="produto">
+          <img src="https://via.placeholder.com/300x200.png?text=Produto+2" alt="Produto 2">
+          <h3>Criação Criativa</h3>
+          <p>Produto desenvolvido por estudantes com alto potencial.</p>
+          <button>Comprar</button>
+        </div>
+        <div class="produto">
+          <img src="https://via.placeholder.com/300x200.png?text=Produto+3" alt="Produto 3">
+          <h3>Ideia Sustentável</h3>
+          <p>Produto com foco em sustentabilidade e inovação ecológica.</p>
+          <button>Comprar</button>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Feira da Conexão. Todos os direitos reservados.</p>
+    <p>Site desenvolvido por <strong>Gregory Szeremeta Sass</strong> com orientação de <strong>Regiane Plen</strong>.</p>
+    <p>&copy; 2025 Feira da Conexão</p>
   </footer>
 
   <script>
@@ -71,9 +70,11 @@
       document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
     }
 
-    function plantarArvore() {
-      document.getElementById('tronco').classList.add('crescendo');
-      document.getElementById('folhas').classList.add('aparecendo');
+    function plantar() {
+      const tronco = document.getElementById('tronco');
+      const folhas = document.getElementById('folhas');
+      tronco.classList.add('crescendo');
+      folhas.classList.add('aparecendo');
     }
   </script>
 </body>
