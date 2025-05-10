@@ -1,131 +1,96 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head> <link rel="stylesheet" href="style.css">
-
-  <meta charset="UTF-8">
-  <title>Estação da Terra 🌱</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #fef6ed;
-    }
-
-    header {
-      background: #999;
-      padding: 10px;
-      text-align: left;
-    }
-
-    .menu {
-      background: black;
-      color: white;
-      padding: 8px 12px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    .topo {
-      background: #a7c8b7;
-      text-align: center;
-      padding: 20px;
-    }
-
-    h1 {
-      background: #aaa88a;
-      color: white;
-      padding: 10px;
-      margin: 0;
-    }
-
-    .categorias {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      padding: 20px;
-    }
-
-    .box {
-      border: 2px solid #000;
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-      background: white;
-    }
-
-    .botao {
-      margin-top: 10px;
-      background: #d88c00;
-      color: white;
-      padding: 5px 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .plante {
-      background: #5e8f02;
-      color: white;
-      padding: 20px;
-      margin: 20px;
-      border-radius: 15px;
-      text-align: center;
-    }
-
-    footer {
-      background: #dc9200;
-      color: black;
-      text-align: center;
-      padding: 15px;
-    }
-  </style>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feira da Conexão</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <header>
-    <div class="menu">☰</div>
+    <nav>
+      <div class="menu" aria-label="Menu de navegação">&#9776;</div>
+    </nav>
   </header>
 
   <section class="topo">
-    <img src="plantinhas.png" alt="plantas" style="width: 100%;">
+    <img src="img/plantas-banner.png" alt="Ilustração de plantas" />
   </section>
 
   <h1>Estação da Terra</h1>
 
-  <section class="categorias">
-    <div class="box">
-      <img src="leite.png" alt="Leite" width="50"><br>
-      <button class="botao">Leite</button>
-    </div>
-    <div class="box">
-      <img src="frutas.png" alt="Frutas" width="50"><br>
-      <button class="botao">Frutas</button>
-    </div>
-    <div class="box">
-      <img src="mel.png" alt="Mel" width="50"><br>
-      <button class="botao">Mel</button>
-    </div>
-    <div class="box">
-      <img src="queijo.png" alt="Queijo" width="50"><br>
-      <button class="botao">Queijo e Derivados</button>
-    </div>
-    <div class="box">
-      <img src="verduras.png" alt="Verduras" width="50"><br>
-      <button class="botao">Verduras</button>
-    </div>
-    <div class="box">
-      <img src="graos.png" alt="Grãos" width="50"><br>
-      <button class="botao">Grãos</button>
-    </div>
-  </section>
+  <main>
 
-  <div class="plante">
-    <h2>Plante 🌍</h2>
-    <p>Plantar é cuidar do futuro!</p>
-  </div>
+    <!-- Seção de Categorias -->
+    <section class="categorias">
+      <div class="box">
+        <img src="img/leite.png" alt="Leite">
+        <p>Leite</p>
+        <button class="botao">Ver mais</button>
+      </div>
+      <div class="box">
+        <img src="img/frutas.png" alt="Frutas">
+        <p>Frutas</p>
+        <button class="botao">Ver mais</button>
+      </div>
+      <div class="box">
+        <img src="img/mel.png" alt="Mel">
+        <p>Mel</p>
+        <button class="botao">Ver mais</button>
+      </div>
+      <div class="box">
+        <img src="img/queijo.png" alt="Queijos">
+        <p>Queijo e Derivados</p>
+        <button class="botao">Ver mais</button>
+      </div>
+      <div class="box">
+        <img src="img/verduras.png" alt="Verduras">
+        <p>Verduras</p>
+        <button class="botao">Ver mais</button>
+      </div>
+      <div class="box">
+        <img src="img/graos.png" alt="Grãos">
+        <p>Grãos</p>
+        <button class="botao">Ver mais</button>
+      </div>
+    </section>
+
+    <!-- Seção Plante -->
+    <section class="plante">
+      <h2>Plante</h2>
+      <p>Ajude a natureza! Participe da campanha de reflorestamento com mudas nativas da sua região.</p>
+      <img src="img/plante.png" alt="Plante uma árvore" width="100px" />
+    </section>
+
+    <!-- Sobre a Feira -->
+    <section class="sobre" style="padding: 20px;">
+      <h2>Sobre a Feira</h2>
+      <p>A Feira da Conexão é um projeto que valoriza a produção local e incentiva hábitos sustentáveis. Aqui você encontra alimentos frescos direto do produtor, sem intermediários, fortalecendo a economia local e cuidando do meio ambiente.</p>
+    </section>
+
+    <!-- Contato -->
+    <section class="contato" style="padding: 20px;">
+      <h2>Fale Conosco</h2>
+      <form action="#" method="POST">
+        <label for="nome">Nome:</label><br />
+        <input type="text" id="nome" name="nome" required><br /><br />
+
+        <label for="email">Email:</label><br />
+        <input type="email" id="email" name="email" required><br /><br />
+
+        <label for="mensagem">Mensagem:</label><br />
+        <textarea id="mensagem" name="mensagem" rows="4" required></textarea><br /><br />
+
+        <button type="submit" class="botao">Enviar</button>
+      </form>
+    </section>
+
+  </main>
 
   <footer>
-    Inserir um pouquinho de texto
+    <p>Feira da Conexão © 2025</p>
+    <p>Desenvolvido por um adolescente programador com conexão à terra 🌱</p>
   </footer>
 
 </body>
