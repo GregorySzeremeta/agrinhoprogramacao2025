@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Conexão entre o campo e a cidade, produtos e cultura">
+    <meta name="description" content="Conexão Campo e Cidade - Produtos, Cultura e Inovação">
     <meta name="author" content="Seu Nome">
     <title>Conexão Campo e Cidade</title>
     <link rel="stylesheet" href="styles.css">
@@ -23,6 +23,7 @@
             <li><a href="#shop" class="scroll">Loja</a></li>
             <li><a href="#blog" class="scroll">Blog</a></li>
             <li><a href="#contact" class="scroll">Contato</a></li>
+            <li><a href="#login" class="scroll">Login</a></li>
         </ul>
     </nav>
     <div class="hamburger-menu">
@@ -35,8 +36,8 @@
 <!-- Hero Section -->
 <section id="home" class="hero-section">
     <div class="hero-content">
-        <h2>Transformando o Campo e a Cidade em um Só Mundo</h2>
-        <p>Descubra a união de dois mundos distintos e suas histórias, produtos e culturas.</p>
+        <h2>Uma Nova Perspectiva do Campo e da Cidade</h2>
+        <p>Transforme sua visão sobre a natureza e a vida urbana com produtos exclusivos e experiências únicas.</p>
         <a href="#shop" class="cta-button">Explore os Produtos</a>
     </div>
 </section>
@@ -45,10 +46,10 @@
 <section id="about" class="about-section">
     <h2>Sobre o Projeto</h2>
     <div class="content-about">
-        <p>O campo e a cidade representam duas realidades que se conectam e influenciam uma à outra, criando uma rica cultura híbrida que combina a tradição e a modernidade.</p>
+        <p>O campo e a cidade estão mais conectados do que nunca. Em nosso site, trazemos o melhor dos dois mundos, com uma variedade de produtos autênticos e ideias inovadoras.</p>
         <div class="images-gallery">
-            <img src="campo-imagem.jpg" alt="Campo">
-            <img src="cidade-imagem.jpg" alt="Cidade">
+            <img src="campo.jpg" alt="Campo">
+            <img src="cidade.jpg" alt="Cidade">
         </div>
     </div>
 </section>
@@ -56,19 +57,25 @@
 <!-- Shop Section -->
 <section id="shop" class="shop-section">
     <h2>Loja de Produtos</h2>
+    <div class="filters">
+        <button class="filter-btn" data-filter="campo">Campo</button>
+        <button class="filter-btn" data-filter="cidade">Cidade</button>
+        <button class="filter-btn" data-filter="all">Todos</button>
+    </div>
     <div class="product-list">
-        <div class="product-item">
-            <img src="campo-produto.jpg" alt="Produto Campo">
-            <h3>Produto do Campo</h3>
-            <p>Produto cultivado com amor e dedicação no campo.</p>
+        <div class="product-item campo">
+            <img src="produto-campo.jpg" alt="Produto Campo">
+            <h3>Produto Campo</h3>
+            <p>Produto cultivado com amor e tradição no campo.</p>
             <button class="buy-button">Comprar</button>
         </div>
-        <div class="product-item">
-            <img src="cidade-produto.jpg" alt="Produto Cidade">
-            <h3>Produto da Cidade</h3>
-            <p>Produto inovador, moderno e feito na cidade.</p>
+        <div class="product-item cidade">
+            <img src="produto-cidade.jpg" alt="Produto Cidade">
+            <h3>Produto Cidade</h3>
+            <p>Produto urbano, inovador e feito na cidade.</p>
             <button class="buy-button">Comprar</button>
         </div>
+        <!-- Adicione mais produtos aqui -->
     </div>
 </section>
 
@@ -78,11 +85,11 @@
     <div class="blog-articles">
         <div class="article">
             <h3>O Encontro Entre o Campo e a Cidade</h3>
-            <p>Leia sobre como esses dois mundos se conectam e trocam influências.</p>
+            <p>Descubra como essas duas realidades estão mais conectadas do que você imagina.</p>
         </div>
         <div class="article">
-            <h3>Benefícios da Agricultura Urbana</h3>
-            <p>Explore as vantagens de levar o campo para dentro da cidade.</p>
+            <h3>A Agricultura Urbana Está Transformando o Mundo</h3>
+            <p>Como o campo pode estar presente na cidade e inovar com novas tecnologias.</p>
         </div>
     </div>
 </section>
@@ -95,6 +102,16 @@
         <input type="email" placeholder="Seu Email" required>
         <textarea placeholder="Sua Mensagem" required></textarea>
         <button type="submit">Enviar</button>
+    </form>
+</section>
+
+<!-- Login Section -->
+<section id="login" class="login-section">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Senha" required>
+        <button type="submit" id="loginButton">Entrar</button>
     </form>
 </section>
 
