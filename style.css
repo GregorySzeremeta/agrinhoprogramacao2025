@@ -3,17 +3,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fffaf3;
+  background-color: #fffdf7;
   color: #333;
   line-height: 1.6;
 }
 
+/* Menu (futuro uso) */
 header {
-  background-color: #777;
+  background-color: #666;
   padding: 1rem;
   text-align: left;
 }
@@ -24,9 +26,9 @@ header {
   cursor: pointer;
 }
 
-/* Banner topo */
+/* Topo com imagem */
 .topo {
-  background-color: #d3e5d1;
+  background-color: #eaf4e2;
   text-align: center;
   padding: 1rem;
 }
@@ -39,17 +41,17 @@ header {
 /* Título principal */
 h1 {
   text-align: center;
-  background-color: #9da48d;
+  background-color: #8da97a;
   color: white;
   font-size: 2.5rem;
   padding: 1rem 0;
   margin-top: -8px;
 }
 
-/* Categorias */
+/* Categorias de produtos */
 .categorias {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1.5rem;
   padding: 2rem;
 }
@@ -57,7 +59,7 @@ h1 {
 .box {
   background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   text-align: center;
   padding: 1.2rem;
   transition: transform 0.2s ease;
@@ -80,23 +82,25 @@ h1 {
 }
 
 .botao {
-  background-color: #e19200;
+  background-color: #e18c00;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+  padding: 0.5rem 1.2rem;
+  border-radius: 25px;
   font-size: 0.95rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .botao:hover {
-  background-color: #c57900;
+  background-color: #b96f00;
 }
 
-/* Seção Plante */
+/* Seção "Plante" */
 .plante {
-  background-color: #88b040;
+  background-color: #7cb342;
   color: white;
   text-align: center;
   padding: 2rem;
@@ -106,22 +110,24 @@ h1 {
 
 .plante img {
   margin-top: 1rem;
+  width: 80px;
 }
 
-/* Seções de texto */
-.sobre, .contato {
+/* Sobre e contato */
+.sobre, .contato, .comprar {
   max-width: 800px;
   margin: auto;
   margin-top: 2rem;
-  background-color: #fefefe;
-  padding: 1.5rem;
+  background-color: #ffffff;
+  padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
 }
 
-.sobre h2, .contato h2 {
+.sobre h2, .contato h2, .comprar h2 {
   margin-bottom: 1rem;
-  color: #49753b;
+  color: #52734d;
+  text-align: center;
 }
 
 /* Formulário */
@@ -129,7 +135,7 @@ input[type="text"],
 input[type="email"],
 textarea {
   width: 100%;
-  padding: 0.7rem;
+  padding: 0.8rem;
   margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -142,6 +148,32 @@ footer {
   color: white;
   text-align: center;
   padding: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
   font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+footer strong {
+  font-weight: bold;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .botao {
+    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
+  }
+
+  .categorias {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .plante, .sobre, .contato, .comprar {
+    padding: 1.2rem;
+  }
 }
