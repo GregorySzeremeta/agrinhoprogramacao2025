@@ -1,164 +1,27 @@
-/* Estilo global */
-body {
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f8f8;
-  color: #333;
-}
 
-header {
-  background-color: #4CAF50;
-  padding: 20px;
-  text-align: center;
-  color: white;
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-nav ul li a:hover {
-  color: #c8f7c5;
-}
-
-main {
-  padding: 20px;
-}
-
-section {
-  margin-bottom: 50px;
-  padding: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-}
-
-h2 {
-  color: #2e7d32;
-}
-
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #388e3c;
-}
-
-/* Produtos */
-.produtos-lista {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.produto {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 15px;
-  width: 250px;
-  text-align: center;
-  background-color: #fdfdfd;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-}
-
-.produto h3 {
-  margin-top: 0;
-  color: #388e3c;
-}
-
-/* Animação árvore */
-.animacao-arvore {
-  text-align: center;
-  background-color: #ecf5e1;
-  padding: 3rem 1rem;
-}
-
-.cenario {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  background-color: #a1887f;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.semente {
-  width: 20px;
-  height: 20px;
-  background-color: #5d4037;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: plantar 2s ease forwards;
-}
-
-.tronco {
-  width: 10px;
-  height: 0;
-  background-color: #4e342e;
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 5px;
-  animation: crescer-tronco 3s 2s ease-out forwards;
+  transition: height 2s;
 }
 
 .folhas {
-  width: 0;
-  height: 0;
-  background-color: #66bb6a;
-  position: absolute;
-  bottom: 120px;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at center, #4caf50, #2e7d32);
   border-radius: 50%;
-  animation: aparecer-folhas 2s 4s ease-out forwards;
+  position: absolute;
+  bottom: 110px;
+  opacity: 0;
+  transition: opacity 2s;
 }
 
-@keyframes plantar {
-  0% { bottom: 200px; opacity: 0; }
-  100% { bottom: 20px; opacity: 1; }
+.crescendo {
+  height: 100px !important;
 }
 
-@keyframes crescer-tronco {
-  0% { height: 0; }
-  100% { height: 80px; }
+.aparecendo {
+  opacity: 1 !important;
 }
 
-@keyframes aparecer-folhas {
-  0% { width: 0; height: 0; opacity: 0; }
-  100% { width: 60px; height: 60px; opacity: 1; }
-}
-
-footer {
-  text-align: center;
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px;
-  margin-top: 30px;
+@keyframes pulso {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.3); }
 }
