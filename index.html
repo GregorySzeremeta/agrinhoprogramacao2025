@@ -1,112 +1,85 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feira da Conexão</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function scrollToProdutos() {
+      document.getElementById('produtos').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
 </head>
 <body>
-
   <header>
+    <h1>Feira da Conexão</h1>
     <nav>
-      <div class="menu" aria-label="Menu de navegação">&#9776;</div>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#expositores">Expositores</a></li>
+        <li><a href="#compras">Comprar</a></li>
+        <li><a href="#plantar">Plante sua Árvore</a></li>
+        <li><a href="#creditos">Créditos</a></li>
+      </ul>
     </nav>
   </header>
 
-  <section class="topo">
-    <img src="img/plantas-banner.png" alt="Ilustração de plantas" />
-  </section>
-
-  <h1>Estação da Terra</h1>
-
   <main>
-
-    <!-- Seção de Categorias -->
-    <section class="categorias">
-      <div class="box">
-        <img src="IMG/img/img/leite.png" alt="Leite">
-        <p>Leite</p>
-        <a href="#comprar" class="botao">Comprar</a>
-      </div>
-      <div class="box">
-        <img src="IMG/img/img/cestadefrutas.jpeg" alt="Frutas">
-        <p>Frutas</p>
-        <a href="#comprar" class="botao">Comprar</a>
-      </div>
-      <div class="box">
-        <img src="img/mel.png" alt="Mel">
-        <p>Mel</p>
-        <a href="#comprar" class="botao">Comprar</a>
-      </div>
-      <div class="box">
-        <img src="img/queijo.png" alt="Queijos">
-        <p>Queijos</p>
-        <a href="#comprar" class="botao">Comprar</a>
-      </div>
-      <div class="box">
-        <img src="img/verduras.png" alt="Verduras">
-        <p>Verduras</p>
-        <a href="#comprar" class="botao">Comprar</a>
-      </div>
-      <div class="box">
-        <img src="img/graos.png" alt="Grãos">
-        <p>Grãos</p>
-        <a href="#comprar" class="botao">Comprar</a>
-      </div>
-    </section>
-
-    <!-- Seção Plante -->
-    <section class="plante">
-      <h2>Plante</h2>
-      <p>Ajude a natureza! Participe da campanha de reflorestamento com mudas nativas da sua região.</p>
-      <img src="img/plante.png" alt="Plante uma árvore" width="100px" />
-    </section>
-
-    <!-- Sobre a Feira -->
-    <section class="sobre">
+    <section id="sobre">
       <h2>Sobre a Feira</h2>
-      <p>A Feira da Conexão é um projeto que valoriza a produção local e incentiva hábitos sustentáveis. Aqui você encontra alimentos frescos direto do produtor, sem intermediários, fortalecendo a economia local e cuidando do meio ambiente.</p>
+      <p>A Feira da Conexão é um espaço criado para integrar alunos, professores e comunidade por meio de projetos incríveis. Venha conhecer ideias inovadoras e apoiar jovens talentos!</p>
     </section>
 
-    <!-- Área de Compra -->
-    <section id="comprar" class="comprar">
+    <section id="expositores">
+      <h2>Expositores</h2>
+      <p>Conheça os grupos e projetos que estão expondo na feira. Cada um traz uma proposta diferente, criativa e inspiradora.</p>
+    </section>
+
+    <section id="compras">
       <h2>Área de Compra</h2>
-      <p>Você foi redirecionado para a área de compras. Em breve, essa seção terá integração com um carrinho e formas de pagamento!</p>
-      <p><strong>Produto selecionado:</strong> será mostrado aqui futuramente.</p>
+      <p>Adquira produtos criados pelos alunos e apoie seus projetos! Clique abaixo para acessar a seção de produtos.</p>
+      <button onclick="scrollToProdutos()">Ir para Produtos</button>
     </section>
 
-    <!-- Contato -->
-    <section class="contato">
-      <h2>Fale Conosco</h2>
-      <form action="#" method="POST">
-        <label for="nome">Nome:</label><br />
-        <input type="text" id="nome" name="nome" required><br /><br />
-
-        <label for="email">Email:</label><br />
-        <input type="email" id="email" name="email" required><br /><br />
-
-        <label for="mensagem">Mensagem:</label><br />
-        <textarea id="mensagem" name="mensagem" rows="4" required></textarea><br /><br />
-
-        <button type="submit" class="botao">Enviar</button>
-      </form>
+    <section id="produtos">
+      <h2>Produtos</h2>
+      <div class="produtos-lista">
+        <div class="produto">
+          <h3>Chaveiro Personalizado</h3>
+          <p>Feito à mão pelos alunos. R$10,00</p>
+          <button>Comprar</button>
+        </div>
+        <div class="produto">
+          <h3>Camiseta da Feira</h3>
+          <p>100% algodão, várias cores. R$35,00</p>
+          <button>Comprar</button>
+        </div>
+        <div class="produto">
+          <h3>Caneca Criativa</h3>
+          <p>Estampas exclusivas. R$20,00</p>
+          <button>Comprar</button>
+        </div>
+      </div>
     </section>
 
+    <section id="plantar" class="animacao-arvore">
+      <h2>Plante sua árvore virtual</h2>
+      <div class="cenario">
+        <div class="semente"></div>
+        <div class="tronco"></div>
+        <div class="folhas"></div>
+      </div>
+    </section>
+
+    <section id="creditos">
+      <h2>Créditos</h2>
+      <p>Site feito por <strong>Gregory Szeremeta Sass</strong>, com orientação da professora <strong>Regiane Plen</strong>.</p>
+    </section>
   </main>
 
   <footer>
-    <p>Feira da Conexão © 2025</p>
-    <p>Desenvolvido por <strong>Gregory Szeremeta Sass</strong><br>Com orientação de <strong>Regiane Plen</strong></p>
+    <p>&copy; 2025 Feira da Conexão. Todos os direitos reservados.</p>
   </footer>
-<section class="animacao-arvore">
-  <h2>Plante sua árvore virtual</h2>
-  <div class="cenario">
-    <div class="semente"></div>
-    <div class="tronco"></div>
-    <div class="folhas"></div>
-  </div>
-</section>
-
 </body>
 </html>
