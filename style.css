@@ -4,10 +4,25 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 16px;
+}
+
 body {
     font-family: "Segoe UI", sans-serif;
     background-color: #f5f5f5;
     color: #333;
+    transition: all 0.3s;
+}
+
+body.contraste {
+    background-color: #000;
+    color: #fff;
+}
+
+body.contraste header,
+body.contraste footer {
+    background-color: #000;
 }
 
 header {
@@ -36,6 +51,24 @@ nav ul li a {
 
 nav ul li a:hover {
     text-decoration: underline;
+}
+
+.acessibilidade {
+    margin-top: 10px;
+}
+
+.acessibilidade button {
+    margin: 2px;
+    padding: 5px 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.acessibilidade button:hover {
+    background-color: #555;
 }
 
 section {
@@ -76,6 +109,11 @@ section {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 20px;
     width: 250px;
+}
+
+body.contraste .produto {
+    background-color: #333;
+    color: white;
 }
 
 .produto h3 {

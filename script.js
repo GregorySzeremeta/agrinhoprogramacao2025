@@ -1,4 +1,4 @@
-// Consumindo API Java Spring Boot
+// ----- API -----
 const API_URL = 'http://localhost:8080/api/produtos';
 
 async function carregarProdutos() {
@@ -35,25 +35,60 @@ function exibirProdutos(produtos) {
     });
 }
 
-// Animação Plantar Árvore
+// ----- Animação Plantar Árvore -----
 const canvas = document.getElementById('treeCanvas');
 const ctx = canvas.getContext('2d');
 
 function plantar() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Tronco
-    ctx.fillStyle = '#8B4513';
-    ctx.fillRect(190, 300, 20, -100);
+    // Desenhar semente
+    ctx.beginPath();
+    ctx.arc(200, 350, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = 'brown';
+    ctx.fill();
 
-    // Crescer copa
-    let radius = 10;
-    const interval = setInterval(() => {
-        ctx.beginPath();
-        ctx.arc(200, 200, radius, 0, 2 * Math.PI);
-        ctx.fillStyle = '#228B22';
-        ctx.fill();
-        radius += 5;
-        if (radius > 70) clearInterval(interval);
-    }, 100);
+    setTimeout(() => {
+        // Broto
+        ctx.fillStyle = 'green';
+        ctx.fillRect(198, 340, 4, -20);
+
+        setTimeout(() => {
+            // Tronco
+            ctx.fillStyle = '#8B4513';
+            ctx.fillRect(190, 320, 20, -100);
+
+            // Crescimento da copa
+            let radius = 5;
+            const interval = setInterval(() => {
+                ctx.beginPath();
+                ctx.arc(200, 200, radius, 0, 2 * Math.PI);
+                ctx.fillStyle = '#228B22';
+                ctx.fill();
+                radius += 5;
+                if (radius > 70) clearInterval(interval);
+            }, 100);
+        }, 1000);
+    }, 1000);
+}
+
+// ----- Acessibilidade -----
+let contrasteAtivo = false;
+let fonteTamanho = 16;
+
+function alternarContraste() {
+    contrasteAtivo = !contrasteAtivo;
+    document.body.classList.toggle('contraste');
+}
+
+function aumentarFonte() {
+    fonteTamanho += 2;
+    document.documentElement.style.fontSize = `${fonteTamanho}px`;
+}
+
+function diminuirFonte() {
+    if (fonteTamanho > 10) {
+        fonteTamanho -= 2;
+        document.documentElement.style.fontSize = `${fonteTamanho}px`;
+    }
 }

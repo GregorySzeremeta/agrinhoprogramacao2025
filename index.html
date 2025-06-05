@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estação da Terra</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- Hand Talk Widget (LIBRAS) -->
+    <script>
+      var script = document.createElement('script');
+      script.src = 'https://plugin.handtalk.me/web/latest/handtalk.min.js';
+      script.onload = function() {
+        window.ht = new HT({
+          token: "SEU_TOKEN_AQUI", // Insira seu token do Hand Talk aqui
+          userCode: "SEU_USER_CODE_AQUI"
+        });
+      };
+      document.head.appendChild(script);
+    </script>
 </head>
 <body>
 
@@ -18,6 +31,13 @@
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
+        
+        <!-- Botões de acessibilidade -->
+        <div class="acessibilidade">
+            <button onclick="aumentarFonte()">A+</button>
+            <button onclick="diminuirFonte()">A-</button>
+            <button onclick="alternarContraste()">🌓 Contraste</button>
+        </div>
     </header>
 
     <section id="home">
@@ -34,7 +54,6 @@
             <button onclick="carregarPorCategoria('Queijo')">Queijos e Derivados</button>
             <button onclick="carregarPorCategoria('Verduras')">Verduras</button>
             <button onclick="carregarPorCategoria('Graos')">Grãos</button>
-            <button onclick="carregarPorCategoria('Plante')">Plante</button>
             <button onclick="carregarProdutos()">Todos</button>
         </div>
         <div id="listaProdutos"></div>
