@@ -1,129 +1,140 @@
+/* Reset básico */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html {
-    font-size: 16px;
-}
-
-body {
-    font-family: "Segoe UI", sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    transition: all 0.3s;
-}
-
+/* Acessibilidade */
 body.contraste {
-    background-color: #000;
-    color: #fff;
+  background-color: black;
+  color: yellow;
 }
 
-body.contraste header,
-body.contraste footer {
-    background-color: #000;
+/* Fonte acessível */
+body {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
+/* Cabeçalho */
 header {
-    background-color: #4CAF50;
-    padding: 20px;
-    text-align: center;
-    color: white;
+  background: linear-gradient(to right, #4CAF50, #8BC34A);
+  padding: 20px;
+  text-align: center;
+  color: white;
 }
 
-header h1 {
-    margin-bottom: 10px;
+.slogan {
+  font-style: italic;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+/* Animação da árvore */
+.arvore {
+  text-align: center;
+  margin: 30px;
 }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+.terra {
+  width: 300px;
+  height: 50px;
+  background-color: sienna;
+  margin: auto;
+  border-radius: 0 0 50% 50%;
 }
 
-nav ul li a:hover {
-    text-decoration: underline;
+.semente {
+  width: 20px;
+  height: 20px;
+  background-color: brown;
+  border-radius: 50%;
+  margin: 10px auto;
+  cursor: pointer;
+  animation: pulsar 1s infinite alternate;
 }
 
+@keyframes pulsar {
+  to {
+    transform: scale(1.2);
+  }
+}
+
+.arvore-crescendo {
+  width: 0;
+  height: 0;
+  background: green;
+  margin: 0 auto;
+  border-radius: 20px;
+  transition: all 2s ease;
+}
+
+/* Mercado */
+.mercado {
+  padding: 20px;
+  text-align: center;
+}
+
+.barracas {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.barraca {
+  background-color: #fff8dc;
+  border: 3px solid #8B4513;
+  border-radius: 15px;
+  padding: 10px;
+  width: 160px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.barraca:hover {
+  transform: scale(1.1);
+}
+
+.barraca img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.barraca p {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Loja */
+.loja {
+  display: none;
+  padding: 20px;
+  text-align: center;
+}
+
+.loja button {
+  margin-bottom: 10px;
+}
+
+/* Acessibilidade */
 .acessibilidade {
-    margin-top: 10px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 5px;
 }
 
 .acessibilidade button {
-    margin: 2px;
-    padding: 5px 10px;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
-.acessibilidade button:hover {
-    background-color: #555;
-}
-
-section {
-    padding: 40px;
-    text-align: center;
-}
-
-.botoes {
-    margin: 20px 0;
-}
-
-.botoes button {
-    margin: 5px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.botoes button:hover {
-    background-color: #45a049;
-}
-
-#listaProdutos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.produto {
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding: 20px;
-    width: 250px;
-}
-
-body.contraste .produto {
-    background-color: #333;
-    color: white;
-}
-
-.produto h3 {
-    color: #4CAF50;
-}
-
+/* Rodapé */
 footer {
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 40px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  text-align: center;
 }

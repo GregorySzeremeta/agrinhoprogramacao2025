@@ -1,94 +1,53 @@
-// ----- API -----
-const API_URL = 'http://localhost:8080/api/produtos';
-
-async function carregarProdutos() {
-    const response = await fetch(API_URL);
-    const produtos = await response.json();
-    exibirProdutos(produtos);
+// Animação de plantar árvore
+function plantarArvore() {
+  const arvore = document.getElementById('arvore');
+  arvore.style.width = '50px';
+  arvore.style.height = '150px';
 }
 
-async function carregarPorCategoria(categoria) {
-    const response = await fetch(`${API_URL}/${categoria}`);
-    const produtos = await response.json();
-    exibirProdutos(produtos);
+// Contraste
+function toggleContraste() {
+  document.body.classList.toggle('contraste');
 }
 
-function exibirProdutos(produtos) {
-    const container = document.getElementById('listaProdutos');
-    container.innerHTML = '';
-
-    if (produtos.length === 0) {
-        container.innerHTML = "<p>Nenhum produto encontrado.</p>";
-        return;
-    }
-
-    produtos.forEach(produto => {
-        const div = document.createElement('div');
-        div.className = 'produto';
-        div.innerHTML = `
-            <h3>${produto.nome}</h3>
-            <p><strong>Categoria:</strong> ${produto.categoria}</p>
-            <p>${produto.descricao}</p>
-            <p><strong>R$</strong> ${produto.preco.toFixed(2)}</p>
-        `;
-        container.appendChild(div);
-    });
-}
-
-// ----- Animação Plantar Árvore -----
-const canvas = document.getElementById('treeCanvas');
-const ctx = canvas.getContext('2d');
-
-function plantar() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Desenhar semente
-    ctx.beginPath();
-    ctx.arc(200, 350, 5, 0, 2 * Math.PI);
-    ctx.fillStyle = 'brown';
-    ctx.fill();
-
-    setTimeout(() => {
-        // Broto
-        ctx.fillStyle = 'green';
-        ctx.fillRect(198, 340, 4, -20);
-
-        setTimeout(() => {
-            // Tronco
-            ctx.fillStyle = '#8B4513';
-            ctx.fillRect(190, 320, 20, -100);
-
-            // Crescimento da copa
-            let radius = 5;
-            const interval = setInterval(() => {
-                ctx.beginPath();
-                ctx.arc(200, 200, radius, 0, 2 * Math.PI);
-                ctx.fillStyle = '#228B22';
-                ctx.fill();
-                radius += 5;
-                if (radius > 70) clearInterval(interval);
-            }, 100);
-        }, 1000);
-    }, 1000);
-}
-
-// ----- Acessibilidade -----
-let contrasteAtivo = false;
-let fonteTamanho = 16;
-
-function alternarContraste() {
-    contrasteAtivo = !contrasteAtivo;
-    document.body.classList.toggle('contraste');
-}
-
+// Aumentar e diminuir fonte
 function aumentarFonte() {
-    fonteTamanho += 2;
-    document.documentElement.style.fontSize = `${fonteTamanho}px`;
+  const atual = parseFloat(getComputedStyle(document.body).fontSize);
+  document.body.style.fontSize = (atual + 2) + 'px';
 }
 
 function diminuirFonte() {
-    if (fonteTamanho > 10) {
-        fonteTamanho -= 2;
-        document.documentElement.style.fontSize = `${fonteTamanho}px`;
-    }
+  const atual = parseFloat(getComputedStyle(document.body).fontSize);
+  document.body.style.fontSize = (atual - 2) + 'px';
+}
+
+// Sistema de loja
+const produtosPorCategoria = {
+  vegetais: ['Alface', 'Tomate', 'Cenoura', 'Couve', 'Batata'],
+  laticinios: ['Queijo', 'Leite', 'Iogurte', 'Manteiga'],
+  mel: ['Mel Puro', 'Mel com Própolis', 'Pólen', 'Cera'],
+  graos: ['Arroz', 'Feijão', 'Milho', 'Soja']
+};
+
+function abrirLoja(categoria) {
+  document.querySelector('.mercado').style.display = 'none';
+  document.querySelector('.loja').style.display = 'block';
+  
+  const titulo = document.getElementById('tituloLoja');
+  const produtosDiv = document.getElementById('produtos');
+
+  titulo.innerText = `Loja de ${categoria.charAt(0).toUpperCase() + categoria.slice(1)}`;
+  produtosDiv.innerHTML = '';
+
+  produtosPorCategoria[categoria].forEach(produto => {
+    const item = document.createElement('div');
+    item.innerText = produto;
+    item.classList.add('produto');
+    produtosDiv.appendChild(item);
+  });
+}
+
+function voltar() {
+  document.querySelector('.mercado').style.display = 'block';
+  document.querySelector('.loja').style.display = 'none';
 }

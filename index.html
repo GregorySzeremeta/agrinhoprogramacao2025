@@ -1,80 +1,90 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estação da Terra</title>
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Hand Talk Widget (LIBRAS) -->
-    <script>
-      var script = document.createElement('script');
-      script.src = 'https://plugin.handtalk.me/web/latest/handtalk.min.js';
-      script.onload = function() {
-        window.ht = new HT({
-          token: "SEU_TOKEN_AQUI", // Insira seu token do Hand Talk aqui
-          userCode: "SEU_USER_CODE_AQUI"
-        });
-      };
-      document.head.appendChild(script);
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estação da Terra</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  
+  <!-- Acessibilidade -->
+  <div class="acessibilidade">
+    <button onclick="aumentarFonte()">A+</button>
+    <button onclick="diminuirFonte()">A-</button>
+    <button onclick="toggleContraste()">Contraste</button>
+  </div>
 
-    <header>
-        <h1>🌿 Estação da Terra</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Início</a></li>
-                <li><a href="#categorias">Categorias</a></li>
-                <li><a href="#plante">Plante</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
-        
-        <!-- Botões de acessibilidade -->
-        <div class="acessibilidade">
-            <button onclick="aumentarFonte()">A+</button>
-            <button onclick="diminuirFonte()">A-</button>
-            <button onclick="alternarContraste()">🌓 Contraste</button>
-        </div>
-    </header>
+  <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
 
-    <section id="home">
-        <h2>Bem-vindo à Estação da Terra</h2>
-        <p>Produtos naturais direto do produtor para sua casa.</p>
-    </section>
+  <!-- Cabeçalho -->
+  <header>
+    <h1>Estação da Terra</h1>
+    <p class="slogan">Do campo à cidade, colhendo oportunidades 🌾</p>
+  </header>
 
-    <section id="categorias">
-        <h2>Categorias</h2>
-        <div class="botoes">
-            <button onclick="carregarPorCategoria('Leite')">Leite</button>
-            <button onclick="carregarPorCategoria('Frutas')">Frutas</button>
-            <button onclick="carregarPorCategoria('Mel')">Mel</button>
-            <button onclick="carregarPorCategoria('Queijo')">Queijos e Derivados</button>
-            <button onclick="carregarPorCategoria('Verduras')">Verduras</button>
-            <button onclick="carregarPorCategoria('Graos')">Grãos</button>
-            <button onclick="carregarProdutos()">Todos</button>
-        </div>
-        <div id="listaProdutos"></div>
-    </section>
+  <!-- Animação da Árvore -->
+  <section class="arvore">
+    <div class="terra"></div>
+    <div class="semente" onclick="plantarArvore()"></div>
+    <div class="arvore-crescendo" id="arvore"></div>
+    <p>Clique na semente para plantar uma árvore 🌳</p>
+  </section>
 
-    <section id="plante">
-        <h2>Plante uma Árvore</h2>
-        <canvas id="treeCanvas" width="400" height="400"></canvas><br>
-        <button onclick="plantar()">Plantar</button>
-    </section>
+  <!-- Mercado -->
+  <main class="mercado">
+    <h2>Escolha sua barraca 🌽🧀🍯</h2>
+    <div class="barracas">
+      <!-- Vegetais -->
+      <div class="barraca" onclick="abrirLoja('vegetais')">
+        <img src="img/vegetais.png" alt="Barraca de Vegetais">
+        <p>Vegetais</p>
+      </div>
 
-    <section id="contato">
-        <h2>Contato</h2>
-        <p>Email: contato@estacaodaterra.com</p>
-        <p>Telefone: (41) 99999-9999</p>
-    </section>
+      <!-- Laticínios -->
+      <div class="barraca" onclick="abrirLoja('laticinios')">
+        <img src="img/laticinios.png" alt="Barraca de Laticínios">
+        <p>Laticínios</p>
+      </div>
 
-    <footer>
-        <p>&copy; 2025 Estação da Terra - Todos os direitos reservados</p>
-    </footer>
+      <!-- Mel -->
+      <div class="barraca" onclick="abrirLoja('mel')">
+        <img src="img/mel.png" alt="Barraca de Mel">
+        <p>Mel e Derivados</p>
+      </div>
 
-    <script src="script.js"></script>
+      <!-- Grãos -->
+      <div class="barraca" onclick="abrirLoja('graos')">
+        <img src="img/graos.png" alt="Barraca de Grãos">
+        <p>Grãos</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Área de Loja -->
+  <section id="loja" class="loja">
+    <button onclick="voltar()">⬅️ Voltar</button>
+    <h2 id="tituloLoja"></h2>
+    <div id="produtos"></div>
+  </section>
+
+  <footer>
+    <p>© 2025 Estação da Terra - Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
 </body>
 </html>
