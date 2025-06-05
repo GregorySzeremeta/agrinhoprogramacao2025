@@ -1,140 +1,183 @@
-/* Reset básico */
+/* Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Acessibilidade */
-body.contraste {
-  background-color: black;
-  color: yellow;
-}
-
-/* Fonte acessível */
 body {
-  font-family: 'Arial', sans-serif;
-  font-size: 16px;
-  transition: all 0.3s ease;
+    font-family: 'Segoe UI', sans-serif;
+    background: url('imagens/campo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    transition: background 0.3s, color 0.3s;
 }
 
-/* Cabeçalho */
 header {
-  background: linear-gradient(to right, #4CAF50, #8BC34A);
-  padding: 20px;
-  text-align: center;
-  color: white;
+    background-color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 1rem;
 }
 
-.slogan {
-  font-style: italic;
+header h1 {
+    font-size: 3rem;
 }
 
-/* Animação da árvore */
-.arvore {
-  text-align: center;
-  margin: 30px;
-}
-
-.terra {
-  width: 300px;
-  height: 50px;
-  background-color: sienna;
-  margin: auto;
-  border-radius: 0 0 50% 50%;
-}
-
-.semente {
-  width: 20px;
-  height: 20px;
-  background-color: brown;
-  border-radius: 50%;
-  margin: 10px auto;
-  cursor: pointer;
-  animation: pulsar 1s infinite alternate;
-}
-
-@keyframes pulsar {
-  to {
-    transform: scale(1.2);
-  }
-}
-
-.arvore-crescendo {
-  width: 0;
-  height: 0;
-  background: green;
-  margin: 0 auto;
-  border-radius: 20px;
-  transition: all 2s ease;
-}
-
-/* Mercado */
-.mercado {
-  padding: 20px;
-  text-align: center;
-}
-
-.barracas {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.barraca {
-  background-color: #fff8dc;
-  border: 3px solid #8B4513;
-  border-radius: 15px;
-  padding: 10px;
-  width: 160px;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.barraca:hover {
-  transform: scale(1.1);
-}
-
-.barraca img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.barraca p {
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-/* Loja */
-.loja {
-  display: none;
-  padding: 20px;
-  text-align: center;
-}
-
-.loja button {
-  margin-bottom: 10px;
+header p {
+    font-size: 1.5rem;
+    color: #555;
 }
 
 /* Acessibilidade */
 .acessibilidade {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  display: flex;
-  gap: 5px;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+    z-index: 999;
 }
 
 .acessibilidade button {
-  padding: 5px 10px;
-  cursor: pointer;
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+}
+
+.acessibilidade button:hover {
+    transform: scale(1.1);
+}
+
+/* Feira */
+main {
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: 2rem;
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+main h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.feira {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.barraca {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.barraca:hover {
+    transform: scale(1.05);
+}
+
+.barraca img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.barraca p {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #444;
+}
+
+/* Animação Árvore */
+.arvore-section {
+    position: relative;
+    height: 300px;
+    margin: 2rem;
+}
+
+.terra {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background: #7CFC00;
+    border-radius: 50% 50% 0 0;
+}
+
+.semente {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: brown;
+    border-radius: 50%;
+    animation: plantar 3s forwards;
+}
+
+.arvore {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%) scaleY(0);
+    width: 40px;
+    height: 100px;
+    background: brown;
+    border-radius: 10px;
+    animation: crescer 3s 3s forwards;
+}
+
+.arvore::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: -40px;
+    width: 120px;
+    height: 120px;
+    background: green;
+    border-radius: 50%;
+}
+
+@keyframes plantar {
+    from { bottom: 100px; opacity: 0; }
+    to { bottom: 50px; opacity: 1; }
+}
+
+@keyframes crescer {
+    from { transform: translateX(-50%) scaleY(0); }
+    to { transform: translateX(-50%) scaleY(1); }
 }
 
 /* Rodapé */
 footer {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px;
-  text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    border-radius: 10px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer li {
+    margin: 0.5rem 0;
 }

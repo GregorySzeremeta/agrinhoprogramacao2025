@@ -1,90 +1,77 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Estação da Terra</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estação da Terra</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
-
 <body>
-  
-  <!-- Acessibilidade -->
-  <div class="acessibilidade">
-    <button onclick="aumentarFonte()">A+</button>
-    <button onclick="diminuirFonte()">A-</button>
-    <button onclick="toggleContraste()">Contraste</button>
-  </div>
 
-  <!-- VLibras -->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
+    <!-- Menu de Acessibilidade -->
+    <div class="acessibilidade">
+        <button onclick="aumentarFonte()">A+</button>
+        <button onclick="diminuirFonte()">A-</button>
+        <button onclick="alternarContraste()">🌙</button>
+        <button onclick="toggleLibras()">🧏‍♂️</button>
     </div>
-  </div>
 
-  <!-- Cabeçalho -->
-  <header>
-    <h1>Estação da Terra</h1>
-    <p class="slogan">Do campo à cidade, colhendo oportunidades 🌾</p>
-  </header>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>🌾 Estação da Terra</h1>
+        <p>Do campo à cidade, colhendo oportunidades</p>
+    </header>
 
-  <!-- Animação da Árvore -->
-  <section class="arvore">
-    <div class="terra"></div>
-    <div class="semente" onclick="plantarArvore()"></div>
-    <div class="arvore-crescendo" id="arvore"></div>
-    <p>Clique na semente para plantar uma árvore 🌳</p>
-  </section>
+    <!-- Animação de Plantar uma Árvore -->
+    <section class="arvore-section">
+        <div class="terra"></div>
+        <div class="semente"></div>
+        <div class="arvore"></div>
+    </section>
 
-  <!-- Mercado -->
-  <main class="mercado">
-    <h2>Escolha sua barraca 🌽🧀🍯</h2>
-    <div class="barracas">
-      <!-- Vegetais -->
-      <div class="barraca" onclick="abrirLoja('vegetais')">
-        <img src="img/vegetais.png" alt="Barraca de Vegetais">
-        <p>Vegetais</p>
-      </div>
+    <!-- Feira Interativa -->
+    <main>
+        <h2>Escolha sua Barraca</h2>
+        <div class="feira">
+            <div class="barraca" onclick="abrirBarraca('frutas')">
+                <img src="imagens/frutas.png" alt="Frutas">
+                <p>Frutas</p>
+            </div>
+            <div class="barraca" onclick="abrirBarraca('verduras')">
+                <img src="imagens/verduras.png" alt="Verduras">
+                <p>Verduras</p>
+            </div>
+            <div class="barraca" onclick="abrirBarraca('laticinios')">
+                <img src="imagens/laticinios.png" alt="Laticínios">
+                <p>Leite e Derivados</p>
+            </div>
+            <div class="barraca" onclick="abrirBarraca('graos')">
+                <img src="imagens/graos.png" alt="Grãos">
+                <p>Grãos</p>
+            </div>
+            <div class="barraca" onclick="abrirBarraca('mel')">
+                <img src="imagens/mel.png" alt="Mel">
+                <p>Mel e Derivados</p>
+            </div>
+            <div class="barraca" onclick="abrirBarraca('plante')">
+                <img src="imagens/plante.png" alt="Plante">
+                <p>Plante</p>
+            </div>
+        </div>
+    </main>
 
-      <!-- Laticínios -->
-      <div class="barraca" onclick="abrirLoja('laticinios')">
-        <img src="img/laticinios.png" alt="Barraca de Laticínios">
-        <p>Laticínios</p>
-      </div>
-
-      <!-- Mel -->
-      <div class="barraca" onclick="abrirLoja('mel')">
-        <img src="img/mel.png" alt="Barraca de Mel">
-        <p>Mel e Derivados</p>
-      </div>
-
-      <!-- Grãos -->
-      <div class="barraca" onclick="abrirLoja('graos')">
-        <img src="img/graos.png" alt="Barraca de Grãos">
-        <p>Grãos</p>
-      </div>
-    </div>
-  </main>
-
-  <!-- Área de Loja -->
-  <section id="loja" class="loja">
-    <button onclick="voltar()">⬅️ Voltar</button>
-    <h2 id="tituloLoja"></h2>
-    <div id="produtos"></div>
-  </section>
-
-  <footer>
-    <p>© 2025 Estação da Terra - Todos os direitos reservados.</p>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="script.js"></script>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
+    <!-- Rodapé -->
+    <footer>
+        <p>🚀 Melhorias futuras:</p>
+        <ul>
+            <li>🛒 Carrinho de compras</li>
+            <li>💳 Simulação de pagamento</li>
+            <li>🌎 Mapa da feira</li>
+            <li>🎧 Som ambiente da feira rural</li>
+        </ul>
+        <p>&copy; 2025 Estação da Terra - Todos os direitos reservados</p>
+    </footer>
 
 </body>
 </html>
