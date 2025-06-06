@@ -1,121 +1,104 @@
+/* style.css */
 body {
-  font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  padding: 0;
-  font-size: 16px;
-  background-image: url('https://images.unsplash.com/photo-1607860151412-876bb96b2bda');
-  background-size: cover;
-  background-position: center;
-  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5fff5;
+  color: #333;
 }
 
 header {
-  background-color: rgba(0, 100, 0, 0.8);
+  background: linear-gradient(to right, #86c232, #61892f);
+  color: white;
   text-align: center;
   padding: 2rem;
-}
-
-header h1 {
-  font-size: 3rem;
-}
-
-header p {
-  font-size: 1.2rem;
+  border-bottom: 4px solid #4e7031;
 }
 
 .acessibilidade {
   position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 999;
+  top: 1rem;
+  right: 1rem;
   display: flex;
-  flex-direction: column;
   gap: 0.5rem;
+  z-index: 999;
 }
 
 .acessibilidade button {
-  background: #333;
-  color: white;
-  border: none;
-  padding: 8px 10px;
-  border-radius: 8px;
-  font-size: 14px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 
 .acessibilidade button:hover {
-  background: #555;
+  background: #e0ffe0;
 }
 
-main {
-  padding: 2rem;
+#plantarArvore {
+  text-align: center;
+  margin: 2rem;
+}
+
+#arvoreContainer {
+  margin-top: 1rem;
+  height: 200px;
+}
+
+.arvore {
+  width: 50px;
+  height: 0;
+  margin: 0 auto;
+  background: url('https://i.imgur.com/jC5qVQ6.png') no-repeat center;
+  background-size: contain;
+  animation: crescer 3s ease forwards;
+}
+
+@keyframes crescer {
+  0% { height: 0; }
+  100% { height: 200px; }
+}
+
+.feira {
+  text-align: center;
+  margin: 2rem;
 }
 
 .barracas {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: flex;
+  justify-content: center;
   gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .barraca {
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 12px;
-  padding: 1rem;
   text-align: center;
-  transition: transform 0.3s;
   cursor: pointer;
+  transition: transform 0.3s;
 }
 
 .barraca:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .barraca img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
+  width: 150px;
 }
 
-#mapa img {
-  width: 100%;
-  max-width: 700px;
-  margin: auto;
-  display: block;
+.mapa {
+  text-align: center;
+  padding: 2rem;
 }
 
-#carrinho {
+.carrinho {
+  padding: 2rem;
+  background: #e8fce8;
+}
+
+.carrinho ul {
   list-style: none;
   padding: 0;
-}
-
-#carrinho li {
-  background: rgba(255, 255, 255, 0.1);
-  margin: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 6px;
-}
-
-.pagamento {
-  margin-top: 2rem;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 1rem;
-  border-radius: 10px;
-}
-
-#animacao-arvore {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-#arvoreArea {
-  font-size: 4rem;
-  margin-top: 1rem;
-}
-
-/* Contraste */
-.modo-contraste {
-  background-color: black !important;
-  color: yellow !important;
 }

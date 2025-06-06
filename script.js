@@ -1,71 +1,36 @@
-let carrinho = [];
+// script.js
+new window.VLibras.Widget('https://vlibras.gov.br/app');
 
-function aumentarFonte() {
-  document.body.style.fontSize = 'larger';
+let fonteAumentada = false;
+let contrasteAtivo = false;
+let som = new Audio("https://cdn.pixabay.com/audio/2021/06/11/audio_d915f6cb9b.mp3");
+
+document.getElementById('aumentarFonteBtn').onclick = () => {
+  document.body.style.fontSize = fonteAumentada ? '1rem' : '1.2rem';
+  fonteAumentada = !fonteAumentada;
+};
+
+document.getElementById('contrasteBtn').onclick = () => {
+  document.body.style.filter = contrasteAtivo ? 'none' : 'invert(1)';
+  contrasteAtivo = !contrasteAtivo;
+};
+
+document.getElementById('somAmbienteBtn').onclick = () => {
+  if (som.paused) som.play();
+  else som.pause();
+};
+
+function plantar() {
+  let container = document.getElementById('arvoreContainer');
+  container.innerHTML = '<div class="arvore"></div>';
 }
 
-function diminuirFonte() {
-  document.body.style.fontSize = 'smaller';
+function abrirBarraca(tipo) {
+  alert("Você abriu a barraca de " + tipo + " 🌽🍅");
+  // Aqui você pode redirecionar para outra página se desejar
 }
 
-function alternarContraste() {
-  document.body.classList.toggle('modo-contraste');
+function simularPagamento() {
+  alert("Pagamento simulado com sucesso! 💳 Obrigado por comprar conosco.");
 }
 
-function toggleSom() {
-  const audio = document.getElementById('somAmbiente');
-  if (audio.paused) {
-    audio.play();
-  } else {
-    audio.pause();
-  }
-}
-
-function ativarLibras() {
-  // VLibras já é carregado pelo script no HTML
-  // Este botão só garante que o usuário veja o botão na tela
-  alert('LIBRAS ativado! Clique no bonequinho à esquerda da tela.');
-}
-
-function plantarArvore() {
-  const area = document.getElementById('arvoreArea');
-  area.textContent = '🌱';
-  setTimeout(() => {
-    area.textContent = '🌿';
-  }, 1000);
-  setTimeout(() => {
-    area.textContent = '🌳';
-  }, 2000);
-}
-
-function adicionarAoCarrinho(produto) {
-  carrinho.push(produto);
-  atualizarCarrinho();
-}
-
-function atualizarCarrinho() {
-  const ul = document.getElementById('carrinho');
-  ul.innerHTML = '';
-  carrinho.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = item;
-    ul.appendChild(li);
-  });
-}
-
-function finalizarCompra() {
-  document.getElementById('pagamento').style.display = 'block';
-}
-
-function confirmarPagamento() {
-  const nome = document.getElementById('nomeComprador').value;
-  const cartao = document.getElementById('cartao').value;
-  if (nome && cartao) {
-    alert(`Obrigado, ${nome}! Sua compra foi finalizada com sucesso.`);
-    carrinho = [];
-    atualizarCarrinho();
-    document.getElementById('pagamento').style.display = 'none';
-  } else {
-    alert('Preencha todos os campos corretamente!');
-  }
-}

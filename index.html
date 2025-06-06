@@ -2,21 +2,66 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Estação da Terra</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- Acessibilidade -->
   <div class="acessibilidade">
-    <button onclick="aumentarFonte()" title="Aumentar Fonte">A+</button>
-    <button onclick="diminuirFonte()" title="Diminuir Fonte">A-</button>
-    <button onclick="alternarContraste()" title="Modo Contraste">🌗</button>
-    <button onclick="ativarLibras()" title="Ativar LIBRAS">🧏‍♂️</button>
-    <button onclick="toggleSom()" title="Som Ambiente">🔊</button>
+    <button id="contrasteBtn">🌗</button>
+    <button id="aumentarFonteBtn">A+</button>
+    <button id="librasBtn">🖐️</button>
+    <button id="somAmbienteBtn">🎧</button>
   </div>
 
-  <!-- VLibras Plugin -->
+  <!-- Header -->
+  <header>
+    <h1>🌾 Estação da Terra</h1>
+    <p>Do campo à cidade, colhendo oportunidades</p>
+  </header>
+
+  <!-- Animação de plantar árvore -->
+  <section id="plantarArvore">
+    <h2>Plante uma Árvore 🌱</h2>
+    <button onclick="plantar()">Plantar</button>
+    <div id="arvoreContainer"></div>
+  </section>
+
+  <!-- Feira com barracas -->
+  <section class="feira">
+    <h2>Conheça nossa feira</h2>
+    <div class="barracas">
+      <div class="barraca" onclick="abrirBarraca('vegetais')">
+        <img src="https://i.imgur.com/Mak0cPU.png" alt="Barraca Vegetais" />
+        <p>Vegetais</p>
+      </div>
+      <div class="barraca" onclick="abrirBarraca('frutas')">
+        <img src="https://i.imgur.com/Y8iULRL.png" alt="Barraca Frutas" />
+        <p>Frutas</p>
+      </div>
+      <div class="barraca" onclick="abrirBarraca('laticinios')">
+        <img src="https://i.imgur.com/0HiUZYB.png" alt="Barraca Laticínios" />
+        <p>Laticínios</p>
+      </div>
+      <!-- Mais barracas aqui -->
+    </div>
+  </section>
+
+  <!-- Mapa Interativo -->
+  <section class="mapa">
+    <h2>🗺️ Mapa da Feira</h2>
+    <img src="https://i.imgur.com/2hP4x0j.png" alt="Mapa Interativo da Feira" />
+  </section>
+
+  <!-- Carrinho -->
+  <section class="carrinho">
+    <h2>🛒 Carrinho de Compras</h2>
+    <ul id="carrinhoLista"></ul>
+    <button onclick="simularPagamento()">💳 Finalizar Compra</button>
+  </section>
+
+  <!-- LIBRAS -->
   <div vw class="enabled">
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper>
@@ -24,66 +69,8 @@
     </div>
   </div>
 
-  <!-- Áudio ambiente -->
-  <audio id="somAmbiente" loop>
-    <source src="https://cdn.pixabay.com/audio/2022/06/27/audio_b3a1b1c4c3.mp3" type="audio/mpeg">
-  </audio>
-
-  <header>
-    <h1>🌾 Estação da Terra 🌻</h1>
-    <p>Do campo à cidade, colhendo oportunidades</p>
-  </header>
-
-  <!-- Plantar árvore -->
-  <section id="animacao-arvore">
-    <button onclick="plantarArvore()">🌱 Plantar uma árvore</button>
-    <div id="arvoreArea"></div>
-  </section>
-
-  <!-- Barracas da Feira -->
-  <main>
-    <section class="barracas">
-      <div class="barraca" onclick="adicionarAoCarrinho('Vegetais')">
-        <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc" alt="Vegetais"/>
-        <h2>Vegetais</h2>
-      </div>
-      <div class="barraca" onclick="adicionarAoCarrinho('Frutas')">
-        <img src="https://images.unsplash.com/photo-1576402187878-974f70c890a7" alt="Frutas"/>
-        <h2>Frutas</h2>
-      </div>
-      <div class="barraca" onclick="adicionarAoCarrinho('Laticínios')">
-        <img src="https://images.unsplash.com/photo-1612197526261-3445f0b345f4" alt="Laticínios"/>
-        <h2>Laticínios</h2>
-      </div>
-    </section>
-
-    <!-- Mapa -->
-    <section id="mapa">
-      <h2>🗺️ Mapa da Feira</h2>
-      <img src="https://cdn.pixabay.com/photo/2016/11/29/06/17/map-1867221_960_720.png" alt="Mapa da Feira">
-    </section>
-
-    <!-- Carrinho -->
-    <section>
-      <h2>🛒 Carrinho</h2>
-      <ul id="carrinho"></ul>
-      <button onclick="finalizarCompra()">Finalizar Compra</button>
-    </section>
-
-    <!-- Pagamento -->
-    <section id="pagamento" class="pagamento" style="display:none;">
-      <h3>💳 Finalizar Pagamento</h3>
-      <input type="text" id="nomeComprador" placeholder="Seu nome completo" /><br><br>
-      <input type="text" id="cartao" placeholder="Número do cartão" /><br><br>
-      <button onclick="confirmarPagamento()">Confirmar</button>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Estação da Terra | Desenvolvido por Gregory</p>
-  </footer>
-
-  <script src="script.js"></script>
+  <!-- Scripts -->
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
