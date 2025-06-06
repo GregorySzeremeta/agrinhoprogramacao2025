@@ -9,16 +9,24 @@
 <body>
   <!-- Acessibilidade -->
   <div class="acessibilidade">
-    <button onclick="aumentarFonte()">A+</button>
-    <button onclick="diminuirFonte()">A-</button>
-    <button onclick="alternarContraste()">🌗</button>
-    <button onclick="ativarLibras()">LIBRAS</button>
-    <button onclick="toggleSom()">🔊</button>
+    <button onclick="aumentarFonte()" title="Aumentar Fonte">A+</button>
+    <button onclick="diminuirFonte()" title="Diminuir Fonte">A-</button>
+    <button onclick="alternarContraste()" title="Modo Contraste">🌗</button>
+    <button onclick="ativarLibras()" title="Ativar LIBRAS">🧏‍♂️</button>
+    <button onclick="toggleSom()" title="Som Ambiente">🔊</button>
   </div>
 
-  <!-- Som ambiente -->
+  <!-- VLibras Plugin -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <!-- Áudio ambiente -->
   <audio id="somAmbiente" loop>
-    <source src="https://cdn.pixabay.com/audio/2022/06/27/audio_b3a1b1c4c3.mp3" type="audio/mpeg" />
+    <source src="https://cdn.pixabay.com/audio/2022/06/27/audio_b3a1b1c4c3.mp3" type="audio/mpeg">
   </audio>
 
   <header>
@@ -26,12 +34,13 @@
     <p>Do campo à cidade, colhendo oportunidades</p>
   </header>
 
-  <!-- Animação da Árvore -->
+  <!-- Plantar árvore -->
   <section id="animacao-arvore">
     <button onclick="plantarArvore()">🌱 Plantar uma árvore</button>
+    <div id="arvoreArea"></div>
   </section>
 
-  <!-- Feira -->
+  <!-- Barracas da Feira -->
   <main>
     <section class="barracas">
       <div class="barraca" onclick="adicionarAoCarrinho('Vegetais')">
@@ -43,13 +52,12 @@
         <h2>Frutas</h2>
       </div>
       <div class="barraca" onclick="adicionarAoCarrinho('Laticínios')">
-        <img src="https://images.unsplash.com/photo-1612197526261-3445f0b345f4" alt="Leite e Queijos"/>
+        <img src="https://images.unsplash.com/photo-1612197526261-3445f0b345f4" alt="Laticínios"/>
         <h2>Laticínios</h2>
       </div>
-      <!-- Adicione mais barracas aqui -->
     </section>
 
-    <!-- Mapa da feira -->
+    <!-- Mapa -->
     <section id="mapa">
       <h2>🗺️ Mapa da Feira</h2>
       <img src="https://cdn.pixabay.com/photo/2016/11/29/06/17/map-1867221_960_720.png" alt="Mapa da Feira">
@@ -57,7 +65,7 @@
 
     <!-- Carrinho -->
     <section>
-      <h2>🛒 Carrinho de Compras</h2>
+      <h2>🛒 Carrinho</h2>
       <ul id="carrinho"></ul>
       <button onclick="finalizarCompra()">Finalizar Compra</button>
     </section>
@@ -76,5 +84,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </body>
 </html>

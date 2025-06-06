@@ -22,19 +22,19 @@ function toggleSom() {
 }
 
 function ativarLibras() {
-  const script = document.createElement('script');
-  script.src = "https://vlibras.gov.br/app/vlibras-plugin.js";
-  script.onload = () => {
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  };
-  document.body.appendChild(script);
+  // VLibras já é carregado pelo script no HTML
+  // Este botão só garante que o usuário veja o botão na tela
+  alert('LIBRAS ativado! Clique no bonequinho à esquerda da tela.');
 }
 
 function plantarArvore() {
-  const area = document.getElementById('animacao-arvore');
-  area.innerHTML = '<div class="arvore">🌱</div>';
+  const area = document.getElementById('arvoreArea');
+  area.textContent = '🌱';
   setTimeout(() => {
-    area.innerHTML = '<div class="arvore">🌳</div><p>Você plantou uma árvore!</p>';
+    area.textContent = '🌿';
+  }, 1000);
+  setTimeout(() => {
+    area.textContent = '🌳';
   }, 2000);
 }
 
@@ -61,16 +61,11 @@ function confirmarPagamento() {
   const nome = document.getElementById('nomeComprador').value;
   const cartao = document.getElementById('cartao').value;
   if (nome && cartao) {
-    alert(`Compra finalizada com sucesso! Obrigado, ${nome}!`);
+    alert(`Obrigado, ${nome}! Sua compra foi finalizada com sucesso.`);
     carrinho = [];
     atualizarCarrinho();
     document.getElementById('pagamento').style.display = 'none';
   } else {
-    alert('Preencha todos os campos.');
+    alert('Preencha todos os campos corretamente!');
   }
 }
-
-window.onload = () => {
-  const som = document.getElementById('somAmbiente');
-  som.volume = 0.5;
-};
