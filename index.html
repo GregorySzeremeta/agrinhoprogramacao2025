@@ -7,66 +7,72 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Acessibilidade -->
   <div class="acessibilidade">
     <button onclick="aumentarFonte()">A+</button>
     <button onclick="diminuirFonte()">A-</button>
-    <button onclick="alternarContraste()">☯️</button>
-    <button onclick="toggleSom()">🔈</button>
-    <button onclick="ativarLibras()">🧏</button>
+    <button onclick="alternarContraste()">🌗</button>
+    <button onclick="ativarLibras()">LIBRAS</button>
+    <button onclick="toggleSom()">🔊</button>
   </div>
 
+  <!-- Som ambiente -->
   <audio id="somAmbiente" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/08/04/audio_2ebaba5ba2.mp3?filename=forest-birds-ambient-nature-soundscape-113563.mp3" type="audio/mp3">
+    <source src="https://cdn.pixabay.com/audio/2022/06/27/audio_b3a1b1c4c3.mp3" type="audio/mpeg" />
   </audio>
 
   <header>
-    <h1>Estação da Terra</h1>
+    <h1>🌾 Estação da Terra 🌻</h1>
     <p>Do campo à cidade, colhendo oportunidades</p>
-    <button onclick="plantarArvore()" class="btn-arvore">Plantar uma Árvore</button>
   </header>
 
-  <main>
-    <div id="animacao-arvore"></div>
+  <!-- Animação da Árvore -->
+  <section id="animacao-arvore">
+    <button onclick="plantarArvore()">🌱 Plantar uma árvore</button>
+  </section>
 
-    <h2>Explore nossas barracas</h2>
-    <div class="barracas">
-      <div class="barraca" onclick="adicionarAoCarrinho('Verduras')">
-        <img src="https://images.unsplash.com/photo-1584270354949-1f3d276f8f35" alt="Verduras" />
-        <h3>Verduras</h3>
-      </div>
-      <div class="barraca" onclick="adicionarAoCarrinho('Laticínios')">
-        <img src="https://images.unsplash.com/photo-1608506469016-b0186b5f71a6" alt="Laticínios" />
-        <h3>Laticínios</h3>
+  <!-- Feira -->
+  <main>
+    <section class="barracas">
+      <div class="barraca" onclick="adicionarAoCarrinho('Vegetais')">
+        <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc" alt="Vegetais"/>
+        <h2>Vegetais</h2>
       </div>
       <div class="barraca" onclick="adicionarAoCarrinho('Frutas')">
-        <img src="https://images.unsplash.com/photo-1601050708457-be338387f634" alt="Frutas" />
-        <h3>Frutas</h3>
+        <img src="https://images.unsplash.com/photo-1576402187878-974f70c890a7" alt="Frutas"/>
+        <h2>Frutas</h2>
       </div>
-      <div class="barraca" onclick="adicionarAoCarrinho('Grãos')">
-        <img src="https://images.unsplash.com/photo-1561043433-aaf687c4cf4e" alt="Grãos" />
-        <h3>Grãos</h3>
+      <div class="barraca" onclick="adicionarAoCarrinho('Laticínios')">
+        <img src="https://images.unsplash.com/photo-1612197526261-3445f0b345f4" alt="Leite e Queijos"/>
+        <h2>Laticínios</h2>
       </div>
-    </div>
+      <!-- Adicione mais barracas aqui -->
+    </section>
 
-    <h2>Mapa Interativo da Feira</h2>
-    <div id="mapa">
-      <img src="https://i.imgur.com/3vXcE5h.png" alt="Mapa da Feira" />
-    </div>
+    <!-- Mapa da feira -->
+    <section id="mapa">
+      <h2>🗺️ Mapa da Feira</h2>
+      <img src="https://cdn.pixabay.com/photo/2016/11/29/06/17/map-1867221_960_720.png" alt="Mapa da Feira">
+    </section>
 
-    <h2>Carrinho de Compras</h2>
-    <ul id="carrinho"></ul>
-    <button onclick="finalizarCompra()">Finalizar Compra</button>
+    <!-- Carrinho -->
+    <section>
+      <h2>🛒 Carrinho de Compras</h2>
+      <ul id="carrinho"></ul>
+      <button onclick="finalizarCompra()">Finalizar Compra</button>
+    </section>
 
-    <div id="pagamento" class="pagamento">
-      <h2>Pagamento</h2>
-      <label>Nome: <input type="text" id="nomeComprador" /></label>
-      <label>Número do Cartão: <input type="text" id="cartao" /></label>
-      <button onclick="confirmarPagamento()">Pagar</button>
-    </div>
+    <!-- Pagamento -->
+    <section id="pagamento" class="pagamento" style="display:none;">
+      <h3>💳 Finalizar Pagamento</h3>
+      <input type="text" id="nomeComprador" placeholder="Seu nome completo" /><br><br>
+      <input type="text" id="cartao" placeholder="Número do cartão" /><br><br>
+      <button onclick="confirmarPagamento()">Confirmar</button>
+    </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
+    <p>&copy; 2025 Estação da Terra | Desenvolvido por Gregory</p>
   </footer>
 
   <script src="script.js"></script>

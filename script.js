@@ -9,7 +9,7 @@ function diminuirFonte() {
 }
 
 function alternarContraste() {
-  document.body.classList.toggle('contraste');
+  document.body.classList.toggle('modo-contraste');
 }
 
 function toggleSom() {
@@ -22,7 +22,12 @@ function toggleSom() {
 }
 
 function ativarLibras() {
-  alert('Integração com plugin de LIBRAS ainda será configurada.');
+  const script = document.createElement('script');
+  script.src = "https://vlibras.gov.br/app/vlibras-plugin.js";
+  script.onload = () => {
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  };
+  document.body.appendChild(script);
 }
 
 function plantarArvore() {
@@ -64,3 +69,8 @@ function confirmarPagamento() {
     alert('Preencha todos os campos.');
   }
 }
+
+window.onload = () => {
+  const som = document.getElementById('somAmbiente');
+  som.volume = 0.5;
+};
