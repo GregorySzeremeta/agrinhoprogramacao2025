@@ -1,34 +1,66 @@
-// Acessibilidade
+let carrinho = [];
+
 function aumentarFonte() {
-    document.body.style.fontSize = 'larger';
+  document.body.style.fontSize = 'larger';
 }
 
 function diminuirFonte() {
-    document.body.style.fontSize = 'medium';
+  document.body.style.fontSize = 'smaller';
 }
 
 function alternarContraste() {
-    document.body.classList.toggle('contraste');
+  document.body.classList.toggle('contraste');
 }
 
-function toggleLibras() {
-    alert("Plugin de LIBRAS em desenvolvimento!");
+function toggleSom() {
+  const audio = document.getElementById('somAmbiente');
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
 }
 
-// Barracas
-function abrirBarraca(tipo) {
-    alert(`Você escolheu a barraca de ${tipo}! Redirecionando...`);
-    // Aqui você pode usar window.location.href para uma página específica
-    // window.location.href = `${tipo}.html`;
-}
-body.contraste {
-    background: #000;
-    color: #fff;
+function ativarLibras() {
+  alert('Integração com plugin de LIBRAS ainda será configurada.');
 }
 
-body.contraste header,
-body.contraste main,
-body.contraste footer {
-    background-color: #222;
-    color: #fff;
+function plantarArvore() {
+  const area = document.getElementById('animacao-arvore');
+  area.innerHTML = '<div class="arvore">🌱</div>';
+  setTimeout(() => {
+    area.innerHTML = '<div class="arvore">🌳</div><p>Você plantou uma árvore!</p>';
+  }, 2000);
+}
+
+function adicionarAoCarrinho(produto) {
+  carrinho.push(produto);
+  atualizarCarrinho();
+}
+
+function atualizarCarrinho() {
+  const ul = document.getElementById('carrinho');
+  ul.innerHTML = '';
+  carrinho.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    ul.appendChild(li);
+  });
+}
+
+function finalizarCompra() {
+  document.getElementById('pagamento').style.display = 'block';
+}
+
+function confirmarPagamento() {
+  const nome = document.getElementById('nomeComprador').value;
+  const cartao = document.getElementById('cartao').value;
+  if (nome && cartao) {
+    alert(`Compra finalizada com sucesso! Obrigado, ${nome}!`);
+    carrinho = [];
+    atualizarCarrinho();
+    document.getElementById('pagamento').style.display = 'none';
+  } else {
+    alert('Preencha todos os campos.');
+  }
 }

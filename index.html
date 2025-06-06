@@ -1,77 +1,74 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estação da Terra</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estação da Terra</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="acessibilidade">
+    <button onclick="aumentarFonte()">A+</button>
+    <button onclick="diminuirFonte()">A-</button>
+    <button onclick="alternarContraste()">☯️</button>
+    <button onclick="toggleSom()">🔈</button>
+    <button onclick="ativarLibras()">🧏</button>
+  </div>
 
-    <!-- Menu de Acessibilidade -->
-    <div class="acessibilidade">
-        <button onclick="aumentarFonte()">A+</button>
-        <button onclick="diminuirFonte()">A-</button>
-        <button onclick="alternarContraste()">🌙</button>
-        <button onclick="toggleLibras()">🧏‍♂️</button>
+  <audio id="somAmbiente" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/08/04/audio_2ebaba5ba2.mp3?filename=forest-birds-ambient-nature-soundscape-113563.mp3" type="audio/mp3">
+  </audio>
+
+  <header>
+    <h1>Estação da Terra</h1>
+    <p>Do campo à cidade, colhendo oportunidades</p>
+    <button onclick="plantarArvore()" class="btn-arvore">Plantar uma Árvore</button>
+  </header>
+
+  <main>
+    <div id="animacao-arvore"></div>
+
+    <h2>Explore nossas barracas</h2>
+    <div class="barracas">
+      <div class="barraca" onclick="adicionarAoCarrinho('Verduras')">
+        <img src="https://images.unsplash.com/photo-1584270354949-1f3d276f8f35" alt="Verduras" />
+        <h3>Verduras</h3>
+      </div>
+      <div class="barraca" onclick="adicionarAoCarrinho('Laticínios')">
+        <img src="https://images.unsplash.com/photo-1608506469016-b0186b5f71a6" alt="Laticínios" />
+        <h3>Laticínios</h3>
+      </div>
+      <div class="barraca" onclick="adicionarAoCarrinho('Frutas')">
+        <img src="https://images.unsplash.com/photo-1601050708457-be338387f634" alt="Frutas" />
+        <h3>Frutas</h3>
+      </div>
+      <div class="barraca" onclick="adicionarAoCarrinho('Grãos')">
+        <img src="https://images.unsplash.com/photo-1561043433-aaf687c4cf4e" alt="Grãos" />
+        <h3>Grãos</h3>
+      </div>
     </div>
 
-    <!-- Cabeçalho -->
-    <header>
-        <h1>🌾 Estação da Terra</h1>
-        <p>Do campo à cidade, colhendo oportunidades</p>
-    </header>
+    <h2>Mapa Interativo da Feira</h2>
+    <div id="mapa">
+      <img src="https://i.imgur.com/3vXcE5h.png" alt="Mapa da Feira" />
+    </div>
 
-    <!-- Animação de Plantar uma Árvore -->
-    <section class="arvore-section">
-        <div class="terra"></div>
-        <div class="semente"></div>
-        <div class="arvore"></div>
-    </section>
+    <h2>Carrinho de Compras</h2>
+    <ul id="carrinho"></ul>
+    <button onclick="finalizarCompra()">Finalizar Compra</button>
 
-    <!-- Feira Interativa -->
-    <main>
-        <h2>Escolha sua Barraca</h2>
-        <div class="feira">
-            <div class="barraca" onclick="abrirBarraca('frutas')">
-                <img src="imagens/frutas.png" alt="Frutas">
-                <p>Frutas</p>
-            </div>
-            <div class="barraca" onclick="abrirBarraca('verduras')">
-                <img src="imagens/verduras.png" alt="Verduras">
-                <p>Verduras</p>
-            </div>
-            <div class="barraca" onclick="abrirBarraca('laticinios')">
-                <img src="imagens/laticinios.png" alt="Laticínios">
-                <p>Leite e Derivados</p>
-            </div>
-            <div class="barraca" onclick="abrirBarraca('graos')">
-                <img src="imagens/graos.png" alt="Grãos">
-                <p>Grãos</p>
-            </div>
-            <div class="barraca" onclick="abrirBarraca('mel')">
-                <img src="imagens/mel.png" alt="Mel">
-                <p>Mel e Derivados</p>
-            </div>
-            <div class="barraca" onclick="abrirBarraca('plante')">
-                <img src="imagens/plante.png" alt="Plante">
-                <p>Plante</p>
-            </div>
-        </div>
-    </main>
+    <div id="pagamento" class="pagamento">
+      <h2>Pagamento</h2>
+      <label>Nome: <input type="text" id="nomeComprador" /></label>
+      <label>Número do Cartão: <input type="text" id="cartao" /></label>
+      <button onclick="confirmarPagamento()">Pagar</button>
+    </div>
+  </main>
 
-    <!-- Rodapé -->
-    <footer>
-        <p>🚀 Melhorias futuras:</p>
-        <ul>
-            <li>🛒 Carrinho de compras</li>
-            <li>💳 Simulação de pagamento</li>
-            <li>🌎 Mapa da feira</li>
-            <li>🎧 Som ambiente da feira rural</li>
-        </ul>
-        <p>&copy; 2025 Estação da Terra - Todos os direitos reservados</p>
-    </footer>
+  <footer>
+    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
+  </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
