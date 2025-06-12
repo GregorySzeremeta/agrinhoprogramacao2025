@@ -1,82 +1,237 @@
-/* Importando fontes Google */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+/* =================================================================
+   ESTACAO DA TERRA - CSS COMPLETO
+   Desenvolvido para um site moderno, acessível, responsivo,
+   com animações, seções e muitos detalhes.
+   ================================================================= */
 
-/* Reset e base */
-* {
+/* ================== */
+/* 1. RESET E BASE    */
+/* ================== */
+
+/* Reset básico para todos elementos */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Reset scroll behavior suave para toda página */
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: 16px; /* Base para rem */
+  line-height: 1.6;
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
+/* ================== */
+/* 2. VARIÁVEIS CSS   */
+/* ================== */
+
+:root {
+  /* Cores principais */
+  --green-dark: #2b4a20;
+  --green-medium: #4a7c59;
+  --green-light: #a3d9a5;
+  --green-bg: #e7f0db;
+
+  --brown-dark: #6e3f21;
+  --brown-medium: #a35a33;
+  --brown-light: #d9b79c;
+
+  --text: #3a3a3a;
+  --text-light: #f9f7f1;
+  --bg: #f9f7f1;
+  --bg-alt: #fff;
+  --shadow-light: rgba(50, 50, 50, 0.1);
+  --shadow-dark: rgba(43, 74, 32, 0.6);
+
+  /* Fontes */
+  --font-primary: 'Open Sans', sans-serif;
+  --font-secondary: 'Playfair Display', serif;
+
+  /* Sombreamento */
+  --box-shadow-base: 0 8px 16px var(--shadow-light);
+  --box-shadow-hover: 0 15px 25px var(--shadow-dark);
+
+  /* Espaçamentos */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+  --spacing-xl: 64px;
+
+  /* Transições */
+  --transition-base: 0.3s ease;
+
+  /* Tamanhos */
+  --btn-height: 44px;
+  --btn-radius: 8px;
+  --border-radius: 15px;
+
+  /* Acessibilidade */
+  --focus-outline: 3px solid var(--green-light);
+  --focus-outline-offset: 3px;
+}
+
+/* ================== */
+/* 3. MODOS (TEMAS)   */
+/* ================== */
+
+/* Tema claro (default) */
 body {
-  font-family: 'Open Sans', sans-serif;
-  background: #f9f7f1;
-  color: #3a3a3a;
-  line-height: 1.6;
-  min-height: 100vh;
-  transition: background-color 0.4s, color 0.4s;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-primary);
   padding-top: 70px; /* espaço para header fixo */
 }
 
-/* Modo contraste */
+/* Tema contraste (modo escuro) */
 body.contraste {
-  background-color: #222;
-  color: #fff;
+  --bg: #222;
+  --text: #fff;
+  --green-dark: #a3d9a5;
+  --green-medium: #4a7c59;
+  --green-light: #a3d9a5;
+  --green-bg: #3a3a3a;
+  --bg-alt: #3a3a3a;
+  --shadow-light: rgba(200, 200, 200, 0.1);
+  --shadow-dark: rgba(163, 217, 165, 0.6);
 }
 
-/* Entrada animada */
-#entrada {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(135deg, #a3d9a5, #f9f7f1);
+/* ================== */
+/* 4. TIPOGRAFIA      */
+/* ================== */
+
+/* Headings - títulos principais */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+  color: var(--green-dark);
+  user-select: none;
+  margin-bottom: var(--spacing-md);
+  transition: color var(--transition-base);
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  border-bottom: 3px solid var(--green-light);
+  padding-bottom: 8px;
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+h4, h5, h6 {
+  font-weight: 600;
+}
+
+/* Texto padrão */
+p, li, span {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  user-select: text;
+  transition: color var(--transition-base);
+}
+
+/* Links */
+a {
+  color: var(--green-medium);
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color var(--transition-base);
+}
+a:hover, a:focus {
+  color: var(--green-dark);
+  outline: none;
+  text-decoration: underline;
+}
+
+/* ================== */
+/* 5. CONTAINERS E LAYOUTS */
+/* ================== */
+
+/* Container principal centralizado */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+/* Layout grid para produtos */
+.grid-produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* Layout flex para seções internas */
+.flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Playfair Display', serif;
-  font-size: 3.2rem;
-  color: #386641;
-  z-index: 9999;
-  animation: entradaFadeOut 3s forwards;
-  user-select: none;
 }
 
-@keyframes entradaFadeOut {
-  0% {opacity: 1;}
-  80% {opacity: 1;}
-  100% {opacity: 0; visibility: hidden;}
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Cabeçalho fixo */
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* ================== */
+/* 6. CABEÇALHO FIXO  */
+/* ================== */
+
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #4a7c59;
-  color: #f9f7f1;
-  padding: 15px 30px;
+  background-color: var(--green-medium);
+  color: var(--text-light);
+  padding: var(--spacing-md) var(--spacing-lg);
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  z-index: 1000;
+  z-index: 10000;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 header h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-secondary);
   font-size: 2rem;
   letter-spacing: 2px;
-  cursor: default;
   user-select: none;
+  cursor: default;
 }
 
 header .slogan {
@@ -84,322 +239,673 @@ header .slogan {
   font-weight: 400;
   font-size: 1rem;
   color: #d3d3d3;
-  margin-left: 15px;
+  margin-left: var(--spacing-sm);
   flex-grow: 1;
+  user-select: none;
 }
 
 /* Menu */
-.menu ul {
+nav.menu ul {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: var(--spacing-lg);
 }
 
-.menu ul li a {
-  text-decoration: none;
+nav.menu ul li a {
   font-weight: 600;
-  color: #f9f7f1;
+  color: var(--text-light);
   padding: 6px 12px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: var(--btn-radius);
+  transition: background-color var(--transition-base), color var(--transition-base);
 }
 
-.menu ul li a:hover,
-.menu ul li a:focus {
-  background-color: #a3d9a5;
-  color: #2b4a20;
+nav.menu ul li a:hover,
+nav.menu ul li a:focus {
+  background-color: var(--green-light);
+  color: var(--green-dark);
   outline: none;
 }
 
-/* Acessibilidade */
+/* ================== */
+/* 7. ACESSIBILIDADE  */
+/* ================== */
+
+/* Botões minimalistas de acessibilidade fixados */
 #acessibilidade {
   position: fixed;
   top: 85px;
   right: 15px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  z-index: 1100;
+  gap: var(--spacing-sm);
+  z-index: 11000;
 }
 
 #acessibilidade button {
-  background: #a3d9a5;
+  background: var(--green-light);
   border: none;
   padding: 10px 12px;
   border-radius: 50%;
   cursor: pointer;
   font-size: 1.3rem;
-  color: #2b4a20;
+  color: var(--green-dark);
   box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  transition: background-color var(--transition-base), color var(--transition-base), transform 0.2s ease;
+  user-select: none;
 }
 
 #acessibilidade button:hover,
 #acessibilidade button:focus {
-  background-color: #4a7c59;
-  color: #f9f7f1;
+  background-color: var(--green-medium);
+  color: var(--text-light);
   outline: none;
   transform: scale(1.1);
 }
 
-/* Main e seções */
-main {
-  max-width: 1200px;
-  margin: 30px auto 80px;
-  padding: 0 20px;
+/* ================== */
+/* 8. ENTRADA ANIMADA */
+/* ================== */
+
+#entrada {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: linear-gradient(135deg, var(--green-light), var(--green-medium));
   display: flex;
-  flex-direction: column;
-  gap: 60px;
+  justify-content: center;
+  align-items: center;
+  z-index: 12000;
+  opacity: 1;
+  animation: fadeOutEntrada 4s ease forwards;
 }
 
-/* Títulos principais */
-h2 {
-  font-family: 'Playfair Display', serif;
+@keyframes fadeOutEntrada {
+  0% {opacity: 1;}
+  80% {opacity: 1;}
+  100% {opacity: 0; pointer-events: none;}
+}
+
+/* ================== */
+/* 9. SEÇÕES PRODUTOS */
+/* ================== */
+
+/* Títulos das seções */
+.section-title {
+  font-family: var(--font-secondary);
   font-size: 2.4rem;
-  color: #386641;
-  margin-bottom: 20px;
-  border-bottom: 3px solid #a3d9a5;
-  padding-bottom: 5px;
+  border-bottom: 3px solid var(--green-light);
+  padding-bottom: 10px;
+  margin-bottom: var(--spacing-lg);
   user-select: none;
 }
 
-/* Barracas (produtos) */
-.barracas {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-}
-
-/* Card produto */
-.produto-card {
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(50, 50, 50, 0.1);
-  overflow: hidden;
+/* Container das barracas */
+.barraca {
+  background-color: var(--bg-alt);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-base);
+  padding: var(--spacing-lg);
+  transition: box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.barraca:hover {
+  box-shadow: var(--box-shadow-hover);
+}
+
+/* Título barraca */
+.barraca h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  user-select: none;
+  margin-bottom: var(--spacing-md);
+}
+
+/* Grid interno para produtos da barraca */
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--spacing-md);
+}
+
+/* Card individual produto */
+.produto-card {
+  background-color: var(--green-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 10px rgba(74,124,89,0.2);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  position: relative;
+  user-select: none;
 }
 
 .produto-card:hover,
 .produto-card:focus-within {
   transform: translateY(-6px);
-  box-shadow: 0 15px 25px rgba(50, 50, 50, 0.2);
+  box-shadow: 0 10px 20px rgba(74,124,89,0.35);
   outline: none;
 }
 
+/* Imagem do produto */
 .produto-card img {
   width: 100%;
-  height: 180px;
+  height: 140px;
   object-fit: cover;
-  border-bottom: 4px solid #a3d9a5;
-  transition: transform 0.5s ease;
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-sm);
 }
 
-.produto-card:hover img {
-  transform: scale(1.1);
-}
-
-.produto-card h3 {
-  font-family: 'Playfair Display', serif;
+/* Nome do produto */
+.produto-nome {
   font-weight: 700;
-  font-size: 1.5rem;
-  color: #2b4a20;
-  margin: 16px 15px 8px;
-}
-
-.produto-card p {
-  margin: 0 15px 16px;
-  font-weight: 600;
   font-size: 1.1rem;
-  color: #4a7c59;
+  margin-bottom: var(--spacing-xs);
+  color: var(--green-dark);
 }
 
-.produto-card button {
-  margin: 0 15px 20px;
-  padding: 12px;
-  background-color: #4a7c59;
-  border: none;
-  border-radius: 8px;
-  color: #f9f7f1;
+/* Descrição curta */
+.produto-desc {
+  font-size: 0.9rem;
+  color: var(--green-medium);
+  margin-bottom: var(--spacing-md);
+  flex-grow: 1;
+}
+
+/* Preço */
+.produto-preco {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  color: var(--brown-dark);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Botão adicionar ao carrinho */
+.btn-add {
+  background-color: var(--green-medium);
+  color: var(--text-light);
+  border: none;
+  padding: 10px 14px;
+  border-radius: var(--btn-radius);
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  align-self: center;
-  width: 80%;
-  box-shadow: 0 4px 8px rgba(50, 50, 50, 0.1);
-}
-
-.produto-card button:hover,
-.produto-card button:focus {
-  background-color: #2b4a20;
-  outline: none;
-  box-shadow: 0 6px 12px rgba(43, 74, 32, 0.6);
-}
-
-/* Carrinho */
-#carrinho {
-  background-color: #e7f0db;
-  border-radius: 15px;
-  padding: 30px;
-  box-shadow: 0 8px 20px rgba(50, 50, 50, 0.12);
-}
-
-#carrinho h2 {
-  margin-bottom: 25px;
-}
-
-#lista-carrinho {
-  list-style: none;
-  max-height: 180px;
-  overflow-y: auto;
-  padding-left: 0;
-  margin-bottom: 20px;
-}
-
-#lista-carrinho li {
-  background-color: #c7deb8;
-  margin-bottom: 10px;
-  padding: 10px 15px;
-  border-radius: 8px;
   font-weight: 600;
-  color: #2b4a20;
-  box-shadow: inset 0 2px 4px rgba(43, 74, 32, 0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  align-self: center;
+  user-select: none;
+}
+
+.btn-add:hover,
+.btn-add:focus {
+  background-color: var(--green-dark);
+  outline: none;
+  transform: scale(1.05);
+}
+
+/* Ícone carrinho dentro do botão */
+.btn-add .icon {
+  margin-left: 6px;
+  vertical-align: middle;
+  font-size: 1.1rem;
+}
+
+/* ================== */
+/* 10. CARRINHO DE COMPRAS */
+/* ================== */
+
+.carrinho {
+  background-color: var(--bg-alt);
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 320px;
+  max-height: 75vh;
+  overflow-y: auto;
+  box-shadow: var(--box-shadow-hover);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  z-index: 11000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Título do carrinho */
+.carrinho h4 {
+  font-family: var(--font-secondary);
+  font-size: 1.6rem;
+  color: var(--green-dark);
+  margin-bottom: var(--spacing-md);
+  user-select: none;
+}
+
+/* Lista de itens */
+.carrinho-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-height: 400px;
+  overflow-y: auto;
+  border-top: 1px solid var(--green-light);
+  border-bottom: 1px solid var(--green-light);
+  padding-top: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+}
+
+/* Item individual no carrinho */
+.carrinho-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: var(--green-dark);
+}
+
+/* Nome do item */
+.carrinho-item-nome {
+  flex: 1 1 auto;
   user-select: text;
 }
 
-#carrinho button {
-  background-color: #a35a33;
-  color: #f9f7f1;
+/* Quantidade */
+.carrinho-item-quantidade {
+  margin: 0 var(--spacing-sm);
+  font-weight: 600;
+}
+
+/* Botões de controle (remover, aumentar, diminuir) */
+.carrinho-btn {
+  background: transparent;
+  border: none;
+  color: var(--brown-dark);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+.carrinho-btn:hover,
+.carrinho-btn:focus {
+  color: var(--brown-medium);
+  outline: none;
+}
+
+/* Total */
+.carrinho-total {
   font-weight: 700;
+  font-size: 1.3rem;
+  text-align: right;
+  color: var(--green-dark);
+  margin-top: var(--spacing-md);
+  user-select: none;
+}
+
+/* Botões do carrinho */
+.carrinho-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+}
+
+/* Botão limpar carrinho */
+.btn-carrinho-limpar {
+  background-color: var(--brown-dark);
+  color: var(--text-light);
+  border: none;
+  padding: 10px 16px;
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.btn-carrinho-limpar:hover,
+.btn-carrinho-limpar:focus {
+  background-color: var(--brown-medium);
+  outline: none;
+}
+
+/* Botão finalizar compra */
+.btn-carrinho-finalizar {
+  background-color: var(--green-dark);
+  color: var(--text-light);
+  border: none;
+  padding: 10px 16px;
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.btn-carrinho-finalizar:hover,
+.btn-carrinho-finalizar:focus {
+  background-color: var(--green-medium);
+  outline: none;
+}
+
+/* ================== */
+/* 11. FORMAS DE PAGAMENTO */
+/* ================== */
+
+.pagamento-container {
+  background-color: var(--bg-alt);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-base);
+  margin-top: var(--spacing-xl);
+  user-select: none;
+}
+
+.pagamento-container h4 {
+  font-family: var(--font-secondary);
+  font-size: 1.6rem;
+  color: var(--green-dark);
+  margin-bottom: var(--spacing-md);
+}
+
+.pagamento-metodos {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.metodo-pagamento {
+  flex: 1 1 120px;
+  background-color: var(--green-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 12px rgba(74,124,89,0.15);
+  padding: var(--spacing-sm);
+  text-align: center;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.metodo-pagamento:hover,
+.metodo-pagamento:focus {
+  box-shadow: 0 10px 22px rgba(74,124,89,0.35);
+  transform: translateY(-5px);
+  outline: none;
+}
+
+.metodo-pagamento img {
+  width: 60px;
+  height: auto;
+  margin-bottom: var(--spacing-xs);
+  user-select: none;
+}
+
+.metodo-pagamento span {
+  font-weight: 600;
+  color: var(--green-dark);
+}
+
+/* Seleção ativa */
+.metodo-pagamento.selecionado {
+  border: 2px solid var(--green-dark);
+  background-color: var(--green-light);
+}
+
+/* ================== */
+/* 12. QUIZ INTERATIVO */
+/* ================== */
+
+.quiz {
+  background-color: var(--bg-alt);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-base);
+  max-width: 600px;
+  margin: var(--spacing-xl) auto;
+  user-select: none;
+}
+
+.quiz h4 {
+  font-family: var(--font-secondary);
+  font-size: 1.8rem;
+  color: var(--green-dark);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+.quiz-pergunta {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--green-medium);
+}
+
+.quiz-opcoes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.quiz-opcoes li {
+  background-color: var(--green-bg);
+  border-radius: var(--btn-radius);
+  padding: var(--spacing-sm);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quiz-opcoes li:hover,
+.quiz-opcoes li:focus {
+  background-color: var(--green-light);
+  outline: none;
+}
+
+/* Botão enviar */
+.quiz-btn {
+  background-color: var(--green-dark);
+  color: var(--text-light);
   border: none;
   padding: 12px 20px;
-  border-radius: 12px;
+  border-radius: var(--btn-radius);
+  font-weight: 700;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  box-shadow: 0 4px 8px rgba(163, 90, 51, 0.3);
-}
-
-#carrinho button:hover,
-#carrinho button:focus {
-  background-color: #6e3f21;
-  outline: none;
-}
-
-/* Quiz */
-#quiz {
-  background-color: #f5f9e7;
-  border-radius: 15px;
-  padding: 30px 40px;
-  box-shadow: 0 8px 20px rgba(50, 50, 50, 0.1);
-}
-
-.question {
-  margin-bottom: 25px;
-}
-
-.question p {
-  font-weight: 700;
-  color: #386641;
-  font-size: 1.1rem;
-  margin-bottom: 12px;
   user-select: none;
 }
 
-.question label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #4a7c59;
-  cursor: pointer;
-  user-select: none;
-  transition: color 0.3s ease;
-}
-
-.question input[type="radio"] {
-  margin-right: 10px;
-  cursor: pointer;
-  accent-color: #4a7c59;
-}
-
-.question label:hover,
-.question input[type="radio"]:focus + label {
-  color: #2b4a20;
-}
-
-/* Botão do quiz */
-#quiz button {
-  margin-top: 15px;
-  background-color: #4a7c59;
-  color: #f9f7f1;
-  font-weight: 700;
-  border: none;
-  padding: 14px 30px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 6px 12px rgba(43, 74, 32, 0.4);
-}
-
-#quiz button:hover,
-#quiz button:focus {
-  background-color: #2b4a20;
+.quiz-btn:hover,
+.quiz-btn:focus {
+  background-color: var(--green-medium);
   outline: none;
 }
+
+/* Resultado */
+.quiz-resultado {
+  margin-top: var(--spacing-md);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--brown-dark);
+  text-align: center;
+}
+
+/* ================== */
+/* 13. ANIMAÇÕES ESPECIAIS */
+/* ================== */
 
 /* Animação plantar árvore */
-#animar-arvore {
-  width: 120px;
-  margin: 40px auto 0;
+@keyframes crescerArvore {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.arvore-plantada {
+  animation: crescerArvore 3s ease forwards;
+  transform-origin: bottom center;
+}
+
+/* Efeito de sombra pulsante para destaque */
+@keyframes pulsarSombra {
+  0%, 100% {
+    box-shadow: 0 0 8px 3px var(--green-light);
+  }
+  50% {
+    box-shadow: 0 0 12px 6px var(--green-medium);
+  }
+}
+
+/* Botão com sombra pulsante */
+.btn-pulsar {
+  animation: pulsarSombra 2.5s infinite ease-in-out;
+}
+
+/* ================== */
+/* 14. BOTÕES PADRÃO */
+/* ================== */
+
+button, .btn {
+  font-family: var(--font-primary);
+  font-weight: 700;
   cursor: pointer;
-  display: block;
-  transition: transform 0.6s ease;
-}
-
-#animar-arvore:hover,
-#animar-arvore:focus {
-  transform: scale(1.15) rotate(-8deg);
-  outline: none;
-}
-
-/* Rodapé */
-footer {
-  background-color: #4a7c59;
-  color: #f9f7f1;
-  text-align: center;
-  padding: 18px 20px;
-  font-weight: 600;
-  font-size: 1rem;
+  border-radius: var(--btn-radius);
+  border: none;
+  padding: 0 16px;
+  height: var(--btn-height);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   user-select: none;
 }
 
-/* Acessibilidade: foco visível */
-a:focus, button:focus, input:focus, select:focus, textarea:focus {
-  outline: 3px solid #a3d9a5;
-  outline-offset: 3px;
+button:disabled,
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-/* Responsividade */
+/* Botões principais */
+.btn-principal {
+  background-color: var(--green-dark);
+  color: var(--text-light);
+}
+
+.btn-principal:hover,
+.btn-principal:focus {
+  background-color: var(--green-medium);
+  outline: none;
+  box-shadow: 0 0 12px var(--green-light);
+}
+
+/* Botões secundários */
+.btn-secundario {
+  background-color: var(--brown-dark);
+  color: var(--text-light);
+}
+
+.btn-secundario:hover,
+.btn-secundario:focus {
+  background-color: var(--brown-medium);
+  outline: none;
+  box-shadow: 0 0 12px var(--brown-light);
+}
+
+/* ================== */
+/* 15. ACESSIBILIDADE */
+/* ================== */
+
+/* Botões acessibilidade */
+.acessibilidade {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: var(--spacing-sm);
+  z-index: 13000;
+}
+
+.acessibilidade button {
+  background-color: var(--green-medium);
+  color: var(--text-light);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.acessibilidade button:hover,
+.acessibilidade button:focus {
+  background-color: var(--green-dark);
+  outline: none;
+}
+
+/* ================== */
+/* 16. OUTRAS CONFIGURAÇÕES */
+/* ================== */
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-alt);
+  border-radius: var(--border-radius);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--green-medium);
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green-dark);
+}
+
+/* Texto selecionável */
+.user-select-text {
+  user-select: text;
+}
+
+/* Texto não selecionável */
+.user-select-none {
+  user-select: none;
+}
+
+/* Responsividade básica */
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    gap: 10px;
+  .barraca {
+    padding: var(--spacing-md);
   }
-  header h1 {
-    font-size: 1.7rem;
+  
+  .produtos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
-  header .slogan {
-    margin-left: 0;
-    font-size: 0.9rem;
-  }
-  .barracas {
-    grid-template-columns: 1fr;
-  }
-  main {
-    margin: 20px 10px 60px;
-    gap: 40px;
+  
+  .carrinho {
+    width: 90vw;
+    right: 5vw;
+    top: 70px;
   }
 }
