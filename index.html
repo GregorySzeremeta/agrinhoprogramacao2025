@@ -4,21 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estação da Terra</title>
-  <link rel="stylesheet" href="estacao-da-terra.css">
-  <script defer src="estacao-da-terra.js"></script>
+  <link rel="stylesheet" href="estacao-terra.css">
 </head>
 <body>
   <header>
     <h1>Estação da Terra</h1>
-    <p>Do campo à cidade, colhendo oportunidades</p>
+    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
     <nav>
       <ul>
-        <li><a href="#leite">Leite</a></li>
-        <li><a href="#frutas">Frutas</a></li>
-        <li><a href="#mel">Mel</a></li>
-        <li><a href="#queijos">Queijos e Derivados</a></li>
-        <li><a href="#verduras">Verduras</a></li>
         <li><a href="#graos">Grãos</a></li>
+        <li><a href="#frutas">Frutas</a></li>
+        <li><a href="#laticinios">Leite e Derivados</a></li>
+        <li><a href="#verduras">Verduras</a></li>
+        <li><a href="#mel">Mel</a></li>
         <li><a href="#plante">Plante</a></li>
         <li><a href="#pagamento">Pagamento</a></li>
       </ul>
@@ -26,75 +24,81 @@
   </header>
 
   <main>
-    <section id="leite">
-      <h2>Leite</h2>
+    <section id="graos">
+      <h2>Grãos</h2>
       <div class="produto">
-        <img src="img/leite.jpg" alt="Leite integral">
-        <h3>Leite Integral</h3>
-        <p>R$ 4,50</p>
-        <button onclick="adicionarAoCarrinho('Leite Integral', 4.50)">Adicionar ao Carrinho</button>
+        <h3>Feijão Carioca</h3>
+        <p>R$ 8,00/kg</p>
+        <button onclick="adicionarCarrinho('Feijão Carioca', 8.00)">Adicionar ao carrinho</button>
+      </div>
+      <div class="produto">
+        <h3>Arroz Integral</h3>
+        <p>R$ 6,50/kg</p>
+        <button onclick="adicionarCarrinho('Arroz Integral', 6.50)">Adicionar ao carrinho</button>
       </div>
     </section>
 
     <section id="frutas">
       <h2>Frutas</h2>
       <div class="produto">
-        <img src="img/banana.jpg" alt="Banana">
         <h3>Banana</h3>
         <p>R$ 3,00/kg</p>
-        <button onclick="adicionarAoCarrinho('Banana', 3.00)">Adicionar ao Carrinho</button>
+        <button onclick="adicionarCarrinho('Banana', 3.00)">Adicionar ao carrinho</button>
+      </div>
+      <div class="produto">
+        <h3>Maçã</h3>
+        <p>R$ 5,00/kg</p>
+        <button onclick="adicionarCarrinho('Maçã', 5.00)">Adicionar ao carrinho</button>
       </div>
     </section>
 
-    <section id="mel">
-      <h2>Mel</h2>
+    <section id="laticinios">
+      <h2>Leite e Derivados</h2>
       <div class="produto">
-        <img src="img/mel.jpg" alt="Mel orgânico">
-        <h3>Mel Orgânico</h3>
-        <p>R$ 12,00</p>
-        <button onclick="adicionarAoCarrinho('Mel Orgânico', 12.00)">Adicionar ao Carrinho</button>
+        <h3>Leite Fresco</h3>
+        <p>R$ 4,00/L</p>
+        <button onclick="adicionarCarrinho('Leite Fresco', 4.00)">Adicionar ao carrinho</button>
       </div>
-    </section>
-
-    <section id="queijos">
-      <h2>Queijos e Derivados</h2>
       <div class="produto">
-        <img src="img/queijo.jpg" alt="Queijo colonial">
         <h3>Queijo Colonial</h3>
-        <p>R$ 18,00</p>
-        <button onclick="adicionarAoCarrinho('Queijo Colonial', 18.00)">Adicionar ao Carrinho</button>
+        <p>R$ 25,00/kg</p>
+        <button onclick="adicionarCarrinho('Queijo Colonial', 25.00)">Adicionar ao carrinho</button>
       </div>
     </section>
 
     <section id="verduras">
       <h2>Verduras</h2>
       <div class="produto">
-        <img src="img/alface.jpg" alt="Alface americana">
         <h3>Alface</h3>
-        <p>R$ 2,50</p>
-        <button onclick="adicionarAoCarrinho('Alface', 2.50)">Adicionar ao Carrinho</button>
+        <p>R$ 2,00/un</p>
+        <button onclick="adicionarCarrinho('Alface', 2.00)">Adicionar ao carrinho</button>
+      </div>
+      <div class="produto">
+        <h3>Espinafre</h3>
+        <p>R$ 3,00/maço</p>
+        <button onclick="adicionarCarrinho('Espinafre', 3.00)">Adicionar ao carrinho</button>
       </div>
     </section>
 
-    <section id="graos">
-      <h2>Grãos</h2>
+    <section id="mel">
+      <h2>Mel</h2>
       <div class="produto">
-        <img src="img/feijao.jpg" alt="Feijão preto">
-        <h3>Feijão Preto</h3>
-        <p>R$ 7,00</p>
-        <button onclick="adicionarAoCarrinho('Feijão Preto', 7.00)">Adicionar ao Carrinho</button>
+        <h3>Mel Puro</h3>
+        <p>R$ 18,00/500ml</p>
+        <button onclick="adicionarCarrinho('Mel Puro', 18.00)">Adicionar ao carrinho</button>
       </div>
     </section>
 
     <section id="plante">
       <h2>Plante</h2>
-      <p>Adote uma árvore e acompanhe seu crescimento em nosso mapa virtual. A sustentabilidade começa com pequenos gestos!</p>
-      <button onclick="plantarArvore()">Plantar uma Árvore</button>
+      <p>Ajude a cuidar do planeta. Plante uma árvore com a gente e acompanhe o crescimento dela virtualmente!</p>
+      <button onclick="plantarArvore()">Plantar Árvore</button>
+      <div id="arvore"></div>
     </section>
 
     <section id="carrinho">
       <h2>Carrinho de Compras</h2>
-      <ul id="itens-carrinho"></ul>
+      <ul id="lista-carrinho"></ul>
       <p>Total: R$ <span id="total">0.00</span></p>
       <button onclick="esvaziarCarrinho()">Esvaziar Carrinho</button>
     </section>
@@ -103,56 +107,48 @@
       <h2>Formas de Pagamento</h2>
       <ul>
         <li>Cartão de Crédito</li>
+        <li>Cartão de Débito</li>
         <li>PIX</li>
         <li>Boleto Bancário</li>
-        <li>Pagamento na Entrega</li>
       </ul>
-      <button onclick="simularPagamento()">Finalizar Compra</button>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
   </footer>
+
+  <script>
+    let carrinho = [];
+
+    function adicionarCarrinho(produto, preco) {
+      carrinho.push({ produto, preco });
+      atualizarCarrinho();
+    }
+
+    function atualizarCarrinho() {
+      const lista = document.getElementById('lista-carrinho');
+      const totalEl = document.getElementById('total');
+      lista.innerHTML = '';
+      let total = 0;
+      carrinho.forEach(item => {
+        total += item.preco;
+        const li = document.createElement('li');
+        li.textContent = `${item.produto} - R$ ${item.preco.toFixed(2)}`;
+        lista.appendChild(li);
+      });
+      totalEl.textContent = total.toFixed(2);
+    }
+
+    function esvaziarCarrinho() {
+      carrinho = [];
+      atualizarCarrinho();
+    }
+
+    function plantarArvore() {
+      const arvore = document.getElementById('arvore');
+      arvore.innerHTML = '<p>🌱 Uma nova árvore foi plantada! Ela crescerá com o tempo.</p>';
+    }
+  </script>
 </body>
 </html>
-
-<script>
-  let carrinho = [];
-
-  function adicionarAoCarrinho(produto, preco) {
-    carrinho.push({ produto, preco });
-    atualizarCarrinho();
-  }
-
-  function atualizarCarrinho() {
-    const lista = document.getElementById('itens-carrinho');
-    lista.innerHTML = '';
-    let total = 0;
-    carrinho.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = `${item.produto} - R$ ${item.preco.toFixed(2)}`;
-      lista.appendChild(li);
-      total += item.preco;
-    });
-    document.getElementById('total').textContent = total.toFixed(2);
-  }
-
-  function esvaziarCarrinho() {
-    carrinho = [];
-    atualizarCarrinho();
-  }
-
-  function simularPagamento() {
-    if (carrinho.length === 0) {
-      alert("Seu carrinho está vazio!");
-    } else {
-      alert("Compra realizada com sucesso! Obrigado por comprar na Estação da Terra.");
-      esvaziarCarrinho();
-    }
-  }
-
-  function plantarArvore() {
-    alert("Você plantou uma árvore! Obrigado por contribuir com o meio ambiente.");
-  }
-</script>
