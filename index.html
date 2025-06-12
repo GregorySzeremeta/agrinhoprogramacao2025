@@ -3,285 +3,520 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Estação da Terra</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <title>Estação da Terra - Feira Sustentável</title>
+
+  <!-- Fontes Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Coloque aqui o CSS do estilo que você gostou (do último CSS que fiz) */
+    /* Para não repetir o CSS aqui, assumo que você já tenha o CSS pronto */
+    /* Se preferir, posso adicionar aqui também */
+  </style>
 </head>
 <body>
 
-  <!-- Tela de entrada animada -->
-  <div id="entrada">Estação da Terra</div>
+<!-- Entrada animada -->
+<div id="entrada">Estação da Terra</div>
 
-  <header>
-    <h1>Estação da Terra</h1>
-    <span class="slogan">Do campo à cidade, colhendo oportunidades</span>
-    <nav class="menu" aria-label="Menu principal">
-      <ul>
-        <li><a href="#produtos" tabindex="0">Produtos</a></li>
-        <li><a href="#animacao" tabindex="0">Importância do Campo</a></li>
-        <li><a href="#quiz" tabindex="0">Quiz</a></li>
-        <li><a href="#sobre" tabindex="0">Sobre</a></li>
-        <li><a href="#carrinho" tabindex="0" aria-label="Ir para o carrinho">Carrinho 🛒</a></li>
-      </ul>
-    </nav>
-  </header>
+<!-- Cabeçalho fixo -->
+<header>
+  <h1>Estação da Terra</h1>
+  <div class="slogan">Do campo à cidade, colhendo oportunidades</div>
+  <nav class="menu" aria-label="Menu principal">
+    <ul>
+      <li><a href="#graos">Grãos</a></li>
+      <li><a href="#frutas">Frutas</a></li>
+      <li><a href="#leite-derivados">Leite & Derivados</a></li>
+      <li><a href="#mel">Mel</a></li>
+      <li><a href="#verduras">Verduras</a></li>
+      <li><a href="#plante">Plante</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#carrinho">Carrinho</a></li>
+      <li><a href="#pagamento">Pagamento</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <!-- Botões minimalistas para acessibilidade -->
-  <div id="acessibilidade" role="region" aria-label="Controles de acessibilidade">
-    <button id="btnLibras" aria-label="Ativar LIBRAS" title="Ativar LIBRAS">👐</button>
-    <button id="btnContraste" aria-label="Alternar alto contraste" title="Alto Contraste">⚙️</button>
-    <button id="btnAumentarFonte" aria-label="Aumentar fonte" title="Aumentar Fonte">A+</button>
-    <button id="btnDiminuirFonte" aria-label="Diminuir fonte" title="Diminuir Fonte">A-</button>
-    <button id="btnSom" aria-label="Tocar/Pausar música ambiente" title="Música Ambiente">🎵</button>
-  </div>
+<!-- Botões de acessibilidade -->
+<div id="acessibilidade" aria-label="Acessibilidade">
+  <button id="btn-contraste" title="Ativar modo contraste" aria-pressed="false">🌓</button>
+  <button id="btn-font" title="Aumentar fonte" aria-pressed="false">A+</button>
+  <button id="btn-libras" title="Ativar LIBRAS" aria-pressed="false">🤟</button>
+  <button id="btn-som" title="Som ambiente" aria-pressed="false">🔊</button>
+</div>
 
-  <!-- Música ambiente -->
-  <audio id="musicaAmbiente" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8a5f65b10a.mp3?filename=calm-nature-ambient-7062.mp3" type="audio/mp3" />
-    Seu navegador não suporta áudio.
-  </audio>
+<main>
 
-  <main>
+  <!-- Seção Grãos -->
+  <section id="graos" tabindex="-1" aria-label="Produtos da categoria Grãos">
+    <h2>Grãos</h2>
+    <div class="barracas">
+      <article class="produto-card" tabindex="0" aria-label="Arroz integral">
+        <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=400&q=80" alt="Arroz integral" />
+        <h3>Arroz Integral</h3>
+        <p>Pacote 1kg, orgânico e cultivado localmente.</p>
+        <p>R$ 12,90</p>
+        <button data-id="graos1" data-nome="Arroz Integral" data-preco="12.90" aria-label="Adicionar Arroz Integral ao carrinho">Adicionar ao carrinho</button>
+      </article>
 
-    <!-- Seção produtos -->
-    <section id="produtos" tabindex="-1" aria-label="Lista de produtos da feira">
-      <h2>Produtos da Feira</h2>
-      <div class="barracas" id="listaProdutos">
-        <!-- Produtos serão inseridos via JS -->
+      <article class="produto-card" tabindex="0" aria-label="Feijão carioca">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80" alt="Feijão carioca" />
+        <h3>Feijão Carioca</h3>
+        <p>Pacote 1kg, selecionado e fresco.</p>
+        <p>R$ 8,50</p>
+        <button data-id="graos2" data-nome="Feijão Carioca" data-preco="8.50" aria-label="Adicionar Feijão Carioca ao carrinho">Adicionar ao carrinho</button>
+      </article>
+
+      <article class="produto-card" tabindex="0" aria-label="Lentilha">
+        <img src="https://images.unsplash.com/photo-1573072413920-12a3d3e81a5f?auto=format&fit=crop&w=400&q=80" alt="Lentilha" />
+        <h3>Lentilha</h3>
+        <p>Pacote 500g, rica em proteínas.</p>
+        <p>R$ 10,20</p>
+        <button data-id="graos3" data-nome="Lentilha" data-preco="10.20" aria-label="Adicionar Lentilha ao carrinho">Adicionar ao carrinho</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- Seção Frutas -->
+  <section id="frutas" tabindex="-1" aria-label="Produtos da categoria Frutas">
+    <h2>Frutas</h2>
+    <div class="barracas">
+      <article class="produto-card" tabindex="0" aria-label="Maçã Fuji">
+        <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=400&q=80" alt="Maçã Fuji" />
+        <h3>Maçã Fuji</h3>
+        <p>Unidade fresca e saborosa.</p>
+        <p>R$ 3,00</p>
+        <button data-id="frutas1" data-nome="Maçã Fuji" data-preco="3.00" aria-label="Adicionar Maçã Fuji ao carrinho">Adicionar ao carrinho</button>
+      </article>
+
+      <article class="produto-card" tabindex="0" aria-label="Banana prata">
+        <img src="https://images.unsplash.com/photo-1506801310323-534be5e7bb62?auto=format&fit=crop&w=400&q=80" alt="Banana prata" />
+        <h3>Banana Prata</h3>
+        <p>Cacho com 7 unidades, sabor doce.</p>
+        <p>R$ 5,50</p>
+        <button data-id="frutas2" data-nome="Banana Prata" data-preco="5.50" aria-label="Adicionar Banana Prata ao carrinho">Adicionar ao carrinho</button>
+      </article>
+
+      <article class="produto-card" tabindex="0" aria-label="Laranja pera">
+        <img src="https://images.unsplash.com/photo-1575996927925-6f0ab2244df6?auto=format&fit=crop&w=400&q=80" alt="Laranja pera" />
+        <h3>Laranja Pera</h3>
+        <p>Pacote 2kg, suculenta e doce.</p>
+        <p>R$ 7,80</p>
+        <button data-id="frutas3" data-nome="Laranja Pera" data-preco="7.80" aria-label="Adicionar Laranja Pera ao carrinho">Adicionar ao carrinho</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- Seção Leite e derivados -->
+  <section id="leite-derivados" tabindex="-1" aria-label="Produtos da categoria Leite e derivados">
+    <h2>Leite & Derivados</h2>
+    <div class="barracas">
+      <article class="produto-card" tabindex="0" aria-label="Leite integral">
+        <img src="https://images.unsplash.com/photo-1584270354949-02a1ae4e5a97?auto=format&fit=crop&w=400&q=80" alt="Leite integral" />
+        <h3>Leite Integral</h3>
+        <p>1 litro fresco e pasteurizado.</p>
+        <p>R$ 4,90</p>
+        <button data-id="leite1" data-nome="Leite Integral" data-preco="4.90" aria-label="Adicionar Leite Integral ao carrinho">Adicionar ao carrinho</button>
+      </article>
+
+      <article class="produto-card" tabindex="0" aria-label="Queijo Minas">
+        <img src="https://images.unsplash.com/photo-1590080877777-eac9d38f3a15?auto=format&fit=crop&w=400&q=80" alt="Queijo Minas" />
+        <h3>Queijo Minas</h3>
+        <p>500g artesanal, sabor suave.</p>
+        <p>R$ 25,00</p>
+        <button data-id="leite2" data-nome="Queijo Minas" data-preco="25.00" aria-label="Adicionar Queijo Minas ao carrinho">Adicionar ao carrinho</button>
+      </article>
+
+      <article class="produto-card" tabindex="0" aria-label="Iogurte natural">
+        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=400&q=80" alt="Iogurte natural" />
+        <h3>Iogurte Natural</h3>
+        <p>300ml, sem conservantes.</p>
+        <p>R$ 7,50</p>
+        <button data-id="leite3" data-nome="Iogurte Natural" data-preco="7.50" aria-label="Adicionar Iogurte Natural ao carrinho">Adicionar ao carrinho</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- Seção Mel -->
+  <section id="mel" tabindex="-1" aria-label="Produtos da categoria Mel">
+    <h2>Mel</h2>
+    <div class="barracas">
+      <article class="produto-card" tabindex="0" aria-label="Mel puro">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Mel puro" />
+        <h3>Mel Puro</h3>
+        <p>Frasco 500g, direto do apiário.</p>
+        <p>R$ 20,00</p>
+        <button data-id="mel1" data-nome="Mel Puro" data-preco="20.00" aria-label="Adicionar Mel Puro ao carrinho">Adicionar ao carrinho</button>
+      </article>
+
+      <article class="produto-card" tabindex="0" aria-label="Mel com própolis">
+        <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=400&q=80" alt="Mel com própolis" />
+        <h3>Mel com Própolis</h3>
+        <p>Frasco 300g, propriedades medicinais.</p>
+        <p>R$ 25,50</p>
+        <button data-id="mel2" data-nome="Mel com Própolis" data-preco="25.50" aria-label="Adicionar Mel com Própolis ao carrinho">Adicionar ao carrinho</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- Seção Verduras -->
+  <section id="verduras" tabindex="-1" aria-label="Produtos da categoria Verduras">
+    <h2>Verduras</h2>
+    <div class="barracas">
+      <article class="produto-card" tabindex="0" aria-label="Alface americana">
+        <img src="https://images.unsplash.com/photo-1556910103-1b372b8f9b7d?auto=format&fit=crop&w=400&q=80" alt="Alface americana" />
+        <h3>Alface Americana</h3>
+        <p>Unidade fresca, cultivada sem agrotóxicos.</p>
+        <p>R$ 4,00</p>
+        <button data-id="verduras1" data-nome="Alface Americana" data-preco="4.00" aria-label="Adicionar Alface Americana ao carrinho">Adicionar ao carrinho</button>
+      </article>
+
+      <article class="produto-card" tabindex="0" aria-label="Couve manteiga">
+        <img src="https://images.unsplash.com/photo-1561043433-aaf687c4cf4f?auto=format&fit=crop&w=400&q=80" alt="Couve manteiga" />
+        <h3>Couve Manteiga</h3>
+        <p>Maço 500g, rico em nutrientes.</p>
+        <p>R$ 5,50</p>
+        <button data-id="verduras2" data-nome="Couve Manteiga" data-preco="5.50" aria-label="Adicionar Couve Manteiga ao carrinho">Adicionar ao carrinho</button>
+      </article>
+
+      <article class="produto-card" tabindex="0" aria-label="Espinafre">
+        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=400&q=80" alt="Espinafre" />
+        <h3>Espinafre</h3>
+        <p>Maço 300g, orgânico.</p>
+        <p>R$ 6,20</p>
+        <button data-id="verduras3" data-nome="Espinafre" data-preco="6.20" aria-label="Adicionar Espinafre ao carrinho">Adicionar ao carrinho</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- Seção Plante -->
+  <section id="plante" tabindex="-1" aria-label="Seção Plante">
+    <h2>Plante - Sustentabilidade e Agricultura</h2>
+    <p>Aprenda a plantar e cuidar da sua árvore! Clique na árvore abaixo para vê-la crescer.</p>
+    <img id="animar-arvore" src="https://cdn-icons-png.flaticon.com/512/427/427735.png" alt="Clique para plantar a árvore" tabindex="0" role="button" aria-pressed="false" />
+    <div id="mensagem-arvore" role="alert" aria-live="polite" style="text-align:center; margin-top:10px; font-weight:bold;"></div>
+  </section>
+
+  <!-- Quiz sobre sustentabilidade -->
+  <section id="quiz" tabindex="-1" aria-label="Quiz sobre sustentabilidade">
+    <h2>Quiz Sustentável</h2>
+    <form id="quiz-form" aria-describedby="quiz-desc">
+      <p id="quiz-desc">Teste seus conhecimentos sobre sustentabilidade e práticas ecológicas.</p>
+
+      <fieldset>
+        <legend>1. Qual é o principal benefício da compostagem?</legend>
+        <label><input type="radio" name="q1" value="a" required /> a) Reduzir o lixo orgânico e gerar adubo natural.</label><br/>
+        <label><input type="radio" name="q1" value="b" /> b) Aumentar o uso de fertilizantes químicos.</label><br/>
+        <label><input type="radio" name="q1" value="c" /> c) Poluir o solo.</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Qual destes alimentos é mais sustentável?</legend>
+        <label><input type="radio" name="q2" value="a" required /> a) Alimentos orgânicos locais.</label><br/>
+        <label><input type="radio" name="q2" value="b" /> b) Alimentos importados de longa distância.</label><br/>
+        <label><input type="radio" name="q2" value="c" /> c) Alimentos processados industrialmente.</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>3. Qual destas práticas ajuda a conservar água?</legend>
+        <label><input type="radio" name="q3" value="a" required /> a) Reutilizar água da chuva para regar plantas.</label><br/>
+        <label><input type="radio" name="q3" value="b" /> b) Deixar a torneira aberta enquanto escova os dentes.</label><br/>
+        <label><input type="radio" name="q3" value="c" /> c) Usar água potável para limpar a calçada.</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>4. O que é agricultura sustentável?</legend>
+        <label><input type="radio" name="q4" value="a" required /> a) Cultivar alimentos preservando o meio ambiente.</label><br/>
+        <label><input type="radio" name="q4" value="b" /> b) Uso intensivo de pesticidas químicos.</label><br/>
+        <label><input type="radio" name="q4" value="c" /> c) Desmatar áreas para cultivo.</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>5. O que é a compostagem anaeróbica?</legend>
+        <label><input type="radio" name="q5" value="a" required /> a) Processo de decomposição sem oxigênio.</label><br/>
+        <label><input type="radio" name="q5" value="b" /> b) Processo com oxigênio abundante.</label><br/>
+        <label><input type="radio" name="q5" value="c" /> c) Queima de resíduos orgânicos.</label>
+      </fieldset>
+
+      <button type="submit" aria-label="Enviar respostas do quiz">Enviar Respostas</button>
+    </form>
+    <div id="quiz-result" role="alert" aria-live="polite" style="margin-top:15px; font-weight:bold;"></div>
+  </section>
+
+  <!-- Carrinho -->
+  <section id="carrinho" tabindex="-1" aria-label="Carrinho de compras">
+    <h2>Seu Carrinho</h2>
+    <div id="carrinho-lista" aria-live="polite" aria-relevant="additions removals">
+      <p>Seu carrinho está vazio.</p>
+    </div>
+    <p id="total-carrinho">Total: R$ 0,00</p>
+    <button id="btn-esvaziar" disabled aria-disabled="true">Esvaziar carrinho</button>
+  </section>
+
+  <!-- Pagamento -->
+  <section id="pagamento" tabindex="-1" aria-label="Formas de pagamento">
+    <h2>Pagamento</h2>
+    <form id="form-pagamento" aria-describedby="desc-pagamento">
+      <p id="desc-pagamento">Escolha a forma de pagamento e preencha os dados abaixo:</p>
+
+      <label for="tipo-pagamento">Forma de pagamento:</label>
+      <select id="tipo-pagamento" name="tipo-pagamento" required aria-required="true">
+        <option value="" disabled selected>Selecione</option>
+        <option value="cartao">Cartão de Crédito</option>
+        <option value="boleto">Boleto Bancário</option>
+        <option value="pix">PIX</option>
+      </select>
+
+      <div id="dados-cartao" style="display:none; margin-top:10px;">
+        <label for="nome-cartao">Nome no cartão:</label>
+        <input type="text" id="nome-cartao" name="nome-cartao" autocomplete="cc-name" aria-required="true" />
+
+        <label for="numero-cartao">Número do cartão:</label>
+        <input type="text" id="numero-cartao" name="numero-cartao" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="cc-number" aria-required="true" />
+
+        <label for="validade-cartao">Validade (MM/AA):</label>
+        <input type="text" id="validade-cartao" name="validade-cartao" maxlength="5" placeholder="MM/AA" autocomplete="cc-exp" aria-required="true" />
+
+        <label for="cvv-cartao">CVV:</label>
+        <input type="password" id="cvv-cartao" name="cvv-cartao" maxlength="3" autocomplete="cc-csc" aria-required="true" />
       </div>
-    </section>
 
-    <!-- Carrinho -->
-    <section id="carrinho" tabindex="-1" aria-label="Carrinho de compras">
-      <h2>Carrinho 🛒</h2>
-      <ul id="lista-carrinho" aria-live="polite" aria-relevant="additions removals"></ul>
-      <button id="btnEsvaziar" aria-label="Esvaziar carrinho">Esvaziar Carrinho</button>
-      <button id="btnFinalizar" aria-label="Finalizar compra">Finalizar Compra</button>
-      <p id="msgFinalizar" role="alert" style="margin-top: 1rem; font-weight: 700;"></p>
-    </section>
-
-    <!-- Animação da importância do campo -->
-    <section id="animacao" tabindex="-1" aria-label="Animação falando da importância do campo">
-      <h2>Por que o Campo é Importante?</h2>
-      <div class="animacao-texto" aria-live="polite" aria-atomic="true">
-        <p>O campo é a fonte da nossa vida, a origem dos alimentos que nutrem nosso corpo e alma.</p>
-        <p>É nele que a natureza se renova e gera oportunidades sustentáveis para todos.</p>
-        <p>Valorizar o campo é investir no futuro do planeta e das próximas gerações.</p>
+      <div id="dados-boleto" style="display:none; margin-top:10px;">
+        <p>Após finalizar a compra, você receberá o boleto para pagamento no seu e-mail.</p>
       </div>
-    </section>
 
-    <!-- Quiz de sustentabilidade -->
-    <section id="quiz" tabindex="-1" aria-label="Quiz sobre sustentabilidade">
-      <h2>Teste seus conhecimentos sobre sustentabilidade</h2>
-      <form id="formQuiz" aria-describedby="resultadoQuiz">
-        <div class="question">
-          <p>1. Qual é a principal função da agricultura sustentável?</p>
-          <label><input type="radio" name="q1" value="errado1" required> Maximizar o uso de agrotóxicos</label>
-          <label><input type="radio" name="q1" value="correto"> Preservar o meio ambiente e a produtividade</label>
-          <label><input type="radio" name="q1" value="errado2"> Plantar apenas produtos importados</label>
-        </div>
-        <div class="question">
-          <p>2. Qual prática ajuda a conservar o solo?</p>
-          <label><input type="radio" name="q2" value="correto" required> Rotação de culturas</label>
-          <label><input type="radio" name="q2" value="errado1"> Desmatamento</label>
-          <label><input type="radio" name="q2" value="errado2"> Uso excessivo de fertilizantes químicos</label>
-        </div>
-        <div class="question">
-          <p>3. O que significa agricultura orgânica?</p>
-          <label><input type="radio" name="q3" value="correto" required> Produção sem agrotóxicos e químicos sintéticos</label>
-          <label><input type="radio" name="q3" value="errado1"> Uso intensivo de máquinas pesadas</label>
-          <label><input type="radio" name="q3" value="errado2"> Plantar apenas soja</label>
-        </div>
-        <button type="submit" aria-label="Enviar respostas do quiz">Enviar Respostas</button>
-      </form>
-      <div id="resultadoQuiz" class="resultado-container" aria-live="polite"></div>
-    </section>
+      <div id="dados-pix" style="display:none; margin-top:10px;">
+        <p>Após finalizar a compra, você receberá um QR Code para pagamento via PIX.</p>
+      </div>
 
-    <!-- Sobre -->
-    <section id="sobre" tabindex="-1" aria-label="Informações sobre o projeto Estação da Terra">
-      <h2>Sobre o Projeto</h2>
-      <p>
-        O projeto Estação da Terra nasce com o objetivo de conectar o campo à cidade, promovendo
-        a sustentabilidade, valorização dos pequenos produtores e o consumo consciente.
-        Com uma feira virtual interativa, trazemos o melhor da agricultura familiar para sua casa,
-        com qualidade, respeito ao meio ambiente e inovação.
-      </p>
-    </section>
+      <button type="submit" aria-label="Finalizar compra">Finalizar Compra</button>
+    </form>
 
-  </main>
+    <div id="resultado-pagamento" role="alert" aria-live="polite" style="margin-top:15px; font-weight:bold;"></div>
+  </section>
 
-  <footer>
-    &copy; 2025 Estação da Terra. Todos os direitos reservados.
-  </footer>
+</main>
 
-  <script>
-    // Produto modelo
-    const produtos = [
-      {id: 1, nome: "Leite Fresco", preco: 6.50, img: "https://i.imgur.com/1gk0ILy.jpg", descricao: "Leite integral fresco e natural."},
-      {id: 2, nome: "Maçã Orgânica", preco: 4.20, img: "https://i.imgur.com/k1yLRyQ.jpg", descricao: "Maçãs cultivadas sem agrotóxicos."},
-      {id: 3, nome: "Mel Puro", preco: 15.00, img: "https://i.imgur.com/q6ZY92h.jpg", descricao: "Mel direto da colmeia, sem aditivos."},
-      {id: 4, nome: "Queijo Artesanal", preco: 22.50, img: "https://i.imgur.com/nN5K7K6.jpg", descricao: "Queijo fresco feito de forma artesanal."},
-      {id: 5, nome: "Alface Crespa", preco: 3.00, img: "https://i.imgur.com/dGcZp9J.jpg", descricao: "Alface crocante e fresca da horta."},
-      {id: 6, nome: "Feijão Carioca", preco: 7.80, img: "https://i.imgur.com/z4m5frT.jpg", descricao: "Feijão de qualidade e sabor caseiro."},
-      {id: 7, nome: "Tomate Italiano", preco: 5.50, img: "https://i.imgur.com/ikS5H55.jpg", descricao: "Tomates saborosos e suculentos."},
-      {id: 8, nome: "Arroz Integral", preco: 8.40, img: "https://i.imgur.com/Hosb0yF.jpg", descricao: "Arroz integral, fonte de fibras."},
-      {id: 9, nome: "Cenoura Orgânica", preco: 4.50, img: "https://i.imgur.com/Dm5qOgU.jpg", descricao: "Cenoura saudável e saborosa."},
-      {id: 10, nome: "Abacate Maduro", preco: 9.90, img: "https://i.imgur.com/4SPP1xn.jpg", descricao: "Abacate cremoso para suas receitas."},
-      {id: 11, nome: "Pão Integral", preco: 6.00, img: "https://i.imgur.com/0JGmhPo.jpg", descricao: "Pão feito com farinha integral."},
-      {id: 12, nome: "Melaço Natural", preco: 12.00, img: "https://i.imgur.com/7HJPpkx.jpg", descricao: "Adoçante natural e nutritivo."},
-      {id: 13, nome: "Batata Doce", preco: 5.80, img: "https://i.imgur.com/9JzE5ey.jpg", descricao: "Batata doce orgânica."},
-      {id: 14, nome: "Chá de Ervas", preco: 10.00, img: "https://i.imgur.com/Nmm9qJu.jpg", descricao: "Chá feito com ervas frescas."},
-      {id: 15, nome: "Couve Manteiga", preco: 3.50, img: "https://i.imgur.com/8VWmUk3.jpg", descricao: "Couve fresca para suas receitas."},
-      {id: 16, nome: "Melancia", preco: 7.20, img: "https://i.imgur.com/Tl6Cn6V.jpg", descricao: "Melancia doce e refrescante."},
-      {id: 17, nome: "Morango Orgânico", preco: 11.00, img: "https://i.imgur.com/fFqJqNK.jpg", descricao: "Morango fresco e natural."},
-      {id: 18, nome: "Ovos Caipiras", preco: 8.00, img: "https://i.imgur.com/pOx5Fgl.jpg", descricao: "Ovos frescos de galinhas criadas soltas."},
-      {id: 19, nome: "Cebola Roxa", preco: 4.00, img: "https://i.imgur.com/0H43aZP.jpg", descricao: "Cebola roxa fresca."},
-      {id: 20, nome: "Mel de Eucalipto", preco: 16.50, img: "https://i.imgur.com/jTGAV4F.jpg", descricao: "Mel sabor único de eucalipto."}
-    ];
+<footer>
+  Estação da Terra &copy; 2025 | Sustentabilidade e agricultura familiar
+</footer>
 
-    const listaProdutos = document.getElementById('listaProdutos');
-    const listaCarrinho = document.getElementById('lista-carrinho');
-    const btnEsvaziar = document.getElementById('btnEsvaziar');
-    const btnFinalizar = document.getElementById('btnFinalizar');
-    const msgFinalizar = document.getElementById('msgFinalizar');
+<script>
+  /* SCRIPT PRINCIPAL */
 
-    // Renderizar produtos
-    function renderProdutos() {
-      listaProdutos.innerHTML = '';
-      produtos.forEach(prod => {
-        const card = document.createElement('article');
-        card.className = 'produto-card';
-        card.setAttribute('tabindex', '0');
-        card.innerHTML = `
-          <img src="${prod.img}" alt="Imagem de ${prod.nome}" />
-          <h3>${prod.nome}</h3>
-          <p>${prod.descricao}</p>
-          <p class="preco">R$ ${prod.preco.toFixed(2)}</p>
-          <button aria-label="Adicionar ${prod.nome} ao carrinho" data-id="${prod.id}">Adicionar</button>
-        `;
-        listaProdutos.appendChild(card);
-      });
+  // Função para formatar preço em BRL
+  function formatarPreco(valor) {
+    return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  // Estado do carrinho
+  let carrinho = {};
+
+  // Atualiza visual do carrinho
+  function atualizarCarrinho() {
+    const carrinhoLista = document.getElementById('carrinho-lista');
+    const totalCarrinho = document.getElementById('total-carrinho');
+    const btnEsvaziar = document.getElementById('btn-esvaziar');
+
+    carrinhoLista.innerHTML = '';
+
+    let total = 0;
+    const keys = Object.keys(carrinho);
+
+    if (keys.length === 0) {
+      carrinhoLista.innerHTML = '<p>Seu carrinho está vazio.</p>';
+      totalCarrinho.textContent = 'Total: R$ 0,00';
+      btnEsvaziar.disabled = true;
+      btnEsvaziar.setAttribute('aria-disabled', 'true');
+      return;
     }
 
-    // Estado do carrinho
-    let carrinho = [];
+    keys.forEach(id => {
+      const item = carrinho[id];
+      total += item.preco * item.quantidade;
 
-    // Adicionar produto no carrinho
-    function adicionarAoCarrinho(id) {
-      const prod = produtos.find(p => p.id === id);
-      if (!prod) return;
-      const itemNoCarrinho = carrinho.find(i => i.id === id);
-      if (itemNoCarrinho) {
-        itemNoCarrinho.quantidade++;
-      } else {
-        carrinho.push({...prod, quantidade: 1});
+      const itemDiv = document.createElement('div');
+      itemDiv.className = 'item-carrinho';
+      itemDiv.tabIndex = 0;
+      itemDiv.setAttribute('aria-label', `${item.nome}, quantidade ${item.quantidade}, preço unitário ${formatarPreco(item.preco)}`);
+
+      itemDiv.innerHTML = `
+        <strong>${item.nome}</strong><br/>
+        Quantidade: ${item.quantidade}<br/>
+        Preço unitário: ${formatarPreco(item.preco)}<br/>
+        Subtotal: ${formatarPreco(item.preco * item.quantidade)}<br/>
+        <button aria-label="Remover um ${item.nome} do carrinho" data-id="${id}" class="btn-remover">Remover</button>
+      `;
+
+      carrinhoLista.appendChild(itemDiv);
+    });
+
+    totalCarrinho.textContent = `Total: ${formatarPreco(total)}`;
+    btnEsvaziar.disabled = false;
+    btnEsvaziar.setAttribute('aria-disabled', 'false');
+  }
+
+  // Adicionar item ao carrinho
+  function adicionarAoCarrinho(id, nome, preco) {
+    if (carrinho[id]) {
+      carrinho[id].quantidade += 1;
+    } else {
+      carrinho[id] = { nome: nome, preco: preco, quantidade: 1 };
+    }
+    atualizarCarrinho();
+  }
+
+  // Remover item do carrinho
+  document.getElementById('carrinho-lista').addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-remover')) {
+      const id = e.target.getAttribute('data-id');
+      if (carrinho[id]) {
+        carrinho[id].quantidade -= 1;
+        if (carrinho[id].quantidade <= 0) {
+          delete carrinho[id];
+        }
+        atualizarCarrinho();
       }
-      renderCarrinho();
+    }
+  });
+
+  // Esvaziar carrinho
+  document.getElementById('btn-esvaziar').addEventListener('click', () => {
+    carrinho = {};
+    atualizarCarrinho();
+  });
+
+  // Adicionar evento aos botões "Adicionar ao carrinho"
+  document.querySelectorAll('button[data-id]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-id');
+      const nome = btn.getAttribute('data-nome');
+      const preco = parseFloat(btn.getAttribute('data-preco'));
+      adicionarAoCarrinho(id, nome, preco);
+    });
+  });
+
+  // Animar árvore
+  const imgArvore = document.getElementById('animar-arvore');
+  const msgArvore = document.getElementById('mensagem-arvore');
+  let etapaArvore = 0;
+  const imagensArvore = [
+    'https://cdn-icons-png.flaticon.com/512/427/427735.png',
+    'https://cdn-icons-png.flaticon.com/512/427/427744.png',
+    'https://cdn-icons-png.flaticon.com/512/427/427746.png',
+    'https://cdn-icons-png.flaticon.com/512/427/427748.png',
+    'https://cdn-icons-png.flaticon.com/512/427/427750.png'
+  ];
+
+  imgArvore.addEventListener('click', () => {
+    etapaArvore++;
+    if (etapaArvore >= imagensArvore.length) {
+      etapaArvore = 0;
+      msgArvore.textContent = 'Sua árvore foi plantada e está crescendo! 🌳';
+    } else {
+      msgArvore.textContent = `Etapa de crescimento: ${etapaArvore} de ${imagensArvore.length - 1}`;
+    }
+    imgArvore.src = imagensArvore[etapaArvore];
+    imgArvore.setAttribute('aria-pressed', etapaArvore !== 0);
+  });
+
+  // Mostrar/ocultar campos do formulário de pagamento
+  const selectPagamento = document.getElementById('tipo-pagamento');
+  const divCartao = document.getElementById('dados-cartao');
+  const divBoleto = document.getElementById('dados-boleto');
+  const divPix = document.getElementById('dados-pix');
+
+  selectPagamento.addEventListener('change', () => {
+    const valor = selectPagamento.value;
+    divCartao.style.display = 'none';
+    divBoleto.style.display = 'none';
+    divPix.style.display = 'none';
+
+    if (valor === 'cartao') {
+      divCartao.style.display = 'block';
+    } else if (valor === 'boleto') {
+      divBoleto.style.display = 'block';
+    } else if (valor === 'pix') {
+      divPix.style.display = 'block';
+    }
+  });
+
+  // Validação e submissão do formulário de pagamento
+  document.getElementById('form-pagamento').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const tipoPagamento = selectPagamento.value;
+    let mensagem = '';
+
+    if (!tipoPagamento) {
+      mensagem = 'Por favor, selecione uma forma de pagamento.';
+      alert(mensagem);
+      return;
     }
 
-    // Renderizar carrinho
-    function renderCarrinho() {
-      listaCarrinho.innerHTML = '';
-      if (carrinho.length === 0) {
-        listaCarrinho.innerHTML = '<li>Seu carrinho está vazio.</li>';
+    if (tipoPagamento === 'cartao') {
+      const nome = document.getElementById('nome-cartao').value.trim();
+      const numero = document.getElementById('numero-cartao').value.trim();
+      const validade = document.getElementById('validade-cartao').value.trim();
+      const cvv = document.getElementById('cvv-cartao').value.trim();
+
+      if (!nome || !numero || !validade || !cvv) {
+        mensagem = 'Por favor, preencha todos os dados do cartão.';
+        alert(mensagem);
         return;
       }
-      carrinho.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.nome} x${item.quantidade} - R$ ${(item.preco * item.quantidade).toFixed(2)}`;
-        listaCarrinho.appendChild(li);
-      });
+      // Aqui poderia incluir validação mais avançada
+      mensagem = 'Pagamento com cartão efetuado com sucesso! Obrigado pela compra.';
+    } else if (tipoPagamento === 'boleto') {
+      mensagem = 'Boleto gerado! Verifique seu e-mail para pagamento.';
+    } else if (tipoPagamento === 'pix') {
+      mensagem = 'PIX gerado! Verifique seu e-mail para pagamento.';
     }
 
-    // Esvaziar carrinho
-    btnEsvaziar.addEventListener('click', () => {
-      carrinho = [];
-      renderCarrinho();
-      msgFinalizar.textContent = '';
-    });
+    document.getElementById('resultado-pagamento').textContent = mensagem;
+    // Após pagamento, esvaziar carrinho
+    carrinho = {};
+    atualizarCarrinho();
+    document.getElementById('form-pagamento').reset();
+    divCartao.style.display = 'none';
+    divBoleto.style.display = 'none';
+    divPix.style.display = 'none';
+  });
 
-    // Finalizar compra
-    btnFinalizar.addEventListener('click', () => {
-      if (carrinho.length === 0) {
-        msgFinalizar.textContent = 'Seu carrinho está vazio. Adicione produtos para finalizar.';
-        return;
-      }
-      // Simular finalização
-      msgFinalizar.textContent = 'Compra finalizada com sucesso! Obrigado por apoiar o campo.';
-      carrinho = [];
-      renderCarrinho();
-    });
+  // Quiz
+  document.getElementById('quiz-form').addEventListener('submit', (e) => {
+    e.preventDefault();
 
-    // Eventos para adicionar produtos
-    listaProdutos.addEventListener('click', (e) => {
-      if (e.target.tagName === 'BUTTON') {
-        const id = Number(e.target.getAttribute('data-id'));
-        adicionarAoCarrinho(id);
-      }
-    });
-
-    // Controle acessibilidade
-    const btnContraste = document.getElementById('btnContraste');
-    const btnAumentarFonte = document.getElementById('btnAumentarFonte');
-    const btnDiminuirFonte = document.getElementById('btnDiminuirFonte');
-    const btnLibras = document.getElementById('btnLibras');
-    const btnSom = document.getElementById('btnSom');
-    const musicaAmbiente = document.getElementById('musicaAmbiente');
-
-    btnContraste.addEventListener('click', () => {
-      document.body.classList.toggle('alto-contraste');
-    });
-
-    btnAumentarFonte.addEventListener('click', () => {
-      let tamanho = parseFloat(getComputedStyle(document.documentElement).fontSize);
-      if (tamanho < 22) document.documentElement.style.fontSize = (tamanho + 1) + 'px';
-    });
-
-    btnDiminuirFonte.addEventListener('click', () => {
-      let tamanho = parseFloat(getComputedStyle(document.documentElement).fontSize);
-      if (tamanho > 12) document.documentElement.style.fontSize = (tamanho - 1) + 'px';
-    });
-
-    btnLibras.addEventListener('click', () => {
-      alert('Recurso de LIBRAS ainda não implementado.'); 
-      // Pode integrar um plugin externo depois
-    });
-
-    btnSom.addEventListener('click', () => {
-      if (musicaAmbiente.paused) {
-        musicaAmbiente.play();
-        btnSom.textContent = '🔊';
-      } else {
-        musicaAmbiente.pause();
-        btnSom.textContent = '🎵';
-      }
-    });
-
-    // Quiz
-    const formQuiz = document.getElementById('formQuiz');
-    const resultadoQuiz = document.getElementById('resultadoQuiz');
-
-    formQuiz.addEventListener('submit', e => {
-      e.preventDefault();
-      let pontos = 0;
-      const respostas = new FormData(formQuiz);
-      for (const [key, value] of respostas.entries()) {
-        if (value === 'correto') pontos++;
-      }
-      resultadoQuiz.textContent = `Você acertou ${pontos} de 3 perguntas.`;
-    });
-
-    // Animação entrada
-    window.onload = () => {
-      const entrada = document.getElementById('entrada');
-      setTimeout(() => {
-        entrada.style.opacity = 0;
-        setTimeout(() => entrada.style.display = 'none', 600);
-      }, 2000);
-      renderProdutos();
-      renderCarrinho();
+    let score = 0;
+    const respostas = {
+      q1: 'a',
+      q2: 'a',
+      q3: 'a',
+      q4: 'a',
+      q5: 'a'
     };
-  </script>
 
+    const formData = new FormData(e.target);
+    for (const [key, value] of formData.entries()) {
+      if (respostas[key] === value) {
+        score++;
+      }
+    }
+
+    const resultado = document.getElementById('quiz-result');
+    resultado.textContent = `Você acertou ${score} de 5 perguntas.`;
+
+    // Feedback
+    if (score === 5) {
+      resultado.textContent += ' Parabéns! Você é um expert em sustentabilidade!';
+    } else if (score >= 3) {
+      resultado.textContent += ' Muito bom! Continue aprendendo.';
+    } else {
+      resultado.textContent += ' Continue estudando e se esforçando!';
+    }
+  });
+
+</script>
 </body>
 </html>
