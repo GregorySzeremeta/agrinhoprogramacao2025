@@ -1,131 +1,136 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Estação da Terra</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <!-- VLibras Plugin -->
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
-<body onload="animarEntrada()">
+<body>
+
+  <!-- Animação de entrada -->
   <div id="entrada" class="entrada-animada">
-    <h1>Bem-vindo à Estação da Terra 🌿</h1>
+    🌱 Estação da Terra 🌻
   </div>
 
+  <!-- Acessibilidade -->
+  <div id="acessibilidade">
+    <button onclick="toggleContraste()">🌓</button>
+    <button onclick="aumentarFonte()">🔠</button>
+    <button onclick="diminuirFonte()">🔡</button>
+  </div>
+
+  <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho -->
   <header>
     <h1>Estação da Terra</h1>
     <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
     <nav class="menu">
       <ul>
-        <li><a href="#barracas">Barracas</a></li>
         <li><a href="#produtos">Produtos</a></li>
         <li><a href="#quiz">Quiz</a></li>
         <li><a href="#carrinho">Carrinho</a></li>
+        <li><a href="#sobre">Sobre</a></li>
       </ul>
     </nav>
   </header>
 
+  <!-- Principal -->
   <main>
-    <section id="barracas">
-      <h2>Barracas</h2>
-      <div class="barracas">
-        <div class="barraca" onclick="mostrarProdutos('frutas')">
-          <img src="img/frutas.jpg" alt="Frutas">
-          <p>Frutas</p>
-        </div>
-        <div class="barraca" onclick="mostrarProdutos('verduras')">
-          <img src="img/verduras.jpg" alt="Verduras">
-          <p>Verduras</p>
-        </div>
-        <!-- Mais barracas -->
-      </div>
-    </section>
-
+    <!-- Produtos -->
     <section id="produtos">
-      <h2>Produtos</h2>
-      <div id="lista-produtos"></div>
-    </section>
-
-    <section id="carrinho">
-      <h2>Carrinho de Compras</h2>
-      <ul id="itens-carrinho"></ul>
-      <button onclick="esvaziarCarrinho()">Esvaziar Carrinho</button>
-    </section>
-
-    <section id="quiz">
-      <div class="quiz-container">
-        <h2>Quiz Sustentável</h2>
-        <div class="question">
-          <p>1. Qual é o principal benefício da compostagem?</p>
-          <label><input type="radio" name="q1" value="a"> Reduz o lixo orgânico</label>
-          <label><input type="radio" name="q1" value="b"> Aumenta o uso de plástico</label>
+      <h2>Produtos à Venda</h2>
+      <div class="barracas">
+        <div class="produto-card">
+          <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce" alt="Maçã">
+          <h3>Maçã Orgânica</h3>
+          <p>R$ 3,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Maçã Orgânica')">Adicionar</button>
         </div>
-        <div class="question">
-          <p>2. O que é agricultura orgânica?</p>
-          <label><input type="radio" name="q2" value="a"> Uso excessivo de agrotóxicos</label>
-          <label><input type="radio" name="q2" value="b"> Cultivo sem produtos químicos</label>
+        <div class="produto-card">
+          <img src="https://images.unsplash.com/photo-1582515073490-39981397c445" alt="Mel Puro">
+          <h3>Mel Puro</h3>
+          <p>R$ 15,00</p>
+          <button onclick="adicionarAoCarrinho('Mel Puro')">Adicionar</button>
         </div>
-        <div class="question">
-          <p>3. O que podemos fazer para economizar água?</p>
-          <label><input type="radio" name="q3" value="a"> Deixar torneiras abertas</label>
-          <label><input type="radio" name="q3" value="b"> Reutilizar água da chuva</label>
+        <div class="produto-card">
+          <img src="https://images.unsplash.com/photo-1572441710263-478a1b119119" alt="Queijo Artesanal">
+          <h3>Queijo Artesanal</h3>
+          <p>R$ 25,00</p>
+          <button onclick="adicionarAoCarrinho('Queijo Artesanal')">Adicionar</button>
         </div>
-        <div class="question">
-          <p>4. Qual destes é um exemplo de energia renovável?</p>
-          <label><input type="radio" name="q4" value="a"> Carvão</label>
-          <label><input type="radio" name="q4" value="b"> Solar</label>
-        </div>
-        <div class="question">
-          <p>5. O que são alimentos agroecológicos?</p>
-          <label><input type="radio" name="q5" value="a"> Cultivados com equilíbrio ecológico</label>
-          <label><input type="radio" name="q5" value="b"> Produzidos em larga escala industrial</label>
-        </div>
-        <button onclick="verificarRespostas()">Ver Resultado</button>
-        <div class="resultado-container" id="resultado-quiz"></div>
+        <!-- Adicione mais produtos aqui -->
       </div>
+    </section>
+
+    <!-- Carrinho -->
+    <section id="carrinho">
+      <h2>🛒 Carrinho de Compras</h2>
+      <ul id="lista-carrinho"></ul>
+      <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
+    </section>
+
+    <!-- Quiz -->
+    <section id="quiz">
+      <h2>🌽 Quiz Agrícola</h2>
+      <div class="quiz-container" id="quiz-container">
+        <div class="question">
+          <p>1. Qual desses produtos é uma leguminosa?</p>
+          <label><input type="radio" name="q1" value="errado"> Banana</label>
+          <label><input type="radio" name="q1" value="correto"> Feijão</label>
+          <label><input type="radio" name="q1" value="errado"> Tomate</label>
+        </div>
+        <div class="question">
+          <p>2. Qual o melhor horário para irrigar plantas?</p>
+          <label><input type="radio" name="q2" value="correto"> De manhã cedo</label>
+          <label><input type="radio" name="q2" value="errado"> Meio-dia</label>
+          <label><input type="radio" name="q2" value="errado"> À noite</label>
+        </div>
+        <div class="question">
+          <p>3. Qual o principal benefício do adubo orgânico?</p>
+          <label><input type="radio" name="q3" value="correto"> Melhora o solo naturalmente</label>
+          <label><input type="radio" name="q3" value="errado"> Causa menos folhas</label>
+          <label><input type="radio" name="q3" value="errado"> É mais barato</label>
+        </div>
+        <div class="question">
+          <p>4. O que é uma horta vertical?</p>
+          <label><input type="radio" name="q4" value="correto"> Cultivo em paredes ou estruturas suspensas</label>
+          <label><input type="radio" name="q4" value="errado"> Horta de legumes grandes</label>
+          <label><input type="radio" name="q4" value="errado"> Nome antigo de horta</label>
+        </div>
+        <button onclick="verificarQuiz()">Verificar Respostas</button>
+        <div class="resultado-container" id="resultado"></div>
+      </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre">
+      <h2>História da Estação da Terra</h2>
+      <p>
+        A Estação da Terra nasceu com o propósito de aproximar o campo da cidade. Nosso objetivo é conectar pequenos produtores a consumidores conscientes, promovendo sustentabilidade, saúde e economia local. Aqui, cada barraca é uma oportunidade, cada produto é um pedaço da natureza.
+      </p>
     </section>
   </main>
 
-  <div id="acessibilidade">
-    <button onclick="alternarContraste()">☀️</button>
-    <button onclick="aumentarFonte()">A+</button>
-    <button onclick="ativarLIBRAS()">🤟</button>
-  </div>
-
+  <!-- Rodapé -->
   <footer>
-    <p>© 2025 Estação da Terra. Todos os direitos reservados.</p>
+    &copy; 2025 Estação da Terra. Todos os direitos reservados.
   </footer>
 
+  <!-- JavaScript -->
   <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+
     let carrinho = [];
-
-    function animarEntrada() {
-      const entrada = document.getElementById('entrada');
-      entrada.style.opacity = '0';
-      entrada.style.transform = 'scale(1.2)';
-      setTimeout(() => entrada.remove(), 1500);
-    }
-
-    function mostrarProdutos(categoria) {
-      const lista = document.getElementById('lista-produtos');
-      lista.innerHTML = '';
-      const produtos = {
-        frutas: ['Maçã', 'Banana', 'Laranja'],
-        verduras: ['Alface', 'Couve', 'Espinafre']
-      };
-
-      produtos[categoria].forEach(produto => {
-        const card = document.createElement('div');
-        card.className = 'produto-card';
-        card.innerHTML = `
-          <p>${produto}</p>
-          <button onclick="adicionarAoCarrinho('${produto}')">Adicionar</button>
-        `;
-        lista.appendChild(card);
-      });
-    }
 
     function adicionarAoCarrinho(produto) {
       carrinho.push(produto);
@@ -133,10 +138,10 @@
     }
 
     function atualizarCarrinho() {
-      const lista = document.getElementById('itens-carrinho');
-      lista.innerHTML = '';
-      carrinho.forEach(item => {
-        const li = document.createElement('li');
+      const lista = document.getElementById("lista-carrinho");
+      lista.innerHTML = "";
+      carrinho.forEach((item, index) => {
+        const li = document.createElement("li");
         li.textContent = item;
         lista.appendChild(li);
       });
@@ -147,27 +152,30 @@
       atualizarCarrinho();
     }
 
-    function verificarRespostas() {
-      const respostas = ["a", "b", "b", "b", "a"];
-      let acertos = 0;
-      respostas.forEach((resp, i) => {
-        const sel = document.querySelector(`input[name=q${i+1}]:checked`);
-        if (sel && sel.value === resp) acertos++;
+    function verificarQuiz() {
+      let total = 0;
+      document.querySelectorAll("#quiz-container input:checked").forEach(el => {
+        if (el.value === "correto") total++;
       });
-      document.getElementById("resultado-quiz").textContent = `Você acertou ${acertos} de 5 perguntas!`;
+      document.getElementById("resultado").textContent = `Você acertou ${total} de 4 perguntas!`;
     }
 
-    function alternarContraste() {
+    function toggleContraste() {
       document.body.classList.toggle("contraste");
     }
 
     function aumentarFonte() {
-      document.body.style.fontSize = "18px";
+      document.body.style.fontSize = "larger";
     }
 
-    function ativarLIBRAS() {
-      alert("Sistema de LIBRAS em desenvolvimento.");
+    function diminuirFonte() {
+      document.body.style.fontSize = "initial";
     }
+
+    // Remover tela de entrada após animação
+    setTimeout(() => {
+      document.getElementById("entrada").style.display = "none";
+    }, 3000);
   </script>
 </body>
 </html>
