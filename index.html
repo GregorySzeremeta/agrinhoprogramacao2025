@@ -1,190 +1,160 @@
-<!-- ========================= HTML + JavaScript ========================= -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Estação da Terra</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body onload="animarEntrada()">
+  <div id="entrada" class="entrada-animada">
+    <h1>Bem-vindo à Estação da Terra 🌿</h1>
+  </div>
+
   <header>
+    <h1>Estação da Terra</h1>
+    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
     <nav class="menu">
-      <h1>🌱 Estação da Terra</h1>
       <ul>
-        <li><a href="#mapa-feira">Mapa da Feira</a></li>
+        <li><a href="#barracas">Barracas</a></li>
         <li><a href="#produtos">Produtos</a></li>
         <li><a href="#quiz">Quiz</a></li>
-        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#carrinho">Carrinho</a></li>
       </ul>
     </nav>
-    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
   </header>
 
   <main>
-    <section id="mapa-feira">
-      <h2>Mapa da Feira</h2>
+    <section id="barracas">
+      <h2>Barracas</h2>
       <div class="barracas">
-        <div class="barraca" onclick="mostrarProdutos('vegetais')">
-          <img src="vegetais.png" alt="Barraca de Vegetais">
-          <p>Vegetais</p>
-        </div>
         <div class="barraca" onclick="mostrarProdutos('frutas')">
-          <img src="frutas.png" alt="Barraca de Frutas">
+          <img src="img/frutas.jpg" alt="Frutas">
           <p>Frutas</p>
         </div>
-        <div class="barraca" onclick="mostrarProdutos('graos')">
-          <img src="graos.png" alt="Barraca de Grãos">
-          <p>Grãos</p>
+        <div class="barraca" onclick="mostrarProdutos('verduras')">
+          <img src="img/verduras.jpg" alt="Verduras">
+          <p>Verduras</p>
         </div>
+        <!-- Mais barracas -->
       </div>
     </section>
 
     <section id="produtos">
       <h2>Produtos</h2>
       <div id="lista-produtos"></div>
-      <div id="carrinho">
-        <h3>Carrinho de Compras</h3>
-        <ul id="itens-carrinho"></ul>
-        <p>Total: R$ <span id="total">0.00</span></p>
-      </div>
     </section>
 
-    <section class="quiz-wrapper" id="quiz">
+    <section id="carrinho">
+      <h2>Carrinho de Compras</h2>
+      <ul id="itens-carrinho"></ul>
+      <button onclick="esvaziarCarrinho()">Esvaziar Carrinho</button>
+    </section>
+
+    <section id="quiz">
       <div class="quiz-container">
-        <h1>QUIZ: Agricultura</h1>
-
+        <h2>Quiz Sustentável</h2>
         <div class="question">
-          <p>1) Qual é a principal função da agricultura?</p>
-          <label><input type="radio" name="q1" value="a" />Proteger os animais</label>
-          <label><input type="radio" name="q1" value="b" />Produzir alimentos</label>
-          <label><input type="radio" name="q1" value="c" />Cuidar das florestas</label>
+          <p>1. Qual é o principal benefício da compostagem?</p>
+          <label><input type="radio" name="q1" value="a"> Reduz o lixo orgânico</label>
+          <label><input type="radio" name="q1" value="b"> Aumenta o uso de plástico</label>
         </div>
-
         <div class="question">
-          <p>2) O que são agrotóxicos?</p>
-          <label><input type="radio" name="q2" value="a" />Produtos naturais</label>
-          <label><input type="radio" name="q2" value="b" />Máquinas agrícolas</label>
-          <label><input type="radio" name="q2" value="c" />Produtos químicos para pragas</label>
+          <p>2. O que é agricultura orgânica?</p>
+          <label><input type="radio" name="q2" value="a"> Uso excessivo de agrotóxicos</label>
+          <label><input type="radio" name="q2" value="b"> Cultivo sem produtos químicos</label>
         </div>
-
         <div class="question">
-          <p>3) Qual destas culturas é um grão?</p>
-          <label><input type="radio" name="q3" value="a" />Maçã</label>
-          <label><input type="radio" name="q3" value="b" />Feijão</label>
-          <label><input type="radio" name="q3" value="c" />Couve</label>
+          <p>3. O que podemos fazer para economizar água?</p>
+          <label><input type="radio" name="q3" value="a"> Deixar torneiras abertas</label>
+          <label><input type="radio" name="q3" value="b"> Reutilizar água da chuva</label>
         </div>
-
-        <button onclick="corrigirQuiz()">Enviar</button>
-        <div class="resultado-container" id="resultado"></div>
+        <div class="question">
+          <p>4. Qual destes é um exemplo de energia renovável?</p>
+          <label><input type="radio" name="q4" value="a"> Carvão</label>
+          <label><input type="radio" name="q4" value="b"> Solar</label>
+        </div>
+        <div class="question">
+          <p>5. O que são alimentos agroecológicos?</p>
+          <label><input type="radio" name="q5" value="a"> Cultivados com equilíbrio ecológico</label>
+          <label><input type="radio" name="q5" value="b"> Produzidos em larga escala industrial</label>
+        </div>
+        <button onclick="verificarRespostas()">Ver Resultado</button>
+        <div class="resultado-container" id="resultado-quiz"></div>
       </div>
     </section>
-
-    <section id="sobre">
-      <h2>Sobre o Projeto</h2>
-      <p>A Estação da Terra simula uma feira interativa com foco em sustentabilidade, agricultura e acessibilidade. Inspirada na conexão entre campo e cidade, o projeto oferece produtos, educação e inclusão digital para todos.</p>
-    </section>
-
-    <div id="acessibilidade">
-      <button onclick="alternarContraste()" aria-label="Contraste">🌓</button>
-      <button onclick="aumentarFonte()" aria-label="Aumentar Fonte">A+</button>
-      <button onclick="resetarFonte()" aria-label="Fonte Normal">A</button>
-      <button onclick="ativarSomAmbiente()" aria-label="Som Ambiente">🎵</button>
-      <button onclick="abrirLibras()" aria-label="Tradutor LIBRAS">👐</button>
-    </div>
   </main>
 
+  <div id="acessibilidade">
+    <button onclick="alternarContraste()">☀️</button>
+    <button onclick="aumentarFonte()">A+</button>
+    <button onclick="ativarLIBRAS()">🤟</button>
+  </div>
+
   <footer>
-    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
+    <p>© 2025 Estação da Terra. Todos os direitos reservados.</p>
   </footer>
 
   <script>
-    const produtos = {
-      vegetais: [
-        { nome: "Alface", preco: 2.5, img: "alface.jpg" },
-        { nome: "Couve", preco: 3.0, img: "couve.jpg" },
-        { nome: "Brócolis", preco: 4.2, img: "brocolis.jpg" }
-      ],
-      frutas: [
-        { nome: "Maçã", preco: 2.0, img: "maca.jpg" },
-        { nome: "Banana", preco: 1.5, img: "banana.jpg" },
-        { nome: "Uva", preco: 3.5, img: "uva.jpg" }
-      ],
-      graos: [
-        { nome: "Feijão", preco: 6.0, img: "feijao.jpg" },
-        { nome: "Milho", preco: 5.0, img: "milho.jpg" },
-        { nome: "Arroz", preco: 4.5, img: "arroz.jpg" }
-      ]
-    };
+    let carrinho = [];
 
-    const gabarito = {
-      q1: 'b',
-      q2: 'c',
-      q3: 'b'
-    };
-
-    let total = 0;
+    function animarEntrada() {
+      const entrada = document.getElementById('entrada');
+      entrada.style.opacity = '0';
+      entrada.style.transform = 'scale(1.2)';
+      setTimeout(() => entrada.remove(), 1500);
+    }
 
     function mostrarProdutos(categoria) {
-      const lista = document.getElementById("lista-produtos");
-      lista.innerHTML = "";
-      produtos[categoria].forEach(prod => {
-        const card = document.createElement("div");
-        card.className = "produto-card";
+      const lista = document.getElementById('lista-produtos');
+      lista.innerHTML = '';
+      const produtos = {
+        frutas: ['Maçã', 'Banana', 'Laranja'],
+        verduras: ['Alface', 'Couve', 'Espinafre']
+      };
 
-        const img = document.createElement("img");
-        img.src = prod.img;
-        img.alt = prod.nome;
-
-        const nome = document.createElement("p");
-        nome.textContent = prod.nome;
-
-        const preco = document.createElement("p");
-        preco.textContent = `R$ ${prod.preco.toFixed(2)}`;
-
-        const botao = document.createElement("button");
-        botao.textContent = "Adicionar ao Carrinho";
-        botao.onclick = () => adicionarAoCarrinho(prod);
-
-        card.append(img, nome, preco, botao);
+      produtos[categoria].forEach(produto => {
+        const card = document.createElement('div');
+        card.className = 'produto-card';
+        card.innerHTML = `
+          <p>${produto}</p>
+          <button onclick="adicionarAoCarrinho('${produto}')">Adicionar</button>
+        `;
         lista.appendChild(card);
       });
     }
 
-    function adicionarAoCarrinho(prod) {
-      const carrinho = document.getElementById("itens-carrinho");
-      const item = document.createElement("li");
-      item.textContent = `${prod.nome} - R$ ${prod.preco.toFixed(2)}`;
-      carrinho.appendChild(item);
-      total += prod.preco;
-      document.getElementById("total").textContent = total.toFixed(2);
+    function adicionarAoCarrinho(produto) {
+      carrinho.push(produto);
+      atualizarCarrinho();
     }
 
-    function corrigirQuiz() {
-      const respostas = document.querySelectorAll("input[type=radio]:checked");
-      let acertos = 0;
-      respostas.forEach(r => {
-        if (gabarito[r.name] === r.value) acertos++;
+    function atualizarCarrinho() {
+      const lista = document.getElementById('itens-carrinho');
+      lista.innerHTML = '';
+      carrinho.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        lista.appendChild(li);
       });
-
-      const resultado = document.getElementById("resultado");
-      resultado.innerHTML = `<h2>Você acertou ${acertos} questão(ões)!</h2>`;
-
-      if (acertos === Object.keys(gabarito).length) criarConfetes();
     }
 
-    function criarConfetes() {
-      const confettiContainer = document.createElement("div");
-      confettiContainer.classList.add("confetti-container");
-      document.body.appendChild(confettiContainer);
-      for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement("div");
-        confetti.classList.add("confetti");
-        const colors = ['#FFC107', '#FF5722', '#4CAF50', '#03A9F4'];
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.left = `${Math.random() * 100}%`;
-        confettiContainer.appendChild(confetti);
-      }
+    function esvaziarCarrinho() {
+      carrinho = [];
+      atualizarCarrinho();
+    }
+
+    function verificarRespostas() {
+      const respostas = ["a", "b", "b", "b", "a"];
+      let acertos = 0;
+      respostas.forEach((resp, i) => {
+        const sel = document.querySelector(`input[name=q${i+1}]:checked`);
+        if (sel && sel.value === resp) acertos++;
+      });
+      document.getElementById("resultado-quiz").textContent = `Você acertou ${acertos} de 5 perguntas!`;
     }
 
     function alternarContraste() {
@@ -192,26 +162,11 @@
     }
 
     function aumentarFonte() {
-      document.body.style.fontSize = "1.2em";
+      document.body.style.fontSize = "18px";
     }
 
-    function resetarFonte() {
-      document.body.style.fontSize = "1em";
-    }
-
-    function ativarSomAmbiente() {
-      const audio = new Audio("som-floresta.mp3");
-      audio.loop = true;
-      audio.play();
-    }
-
-    function abrirLibras() {
-      const script = document.createElement('script');
-      script.src = "https://vlibras.gov.br/app/vlibras-plugin.js";
-      document.body.appendChild(script);
-      script.onload = () => {
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
-      };
+    function ativarLIBRAS() {
+      alert("Sistema de LIBRAS em desenvolvimento.");
     }
   </script>
 </body>
