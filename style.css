@@ -1,60 +1,99 @@
-/* ======================= Estilo Geral ======================= */
+/* =================== CSS PARA ESTAÇÃO DA TERRA =================== */
+
+:root {
+  --cor-principal: #4CAF50;
+  --cor-secundaria: #fff;
+  --cor-contraste: #000;
+  --fonte-base: 'Segoe UI', sans-serif;
+  --bg-padrao: #f0f8f5;
+  --bg-contraste: #222;
+  --txt-contraste: #fff;
+}
+
 body {
+  font-family: var(--fonte-base);
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f7fdf5;
-  color: #2e4d32;
+  background-color: var(--bg-padrao);
+  color: #333;
   transition: all 0.3s ease;
 }
 
+body.contraste {
+  background-color: var(--bg-contraste);
+  color: var(--txt-contraste);
+}
+
 header {
-  background-color: #d2e7d4;
+  background-color: var(--cor-principal);
+  color: var(--cor-secundaria);
+  padding: 1em;
   text-align: center;
-  padding: 40px 20px;
-  border-bottom: 2px solid #b3d9b6;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-header h1 {
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.menu h1 {
+  margin: 0.5em;
+  font-size: 1.5em;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 1em;
   margin: 0;
-  font-size: 2.5em;
+  padding: 0;
 }
 
-header p {
-  font-size: 1.2em;
-  margin-top: 10px;
+.menu a {
+  text-decoration: none;
+  color: var(--cor-secundaria);
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.menu a:hover {
+  color: #c8f7c5;
+}
+
+.slogan {
+  font-style: italic;
+  margin-top: 0.5em;
 }
 
 main {
-  padding: 20px;
+  padding: 2em;
 }
 
-footer {
-  text-align: center;
-  background-color: #d2e7d4;
-  padding: 20px;
-  font-size: 0.9em;
-  color: #3e5e48;
+section {
+  margin-bottom: 3em;
 }
 
-/* ======================= Barracas ======================= */
 .barracas {
   display: flex;
+  gap: 2em;
   flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
-  margin: 20px 0;
 }
 
 .barraca {
+  border: 2px solid var(--cor-principal);
+  border-radius: 10px;
+  padding: 1em;
   width: 150px;
   text-align: center;
   cursor: pointer;
-  background-color: #e0f4df;
-  border-radius: 12px;
-  padding: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
+  background: white;
+  transition: transform 0.2s;
 }
 
 .barraca:hover {
@@ -62,157 +101,145 @@ footer {
 }
 
 .barraca img {
-  width: 100%;
+  width: 100px;
+  height: auto;
+}
+
+#lista-produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1em;
+  margin-top: 1em;
+}
+
+.produto-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1em;
+  text-align: center;
+  background: white;
+}
+
+.produto-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
   border-radius: 8px;
 }
 
-/* ======================= Produtos ======================= */
-#produtos {
-  margin-top: 40px;
-  background-color: #eefdf0;
-  padding: 20px;
+.produto-card button {
+  background: var(--cor-principal);
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  margin-top: 0.5em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.produto-card button:hover {
+  background: #388e3c;
+}
+
+#carrinho {
+  margin-top: 2em;
+  border-top: 2px solid var(--cor-principal);
+  padding-top: 1em;
+}
+
+.quiz-wrapper {
+  background: #e7f9ec;
+  padding: 2em;
   border-radius: 10px;
 }
 
-#lista-produtos p {
-  margin: 10px 0;
-  font-weight: 600;
-}
-
-/* ======================= Quiz ======================= */
-.quiz-wrapper {
-  margin-top: 60px;
-  display: flex;
-  justify-content: center;
-}
-
-.quiz-container {
-  background-color: #eafbe9;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 600px;
-}
-
-.quiz-container h1 {
-  text-align: center;
-  font-size: 1.8em;
-  margin-bottom: 20px;
-}
-
 .question {
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: #d8f0da;
-  border-radius: 8px;
+  margin-bottom: 1.5em;
 }
 
-label {
-  display: block;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-button {
-  margin-top: 20px;
-  padding: 10px 16px;
-  background-color: #93cb9a;
+.quiz-container button {
+  background: var(--cor-principal);
+  color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 1em;
+  padding: 0.5em 1.2em;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-top: 1em;
 }
 
-button:hover {
-  background-color: #7fbf89;
+.quiz-container button:hover {
+  background: #357a38;
 }
 
-.resultado-container {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #d6f3db;
-  border-radius: 8px;
-  text-align: center;
-  font-weight: bold;
-}
-
-/* ======================= Confetes ======================= */
 .confetti-container {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
-  overflow: hidden;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .confetti {
   position: absolute;
   width: 10px;
   height: 10px;
-  opacity: 0.8;
-  animation: fall linear forwards;
-  background-color: #a8e6a2;
-  border-radius: 2px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  animation: cair 3s linear infinite;
 }
 
-@keyframes fall {
-  0% {
-    transform: translateY(0) rotate(0deg);
-  }
-  100% {
-    transform: translateY(100vh) rotate(360deg);
-  }
+@keyframes cair {
+  0% { top: 0; opacity: 1; }
+  100% { top: 100vh; opacity: 0; }
 }
 
-/* ======================= Acessibilidade ======================= */
 #acessibilidade {
   position: fixed;
-  top: 10px;
   right: 10px;
+  bottom: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  z-index: 10000;
+  gap: 0.3em;
+  z-index: 1000;
 }
 
 #acessibilidade button {
-  background-color: #dcefd6;
+  background: var(--cor-principal);
   border: none;
-  padding: 8px;
-  border-radius: 8px;
+  color: white;
+  font-size: 1.2em;
+  padding: 0.4em;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s;
+  transition: background 0.3s;
 }
 
 #acessibilidade button:hover {
-  background-color: #cbe4c4;
+  background: #357a38;
 }
 
-/* Contraste alto */
-body.contraste {
-  background-color: #000;
-  color: #fff;
+footer {
+  text-align: center;
+  padding: 1em;
+  background: var(--cor-principal);
+  color: var(--cor-secundaria);
+  margin-top: 4em;
 }
 
-body.contraste header,
-body.contraste footer,
-body.contraste .barraca,
-body.contraste .quiz-container,
-body.contraste #produtos,
-body.contraste .question,
-body.contraste .resultado-container {
-  background-color: #111;
-  color: #fff;
-}
+@media screen and (max-width: 600px) {
+  .menu ul {
+    flex-direction: column;
+    gap: 0.5em;
+  }
 
-body.contraste .barraca:hover {
-  transform: scale(1.05);
-  background-color: #333;
+  .barracas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #lista-produtos {
+    grid-template-columns: 1fr;
+  }
 }

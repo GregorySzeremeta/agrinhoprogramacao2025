@@ -9,8 +9,16 @@
 </head>
 <body>
   <header>
-    <h1>🌱 Estação da Terra</h1>
-    <p>Do campo à cidade, colhendo oportunidades</p>
+    <nav class="menu">
+      <h1>🌱 Estação da Terra</h1>
+      <ul>
+        <li><a href="#mapa-feira">Mapa da Feira</a></li>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+      </ul>
+    </nav>
+    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
   </header>
 
   <main>
@@ -29,16 +37,20 @@
           <img src="graos.png" alt="Barraca de Grãos">
           <p>Grãos</p>
         </div>
-        <!-- Mais barracas -->
       </div>
     </section>
 
     <section id="produtos">
       <h2>Produtos</h2>
       <div id="lista-produtos"></div>
+      <div id="carrinho">
+        <h3>Carrinho de Compras</h3>
+        <ul id="itens-carrinho"></ul>
+        <p>Total: R$ <span id="total">0.00</span></p>
+      </div>
     </section>
 
-    <section class="quiz-wrapper">
+    <section class="quiz-wrapper" id="quiz">
       <div class="quiz-container">
         <h1>QUIZ: Agricultura</h1>
 
@@ -48,19 +60,37 @@
           <label><input type="radio" name="q1" value="b" />Produzir alimentos</label>
           <label><input type="radio" name="q1" value="c" />Cuidar das florestas</label>
         </div>
-        <!-- Outras perguntas -->
+
+        <div class="question">
+          <p>2) O que são agrotóxicos?</p>
+          <label><input type="radio" name="q2" value="a" />Produtos naturais</label>
+          <label><input type="radio" name="q2" value="b" />Máquinas agrícolas</label>
+          <label><input type="radio" name="q2" value="c" />Produtos químicos para pragas</label>
+        </div>
+
+        <div class="question">
+          <p>3) Qual destas culturas é um grão?</p>
+          <label><input type="radio" name="q3" value="a" />Maçã</label>
+          <label><input type="radio" name="q3" value="b" />Feijão</label>
+          <label><input type="radio" name="q3" value="c" />Couve</label>
+        </div>
 
         <button onclick="corrigirQuiz()">Enviar</button>
         <div class="resultado-container" id="resultado"></div>
       </div>
     </section>
 
+    <section id="sobre">
+      <h2>Sobre o Projeto</h2>
+      <p>A Estação da Terra simula uma feira interativa com foco em sustentabilidade, agricultura e acessibilidade. Inspirada na conexão entre campo e cidade, o projeto oferece produtos, educação e inclusão digital para todos.</p>
+    </section>
+
     <div id="acessibilidade">
-      <button onclick="alternarContraste()">🌓 Contraste</button>
-      <button onclick="aumentarFonte()">🔠 A+</button>
-      <button onclick="resetarFonte()">🔡 Reset</button>
-      <button onclick="ativarSomAmbiente()">🎵 Som da Feira</button>
-      <button onclick="abrirLibras()">👐 LIBRAS</button>
+      <button onclick="alternarContraste()" aria-label="Contraste">🌓</button>
+      <button onclick="aumentarFonte()" aria-label="Aumentar Fonte">A+</button>
+      <button onclick="resetarFonte()" aria-label="Fonte Normal">A</button>
+      <button onclick="ativarSomAmbiente()" aria-label="Som Ambiente">🎵</button>
+      <button onclick="abrirLibras()" aria-label="Tradutor LIBRAS">👐</button>
     </div>
   </main>
 
@@ -70,25 +100,65 @@
 
   <script>
     const produtos = {
-      vegetais: ["Alface", "Couve", "Brócolis"],
-      frutas: ["Maçã", "Banana", "Uva"],
-      graos: ["Feijão", "Milho", "Arroz"]
+      vegetais: [
+        { nome: "Alface", preco: 2.5, img: "alface.jpg" },
+        { nome: "Couve", preco: 3.0, img: "couve.jpg" },
+        { nome: "Brócolis", preco: 4.2, img: "brocolis.jpg" }
+      ],
+      frutas: [
+        { nome: "Maçã", preco: 2.0, img: "maca.jpg" },
+        { nome: "Banana", preco: 1.5, img: "banana.jpg" },
+        { nome: "Uva", preco: 3.5, img: "uva.jpg" }
+      ],
+      graos: [
+        { nome: "Feijão", preco: 6.0, img: "feijao.jpg" },
+        { nome: "Milho", preco: 5.0, img: "milho.jpg" },
+        { nome: "Arroz", preco: 4.5, img: "arroz.jpg" }
+      ]
     };
+
+    const gabarito = {
+      q1: 'b',
+      q2: 'c',
+      q3: 'b'
+    };
+
+    let total = 0;
 
     function mostrarProdutos(categoria) {
       const lista = document.getElementById("lista-produtos");
-      lista.innerHTML = `<h3>${categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h3>`;
+      lista.innerHTML = "";
       produtos[categoria].forEach(prod => {
-        const p = document.createElement('p');
-        p.textContent = prod;
-        lista.appendChild(p);
+        const card = document.createElement("div");
+        card.className = "produto-card";
+
+        const img = document.createElement("img");
+        img.src = prod.img;
+        img.alt = prod.nome;
+
+        const nome = document.createElement("p");
+        nome.textContent = prod.nome;
+
+        const preco = document.createElement("p");
+        preco.textContent = `R$ ${prod.preco.toFixed(2)}`;
+
+        const botao = document.createElement("button");
+        botao.textContent = "Adicionar ao Carrinho";
+        botao.onclick = () => adicionarAoCarrinho(prod);
+
+        card.append(img, nome, preco, botao);
+        lista.appendChild(card);
       });
     }
 
-    const gabarito = {
-      q1: 'b'
-      // Adicione os demais aqui
-    };
+    function adicionarAoCarrinho(prod) {
+      const carrinho = document.getElementById("itens-carrinho");
+      const item = document.createElement("li");
+      item.textContent = `${prod.nome} - R$ ${prod.preco.toFixed(2)}`;
+      carrinho.appendChild(item);
+      total += prod.preco;
+      document.getElementById("total").textContent = total.toFixed(2);
+    }
 
     function corrigirQuiz() {
       const respostas = document.querySelectorAll("input[type=radio]:checked");
@@ -100,9 +170,7 @@
       const resultado = document.getElementById("resultado");
       resultado.innerHTML = `<h2>Você acertou ${acertos} questão(ões)!</h2>`;
 
-      if (acertos >= Object.keys(gabarito).length) {
-        criarConfetes();
-      }
+      if (acertos === Object.keys(gabarito).length) criarConfetes();
     }
 
     function criarConfetes() {
@@ -138,7 +206,12 @@
     }
 
     function abrirLibras() {
-      window.open("https://www.vlibras.gov.br/app", "_blank");
+      const script = document.createElement('script');
+      script.src = "https://vlibras.gov.br/app/vlibras-plugin.js";
+      document.body.appendChild(script);
+      script.onload = () => {
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+      };
     }
   </script>
 </body>
