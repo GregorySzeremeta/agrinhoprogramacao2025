@@ -1,181 +1,287 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Estação da Terra</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <!-- VLibras Plugin -->
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- Animação de entrada -->
-  <div id="entrada" class="entrada-animada">
-    🌱 Estação da Terra 🌻
-  </div>
+  <!-- Tela de entrada animada -->
+  <div id="entrada">Estação da Terra</div>
 
-  <!-- Acessibilidade -->
-  <div id="acessibilidade">
-    <button onclick="toggleContraste()">🌓</button>
-    <button onclick="aumentarFonte()">🔠</button>
-    <button onclick="diminuirFonte()">🔡</button>
-  </div>
-
-  <!-- VLibras -->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-
-  <!-- Cabeçalho -->
   <header>
     <h1>Estação da Terra</h1>
-    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
-    <nav class="menu">
+    <span class="slogan">Do campo à cidade, colhendo oportunidades</span>
+    <nav class="menu" aria-label="Menu principal">
       <ul>
-        <li><a href="#produtos">Produtos</a></li>
-        <li><a href="#quiz">Quiz</a></li>
-        <li><a href="#carrinho">Carrinho</a></li>
-        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#produtos" tabindex="0">Produtos</a></li>
+        <li><a href="#animacao" tabindex="0">Importância do Campo</a></li>
+        <li><a href="#quiz" tabindex="0">Quiz</a></li>
+        <li><a href="#sobre" tabindex="0">Sobre</a></li>
+        <li><a href="#carrinho" tabindex="0" aria-label="Ir para o carrinho">Carrinho 🛒</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Principal -->
+  <!-- Botões minimalistas para acessibilidade -->
+  <div id="acessibilidade" role="region" aria-label="Controles de acessibilidade">
+    <button id="btnLibras" aria-label="Ativar LIBRAS" title="Ativar LIBRAS">👐</button>
+    <button id="btnContraste" aria-label="Alternar alto contraste" title="Alto Contraste">⚙️</button>
+    <button id="btnAumentarFonte" aria-label="Aumentar fonte" title="Aumentar Fonte">A+</button>
+    <button id="btnDiminuirFonte" aria-label="Diminuir fonte" title="Diminuir Fonte">A-</button>
+    <button id="btnSom" aria-label="Tocar/Pausar música ambiente" title="Música Ambiente">🎵</button>
+  </div>
+
+  <!-- Música ambiente -->
+  <audio id="musicaAmbiente" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8a5f65b10a.mp3?filename=calm-nature-ambient-7062.mp3" type="audio/mp3" />
+    Seu navegador não suporta áudio.
+  </audio>
+
   <main>
-    <!-- Produtos -->
-    <section id="produtos">
-      <h2>Produtos à Venda</h2>
-      <div class="barracas">
-        <div class="produto-card">
-          <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce" alt="Maçã">
-          <h3>Maçã Orgânica</h3>
-          <p>R$ 3,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Maçã Orgânica')">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="https://images.unsplash.com/photo-1582515073490-39981397c445" alt="Mel Puro">
-          <h3>Mel Puro</h3>
-          <p>R$ 15,00</p>
-          <button onclick="adicionarAoCarrinho('Mel Puro')">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="https://images.unsplash.com/photo-1572441710263-478a1b119119" alt="Queijo Artesanal">
-          <h3>Queijo Artesanal</h3>
-          <p>R$ 25,00</p>
-          <button onclick="adicionarAoCarrinho('Queijo Artesanal')">Adicionar</button>
-        </div>
-        <!-- Adicione mais produtos aqui -->
+
+    <!-- Seção produtos -->
+    <section id="produtos" tabindex="-1" aria-label="Lista de produtos da feira">
+      <h2>Produtos da Feira</h2>
+      <div class="barracas" id="listaProdutos">
+        <!-- Produtos serão inseridos via JS -->
       </div>
     </section>
 
     <!-- Carrinho -->
-    <section id="carrinho">
-      <h2>🛒 Carrinho de Compras</h2>
-      <ul id="lista-carrinho"></ul>
-      <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
+    <section id="carrinho" tabindex="-1" aria-label="Carrinho de compras">
+      <h2>Carrinho 🛒</h2>
+      <ul id="lista-carrinho" aria-live="polite" aria-relevant="additions removals"></ul>
+      <button id="btnEsvaziar" aria-label="Esvaziar carrinho">Esvaziar Carrinho</button>
+      <button id="btnFinalizar" aria-label="Finalizar compra">Finalizar Compra</button>
+      <p id="msgFinalizar" role="alert" style="margin-top: 1rem; font-weight: 700;"></p>
     </section>
 
-    <!-- Quiz -->
-    <section id="quiz">
-      <h2>🌽 Quiz Agrícola</h2>
-      <div class="quiz-container" id="quiz-container">
-        <div class="question">
-          <p>1. Qual desses produtos é uma leguminosa?</p>
-          <label><input type="radio" name="q1" value="errado"> Banana</label>
-          <label><input type="radio" name="q1" value="correto"> Feijão</label>
-          <label><input type="radio" name="q1" value="errado"> Tomate</label>
-        </div>
-        <div class="question">
-          <p>2. Qual o melhor horário para irrigar plantas?</p>
-          <label><input type="radio" name="q2" value="correto"> De manhã cedo</label>
-          <label><input type="radio" name="q2" value="errado"> Meio-dia</label>
-          <label><input type="radio" name="q2" value="errado"> À noite</label>
-        </div>
-        <div class="question">
-          <p>3. Qual o principal benefício do adubo orgânico?</p>
-          <label><input type="radio" name="q3" value="correto"> Melhora o solo naturalmente</label>
-          <label><input type="radio" name="q3" value="errado"> Causa menos folhas</label>
-          <label><input type="radio" name="q3" value="errado"> É mais barato</label>
-        </div>
-        <div class="question">
-          <p>4. O que é uma horta vertical?</p>
-          <label><input type="radio" name="q4" value="correto"> Cultivo em paredes ou estruturas suspensas</label>
-          <label><input type="radio" name="q4" value="errado"> Horta de legumes grandes</label>
-          <label><input type="radio" name="q4" value="errado"> Nome antigo de horta</label>
-        </div>
-        <button onclick="verificarQuiz()">Verificar Respostas</button>
-        <div class="resultado-container" id="resultado"></div>
+    <!-- Animação da importância do campo -->
+    <section id="animacao" tabindex="-1" aria-label="Animação falando da importância do campo">
+      <h2>Por que o Campo é Importante?</h2>
+      <div class="animacao-texto" aria-live="polite" aria-atomic="true">
+        <p>O campo é a fonte da nossa vida, a origem dos alimentos que nutrem nosso corpo e alma.</p>
+        <p>É nele que a natureza se renova e gera oportunidades sustentáveis para todos.</p>
+        <p>Valorizar o campo é investir no futuro do planeta e das próximas gerações.</p>
       </div>
     </section>
 
+    <!-- Quiz de sustentabilidade -->
+    <section id="quiz" tabindex="-1" aria-label="Quiz sobre sustentabilidade">
+      <h2>Teste seus conhecimentos sobre sustentabilidade</h2>
+      <form id="formQuiz" aria-describedby="resultadoQuiz">
+        <div class="question">
+          <p>1. Qual é a principal função da agricultura sustentável?</p>
+          <label><input type="radio" name="q1" value="errado1" required> Maximizar o uso de agrotóxicos</label>
+          <label><input type="radio" name="q1" value="correto"> Preservar o meio ambiente e a produtividade</label>
+          <label><input type="radio" name="q1" value="errado2"> Plantar apenas produtos importados</label>
+        </div>
+        <div class="question">
+          <p>2. Qual prática ajuda a conservar o solo?</p>
+          <label><input type="radio" name="q2" value="correto" required> Rotação de culturas</label>
+          <label><input type="radio" name="q2" value="errado1"> Desmatamento</label>
+          <label><input type="radio" name="q2" value="errado2"> Uso excessivo de fertilizantes químicos</label>
+        </div>
+        <div class="question">
+          <p>3. O que significa agricultura orgânica?</p>
+          <label><input type="radio" name="q3" value="correto" required> Produção sem agrotóxicos e químicos sintéticos</label>
+          <label><input type="radio" name="q3" value="errado1"> Uso intensivo de máquinas pesadas</label>
+          <label><input type="radio" name="q3" value="errado2"> Plantar apenas soja</label>
+        </div>
+        <button type="submit" aria-label="Enviar respostas do quiz">Enviar Respostas</button>
+      </form>
+      <div id="resultadoQuiz" class="resultado-container" aria-live="polite"></div>
+    </section>
+
     <!-- Sobre -->
-    <section id="sobre">
-      <h2>História da Estação da Terra</h2>
+    <section id="sobre" tabindex="-1" aria-label="Informações sobre o projeto Estação da Terra">
+      <h2>Sobre o Projeto</h2>
       <p>
-        A Estação da Terra nasceu com o propósito de aproximar o campo da cidade. Nosso objetivo é conectar pequenos produtores a consumidores conscientes, promovendo sustentabilidade, saúde e economia local. Aqui, cada barraca é uma oportunidade, cada produto é um pedaço da natureza.
+        O projeto Estação da Terra nasce com o objetivo de conectar o campo à cidade, promovendo
+        a sustentabilidade, valorização dos pequenos produtores e o consumo consciente.
+        Com uma feira virtual interativa, trazemos o melhor da agricultura familiar para sua casa,
+        com qualidade, respeito ao meio ambiente e inovação.
       </p>
     </section>
+
   </main>
 
-  <!-- Rodapé -->
   <footer>
     &copy; 2025 Estação da Terra. Todos os direitos reservados.
   </footer>
 
-  <!-- JavaScript -->
   <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    // Produto modelo
+    const produtos = [
+      {id: 1, nome: "Leite Fresco", preco: 6.50, img: "https://i.imgur.com/1gk0ILy.jpg", descricao: "Leite integral fresco e natural."},
+      {id: 2, nome: "Maçã Orgânica", preco: 4.20, img: "https://i.imgur.com/k1yLRyQ.jpg", descricao: "Maçãs cultivadas sem agrotóxicos."},
+      {id: 3, nome: "Mel Puro", preco: 15.00, img: "https://i.imgur.com/q6ZY92h.jpg", descricao: "Mel direto da colmeia, sem aditivos."},
+      {id: 4, nome: "Queijo Artesanal", preco: 22.50, img: "https://i.imgur.com/nN5K7K6.jpg", descricao: "Queijo fresco feito de forma artesanal."},
+      {id: 5, nome: "Alface Crespa", preco: 3.00, img: "https://i.imgur.com/dGcZp9J.jpg", descricao: "Alface crocante e fresca da horta."},
+      {id: 6, nome: "Feijão Carioca", preco: 7.80, img: "https://i.imgur.com/z4m5frT.jpg", descricao: "Feijão de qualidade e sabor caseiro."},
+      {id: 7, nome: "Tomate Italiano", preco: 5.50, img: "https://i.imgur.com/ikS5H55.jpg", descricao: "Tomates saborosos e suculentos."},
+      {id: 8, nome: "Arroz Integral", preco: 8.40, img: "https://i.imgur.com/Hosb0yF.jpg", descricao: "Arroz integral, fonte de fibras."},
+      {id: 9, nome: "Cenoura Orgânica", preco: 4.50, img: "https://i.imgur.com/Dm5qOgU.jpg", descricao: "Cenoura saudável e saborosa."},
+      {id: 10, nome: "Abacate Maduro", preco: 9.90, img: "https://i.imgur.com/4SPP1xn.jpg", descricao: "Abacate cremoso para suas receitas."},
+      {id: 11, nome: "Pão Integral", preco: 6.00, img: "https://i.imgur.com/0JGmhPo.jpg", descricao: "Pão feito com farinha integral."},
+      {id: 12, nome: "Melaço Natural", preco: 12.00, img: "https://i.imgur.com/7HJPpkx.jpg", descricao: "Adoçante natural e nutritivo."},
+      {id: 13, nome: "Batata Doce", preco: 5.80, img: "https://i.imgur.com/9JzE5ey.jpg", descricao: "Batata doce orgânica."},
+      {id: 14, nome: "Chá de Ervas", preco: 10.00, img: "https://i.imgur.com/Nmm9qJu.jpg", descricao: "Chá feito com ervas frescas."},
+      {id: 15, nome: "Couve Manteiga", preco: 3.50, img: "https://i.imgur.com/8VWmUk3.jpg", descricao: "Couve fresca para suas receitas."},
+      {id: 16, nome: "Melancia", preco: 7.20, img: "https://i.imgur.com/Tl6Cn6V.jpg", descricao: "Melancia doce e refrescante."},
+      {id: 17, nome: "Morango Orgânico", preco: 11.00, img: "https://i.imgur.com/fFqJqNK.jpg", descricao: "Morango fresco e natural."},
+      {id: 18, nome: "Ovos Caipiras", preco: 8.00, img: "https://i.imgur.com/pOx5Fgl.jpg", descricao: "Ovos frescos de galinhas criadas soltas."},
+      {id: 19, nome: "Cebola Roxa", preco: 4.00, img: "https://i.imgur.com/0H43aZP.jpg", descricao: "Cebola roxa fresca."},
+      {id: 20, nome: "Mel de Eucalipto", preco: 16.50, img: "https://i.imgur.com/jTGAV4F.jpg", descricao: "Mel sabor único de eucalipto."}
+    ];
 
+    const listaProdutos = document.getElementById('listaProdutos');
+    const listaCarrinho = document.getElementById('lista-carrinho');
+    const btnEsvaziar = document.getElementById('btnEsvaziar');
+    const btnFinalizar = document.getElementById('btnFinalizar');
+    const msgFinalizar = document.getElementById('msgFinalizar');
+
+    // Renderizar produtos
+    function renderProdutos() {
+      listaProdutos.innerHTML = '';
+      produtos.forEach(prod => {
+        const card = document.createElement('article');
+        card.className = 'produto-card';
+        card.setAttribute('tabindex', '0');
+        card.innerHTML = `
+          <img src="${prod.img}" alt="Imagem de ${prod.nome}" />
+          <h3>${prod.nome}</h3>
+          <p>${prod.descricao}</p>
+          <p class="preco">R$ ${prod.preco.toFixed(2)}</p>
+          <button aria-label="Adicionar ${prod.nome} ao carrinho" data-id="${prod.id}">Adicionar</button>
+        `;
+        listaProdutos.appendChild(card);
+      });
+    }
+
+    // Estado do carrinho
     let carrinho = [];
 
-    function adicionarAoCarrinho(produto) {
-      carrinho.push(produto);
-      atualizarCarrinho();
+    // Adicionar produto no carrinho
+    function adicionarAoCarrinho(id) {
+      const prod = produtos.find(p => p.id === id);
+      if (!prod) return;
+      const itemNoCarrinho = carrinho.find(i => i.id === id);
+      if (itemNoCarrinho) {
+        itemNoCarrinho.quantidade++;
+      } else {
+        carrinho.push({...prod, quantidade: 1});
+      }
+      renderCarrinho();
     }
 
-    function atualizarCarrinho() {
-      const lista = document.getElementById("lista-carrinho");
-      lista.innerHTML = "";
-      carrinho.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        lista.appendChild(li);
+    // Renderizar carrinho
+    function renderCarrinho() {
+      listaCarrinho.innerHTML = '';
+      if (carrinho.length === 0) {
+        listaCarrinho.innerHTML = '<li>Seu carrinho está vazio.</li>';
+        return;
+      }
+      carrinho.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.nome} x${item.quantidade} - R$ ${(item.preco * item.quantidade).toFixed(2)}`;
+        listaCarrinho.appendChild(li);
       });
     }
 
-    function esvaziarCarrinho() {
+    // Esvaziar carrinho
+    btnEsvaziar.addEventListener('click', () => {
       carrinho = [];
-      atualizarCarrinho();
-    }
+      renderCarrinho();
+      msgFinalizar.textContent = '';
+    });
 
-    function verificarQuiz() {
-      let total = 0;
-      document.querySelectorAll("#quiz-container input:checked").forEach(el => {
-        if (el.value === "correto") total++;
-      });
-      document.getElementById("resultado").textContent = `Você acertou ${total} de 4 perguntas!`;
-    }
+    // Finalizar compra
+    btnFinalizar.addEventListener('click', () => {
+      if (carrinho.length === 0) {
+        msgFinalizar.textContent = 'Seu carrinho está vazio. Adicione produtos para finalizar.';
+        return;
+      }
+      // Simular finalização
+      msgFinalizar.textContent = 'Compra finalizada com sucesso! Obrigado por apoiar o campo.';
+      carrinho = [];
+      renderCarrinho();
+    });
 
-    function toggleContraste() {
-      document.body.classList.toggle("contraste");
-    }
+    // Eventos para adicionar produtos
+    listaProdutos.addEventListener('click', (e) => {
+      if (e.target.tagName === 'BUTTON') {
+        const id = Number(e.target.getAttribute('data-id'));
+        adicionarAoCarrinho(id);
+      }
+    });
 
-    function aumentarFonte() {
-      document.body.style.fontSize = "larger";
-    }
+    // Controle acessibilidade
+    const btnContraste = document.getElementById('btnContraste');
+    const btnAumentarFonte = document.getElementById('btnAumentarFonte');
+    const btnDiminuirFonte = document.getElementById('btnDiminuirFonte');
+    const btnLibras = document.getElementById('btnLibras');
+    const btnSom = document.getElementById('btnSom');
+    const musicaAmbiente = document.getElementById('musicaAmbiente');
 
-    function diminuirFonte() {
-      document.body.style.fontSize = "initial";
-    }
+    btnContraste.addEventListener('click', () => {
+      document.body.classList.toggle('alto-contraste');
+    });
 
-    // Remover tela de entrada após animação
-    setTimeout(() => {
-      document.getElementById("entrada").style.display = "none";
-    }, 3000);
+    btnAumentarFonte.addEventListener('click', () => {
+      let tamanho = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      if (tamanho < 22) document.documentElement.style.fontSize = (tamanho + 1) + 'px';
+    });
+
+    btnDiminuirFonte.addEventListener('click', () => {
+      let tamanho = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      if (tamanho > 12) document.documentElement.style.fontSize = (tamanho - 1) + 'px';
+    });
+
+    btnLibras.addEventListener('click', () => {
+      alert('Recurso de LIBRAS ainda não implementado.'); 
+      // Pode integrar um plugin externo depois
+    });
+
+    btnSom.addEventListener('click', () => {
+      if (musicaAmbiente.paused) {
+        musicaAmbiente.play();
+        btnSom.textContent = '🔊';
+      } else {
+        musicaAmbiente.pause();
+        btnSom.textContent = '🎵';
+      }
+    });
+
+    // Quiz
+    const formQuiz = document.getElementById('formQuiz');
+    const resultadoQuiz = document.getElementById('resultadoQuiz');
+
+    formQuiz.addEventListener('submit', e => {
+      e.preventDefault();
+      let pontos = 0;
+      const respostas = new FormData(formQuiz);
+      for (const [key, value] of respostas.entries()) {
+        if (value === 'correto') pontos++;
+      }
+      resultadoQuiz.textContent = `Você acertou ${pontos} de 3 perguntas.`;
+    });
+
+    // Animação entrada
+    window.onload = () => {
+      const entrada = document.getElementById('entrada');
+      setTimeout(() => {
+        entrada.style.opacity = 0;
+        setTimeout(() => entrada.style.display = 'none', 600);
+      }, 2000);
+      renderProdutos();
+      renderCarrinho();
+    };
   </script>
+
 </body>
 </html>
