@@ -1,143 +1,150 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estação da Terra</title>
-  <link rel="stylesheet" href="estacao-terra.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <!-- VLibras Plugin -->
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
+
+  <!-- Animação de entrada -->
+  <div id="entrada" class="entrada-animada">
+    🌱 Estação da Terra 🌻
+  </div>
+
+  <!-- Acessibilidade -->
+  <div id="acessibilidade">
+    <button onclick="toggleContraste()">🌓</button>
+    <button onclick="aumentarFonte()">🔠</button>
+    <button onclick="diminuirFonte()">🔡</button>
+  </div>
+
+  <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho -->
   <header>
     <h1>Estação da Terra</h1>
     <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
-    <nav>
+    <nav class="menu">
       <ul>
-        <li><a href="#graos">Grãos</a></li>
-        <li><a href="#frutas">Frutas</a></li>
-        <li><a href="#laticinios">Leite e Derivados</a></li>
-        <li><a href="#verduras">Verduras</a></li>
-        <li><a href="#mel">Mel</a></li>
-        <li><a href="#plante">Plante</a></li>
-        <li><a href="#pagamento">Pagamento</a></li>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+        <li><a href="#carrinho">Carrinho</a></li>
+        <li><a href="#sobre">Sobre</a></li>
       </ul>
     </nav>
   </header>
 
+  <!-- Principal -->
   <main>
-    <section id="graos">
-      <h2>Grãos</h2>
-      <div class="produto">
-        <h3>Feijão Carioca</h3>
-        <p>R$ 8,00/kg</p>
-        <button onclick="adicionarCarrinho('Feijão Carioca', 8.00)">Adicionar ao carrinho</button>
-      </div>
-      <div class="produto">
-        <h3>Arroz Integral</h3>
-        <p>R$ 6,50/kg</p>
-        <button onclick="adicionarCarrinho('Arroz Integral', 6.50)">Adicionar ao carrinho</button>
-      </div>
-    </section>
-
-    <section id="frutas">
-      <h2>Frutas</h2>
-      <div class="produto">
-        <h3>Banana</h3>
-        <p>R$ 3,00/kg</p>
-        <button onclick="adicionarCarrinho('Banana', 3.00)">Adicionar ao carrinho</button>
-      </div>
-      <div class="produto">
-        <h3>Maçã</h3>
-        <p>R$ 5,00/kg</p>
-        <button onclick="adicionarCarrinho('Maçã', 5.00)">Adicionar ao carrinho</button>
+    <!-- Produtos -->
+    <section id="produtos">
+      <h2>Produtos à Venda</h2>
+      <div class="barracas">
+        <div class="produto-card">
+          <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce" alt="Maçã">
+          <h3>Maçã Orgânica</h3>
+          <p>R$ 3,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Maçã Orgânica')">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="https://images.unsplash.com/photo-1582515073490-39981397c445" alt="Mel Puro">
+          <h3>Mel Puro</h3>
+          <p>R$ 15,00</p>
+          <button onclick="adicionarAoCarrinho('Mel Puro')">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="https://images.unsplash.com/photo-1572441710263-478a1b119119" alt="Queijo Artesanal">
+          <h3>Queijo Artesanal</h3>
+          <p>R$ 25,00</p>
+          <button onclick="adicionarAoCarrinho('Queijo Artesanal')">Adicionar</button>
+        </div>
+        <!-- Adicione mais produtos aqui -->
       </div>
     </section>
 
-    <section id="laticinios">
-      <h2>Leite e Derivados</h2>
-      <div class="produto">
-        <h3>Leite Fresco</h3>
-        <p>R$ 4,00/L</p>
-        <button onclick="adicionarCarrinho('Leite Fresco', 4.00)">Adicionar ao carrinho</button>
-      </div>
-      <div class="produto">
-        <h3>Queijo Colonial</h3>
-        <p>R$ 25,00/kg</p>
-        <button onclick="adicionarCarrinho('Queijo Colonial', 25.00)">Adicionar ao carrinho</button>
-      </div>
-    </section>
-
-    <section id="verduras">
-      <h2>Verduras</h2>
-      <div class="produto">
-        <h3>Alface</h3>
-        <p>R$ 2,00/un</p>
-        <button onclick="adicionarCarrinho('Alface', 2.00)">Adicionar ao carrinho</button>
-      </div>
-      <div class="produto">
-        <h3>Espinafre</h3>
-        <p>R$ 3,00/maço</p>
-        <button onclick="adicionarCarrinho('Espinafre', 3.00)">Adicionar ao carrinho</button>
-      </div>
-    </section>
-
-    <section id="mel">
-      <h2>Mel</h2>
-      <div class="produto">
-        <h3>Mel Puro</h3>
-        <p>R$ 18,00/500ml</p>
-        <button onclick="adicionarCarrinho('Mel Puro', 18.00)">Adicionar ao carrinho</button>
-      </div>
-    </section>
-
-    <section id="plante">
-      <h2>Plante</h2>
-      <p>Ajude a cuidar do planeta. Plante uma árvore com a gente e acompanhe o crescimento dela virtualmente!</p>
-      <button onclick="plantarArvore()">Plantar Árvore</button>
-      <div id="arvore"></div>
-    </section>
-
+    <!-- Carrinho -->
     <section id="carrinho">
-      <h2>Carrinho de Compras</h2>
+      <h2>🛒 Carrinho de Compras</h2>
       <ul id="lista-carrinho"></ul>
-      <p>Total: R$ <span id="total">0.00</span></p>
-      <button onclick="esvaziarCarrinho()">Esvaziar Carrinho</button>
+      <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
     </section>
 
-    <section id="pagamento">
-      <h2>Formas de Pagamento</h2>
-      <ul>
-        <li>Cartão de Crédito</li>
-        <li>Cartão de Débito</li>
-        <li>PIX</li>
-        <li>Boleto Bancário</li>
-      </ul>
+    <!-- Quiz -->
+    <section id="quiz">
+      <h2>🌽 Quiz Agrícola</h2>
+      <div class="quiz-container" id="quiz-container">
+        <div class="question">
+          <p>1. Qual desses produtos é uma leguminosa?</p>
+          <label><input type="radio" name="q1" value="errado"> Banana</label>
+          <label><input type="radio" name="q1" value="correto"> Feijão</label>
+          <label><input type="radio" name="q1" value="errado"> Tomate</label>
+        </div>
+        <div class="question">
+          <p>2. Qual o melhor horário para irrigar plantas?</p>
+          <label><input type="radio" name="q2" value="correto"> De manhã cedo</label>
+          <label><input type="radio" name="q2" value="errado"> Meio-dia</label>
+          <label><input type="radio" name="q2" value="errado"> À noite</label>
+        </div>
+        <div class="question">
+          <p>3. Qual o principal benefício do adubo orgânico?</p>
+          <label><input type="radio" name="q3" value="correto"> Melhora o solo naturalmente</label>
+          <label><input type="radio" name="q3" value="errado"> Causa menos folhas</label>
+          <label><input type="radio" name="q3" value="errado"> É mais barato</label>
+        </div>
+        <div class="question">
+          <p>4. O que é uma horta vertical?</p>
+          <label><input type="radio" name="q4" value="correto"> Cultivo em paredes ou estruturas suspensas</label>
+          <label><input type="radio" name="q4" value="errado"> Horta de legumes grandes</label>
+          <label><input type="radio" name="q4" value="errado"> Nome antigo de horta</label>
+        </div>
+        <button onclick="verificarQuiz()">Verificar Respostas</button>
+        <div class="resultado-container" id="resultado"></div>
+      </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre">
+      <h2>História da Estação da Terra</h2>
+      <p>
+        A Estação da Terra nasceu com o propósito de aproximar o campo da cidade. Nosso objetivo é conectar pequenos produtores a consumidores conscientes, promovendo sustentabilidade, saúde e economia local. Aqui, cada barraca é uma oportunidade, cada produto é um pedaço da natureza.
+      </p>
     </section>
   </main>
 
+  <!-- Rodapé -->
   <footer>
-    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
+    &copy; 2025 Estação da Terra. Todos os direitos reservados.
   </footer>
 
+  <!-- JavaScript -->
   <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+
     let carrinho = [];
 
-    function adicionarCarrinho(produto, preco) {
-      carrinho.push({ produto, preco });
+    function adicionarAoCarrinho(produto) {
+      carrinho.push(produto);
       atualizarCarrinho();
     }
 
     function atualizarCarrinho() {
-      const lista = document.getElementById('lista-carrinho');
-      const totalEl = document.getElementById('total');
-      lista.innerHTML = '';
-      let total = 0;
-      carrinho.forEach(item => {
-        total += item.preco;
-        const li = document.createElement('li');
-        li.textContent = `${item.produto} - R$ ${item.preco.toFixed(2)}`;
+      const lista = document.getElementById("lista-carrinho");
+      lista.innerHTML = "";
+      carrinho.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.textContent = item;
         lista.appendChild(li);
       });
-      totalEl.textContent = total.toFixed(2);
     }
 
     function esvaziarCarrinho() {
@@ -145,10 +152,30 @@
       atualizarCarrinho();
     }
 
-    function plantarArvore() {
-      const arvore = document.getElementById('arvore');
-      arvore.innerHTML = '<p>🌱 Uma nova árvore foi plantada! Ela crescerá com o tempo.</p>';
+    function verificarQuiz() {
+      let total = 0;
+      document.querySelectorAll("#quiz-container input:checked").forEach(el => {
+        if (el.value === "correto") total++;
+      });
+      document.getElementById("resultado").textContent = `Você acertou ${total} de 4 perguntas!`;
     }
+
+    function toggleContraste() {
+      document.body.classList.toggle("contraste");
+    }
+
+    function aumentarFonte() {
+      document.body.style.fontSize = "larger";
+    }
+
+    function diminuirFonte() {
+      document.body.style.fontSize = "initial";
+    }
+
+    // Remover tela de entrada após animação
+    setTimeout(() => {
+      document.getElementById("entrada").style.display = "none";
+    }, 3000);
   </script>
 </body>
 </html>
