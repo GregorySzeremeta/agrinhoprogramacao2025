@@ -80,9 +80,17 @@
     font-size: 1.1em;
     box-shadow: 0 5px 10px rgba(72, 180, 97, 0.7);
     transition: background-color 0.3s ease;
+    margin-right: 10px;
   }
   button:hover {
     background-color: #357a38;
+  }
+
+  #btnVoltar {
+    background-color: #2196F3;
+  }
+  #btnVoltar:hover {
+    background-color: #0b63c9;
   }
 
   .resultado-container {
@@ -166,7 +174,6 @@
     <label><input type="radio" name="q4" value="d" /> Horta de legumes grandes</label>
   </div>
 
-  <!-- Novas perguntas -->
   <div class="question">
     <p>5) Qual a importância da rotação de culturas?</p>
     <label><input type="radio" name="q5" value="a" /> Aumenta o uso de agrotóxicos</label>
@@ -200,6 +207,7 @@
   </div>
 
   <button id="btnVerificar">Verificar Respostas</button>
+  <button id="btnVoltar">Voltar ao Menu</button>
   <div class="resultado-container" id="resultado"></div>
 </div>
 
@@ -217,6 +225,7 @@
     };
 
     const btn = document.getElementById("btnVerificar");
+    const btnVoltar = document.getElementById("btnVoltar");
     const resultado = document.getElementById("resultado");
     let confettiTimeout;
 
@@ -241,6 +250,10 @@
       }
     });
 
+    btnVoltar.addEventListener("click", () => {
+      window.location.href = "index.html"; // ajuste o nome se necessário
+    });
+
     function criarConfete() {
       limparConfete();
       const confettiContainer = document.createElement('div');
@@ -259,7 +272,6 @@
 
         confettiContainer.appendChild(confetti);
 
-        // Remover confetti após 5 segundos
         setTimeout(() => {
           confetti.remove();
         }, 5000);
