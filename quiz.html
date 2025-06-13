@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Agrícola</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🌽 Quiz Agrícola</h1>
+    <nav class="menu">
+      <a href="index.html">Início</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="quiz">
+      <div class="quiz-container" id="quiz-container">
+        <div class="question">
+          <p>1. Qual desses produtos é uma leguminosa?</p>
+          <label><input type="radio" name="q1" value="errado"> Banana</label>
+          <label><input type="radio" name="q1" value="correto"> Feijão</label>
+          <label><input type="radio" name="q1" value="errado"> Tomate</label>
+        </div>
+        <div class="question">
+          <p>2. Qual o melhor horário para irrigar plantas?</p>
+          <label><input type="radio" name="q2" value="correto"> De manhã cedo</label>
+          <label><input type="radio" name="q2" value="errado"> Meio-dia</label>
+          <label><input type="radio" name="q2" value="errado"> À noite</label>
+        </div>
+        <div class="question">
+          <p>3. Qual o principal benefício do adubo orgânico?</p>
+          <label><input type="radio" name="q3" value="correto"> Melhora o solo naturalmente</label>
+          <label><input type="radio" name="q3" value="errado"> Causa menos folhas</label>
+          <label><input type="radio" name="q3" value="errado"> É mais barato</label>
+        </div>
+        <div class="question">
+          <p>4. O que é uma horta vertical?</p>
+          <label><input type="radio" name="q4" value="correto"> Cultivo em paredes ou estruturas suspensas</label>
+          <label><input type="radio" name="q4" value="errado"> Horta de legumes grandes</label>
+          <label><input type="radio" name="q4" value="errado"> Nome antigo de horta</label>
+        </div>
+        <button onclick="verificarQuiz()">Verificar Respostas</button>
+        <div class="resultado-container" id="resultado"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Estação da Terra. Todos os direitos reservados.
+  </footer>
+
+  <script>
+    function verificarQuiz() {
+      let total = 0;
+      document.querySelectorAll("#quiz-container input:checked").forEach(el => {
+        if (el.value === "correto") total++;
+      });
+      document.getElementById("resultado").textContent = `Você acertou ${total} de 4 perguntas!`;
+    }
+  </script>
+</body>
+</html>
