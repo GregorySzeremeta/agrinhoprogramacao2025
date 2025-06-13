@@ -1,162 +1,281 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz - Estação da Terra</title>
-  <style>
-    /* <-----QUIZ----> */
-    .quiz-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px;
-      gap: 40px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quiz Agricultura - Estação da Terra</title>
+<style>
+  /* Quiz CSS */
+  body {
+    background: linear-gradient(135deg, #d4f2a5, #87b84b);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .quiz-container {
-      background-color: #c8f8b5;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.4);
-      width: 90%;
-      max-width: 500px;
-      color: #09380b;
-      font-size: 1em;
-      font-family: Arial, sans-serif;
-      border: 2px solid rgb(46, 97, 42);
-    }
+  .quiz-wrapper {
+    background-color: #c8f8b5;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 10px 10px 25px rgba(0,0,0,0.25);
+    max-width: 600px;
+    width: 90%;
+    color: #09380b;
+    text-align: center;
+  }
 
-    .question {
-      margin-bottom: 20px;
-      border: 2px solid rgb(15, 54, 12);
-      border-radius: 12px;
-      padding: 15px;
-      background-color: #78c57f;
-    }
+  .quiz-wrapper h1 {
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
 
-    label {
-      display: block;
-      margin-top: 8px;
-      cursor: pointer;
-      color: #0b3006;
-      font-weight: 600;
-    }
+  .question {
+    background-color: #78c57f;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    border: 2px solid rgb(15, 54, 12);
+    text-align: left;
+    box-shadow: inset 2px 2px 5px rgba(255 255 255 / 0.3);
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+  }
 
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #2e752f;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1em;
-      cursor: pointer;
-    }
+  /* Aparecer com delay as questões */
+  .question:nth-child(1) { animation-delay: 0.1s; }
+  .question:nth-child(2) { animation-delay: 0.2s; }
+  .question:nth-child(3) { animation-delay: 0.3s; }
+  .question:nth-child(4) { animation-delay: 0.4s; }
+  .question:nth-child(5) { animation-delay: 0.5s; }
+  .question:nth-child(6) { animation-delay: 0.6s; }
+  .question:nth-child(7) { animation-delay: 0.7s; }
+  .question:nth-child(8) { animation-delay: 0.8s; }
 
-    .resultado {
-      font-weight: bold;
-      font-size: 1.2em;
-      margin-top: 20px;
-    }
+  label {
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #0b3006;
+    font-weight: 600;
+    user-select: none;
+    transition: color 0.3s;
+  }
+  label:hover {
+    color: #2c6009;
+  }
 
-    .confetti-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 9999;
-    }
+  button {
+    margin-top: 15px;
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1em;
+    box-shadow: 0 5px 10px rgba(72, 180, 97, 0.7);
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #357a38;
+  }
 
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      animation: confetti-fall 3s linear infinite;
-    }
+  .resultado-container {
+    margin-top: 25px;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #145214;
+  }
 
-    @keyframes confetti-fall {
-      to {
-        transform: translateY(100vh) rotate(360deg);
-      }
+  /* Confetti */
+  .confetti-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 9999;
+  }
+
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    opacity: 0.8;
+    animation: confetti-fall 3s linear forwards;
+  }
+
+  @keyframes confetti-fall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
     }
-  </style>
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
 </head>
 <body>
-  <div class="quiz-wrapper">
-    <div class="quiz-container">
-      <h1>QUIZ: Agricultura 🌱</h1>
 
-      <div class="question">
-        <p>1) Qual é a principal função da agricultura?</p>
-        <label><input type="radio" name="q1" value="a" /> Proteger os animais</label>
-        <label><input type="radio" name="q1" value="b" /> Produzir alimentos</label>
-        <label><input type="radio" name="q1" value="c" /> Cuidar das florestas</label>
-        <label><input type="radio" name="q1" value="d" /> Preservar rios</label>
-      </div>
+<div class="quiz-wrapper">
+  <h1>QUIZ: Agricultura</h1>
 
-      <div class="question">
-        <p>2) O que são agrotóxicos?</p>
-        <label><input type="radio" name="q2" value="a" /> Produtos naturais que melhoram o solo</label>
-        <label><input type="radio" name="q2" value="b" /> Máquinas agrícolas</label>
-        <label><input type="radio" name="q2" value="c" /> Produtos químicos que combatem pragas</label>
-      </div>
-
-      <!-- Adicione mais perguntas aqui seguindo o padrão -->
-
-      <button onclick="verificarRespostas()">Verificar Respostas</button>
-      <div id="resultado" class="resultado"></div>
-    </div>
+  <div class="question">
+    <p>1) Qual é a principal função da agricultura?</p>
+    <label><input type="radio" name="q1" value="a" /> Proteger os animais</label>
+    <label><input type="radio" name="q1" value="b" /> Produzir alimentos</label>
+    <label><input type="radio" name="q1" value="c" /> Cuidar das florestas</label>
+    <label><input type="radio" name="q1" value="d" /> Preservar rios</label>
   </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const gabarito = {
-        q1: 'b',
-        q2: 'c',
-      };
+  <div class="question">
+    <p>2) O que são agrotóxicos?</p>
+    <label><input type="radio" name="q2" value="a" /> Produtos naturais que melhoram o solo</label>
+    <label><input type="radio" name="q2" value="b" /> Máquinas usadas na agricultura</label>
+    <label><input type="radio" name="q2" value="c" /> Produtos químicos para combater pragas</label>
+    <label><input type="radio" name="q2" value="d" /> Tipo de planta cultivada</label>
+  </div>
 
-      function createConfetti() {
-        const confettiContainer = document.createElement('div');
-        confettiContainer.classList.add('confetti-container');
-        document.body.appendChild(confettiContainer);
+  <div class="question">
+    <p>3) Qual é o principal benefício do adubo orgânico?</p>
+    <label><input type="radio" name="q3" value="a" /> Aumentar o uso de pesticidas</label>
+    <label><input type="radio" name="q3" value="b" /> Melhorar a qualidade do solo naturalmente</label>
+    <label><input type="radio" name="q3" value="c" /> Crescimento mais rápido das plantas</label>
+    <label><input type="radio" name="q3" value="d" /> Reduzir a irrigação</label>
+  </div>
 
-        for (let i = 0; i < 50; i++) {
-          const confetti = document.createElement('div');
-          confetti.classList.add('confetti');
+  <div class="question">
+    <p>4) O que é uma horta vertical?</p>
+    <label><input type="radio" name="q4" value="a" /> Uma horta feita em grandes áreas</label>
+    <label><input type="radio" name="q4" value="b" /> Uma horta feita em vasos tradicionais</label>
+    <label><input type="radio" name="q4" value="c" /> Cultivo em paredes ou estruturas suspensas</label>
+    <label><input type="radio" name="q4" value="d" /> Horta de legumes grandes</label>
+  </div>
 
-          const colors = ['#FFC107', '#FF5722', '#4CAF50', '#03A9F4', '#E91E63'];
-          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-          confetti.style.left = Math.random() * 100 + 'vw';
-          confetti.style.top = '-10px';
-          confetti.style.animationDelay = Math.random() + 's';
-          confettiContainer.appendChild(confetti);
+  <!-- Novas perguntas -->
+  <div class="question">
+    <p>5) Qual a importância da rotação de culturas?</p>
+    <label><input type="radio" name="q5" value="a" /> Aumenta o uso de agrotóxicos</label>
+    <label><input type="radio" name="q5" value="b" /> Diminui a produtividade</label>
+    <label><input type="radio" name="q5" value="c" /> Melhora a saúde do solo e evita pragas</label>
+    <label><input type="radio" name="q5" value="d" /> Deixa o solo exposto ao sol</label>
+  </div>
 
-          setTimeout(() => confetti.remove(), 3000);
+  <div class="question">
+    <p>6) Qual é o principal recurso usado na irrigação por gotejamento?</p>
+    <label><input type="radio" name="q6" value="a" /> Aspersores grandes</label>
+    <label><input type="radio" name="q6" value="b" /> Rega manual com regador</label>
+    <label><input type="radio" name="q6" value="c" /> Tubos que liberam água lentamente</label>
+    <label><input type="radio" name="q6" value="d" /> Mangueiras com furos grandes</label>
+  </div>
+
+  <div class="question">
+    <p>7) O que é agricultura sustentável?</p>
+    <label><input type="radio" name="q7" value="a" /> Agricultura que usa muitos produtos químicos</label>
+    <label><input type="radio" name="q7" value="b" /> Agricultura que prejudica o meio ambiente</label>
+    <label><input type="radio" name="q7" value="c" /> Agricultura que preserva os recursos naturais e o solo</label>
+    <label><input type="radio" name="q7" value="d" /> Agricultura que não gera alimentos</label>
+  </div>
+
+  <div class="question">
+    <p>8) Qual é o tipo de planta mais cultivado no Brasil?</p>
+    <label><input type="radio" name="q8" value="a" /> Trigo</label>
+    <label><input type="radio" name="q8" value="b" /> Soja</label>
+    <label><input type="radio" name="q8" value="c" /> Milho</label>
+    <label><input type="radio" name="q8" value="d" /> Café</label>
+  </div>
+
+  <button id="btnVerificar">Verificar Respostas</button>
+  <div class="resultado-container" id="resultado"></div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const gabarito = {
+      q1: 'b',
+      q2: 'c',
+      q3: 'b',
+      q4: 'c',
+      q5: 'c',
+      q6: 'c',
+      q7: 'c',
+      q8: 'b'
+    };
+
+    const btn = document.getElementById("btnVerificar");
+    const resultado = document.getElementById("resultado");
+    let confettiTimeout;
+
+    btn.addEventListener("click", () => {
+      let total = 0;
+      let totalPerguntas = Object.keys(gabarito).length;
+
+      for (let i = 1; i <= totalPerguntas; i++) {
+        const resposta = document.querySelector(`input[name="q${i}"]:checked`);
+        if (resposta && resposta.value === gabarito[`q${i}`]) {
+          total++;
         }
       }
 
-      window.verificarRespostas = function () {
-        let acertos = 0;
-        for (let questao in gabarito) {
-          const respostaSelecionada = document.querySelector(`input[name="${questao}"]:checked`);
-          if (respostaSelecionada && respostaSelecionada.value === gabarito[questao]) {
-            acertos++;
-          }
-        }
-        const resultado = document.getElementById("resultado");
-        resultado.textContent = `Você acertou ${acertos} de ${Object.keys(gabarito).length} perguntas!`;
-        resultado.style.color = acertos >= 2 ? 'green' : 'red';
+      const porcentagem = Math.round((total / totalPerguntas) * 100);
+      resultado.textContent = `Você acertou ${total} de ${totalPerguntas} perguntas. (${porcentagem}%)`;
 
-        if (acertos === Object.keys(gabarito).length) {
-          createConfetti();
-        }
+      if (porcentagem === 100) {
+        criarConfete();
+      } else {
+        limparConfete();
       }
     });
-  </script>
+
+    function criarConfete() {
+      limparConfete();
+      const confettiContainer = document.createElement('div');
+      confettiContainer.classList.add('confetti-container');
+      document.body.appendChild(confettiContainer);
+
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+
+        const colors = ['#FFC107', '#FF5722', '#4CAF50', '#03A9F4', '#E91E63'];
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDuration = (2 + Math.random() * 3) + 's';
+        confetti.style.opacity = Math.random();
+
+        confettiContainer.appendChild(confetti);
+
+        // Remover confetti após 5 segundos
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+      }
+
+      confettiTimeout = setTimeout(() => {
+        limparConfete();
+      }, 6000);
+    }
+
+    function limparConfete() {
+      clearTimeout(confettiTimeout);
+      document.querySelectorAll('.confetti-container').forEach(el => el.remove());
+    }
+  });
+</script>
+
 </body>
 </html>
