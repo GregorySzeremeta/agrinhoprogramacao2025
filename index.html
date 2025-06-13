@@ -3,488 +3,229 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Estação da Terra</title>
+  <title>Estação da Terra - Loja</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Música Ambiente -->
-  <audio id="musica-ambiente" autoplay loop>
-    <source src="musica-ambiente.mp3" type="audio/mpeg" />
-    Seu navegador não suporta áudio.
-  </audio>
-
-  <!-- Botão acessibilidade -->
-  <div id="botao-acessibilidade" style="position: fixed; bottom: 10px; right: 10px; background: #4caf50; padding: 8px; border-radius: 50%; cursor: pointer;" tabindex="0" aria-label="Menu de acessibilidade">
-    <span style="color: white; font-weight: bold;">A</span>
-  </div>
-
-  <!-- Menu acessibilidade oculto -->
-  <div id="menu-acessibilidade" style="display:none; position: fixed; bottom: 60px; right: 10px; background: white; border: 1px solid #ccc; border-radius: 8px; padding: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 999;">
-    <button id="btn-aumentar-fonte" aria-label="Aumentar fonte" style="margin-bottom:8px;">Aumentar Fonte</button><br />
-    <button id="btn-modo-escuro" aria-label="Alternar modo escuro">Modo Escuro</button>
-  </div>
-
-  <!-- Cabeçalho -->
-  <header>
-    <h1>Estação da Terra</h1>
-    <nav>
-      <button id="btn-loja" aria-label="Ir para Loja">Loja</button>
-      <button id="btn-quiz" aria-label="Ir para Quiz">Quiz</button>
-      <button id="btn-contato" aria-label="Ir para Contato">Contato</button>
-      <button id="btn-sobre" aria-label="Ir para Sobre">Sobre</button>
-      <button id="btn-carrinho" aria-label="Ver carrinho de compras">Carrinho 🛒</button>
+  <header class="header">
+    <h1 class="logo">Estação da Terra</h1>
+    <nav class="nav">
+      <a href="index.html" class="nav-link active">Loja</a>
+      <a href="quiz.html" class="nav-link">Quiz</a>
+      <a href="sobre.html" class="nav-link">Sobre</a>
+      <a href="contato.html" class="nav-link">Contato</a>
     </nav>
   </header>
 
-  <!-- Loja -->
-  <section id="loja" tabindex="0" aria-label="Produtos da Loja">
-    <!-- Produtos listados aqui -->
-    <!-- Produto 1 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/leite.jpg" alt="Leite Fresco" />
-      <h3>Leite Fresco</h3>
-      <p class="descricao">Leite pasteurizado direto do campo.</p>
-      <p class="preco">R$ 5,00</p>
-      <button class="btn-add" aria-label="Adicionar Leite Fresco ao carrinho" data-nome="Leite Fresco" data-preco="5.00">Adicionar</button>
-    </article>
-    <!-- Produto 2 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/morango.jpg" alt="Morango Orgânico" />
-      <h3>Morango Orgânico</h3>
-      <p class="descricao">Morango colhido na hora, sem agrotóxicos.</p>
-      <p class="preco">R$ 12,00</p>
-      <button class="btn-add" aria-label="Adicionar Morango Orgânico ao carrinho" data-nome="Morango Orgânico" data-preco="12.00">Adicionar</button>
-    </article>
-    <!-- Produto 3 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/mel.jpg" alt="Mel Puro" />
-      <h3>Mel Puro</h3>
-      <p class="descricao">Mel natural das abelhas da região.</p>
-      <p class="preco">R$ 18,00</p>
-      <button class="btn-add" aria-label="Adicionar Mel Puro ao carrinho" data-nome="Mel Puro" data-preco="18.00">Adicionar</button>
-    </article>
-    <!-- Produto 4 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/queijo.jpg" alt="Queijo Artesanal" />
-      <h3>Queijo Artesanal</h3>
-      <p class="descricao">Queijo feito com leite fresco e técnicas tradicionais.</p>
-      <p class="preco">R$ 25,00</p>
-      <button class="btn-add" aria-label="Adicionar Queijo Artesanal ao carrinho" data-nome="Queijo Artesanal" data-preco="25.00">Adicionar</button>
-    </article>
-    <!-- Produto 5 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/alface.jpg" alt="Alface Crespa" />
-      <h3>Alface Crespa</h3>
-      <p class="descricao">Verdura fresca, perfeita para saladas.</p>
-      <p class="preco">R$ 4,00</p>
-      <button class="btn-add" aria-label="Adicionar Alface Crespa ao carrinho" data-nome="Alface Crespa" data-preco="4.00">Adicionar</button>
-    </article>
-    <!-- Produto 6 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/tomate.jpg" alt="Tomate Italiano" />
-      <h3>Tomate Italiano</h3>
-      <p class="descricao">Tomate suculento e saboroso.</p>
-      <p class="preco">R$ 6,00</p>
-      <button class="btn-add" aria-label="Adicionar Tomate Italiano ao carrinho" data-nome="Tomate Italiano" data-preco="6.00">Adicionar</button>
-    </article>
-    <!-- Produto 7 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/arroz.jpg" alt="Arroz Integral" />
-      <h3>Arroz Integral</h3>
-      <p class="descricao">Grãos integrais de alta qualidade.</p>
-      <p class="preco">R$ 10,00</p>
-      <button class="btn-add" aria-label="Adicionar Arroz Integral ao carrinho" data-nome="Arroz Integral" data-preco="10.00">Adicionar</button>
-    </article>
-    <!-- Produto 8 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/feijao.jpg" alt="Feijão Carioca" />
-      <h3>Feijão Carioca</h3>
-      <p class="descricao">Feijão selecionado, sabor tradicional.</p>
-      <p class="preco">R$ 8,00</p>
-      <button class="btn-add" aria-label="Adicionar Feijão Carioca ao carrinho" data-nome="Feijão Carioca" data-preco="8.00">Adicionar</button>
-    </article>
-    <!-- Produto 9 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/milho.jpg" alt="Milho Verde" />
-      <h3>Milho Verde</h3>
-      <p class="descricao">Milho fresco direto da fazenda.</p>
-      <p class="preco">R$ 7,00</p>
-      <button class="btn-add" aria-label="Adicionar Milho Verde ao carrinho" data-nome="Milho Verde" data-preco="7.00">Adicionar</button>
-    </article>
-    <!-- Produto 10 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/banana.jpg" alt="Banana Nanica" />
-      <h3>Banana Nanica</h3>
-      <p class="descricao">Bananas doces e maduras.</p>
-      <p class="preco">R$ 5,50</p>
-      <button class="btn-add" aria-label="Adicionar Banana Nanica ao carrinho" data-nome="Banana Nanica" data-preco="5.50">Adicionar</button>
-    </article>
-    <!-- Produto 11 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/laranja.jpg" alt="Laranja Bahia" />
-      <h3>Laranja Bahia</h3>
-      <p class="descricao">Laranjas frescas e suculentas.</p>
-      <p class="preco">R$ 6,50</p>
-      <button class="btn-add" aria-label="Adicionar Laranja Bahia ao carrinho" data-nome="Laranja Bahia" data-preco="6.50">Adicionar</button>
-    </article>
-    <!-- Produto 12 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/manga.jpg" alt="Manga Palmer" />
-      <h3>Manga Palmer</h3>
-      <p class="descricao">Mangas doces e saborosas.</p>
-      <p class="preco">R$ 7,50</p>
-      <button class="btn-add" aria-label="Adicionar Manga Palmer ao carrinho" data-nome="Manga Palmer" data-preco="7.50">Adicionar</button>
-    </article>
-    <!-- Produto 13 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/ovo.jpg" alt="Ovos Caipira" />
-      <h3>Ovos Caipira</h3>
-      <p class="descricao">Ovos frescos de galinhas criadas soltas.</p>
-      <p class="preco">R$ 12,00</p>
-      <button class="btn-add" aria-label="Adicionar Ovos Caipira ao carrinho" data-nome="Ovos Caipira" data-preco="12.00">Adicionar</button>
-    </article>
-    <!-- Produto 14 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/sementes.jpg" alt="Sementes de Abóbora" />
-      <h3>Sementes de Abóbora</h3>
-      <p class="descricao">Sementes selecionadas e limpas.</p>
-      <p class="preco">R$ 9,00</p>
-      <button class="btn-add" aria-label="Adicionar Sementes de Abóbora ao carrinho" data-nome="Sementes de Abóbora" data-preco="9.00">Adicionar</button>
-    </article>
-    <!-- Produto 15 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/couve.jpg" alt="Couve Manteiga" />
-      <h3>Couve Manteiga</h3>
-      <p class="descricao">Verdura fresca e nutritiva.</p>
-      <p class="preco">R$ 5,00</p>
-      <button class="btn-add" aria-label="Adicionar Couve Manteiga ao carrinho" data-nome="Couve Manteiga" data-preco="5.00">Adicionar</button>
-    </article>
-    <!-- Produto 16 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/pepino.jpg" alt="Pepino Japonês" />
-      <h3>Pepino Japonês</h3>
-      <p class="descricao">Pepino crocante e fresco.</p>
-      <p class="preco">R$ 4,50</p>
-      <button class="btn-add" aria-label="Adicionar Pepino Japonês ao carrinho" data-nome="Pepino Japonês" data-preco="4.50">Adicionar</button>
-    </article>
-    <!-- Produto 17 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/cebola.jpg" alt="Cebola Roxa" />
-      <h3>Cebola Roxa</h3>
-      <p class="descricao">Cebola fresca para temperos.</p>
-      <p class="preco">R$ 3,50</p>
-      <button class="btn-add" aria-label="Adicionar Cebola Roxa ao carrinho" data-nome="Cebola Roxa" data-preco="3.50">Adicionar</button>
-    </article>
-    <!-- Produto 18 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/alho.jpg" alt="Alho Orgânico" />
-      <h3>Alho Orgânico</h3>
-      <p class="descricao">Alho natural, sem agrotóxicos.</p>
-      <p class="preco">R$ 6,00</p>
-      <button class="btn-add" aria-label="Adicionar Alho Orgânico ao carrinho" data-nome="Alho Orgânico" data-preco="6.00">Adicionar</button>
-    </article>
-    <!-- Produto 19 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/abobora.jpg" alt="Abóbora Moranga" />
-      <h3>Abóbora Moranga</h3>
-      <p class="descricao">Abóbora fresca e saborosa.</p>
-      <p class="preco">R$ 7,00</p>
-      <button class="btn-add" aria-label="Adicionar Abóbora Moranga ao carrinho" data-nome="Abóbora Moranga" data-preco="7.00">Adicionar</button>
-    </article>
-    <!-- Produto 20 -->
-    <article class="produto" tabindex="0">
-      <img src="imagens/mandioca.jpg" alt="Mandioca Fresca" />
-      <h3>Mandioca Fresca</h3>
-      <p class="descricao">Mandioca limpa e pronta para cozinhar.</p>
-      <p class="preco">R$ 4,50</p>
-      <button class="btn-add" aria-label="Adicionar Mandioca Fresca ao carrinho" data-nome="Mandioca Fresca" data-preco="4.50">Adicionar</button>
-    </article>
-  </section>
+  <main class="main-content">
+    <section class="loja-section">
+      <h2>Produtos do Campo</h2>
+      <div class="produtos-grid">
+        <!-- Produtos -->
+        <article class="produto-card">
+          <img src="img/maca.jpg" alt="Maçã Orgânica" />
+          <h3>Maçã Orgânica</h3>
+          <p class="preco">R$ 3,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Maçã Orgânica', 3)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
 
-  <!-- Quiz -->
-  <section id="quiz-container" tabindex="0" aria-label="Quiz Interativo sobre Agricultura">
-    <h2>Quiz - Teste seus conhecimentos sobre o campo</h2>
-    <form id="quiz-form">
-      <!-- Questão 1 -->
-      <fieldset>
-        <legend>1. Qual é o principal nutriente encontrado no solo fértil?</legend>
-        <label><input type="radio" name="q1" value="errado" required /> Nitrogênio</label>
-        <label><input type="radio" name="q1" value="correto" /> Nitrogênio</label>
-        <label><input type="radio" name="q1" value="errado" /> Fósforo</label>
-      </fieldset>
-      <!-- Questão 2 -->
-      <fieldset>
-        <legend>2. Qual destes é um grão comum no Brasil?</legend>
-        <label><input type="radio" name="q2" value="correto" required /> Arroz</label>
-        <label><input type="radio" name="q2" value="errado" /> Trigo</label>
-        <label><input type="radio" name="q2" value="errado" /> Cevada</label>
-      </fieldset>
-      <!-- Questão 3 -->
-      <fieldset>
-        <legend>3. Qual fruto é conhecido por ser rico em vitamina C?</legend>
-        <label><input type="radio" name="q3" value="correto" required /> Laranja</label>
-        <label><input type="radio" name="q3" value="errado" /> Banana</label>
-        <label><input type="radio" name="q3" value="errado" /> Maçã</label>
-      </fieldset>
-      <!-- Questão 4 -->
-      <fieldset>
-        <legend>4. O que é plantio orgânico?</legend>
-        <label><input type="radio" name="q4" value="correto" required /> Cultivo sem agrotóxicos</label>
-        <label><input type="radio" name="q4" value="errado" /> Uso de fertilizantes químicos</label>
-        <label><input type="radio" name="q4" value="errado" /> Irrigação artificial</label>
-      </fieldset>
-      <!-- Questão 5 -->
-      <fieldset>
-        <legend>5. Qual animal é usado para polinização?</legend>
-        <label><input type="radio" name="q5" value="correto" required /> Abelha</label>
-        <label><input type="radio" name="q5" value="errado" /> Galinha</label>
-        <label><input type="radio" name="q5" value="errado" /> Porco</label>
-      </fieldset>
-      <!-- Questão 6 -->
-      <fieldset>
-        <legend>6. O que é compostagem?</legend>
-        <label><input type="radio" name="q6" value="correto" required /> Transformação de resíduos orgânicos em adubo</label>
-        <label><input type="radio" name="q6" value="errado" /> Plantio de sementes</label>
-        <label><input type="radio" name="q6" value="errado" /> Uso de pesticidas</label>
-      </fieldset>
-      <!-- Questão 7 -->
-      <fieldset>
-        <legend>7. O que significa agricultura sustentável?</legend>
-        <label><input type="radio" name="q7" value="correto" required /> Práticas que preservam o meio ambiente</label>
-        <label><input type="radio" name="q7" value="errado" /> Uso excessivo de químicos</label>
-        <label><input type="radio" name="q7" value="errado" /> Desmatamento</label>
-      </fieldset>
-      <!-- Questão 8 -->
-      <fieldset>
-        <legend>8. Qual é o principal benefício do plantio direto?</legend>
-        <label><input type="radio" name="q8" value="correto" required /> Preservação do solo</label>
-        <label><input type="radio" name="q8" value="errado" /> Queimadas frequentes</label>
-        <label><input type="radio" name="q8" value="errado" /> Uso de máquinas pesadas</label>
-      </fieldset>
-      <!-- Questão 9 -->
-      <fieldset>
-        <legend>9. Qual destes produtos é derivado do leite?</legend>
-        <label><input type="radio" name="q9" value="correto" required /> Queijo</label>
-        <label><input type="radio" name="q9" value="errado" /> Mel</label>
-        <label><input type="radio" name="q9" value="errado" /> Arroz</label>
-      </fieldset>
-      <!-- Questão 10 -->
-      <fieldset>
-        <legend>10. Qual é o nome do processo de cultivar plantas em água?</legend>
-        <label><input type="radio" name="q10" value="correto" required /> Hidroponia</label>
-        <label><input type="radio" name="q10" value="errado" /> Agricultura tradicional</label>
-        <label><input type="radio" name="q10" value="errado" /> Compostagem</label>
-      </fieldset>
-      <button type="submit" aria-label="Enviar respostas do quiz">Enviar Quiz</button>
-    </form>
-    <div id="resultado-quiz" aria-live="polite" style="margin-top: 1rem;"></div>
-  </section>
+        <article class="produto-card">
+          <img src="img/mel.jpg" alt="Mel Puro" />
+          <h3>Mel Puro</h3>
+          <p class="preco">R$ 15,00</p>
+          <button onclick="adicionarAoCarrinho('Mel Puro', 15)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
 
-  <!-- Contato -->
-  <section id="contato" tabindex="0" aria-label="Formulário de contato">
-    <h2>Contato</h2>
-    <form id="form-contato">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required aria-required="true" />
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required aria-required="true" />
-      <label for="mensagem">Mensagem:</label>
-      <textarea id="mensagem" name="mensagem" required aria-required="true"></textarea>
-      <button type="submit" aria-label="Enviar mensagem de contato">Enviar</button>
-    </form>
-    <div id="resposta-contato" aria-live="polite" style="margin-top: 1rem;"></div>
-  </section>
+        <article class="produto-card">
+          <img src="img/banana.jpg" alt="Banana" />
+          <h3>Banana</h3>
+          <p class="preco">R$ 2,50/kg</p>
+          <button onclick="adicionarAoCarrinho('Banana', 2.5)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
 
-  <!-- Sobre -->
-  <section id="sobre" tabindex="0" aria-label="Informações sobre a Estação da Terra">
-    <h2>Sobre</h2>
-    <p>Bem-vindo à Estação da Terra, seu marketplace sustentável e interativo, que conecta o campo à cidade, colhendo oportunidades para todos.</p>
-    <p>Nossa missão é promover produtos frescos, orgânicos e de qualidade, valorizando o produtor local e incentivando práticas sustentáveis.</p>
-    <p>Junte-se a nós e faça parte desse movimento verde!</p>
-  </section>
+        <article class="produto-card">
+          <img src="img/laranja.jpg" alt="Laranja" />
+          <h3>Laranja</h3>
+          <p class="preco">R$ 2,80/kg</p>
+          <button onclick="adicionarAoCarrinho('Laranja', 2.8)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
 
-  <!-- Carrinho -->
-  <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" style="display:none;">
-    <h2>Seu Carrinho</h2>
-    <ul id="lista-carrinho" aria-live="polite"></ul>
-    <p id="total-carrinho">Total: R$ 0,00</p>
-    <button id="btn-esvaziar-carrinho" aria-label="Esvaziar carrinho">Esvaziar Carrinho</button>
-    <button id="btn-finalizar-compra" aria-label="Finalizar compra">Finalizar Compra</button>
-  </section>
+        <article class="produto-card">
+          <img src="img/queijo.jpg" alt="Queijo Minas" />
+          <h3>Queijo Minas</h3>
+          <p class="preco">R$ 20,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Queijo Minas', 20)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
 
-  <footer>
-    <p>© 2025 Estação da Terra - Todos os direitos reservados</p>
-  </footer>
+        <article class="produto-card">
+          <img src="img/leite.jpg" alt="Leite Fresco" />
+          <h3>Leite Fresco</h3>
+          <p class="preco">R$ 4,50/litro</p>
+          <button onclick="adicionarAoCarrinho('Leite Fresco', 4.5)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/tomate.jpg" alt="Tomate" />
+          <h3>Tomate</h3>
+          <p class="preco">R$ 3,20/kg</p>
+          <button onclick="adicionarAoCarrinho('Tomate', 3.2)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/milho.jpg" alt="Milho" />
+          <h3>Milho</h3>
+          <p class="preco">R$ 1,80/kg</p>
+          <button onclick="adicionarAoCarrinho('Milho', 1.8)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/arroz.jpg" alt="Arroz Integral" />
+          <h3>Arroz Integral</h3>
+          <p class="preco">R$ 7,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Arroz Integral', 7)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/feijao.jpg" alt="Feijão Preto" />
+          <h3>Feijão Preto</h3>
+          <p class="preco">R$ 6,50/kg</p>
+          <button onclick="adicionarAoCarrinho('Feijão Preto', 6.5)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/ovo.jpg" alt="Ovos Caipira" />
+          <h3>Ovos Caipira (12 un)</h3>
+          <p class="preco">R$ 8,00</p>
+          <button onclick="adicionarAoCarrinho('Ovos Caipira', 8)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/couve.jpg" alt="Couve" />
+          <h3>Couve</h3>
+          <p class="preco">R$ 3,00/maço</p>
+          <button onclick="adicionarAoCarrinho('Couve', 3)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/abobora.jpg" alt="Abóbora" />
+          <h3>Abóbora</h3>
+          <p class="preco">R$ 4,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Abóbora', 4)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+      </div>
+
+      <aside class="carrinho" aria-label="Carrinho de compras">
+        <h3>Carrinho</h3>
+        <ul id="lista-carrinho" aria-live="polite" aria-relevant="additions"></ul>
+        <p id="total-carrinho">Total: R$ 0,00</p>
+        <button id="btn-esvaziar" disabled>Esvaziar Carrinho</button>
+        <button id="btn-finalizar" disabled>Finalizar Compra</button>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Botão Acessibilidade -->
+  <button id="btn-acessibilidade" aria-pressed="false" aria-label="Ativar opções de acessibilidade" title="Ativar opções de acessibilidade">
+    <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12" y2="16"></line>
+    </svg>
+    Acessibilidade
+  </button>
 
   <script>
-    // Controle menu acessibilidade
-    const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
-    const menuAcessibilidade = document.getElementById('menu-acessibilidade');
-    botaoAcessibilidade.addEventListener('click', () => {
-      if(menuAcessibilidade.style.display === 'none' || menuAcessibilidade.style.display === '') {
-        menuAcessibilidade.style.display = 'block';
-      } else {
-        menuAcessibilidade.style.display = 'none';
-      }
-    });
-
-    // Aumentar fonte
-    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
-    btnAumentarFonte.addEventListener('click', () => {
-      let currentSize = window.getComputedStyle(document.body).fontSize;
-      let newSize = parseFloat(currentSize) + 2;
-      document.body.style.fontSize = newSize + 'px';
-    });
-
-    // Modo escuro
-    const btnModoEscuro = document.getElementById('btn-modo-escuro');
-    btnModoEscuro.addEventListener('click', () => {
-      document.body.classList.toggle('modo-escuro');
-    });
-
-    // Navegação entre seções
-    const btnLoja = document.getElementById('btn-loja');
-    const btnQuiz = document.getElementById('btn-quiz');
-    const btnContato = document.getElementById('btn-contato');
-    const btnSobre = document.getElementById('btn-sobre');
-    const btnCarrinho = document.getElementById('btn-carrinho');
-
-    const loja = document.getElementById('loja');
-    const quizContainer = document.getElementById('quiz-container');
-    const contato = document.getElementById('contato');
-    const sobre = document.getElementById('sobre');
-    const carrinho = document.getElementById('carrinho');
-
-    function esconderTodasSeções() {
-      loja.style.display = 'none';
-      quizContainer.style.display = 'none';
-      contato.style.display = 'none';
-      sobre.style.display = 'none';
-      carrinho.style.display = 'none';
-    }
-
-    btnLoja.addEventListener('click', () => {
-      esconderTodasSeções();
-      loja.style.display = 'grid';
-      loja.focus();
-    });
-
-    btnQuiz.addEventListener('click', () => {
-      esconderTodasSeções();
-      quizContainer.style.display = 'block';
-      quizContainer.focus();
-    });
-
-    btnContato.addEventListener('click', () => {
-      esconderTodasSeções();
-      contato.style.display = 'block';
-      contato.focus();
-    });
-
-    btnSobre.addEventListener('click', () => {
-      esconderTodasSeções();
-      sobre.style.display = 'block';
-      sobre.focus();
-    });
-
-    btnCarrinho.addEventListener('click', () => {
-      esconderTodasSeções();
-      carrinho.style.display = 'block';
-      carrinho.focus();
-      atualizarCarrinho();
-    });
-
-    // Inicializa com a loja visível
-    esconderTodasSeções();
-    loja.style.display = 'grid';
-
     // Carrinho
-    const botoesAdd = document.querySelectorAll('.btn-add');
+    const carrinho = [];
     const listaCarrinho = document.getElementById('lista-carrinho');
     const totalCarrinho = document.getElementById('total-carrinho');
-    const btnEsvaziarCarrinho = document.getElementById('btn-esvaziar-carrinho');
-    const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
+    const btnEsvaziar = document.getElementById('btn-esvaziar');
+    const btnFinalizar = document.getElementById('btn-finalizar');
 
-    let carrinhoItens = [];
-
-    botoesAdd.forEach(botao => {
-      botao.addEventListener('click', () => {
-        const nome = botao.getAttribute('data-nome');
-        const preco = parseFloat(botao.getAttribute('data-preco'));
-        const itemExistente = carrinhoItens.find(item => item.nome === nome);
-        if(itemExistente){
-          itemExistente.quantidade++;
-        } else {
-          carrinhoItens.push({nome, preco, quantidade: 1});
-        }
-        alert(nome + ' adicionado ao carrinho!');
-        atualizarCarrinho();
-      });
-    });
-
-    function atualizarCarrinho(){
+    function atualizarCarrinho() {
       listaCarrinho.innerHTML = '';
       let total = 0;
-      carrinhoItens.forEach((item, index) => {
-        total += item.preco * item.quantidade;
+
+      carrinho.forEach(item => {
         const li = document.createElement('li');
-        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
-        li.tabIndex = 0;
-        // Botão para remover 1 unidade
-        const btnRemover = document.createElement('button');
-        btnRemover.textContent = 'Remover';
-        btnRemover.setAttribute('aria-label', 'Remover um ' + item.nome + ' do carrinho');
-        btnRemover.addEventListener('click', () => {
-          item.quantidade--;
-          if(item.quantidade === 0){
-            carrinhoItens.splice(index, 1);
-          }
-          atualizarCarrinho();
-        });
-        li.appendChild(btnRemover);
+        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
         listaCarrinho.appendChild(li);
+        total += item.preco;
       });
-      totalCarrinho.textContent = 'Total: R$ ' + total.toFixed(2);
+
+      totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
+      btnEsvaziar.disabled = carrinho.length === 0;
+      btnFinalizar.disabled = carrinho.length === 0;
     }
 
-    btnEsvaziarCarrinho.addEventListener('click', () => {
-      carrinhoItens = [];
+    function adicionarAoCarrinho(nome, preco) {
+      carrinho.push({ nome, preco });
       atualizarCarrinho();
-    });
+      alert(`${nome} adicionado ao carrinho!`);
+    }
 
-    btnFinalizarCompra.addEventListener('click', () => {
-      if(carrinhoItens.length === 0){
-        alert('Seu carrinho está vazio!');
-        return;
+    btnEsvaziar.addEventListener('click', () => {
+      if (confirm('Deseja esvaziar o carrinho?')) {
+        carrinho.length = 0;
+        atualizarCarrinho();
       }
-      window.location.href = 'pagamento.html';
     });
 
-    // Quiz
-    const quizForm = document.getElementById('quiz-form');
-    const resultadoQuiz = document.getElementById('resultado-quiz');
+    btnFinalizar.addEventListener('click', () => {
+      alert('Compra finalizada! Obrigado pela preferência.');
+      carrinho.length = 0;
+      atualizarCarrinho();
+      // Aqui você pode redirecionar para página de endereço/pagamento
+      // window.location.href = 'endereco.html';
+    });
 
-    quizForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      let pontos = 0;
-      const respostas = new FormData(quizForm);
-      for(let pair of respostas.entries()){
-        if(pair[1] === 'correto') pontos++;
+    atualizarCarrinho();
+
+    // Acessibilidade - toggle contraste e fonte maior
+    const btnAcessibilidade = document.getElementById('btn-acessibilidade');
+
+    btnAcessibilidade.addEventListener('click', () => {
+      const ativo = btnAcessibilidade.getAttribute('aria-pressed') === 'true';
+      if (!ativo) {
+        document.body.classList.add('alto-contraste');
+        document.body.classList.add('fonte-grande');
+        btnAcessibilidade.setAttribute('aria-pressed', 'true');
+        btnAcessibilidade.textContent = '';
+        btnAcessibilidade.insertAdjacentHTML('afterbegin', `
+          <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12" y2="16"></line>
+          </svg> Desativar Acessibilidade
+        `);
+      } else {
+        document.body.classList.remove('alto-contraste');
+        document.body.classList.remove('fonte-grande');
+        btnAcessibilidade.setAttribute('aria-pressed', 'false');
+        btnAcessibilidade.textContent = '';
+        btnAcessibilidade.insertAdjacentHTML('afterbegin', `
+          <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12" y2="16"></line>
+          </svg> Acessibilidade
+        `);
       }
-      resultadoQuiz.textContent = `Você acertou ${pontos} de 10 perguntas!`;
     });
+  </script>
 
-    // Formulário de contato
-    const formContato = document.getElementById('form-contato');
-    const respostaContato = document.getElementById('resposta-contato');
+  <!-- VLibras 3D com boneco no canto -->
+  <div vw class="enabled vlibras-widget" aria-label="Plugin VLibras para tradução em Libras">
+    <div vw-access-button class="active" aria-label="Botão VLibras"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
 
-    formContato.addEventListener('submit', (e) => {
-      e.preventDefault();
-      // Aqui você pode implementar envio via servidor ou API
-      respostaContato.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
-      formContato.reset();
-    });
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
 
 </body>
