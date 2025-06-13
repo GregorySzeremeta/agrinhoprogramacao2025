@@ -1,205 +1,90 @@
-/** style.css **/
 
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+        <!-- Produtos originais -->
+        <div class="produto-card">
+          <img src="img/maçã.jpg" alt="Maçã Orgânica">
+          <h3>Maçã Orgânica</h3>
+          <p>R$ 3,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Maçã Orgânica', 3)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/mel.jpg" alt="Mel Puro">
+          <h3>Mel Puro</h3>
+          <p>R$ 15,00</p>
+          <button onclick="adicionarAoCarrinho('Mel Puro', 15)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/queijo.jpg" alt="Queijo Artesanal">
+          <h3>Queijo Artesanal</h3>
+          <p>R$ 25,00</p>
+          <button onclick="adicionarAoCarrinho('Queijo Artesanal', 25)">Adicionar</button>
+        </div>
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8f8f8;
-  color: #333;
-  line-height: 1.6;
-  font-size: 16px;
-  transition: background 0.3s, color 0.3s;
-}
-
-body.contraste {
-  background-color: #000;
-  color: #fff;
-}
-
-header {
-  background-color: #4CAF50;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-}
-
-header .slogan {
-  font-style: italic;
-  font-size: 1.1rem;
-}
-
-.menu ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-.menu ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.menu ul li a:hover {
-  color: #d4ffd4;
-}
-
-#acessibilidade {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 10000;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-#acessibilidade button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  transition: background-color 0.3s;
-}
-
-#acessibilidade button:hover {
-  background-color: #388E3C;
-}
-
-main {
-  padding: 2rem;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 1rem;
-  color: #2E7D32;
-}
-
-.barracas {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-}
-
-.produto-card {
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  padding: 1rem;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.produto-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.produto-card img {
-  max-width: 100%;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-}
-
-.produto-card h3 {
-  margin-bottom: 0.3rem;
-  font-size: 1.2rem;
-}
-
-.produto-card p {
-  font-weight: bold;
-  color: #388E3C;
-  margin-bottom: 0.5rem;
-}
-
-.produto-card button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.produto-card button:hover {
-  background-color: #2E7D32;
-}
-
-#carrinho {
-  margin-top: 2rem;
-  background-color: #fff;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-#carrinho ul {
-  list-style: none;
-  margin-top: 1rem;
-}
-
-#carrinho button {
-  background-color: #d32f2f;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s;
-}
-
-#carrinho button:hover {
-  background-color: #b71c1c;
-}
-
-footer {
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
-}
-
-/* Estilo para áudio de fundo */
-#audio-fundo {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  z-index: 10000;
-  background: white;
-  padding: 5px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-/* Estilo LIBRAS VLibras */
-[vw] {
-  z-index: 1000 !important;
-}
-
-/* Animação inicial (opcional) */
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-body {
-  animation: fadeIn 1s ease-in;
-}
+        <!-- Novos produtos adicionados -->
+        <div class="produto-card">
+          <img src="img/banana.jpg" alt="Banana">
+          <h3>Banana</h3>
+          <p>R$ 2,50/kg</p>
+          <button onclick="adicionarAoCarrinho('Banana', 2.5)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/tomate.jpg" alt="Tomate">
+          <h3>Tomate</h3>
+          <p>R$ 4,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Tomate', 4)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/alface.jpg" alt="Alface">
+          <h3>Alface</h3>
+          <p>R$ 1,80/un</p>
+          <button onclick="adicionarAoCarrinho('Alface', 1.8)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/cenoura.jpg" alt="Cenoura">
+          <h3>Cenoura</h3>
+          <p>R$ 3,20/kg</p>
+          <button onclick="adicionarAoCarrinho('Cenoura', 3.2)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/batata.jpg" alt="Batata">
+          <h3>Batata</h3>
+          <p>R$ 2,90/kg</p>
+          <button onclick="adicionarAoCarrinho('Batata', 2.9)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/abacate.jpg" alt="Abacate">
+          <h3>Abacate</h3>
+          <p>R$ 7,00/un</p>
+          <button onclick="adicionarAoCarrinho('Abacate', 7)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/Pãointegral.jpg" alt="Pão Integral">
+          <h3>Pão Integral</h3>
+          <p>R$ 6,50</p>
+          <button onclick="adicionarAoCarrinho('Pão Integral', 6.5)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/leite.jpg" alt="Leite">
+          <h3>Leite</h3>
+          <p>R$ 4,00/litro</p>
+          <button onclick="adicionarAoCarrinho('Leite', 4)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/ovo.jpg" alt="Ovos">
+          <h3>Ovos</h3>
+          <p>R$ 8,00/12 unidades</p>
+          <button onclick="adicionarAoCarrinho('Ovos', 8)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/arroz.jpg" alt="Arroz Integral">
+          <h3>Arroz</h3>
+          <p>R$ 5,50/kg</p>
+          <button onclick="adicionarAoCarrinho('Arroz Integral', 5.5)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/feijão.jpg" alt="Feijão">
+          <h3>Feijão</h3>
+          <p>R$ 6,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Feijão', 6)">Adicionar</button>
+        </div>
+      </div>
+    </section>
