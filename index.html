@@ -1,250 +1,270 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Estação da Terra</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Estação da Terra - Loja</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Estação da Terra</h1>
-    <nav>
-      <button id="btn-loja" aria-label="Ir para a loja" class="nav-btn active">Loja</button>
-      <button id="btn-contato" aria-label="Ir para contato" class="nav-btn">Contato</button>
-      <ul class="menu-list">
-        <li><a href="quiz.html" class="menu-link">Quiz</a></li>
-        <li><a href="sobre.html" class="menu-link">Sobre</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <!-- Loja -->
-    <section id="produtos" tabindex="0" aria-label="Produtos à venda">
-      <h2>Produtos à Venda</h2>
-      <div class="barracas">
-        <!-- Exemplo de produto -->
-        <div class="produto-card">
-          <img src="img/maçã.jpg" alt="Maçã Orgânica" />
-          <h3>Maçã Orgânica</h3>
-          <p>R$ 3,00/kg</p>
-          <button class="btn-adicionar" data-nome="Maçã Orgânica" data-preco="3">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/mel.jpg" alt="Mel Puro" />
-          <h3>Mel Puro</h3>
-          <p>R$ 15,00</p>
-          <button class="btn-adicionar" data-nome="Mel Puro" data-preco="15">Adicionar</button>
-        </div>
-        <!-- Adicione outros produtos conforme seu código original -->
-        <!-- ... -->
-      </div>
-    </section>
+<header>
+  <h1>Estação da Terra</h1>
+  <nav>
+    <button id="btnAumentarFonte" aria-label="Aumentar fonte">A+</button>
+    <button id="btnDiminuirFonte" aria-label="Diminuir fonte">A-</button>
+    <button id="btnContraste" aria-label="Ativar/desativar contraste">Contraste</button>
+    <button id="btnSom" aria-label="Ligar ou desligar som ambiente">🔊 Som</button>
+    <button id="btnLibras" aria-label="Ativar tradução em Libras">🤟 LIBRAS</button>
+  </nav>
+</header>
 
-    <!-- Carrinho -->
-    <section id="carrinho" tabindex="0" aria-label="Carrinho de compras">
-      <h2>🛒 Carrinho de Compras</h2>
-      <ul id="lista-carrinho"></ul>
-      <p id="total">Total: R$ 0,00</p>
-      <button id="btn-esvaziar" class="btn-secondary">🗑️ Esvaziar Carrinho</button>
-      <button id="btn-finalizar" class="btn-primary">Finalizar Compra</button>
-    </section>
+<main>
+  <section aria-label="Produtos disponíveis" id="produtos">
+    <h2>Produtos do Campo</h2>
+    <div class="produtos-lista" id="produtos-lista">
+      <!-- Produtos serão inseridos via JS -->
+    </div>
+  </section>
 
-    <!-- Finalizar Compra -->
-    <section id="finalizar-compra" tabindex="0" aria-label="Finalizar compra" hidden>
-      <h2>Finalizar Compra</h2>
-      <form id="form-finalizar" onsubmit="return finalizarCompra(event)">
-        <fieldset>
-          <legend>Informações do Comprador</legend>
-          <label for="nome-comprador">Nome Completo:</label><br />
-          <input type="text" id="nome-comprador" name="nome-comprador" required /><br />
+  <aside aria-label="Carrinho de compras" id="carrinho" tabindex="0">
+    <h2>Seu Carrinho</h2>
+    <ul id="lista-carrinho" aria-live="polite" aria-relevant="additions removals"></ul>
+    <p id="total-carrinho">Total: R$ 0,00</p>
+    <button id="btnFinalizarCompra" disabled>Finalizar Compra</button>
+    <button id="btnEsvaziarCarrinho" disabled>Esvaziar Carrinho</button>
+  </aside>
+</main>
 
-          <label for="email-comprador">Email:</label><br />
-          <input type="email" id="email-comprador" name="email-comprador" required /><br />
+<!-- Video LIBRAS oculto inicialmente -->
+<div id="videoLibrasContainer" aria-hidden="true" hidden>
+  <button id="btnFecharLibras" aria-label="Fechar vídeo LIBRAS">✖</button>
+  <video width="320" height="240" controls>
+    <source src="https://www.signingsavvy.com/media/videos/3387.mp4" type="video/mp4" />
+    Seu navegador não suporta vídeo.
+  </video>
+</div>
 
-          <label for="telefone-comprador">Telefone:</label><br />
-          <input type="tel" id="telefone-comprador" name="telefone-comprador" /><br />
-        </fieldset>
+<audio id="somAmbiente" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_b64a1e1e10.mp3?filename=relaxing-nature-ambient-11249.mp3" type="audio/mp3" />
+  Seu navegador não suporta áudio.
+</audio>
 
-        <fieldset>
-          <legend>Endereço de Entrega</legend>
-          <label for="endereco">Endereço:</label><br />
-          <textarea id="endereco" name="endereco" rows="3" required></textarea><br />
+<script>
+  // Produtos disponíveis
+  const produtos = [
+    {id:1, nome:"Leite Integral", categoria:"Leite", preco:5.90},
+    {id:2, nome:"Queijo Minas", categoria:"Queijos", preco:25.00},
+    {id:3, nome:"Mel Puro", categoria:"Mel", preco:30.00},
+    {id:4, nome:"Arroz Orgânico", categoria:"Grãos", preco:12.50},
+    {id:5, nome:"Feijão Preto", categoria:"Grãos", preco:8.90},
+    {id:6, nome:"Alface Crespa", categoria:"Verduras", preco:3.20},
+    {id:7, nome:"Tomate", categoria:"Frutas", preco:4.50},
+    {id:8, nome:"Batata Doce", categoria:"Verduras", preco:6.00},
+    {id:9, nome:"Sementes de Girassol", categoria:"Sementes", preco:15.00},
+    {id:10, nome:"Morango Orgânico", categoria:"Frutas", preco:18.00},
 
-          <label for="cep">CEP:</label><br />
-          <input type="text" id="cep" name="cep" required pattern="\d{5}-?\d{3}" placeholder="12345-678" /><br />
-        </fieldset>
+    // 10 produtos adicionais
+    {id:11, nome:"Cenoura Orgânica", categoria:"Verduras", preco:5.00},
+    {id:12, nome:"Couve-Flor", categoria:"Verduras", preco:7.50},
+    {id:13, nome:"Leite de Cabra", categoria:"Leite", preco:9.00},
+    {id:14, nome:"Manteiga Artesanal", categoria:"Laticínios", preco:20.00},
+    {id:15, nome:"Pão Integral", categoria:"Padaria", preco:6.50},
+    {id:16, nome:"Melancia", categoria:"Frutas", preco:9.90},
+    {id:17, nome:"Castanha do Pará", categoria:"Grãos", preco:35.00},
+    {id:18, nome:"Chá de Ervas", categoria:"Bebidas", preco:12.00},
+    {id:19, nome:"Ovos Caipira (dúzia)", categoria:"Ovos", preco:15.00},
+    {id:20, nome:"Abóbora Moranga", categoria:"Verduras", preco:4.00},
+  ];
 
-        <fieldset>
-          <legend>Forma de Pagamento</legend>
-          <label>
-            <input type="radio" name="pagamento" value="boleto" required /> Boleto
-          </label><br />
-          <label>
-            <input type="radio" name="pagamento" value="cartao" /> Cartão de Crédito
-          </label><br />
-          <label>
-            <input type="radio" name="pagamento" value="pix" /> Pix
-          </label>
-        </fieldset>
+  const produtosLista = document.getElementById('produtos-lista');
+  const carrinhoLista = document.getElementById('lista-carrinho');
+  const totalCarrinho = document.getElementById('total-carrinho');
+  const btnFinalizar = document.getElementById('btnFinalizarCompra');
+  const btnEsvaziar = document.getElementById('btnEsvaziarCarrinho');
+  const somAmbiente = document.getElementById('somAmbiente');
+  const btnSom = document.getElementById('btnSom');
+  const btnLibras = document.getElementById('btnLibras');
+  const videoLibrasContainer = document.getElementById('videoLibrasContainer');
+  const btnFecharLibras = document.getElementById('btnFecharLibras');
 
-        <div class="botoes-finalizar">
-          <button type="submit" class="btn-primary">Confirmar Compra</button>
-          <button type="button" id="btn-cancelar" class="btn-secondary">Cancelar</button>
-        </div>
-      </form>
-    </section>
+  let carrinho = [];
 
-    <!-- Contato -->
-    <section id="contato" tabindex="0" aria-label="Seção de contato" hidden>
-      <h2>Contato</h2>
-      <form id="form-contato" onsubmit="return enviarFormulario(event)">
-        <label for="nome">Nome:</label><br />
-        <input type="text" id="nome" name="nome" required /><br />
+  // Função para formatar preço em reais
+  function formatarPreco(valor) {
+    return 'R$ ' + valor.toFixed(2).replace('.', ',');
+  }
 
-        <label for="email">Email:</label><br />
-        <input type="email" id="email" name="email" required /><br />
-
-        <label for="mensagem">Mensagem:</label><br />
-        <textarea id="mensagem" name="mensagem" rows="4" required></textarea><br />
-
-        <button type="submit" class="btn-primary">Enviar</button>
-      </form>
-    </section>
-  </main>
-
-  <script>
-    // Navegação entre seções
-    const btnLoja = document.getElementById('btn-loja');
-    const btnContato = document.getElementById('btn-contato');
-    const secProdutos = document.getElementById('produtos');
-    const secCarrinho = document.getElementById('carrinho');
-    const secContato = document.getElementById('contato');
-    const secFinalizar = document.getElementById('finalizar-compra');
-
-    function mostrarSecao(secao) {
-      // Esconder todas
-      [secProdutos, secCarrinho, secContato, secFinalizar].forEach(s => s.hidden = true);
-      // Mostrar a escolhida
-      secao.hidden = false;
-
-      // Atualizar botões do menu
-      if (secao === secProdutos || secao === secCarrinho) {
-        btnLoja.classList.add('active');
-        btnContato.classList.remove('active');
-      } else if (secao === secContato) {
-        btnLoja.classList.remove('active');
-        btnContato.classList.add('active');
-      } else {
-        btnLoja.classList.remove('active');
-        btnContato.classList.remove('active');
-      }
-    }
-
-    btnLoja.addEventListener('click', () => mostrarSecao(secProdutos));
-    btnContato.addEventListener('click', () => mostrarSecao(secContato));
-
-    // Inicial
-    mostrarSecao(secProdutos);
-
-    // Carrinho
-    const listaCarrinho = document.getElementById('lista-carrinho');
-    const totalDisplay = document.getElementById('total');
-    const btnEsvaziar = document.getElementById('btn-esvaziar');
-    const btnFinalizar = document.getElementById('btn-finalizar');
-    const btnCancelarFinalizar = document.getElementById('btn-cancelar');
-
-    let carrinho = [];
-
-    // Adicionar produtos aos botões
-    document.querySelectorAll('.btn-adicionar').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const nome = btn.dataset.nome;
-        const preco = parseFloat(btn.dataset.preco);
-        adicionarAoCarrinho(nome, preco);
-      });
+  // Criar elementos de produtos na página
+  function mostrarProdutos() {
+    produtosLista.innerHTML = '';
+    produtos.forEach(produto => {
+      const produtoDiv = document.createElement('div');
+      produtoDiv.className = 'produto';
+      produtoDiv.tabIndex = 0;
+      produtoDiv.setAttribute('role','listitem');
+      produtoDiv.innerHTML = `
+        <h3>${produto.nome}</h3>
+        <p><strong>Categoria:</strong> ${produto.categoria}</p>
+        <p><strong>Preço:</strong> ${formatarPreco(produto.preco)}</p>
+        <button aria-label="Adicionar ${produto.nome} ao carrinho" data-id="${produto.id}">Adicionar</button>
+      `;
+      produtosLista.appendChild(produtoDiv);
     });
+  }
 
-    function adicionarAoCarrinho(nome, preco) {
-      const itemExistente = carrinho.find(item => item.nome === nome);
-      if (itemExistente) {
-        itemExistente.quantidade++;
-      } else {
-        carrinho.push({ nome, preco, quantidade: 1 });
+  // Atualizar carrinho na tela
+  function atualizarCarrinho() {
+    carrinhoLista.innerHTML = '';
+    let total = 0;
+    carrinho.forEach(item => {
+      total += item.preco * item.quantidade;
+      const li = document.createElement('li');
+      li.innerHTML = `
+        ${item.nome} — ${item.quantidade} x ${formatarPreco(item.preco)} = ${formatarPreco(item.preco * item.quantidade)}
+        <button aria-label="Remover um ${item.nome} do carrinho" data-id="${item.id}">Remover</button>
+      `;
+      carrinhoLista.appendChild(li);
+    });
+    totalCarrinho.textContent = `Total: ${formatarPreco(total)}`;
+    btnFinalizar.disabled = carrinho.length === 0;
+    btnEsvaziar.disabled = carrinho.length === 0;
+  }
+
+  // Adicionar produto ao carrinho
+  function adicionarProduto(id) {
+    const produto = produtos.find(p => p.id === id);
+    if (!produto) return;
+
+    const itemCarrinho = carrinho.find(i => i.id === id);
+    if (itemCarrinho) {
+      itemCarrinho.quantidade++;
+    } else {
+      carrinho.push({...produto, quantidade: 1});
+    }
+    atualizarCarrinho();
+  }
+
+  // Remover produto do carrinho
+  function removerProduto(id) {
+    const index = carrinho.findIndex(i => i.id === id);
+    if (index > -1) {
+      carrinho[index].quantidade--;
+      if (carrinho[index].quantidade <= 0) {
+        carrinho.splice(index,1);
       }
-      atualizarCarrinho();
     }
+    atualizarCarrinho();
+  }
 
-    function atualizarCarrinho() {
-      listaCarrinho.innerHTML = '';
-      let total = 0;
-      carrinho.forEach((item, index) => {
-        total += item.preco * item.quantidade;
-        const li = document.createElement('li');
-        li.className = "item-carrinho";
-        li.innerHTML = `
-          <span>${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}</span>
-          <button aria-label="Remover ${item.nome} do carrinho" data-index="${index}" class="btn-remover">Remover</button>
-        `;
-        listaCarrinho.appendChild(li);
-      });
-      totalDisplay.textContent = `Total: R$ ${total.toFixed(2)}`;
-      btnFinalizar.disabled = carrinho.length === 0;
-      btnEsvaziar.disabled = carrinho.length === 0;
-
-      // Adicionar evento para remover
-      document.querySelectorAll('.btn-remover').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const idx = parseInt(btn.dataset.index);
-          removerDoCarrinho(idx);
-        });
-      });
+  // Finalizar compra (simples alert)
+  function finalizarCompra() {
+    if (carrinho.length === 0) {
+      alert("Seu carrinho está vazio.");
+      return;
     }
+    alert("Compra finalizada! Obrigado por comprar na Estação da Terra.");
+    carrinho = [];
+    atualizarCarrinho();
+  }
 
-    function removerDoCarrinho(index) {
-      carrinho.splice(index, 1);
-      atualizarCarrinho();
-    }
-
-    btnEsvaziar.addEventListener('click', () => {
+  // Esvaziar carrinho
+  function esvaziarCarrinho() {
+    if(confirm("Deseja esvaziar o carrinho?")) {
       carrinho = [];
       atualizarCarrinho();
-    });
-
-    btnFinalizar.addEventListener('click', () => {
-      mostrarSecao(secFinalizar);
-    });
-
-    btnCancelarFinalizar.addEventListener('click', () => {
-      mostrarSecao(secProdutos);
-    });
-
-    // Finalizar compra
-    const formFinalizar = document.getElementById('form-finalizar');
-    formFinalizar.addEventListener('submit', finalizarCompra);
-
-    function finalizarCompra(event) {
-      event.preventDefault();
-      if (carrinho.length === 0) {
-        alert('Seu carrinho está vazio!');
-        mostrarSecao(secProdutos);
-        return;
-      }
-      alert('Compra finalizada com sucesso!\nObrigado por comprar na Estação da Terra.');
-      // Limpar carrinho e formulário
-      carrinho = [];
-      atualizarCarrinho();
-      formFinalizar.reset();
-      mostrarSecao(secProdutos);
     }
+  }
 
-    // Formulário contato
-    function enviarFormulario(event) {
-      event.preventDefault();
-      alert('Mensagem enviada! Obrigado pelo contato.');
-      document.getElementById('form-contato').reset();
+  // Eventos
+
+  // Adicionar produtos
+  produtosLista.addEventListener('click', e => {
+    if(e.target.tagName === 'BUTTON') {
+      const id = parseInt(e.target.dataset.id);
+      adicionarProduto(id);
     }
-  </script>
+  });
+
+  // Remover produtos
+  carrinhoLista.addEventListener('click', e => {
+    if(e.target.tagName === 'BUTTON') {
+      const id = parseInt(e.target.dataset.id);
+      removerProduto(id);
+    }
+  });
+
+  btnFinalizar.addEventListener('click', finalizarCompra);
+  btnEsvaziar.addEventListener('click', esvaziarCarrinho);
+
+  // Acessibilidade - aumentar/diminuir fonte
+  let tamanhoFonte = 16;
+  document.getElementById('btnAumentarFonte').addEventListener('click', () => {
+    if(tamanhoFonte < 24) {
+      tamanhoFonte += 2;
+      document.body.style.fontSize = tamanhoFonte + 'px';
+    }
+  });
+  document.getElementById('btnDiminuirFonte').addEventListener('click', () => {
+    if(tamanhoFonte > 12) {
+      tamanhoFonte -= 2;
+      document.body.style.fontSize = tamanhoFonte + 'px';
+    }
+  });
+
+  // Contraste alto
+  let contrasteAtivo = false;
+  document.getElementById('btnContraste').addEventListener('click', () => {
+    contrasteAtivo = !contrasteAtivo;
+    if(contrasteAtivo) {
+      document.body.classList.add('contraste');
+    } else {
+      document.body.classList.remove('contraste');
+    }
+  });
+
+  // Som ambiente
+  let somTocando = false;
+  btnSom.addEventListener('click', () => {
+    if(somTocando) {
+      somAmbiente.pause();
+      btnSom.textContent = "🔊 Som";
+    } else {
+      somAmbiente.play();
+      btnSom.textContent = "🔈 Mutar";
+    }
+    somTocando = !somTocando;
+  });
+
+  // LIBRAS
+  btnLibras.addEventListener('click', () => {
+    if(videoLibrasContainer.hasAttribute('hidden')) {
+      videoLibrasContainer.removeAttribute('hidden');
+      videoLibrasContainer.setAttribute('aria-hidden', 'false');
+      videoLibrasContainer.querySelector('video').play();
+      btnLibras.setAttribute('aria-pressed', 'true');
+      btnLibras.textContent = "✖ Fechar LIBRAS";
+    } else {
+      videoLibrasContainer.setAttribute('hidden', '');
+      videoLibrasContainer.setAttribute('aria-hidden', 'true');
+      videoLibrasContainer.querySelector('video').pause();
+      btnLibras.setAttribute('aria-pressed', 'false');
+      btnLibras.textContent = "🤟 LIBRAS";
+    }
+  });
+
+  btnFecharLibras.addEventListener('click', () => {
+    videoLibrasContainer.setAttribute('hidden', '');
+    videoLibrasContainer.setAttribute('aria-hidden', 'true');
+    videoLibrasContainer.querySelector('video').pause();
+    btnLibras.setAttribute('aria-pressed', 'false');
+    btnLibras.textContent = "🤟 LIBRAS";
+  });
+
+  // Inicializar
+  mostrarProdutos();
+  atualizarCarrinho();
+
+</script>
 </body>
 </html>
