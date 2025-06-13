@@ -2,21 +2,14 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Estação da Terra</title>
+  <title>Estação da Terra - Loja</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <!-- VLibras -->
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
-
-  <!-- Animação de Entrada -->
-  <div id="entrada" class="entrada-animada" aria-label="Bem-vindo à Estação da Terra">
-    <h1>🌱 Estação da Terra 🌻</h1>
-  </div>
-
-  <!-- Botões de Acessibilidade -->
-  <div id="acessibilidade" class="acessibilidade">
+  <!-- Acessibilidade -->
+  <div id="acessibilidade">
     <button onclick="toggleContraste()" aria-label="Alternar contraste">🌓</button>
     <button onclick="aumentarFonte()" aria-label="Aumentar fonte">🔠</button>
     <button onclick="diminuirFonte()" aria-label="Diminuir fonte">🔡</button>
@@ -34,41 +27,31 @@
   <header>
     <h1>Estação da Terra</h1>
     <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
-    <nav class="menu" aria-label="Menu principal">
+    <nav class="menu">
       <ul>
-        <li><a href="#produtos">Produtos</a></li>
-        <li><a href="#quiz">Quiz</a></li>
-        <li><a href="#carrinho">Carrinho</a></li>
-        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Conteúdo Principal -->
+  <!-- Loja -->
   <main>
-    
-    <!-- Seção Produtos -->
-    <section id="produtos" aria-labelledby="produtos-titulo">
-      <h2 id="produtos-titulo">Produtos à Venda</h2>
+    <section id="produtos">
+      <h2>Produtos à Venda</h2>
       <div class="barracas">
-
-        <!-- Produto 1 -->
         <div class="produto-card">
           <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce" alt="Maçã Orgânica">
           <h3>Maçã Orgânica</h3>
           <p>R$ 3,00/kg</p>
           <button onclick="adicionarAoCarrinho('Maçã Orgânica')">Adicionar</button>
         </div>
-
-        <!-- Produto 2 -->
         <div class="produto-card">
           <img src="https://images.unsplash.com/photo-1582515073490-39981397c445" alt="Mel Puro">
           <h3>Mel Puro</h3>
           <p>R$ 15,00</p>
           <button onclick="adicionarAoCarrinho('Mel Puro')">Adicionar</button>
         </div>
-
-        <!-- Produto 3 -->
         <div class="produto-card">
           <img src="https://images.unsplash.com/photo-1572441710263-478a1b119119" alt="Queijo Artesanal">
           <h3>Queijo Artesanal</h3>
@@ -78,64 +61,20 @@
       </div>
     </section>
 
-    <!-- Seção Carrinho -->
-    <section id="carrinho" aria-labelledby="carrinho-titulo">
-      <h2 id="carrinho-titulo">🛒 Carrinho de Compras</h2>
+    <!-- Carrinho -->
+    <section id="carrinho">
+      <h2>🛒 Carrinho de Compras</h2>
       <ul id="lista-carrinho"></ul>
       <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
     </section>
-
-    <!-- Seção Quiz -->
-    <section id="quiz" aria-labelledby="quiz-titulo">
-      <h2 id="quiz-titulo">🌽 Quiz Agrícola</h2>
-      <div class="quiz-container" id="quiz-container">
-        <div class="question">
-          <p>1. Qual desses produtos é uma leguminosa?</p>
-          <label><input type="radio" name="q1" value="errado"> Banana</label>
-          <label><input type="radio" name="q1" value="correto"> Feijão</label>
-          <label><input type="radio" name="q1" value="errado"> Tomate</label>
-        </div>
-        <div class="question">
-          <p>2. Qual o melhor horário para irrigar plantas?</p>
-          <label><input type="radio" name="q2" value="correto"> De manhã cedo</label>
-          <label><input type="radio" name="q2" value="errado"> Meio-dia</label>
-          <label><input type="radio" name="q2" value="errado"> À noite</label>
-        </div>
-        <div class="question">
-          <p>3. Qual o principal benefício do adubo orgânico?</p>
-          <label><input type="radio" name="q3" value="correto"> Melhora o solo naturalmente</label>
-          <label><input type="radio" name="q3" value="errado"> Causa menos folhas</label>
-          <label><input type="radio" name="q3" value="errado"> É mais barato</label>
-        </div>
-        <div class="question">
-          <p>4. O que é uma horta vertical?</p>
-          <label><input type="radio" name="q4" value="correto"> Cultivo em paredes ou estruturas suspensas</label>
-          <label><input type="radio" name="q4" value="errado"> Horta de legumes grandes</label>
-          <label><input type="radio" name="q4" value="errado"> Nome antigo de horta</label>
-        </div>
-        <button onclick="verificarQuiz()">Verificar Respostas</button>
-        <div class="resultado-container" id="resultado"></div>
-      </div>
-    </section>
-
-    <!-- Seção Sobre -->
-    <section id="sobre" aria-labelledby="sobre-titulo">
-      <h2 id="sobre-titulo">História da Estação da Terra</h2>
-      <p>
-        A Estação da Terra nasceu com o propósito de aproximar o campo da cidade. Nosso objetivo é conectar pequenos produtores a consumidores conscientes, promovendo sustentabilidade, saúde e economia local. Aqui, cada barraca é uma oportunidade, cada produto é um pedaço da natureza.
-      </p>
-    </section>
   </main>
 
-  <!-- Rodapé -->
   <footer>
     <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
   </footer>
 
-  <!-- Scripts -->
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');
-
     let carrinho = [];
 
     function adicionarAoCarrinho(produto) {
@@ -158,14 +97,6 @@
       atualizarCarrinho();
     }
 
-    function verificarQuiz() {
-      let total = 0;
-      document.querySelectorAll("#quiz-container input:checked").forEach(el => {
-        if (el.value === "correto") total++;
-      });
-      document.getElementById("resultado").textContent = `Você acertou ${total} de 4 perguntas!`;
-    }
-
     function toggleContraste() {
       document.body.classList.toggle("contraste");
     }
@@ -177,10 +108,6 @@
     function diminuirFonte() {
       document.body.style.fontSize = "initial";
     }
-
-    setTimeout(() => {
-      document.getElementById("entrada").style.display = "none";
-    }, 3000);
   </script>
 </body>
 </html>
