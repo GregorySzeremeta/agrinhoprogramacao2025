@@ -1,119 +1,629 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Estação da Terra</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Estação da Terra</title>
+<style>
+  /* Reset e estilo base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f9f4;
+    color: #333;
+    margin: 0; padding: 0 10px 40px;
+    font-size: 18px;
+    transition: background 0.3s, color 0.3s;
+  }
+  h1, h2, h3 {
+    margin: 0.5em 0 0.3em;
+  }
+  header {
+    text-align: center;
+    padding: 20px 10px 10px;
+    border-bottom: 2px solid #70b47a;
+  }
+  header .slogan {
+    font-style: italic;
+    color: #507050;
+    margin-bottom: 15px;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  nav button, .acess-btns button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+  }
+  nav button:hover, .acess-btns button:hover {
+    background-color: #3a8a3a;
+  }
+  nav button:focus, .acess-btns button:focus {
+    outline: 3px solid #7ed57e;
+  }
+  #cart-icon {
+    position: relative;
+    cursor: pointer;
+  }
+  #cart-count {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: #e74c3c;
+    color: white;
+    font-weight: bold;
+    padding: 2px 6px;
+    font-size: 14px;
+    border-radius: 50%;
+  }
+  main {
+    max-width: 960px;
+    margin: 20px auto;
+  }
+  .pagina {
+    display: none;
+  }
+  .pagina.active {
+    display: block;
+  }
+  .grid-produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+  }
+  .produto {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    padding: 12px;
+    text-align: center;
+  }
+  .produto img {
+    width: 100%;
+    max-height: 130px;
+    object-fit: contain;
+    border-radius: 5px;
+  }
+  .produto h3 {
+    margin-top: 12px;
+  }
+  .produto p {
+    font-size: 14px;
+    color: #666;
+  }
+  .produto button {
+    margin-top: 10px;
+    background-color: #429a3f;
+  }
+
+  /* Carrinho */
+  #carrinho {
+    position: fixed;
+    right: 20px;
+    top: 80px;
+    width: 320px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: white;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.15);
+    display: none;
+    z-index: 1000;
+  }
+  #carrinho h2 {
+    margin-top: 0;
+  }
+  #carrinho ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 15px 0;
+    max-height: 250px;
+    overflow-y: auto;
+  }
+  #carrinho li {
+    padding: 6px 0;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+  }
+  #carrinho .total {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #2d6a2d;
+  }
+  #carrinho button {
+    background-color: #4CAF50;
+    margin-right: 10px;
+  }
+  #carrinho button:last-child {
+    margin-right: 0;
+  }
+
+  /* Quiz */
+  #quiz-form fieldset {
+    border: 1px solid #4CAF50;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  #quiz-form legend {
+    font-weight: 600;
+  }
+  #quiz-form label {
+    display: block;
+    margin: 6px 0;
+    cursor: pointer;
+  }
+  #quiz-form input[type="radio"] {
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  #quiz-form button[type="submit"] {
+    background-color: #4CAF50;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  #resultado {
+    margin-top: 15px;
+    font-weight: 700;
+    color: #2d6a2d;
+    font-size: 20px;
+  }
+
+  /* Botões de acessibilidade */
+  .acess-btns {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    gap: 10px;
+    z-index: 1500;
+  }
+  .acess-btns button {
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  /* Contraste alto */
+  body.contraste {
+    background: #000;
+    color: #fff;
+  }
+  body.contraste header {
+    border-color: #0f0;
+  }
+  body.contraste nav button,
+  body.contraste .acess-btns button,
+  body.contraste #carrinho button,
+  body.contraste #quiz-form button[type="submit"],
+  body.contraste .produto button {
+    background-color: #0f0;
+    color: #000;
+  }
+  body.contraste #cart-count {
+    background: #ff0;
+    color: #000;
+  }
+
+  /* Daltonismo - filtro */
+  body.daltonismo {
+    filter: grayscale(0.5) contrast(1.2) saturate(0.6);
+  }
+
+  /* Aumento de fonte */
+  body.fonte-aumentada {
+    font-size: 22px;
+  }
+
+  /* Confetes */
+  #confete-container {
+    pointer-events: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0; left: 0;
+    overflow: visible;
+    z-index: 2000;
+  }
+  .confete {
+    position: absolute;
+    width: 8px;
+    height: 12px;
+    background-color: red;
+    opacity: 0.8;
+    animation-name: confete-queda;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+  }
+  @keyframes confete-queda {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(500px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* Acessibilidade: foco */
+  button:focus, input:focus, textarea:focus {
+    outline: 3px solid #4CAF50;
+    outline-offset: 2px;
+  }
+
+  /* Responsividade simples */
+  @media (max-width:600px) {
+    nav {
+      flex-direction: column;
+      gap: 8px;
+    }
+    #carrinho {
+      width: 90vw;
+      top: 60px;
+      left: 5vw;
+    }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Estação da Terra</h1>
-    <div class="slogan">Do campo à cidade, colhendo oportunidades</div>
-    <nav>
-      <button id="btn-loja">Loja</button>
-      <button id="btn-quiz">Quiz</button>
-      <button id="btn-contato">Contato</button>
-      <button id="btn-som" aria-pressed="false" title="Ativar / Desativar som de pássaros">
-        🔊 Som
-      </button>
-      <button id="cart-icon" aria-label="Abrir carrinho de compras">
-        🛒
-        <span id="cart-count" aria-live="polite" aria-atomic="true">0</span>
-      </button>
-    </nav>
-  </header>
 
-  <main>
-    <!-- Seção Loja -->
-    <section id="pagina-loja" class="pagina active" aria-label="Loja de produtos">
-      <h2>Produtos</h2>
-      <div class="grid-produtos">
-        <article class="produto" tabindex="0">
-          <img src="https://via.placeholder.com/200x130?text=Maçã" alt="Maçã vermelha" />
-          <h3>Maçã</h3>
-          <p>Maçãs frescas direto do pomar.</p>
-          <button class="btn-add-carrinho" data-produto="Maçã" data-preco="3.50">Adicionar</button>
-        </article>
-        <article class="produto" tabindex="0">
-          <img src="https://via.placeholder.com/200x130?text=Leite" alt="Leite fresco" />
-          <h3>Leite</h3>
-          <p>Leite integral orgânico.</p>
-          <button class="btn-add-carrinho" data-produto="Leite" data-preco="5.00">Adicionar</button>
-        </article>
-        <article class="produto" tabindex="0">
-          <img src="https://via.placeholder.com/200x130?text=Mel" alt="Mel natural" />
-          <h3>Mel</h3>
-          <p>Mel puro da colmeia local.</p>
-          <button class="btn-add-carrinho" data-produto="Mel" data-preco="12.00">Adicionar</button>
-        </article>
-      </div>
-    </section>
+<header>
+  <h1>Estação da Terra</h1>
+  <div class="slogan">Do campo à cidade, colhendo oportunidades</div>
+  <nav>
+    <button id="btn-loja" aria-controls="pagina-loja" aria-selected="true">Loja</button>
+    <button id="btn-quiz" aria-controls="pagina-quiz" aria-selected="false">Quiz</button>
+    <button id="btn-contato" aria-controls="pagina-contato" aria-selected="false">Contato</button>
+    <button id="btn-som" aria-pressed="false" title="Ativar/desativar som de pássaros">🔊 Som</button>
+    <button id="cart-icon" aria-label="Abrir carrinho de compras" aria-haspopup="true" aria-expanded="false">
+      🛒 <span id="cart-count" aria-live="polite" aria-atomic="true">0</span>
+    </button>
+  </nav>
+</header>
 
-    <!-- Seção Quiz -->
-    <section id="pagina-quiz" class="pagina" aria-label="Quiz interativo">
-      <h2>Teste seus conhecimentos</h2>
-      <form id="quiz-form" aria-live="polite" aria-atomic="true">
-        <fieldset class="quiz-pergunta">
-          <legend>Qual destes é um grão?</legend>
-          <label><input type="radio" name="q1" value="Arroz" /> Arroz</label>
-          <label><input type="radio" name="q1" value="Maçã" /> Maçã</label>
-          <label><input type="radio" name="q1" value="Leite" /> Leite</label>
-          <label><input type="radio" name="q1" value="Mel" /> Mel</label>
-        </fieldset>
+<main>
+  <!-- Loja -->
+  <section id="pagina-loja" class="pagina active" tabindex="0" aria-label="Loja de produtos">
+    <h2>Produtos</h2>
+    <div class="grid-produtos" id="lista-produtos">
+      <!-- Produtos gerados via JS -->
+    </div>
+  </section>
 
-        <fieldset class="quiz-pergunta">
-          <legend>Qual fruta é vermelha?</legend>
-          <label><input type="radio" name="q2" value="Maçã" /> Maçã</label>
-          <label><input type="radio" name="q2" value="Mel" /> Mel</label>
-          <label><input type="radio" name="q2" value="Leite" /> Leite</label>
-          <label><input type="radio" name="q2" value="Arroz" /> Arroz</label>
-        </fieldset>
+  <!-- Quiz -->
+  <section id="pagina-quiz" class="pagina" tabindex="0" aria-label="Quiz interativo">
+    <h2>Teste seus conhecimentos</h2>
+    <form id="quiz-form" aria-live="polite" aria-atomic="true" novalidate>
+      <!-- Perguntas geradas via JS -->
+      <button type="submit">Enviar Respostas</button>
+    </form>
+    <div id="resultado" role="alert" aria-live="assertive"></div>
+  </section>
 
-        <button type="submit">Enviar Respostas</button>
-      </form>
-      <div id="resultado" role="alert" aria-live="assertive"></div>
-    </section>
+  <!-- Contato -->
+  <section id="pagina-contato" class="pagina" tabindex="0" aria-label="Formulário de contato">
+    <h2>Contato</h2>
+    <form id="form-contato">
+      <label for="nome">Nome:</label><br />
+      <input type="text" id="nome" name="nome" required /><br /><br />
 
-    <!-- Seção Contato -->
-    <section id="pagina-contato" class="pagina" aria-label="Formulário de contato">
-      <h2>Contato</h2>
-      <form id="form-contato">
-        <label for="nome">Nome:</label><br />
-        <input type="text" id="nome" name="nome" required /><br /><br />
+      <label for="email">E-mail:</label><br />
+      <input type="email" id="email" name="email" required /><br /><br />
 
-        <label for="email">E-mail:</label><br />
-        <input type="email" id="email" name="email" required /><br /><br />
+      <label for="mensagem">Mensagem:</label><br />
+      <textarea id="mensagem" name="mensagem" rows="4" required></textarea><br /><br />
 
-        <label for="mensagem">Mensagem:</label><br />
-        <textarea id="mensagem" name="mensagem" rows="4" required></textarea><br /><br />
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
 
-        <button type="submit">Enviar</button>
-      </form>
-    </section>
+  <!-- Carrinho -->
+  <aside id="carrinho" aria-label="Carrinho de compras" role="region" tabindex="0" hidden>
+    <h2>Carrinho de Compras</h2>
+    <ul id="carrinho-lista" aria-live="polite" aria-relevant="additions"></ul>
+    <p class="total">Total: R$ <span id="total">0.00</span></p>
+    <button id="btn-esvaziar-carrinho">Esvaziar Carrinho</button>
+    <button id="btn-finalizar-compra">Finalizar Compra</button>
+    <button id="btn-fechar-carrinho" aria-label="Fechar carrinho">Fechar</button>
+  </aside>
+</main>
 
-    <!-- Carrinho -->
-    <aside id="carrinho" aria-label="Carrinho de compras" role="region" tabindex="0" hidden>
-      <h2>Carrinho de Compras</h2>
-      <ul id="carrinho-lista"></ul>
-      <p class="total">Total: R$ <span id="total">0.00</span></p>
-      <button id="btn-esvaziar-carrinho">Esvaziar Carrinho</button>
-      <button id="btn-finalizar-compra">Finalizar Compra</button>
-      <button id="btn-fechar-carrinho" aria-label="Fechar carrinho">Fechar</button>
-    </aside>
-  </main>
+<!-- Acessibilidade -->
+<div class="acess-btns" aria-label="Botões de acessibilidade">
+  <button id="btn-libras" title="Ativar Libras">🤟 LIBRAS</button>
+  <button id="btn-contraste" title="Ativar/desativar contraste">🔳 Contraste</button>
+  <button id="btn-fonte" title="Aumentar fonte">🔠 Fonte</button>
+  <button id="btn-daltonismo" title="Ativar filtro para daltonismo">🌈 Daltonismo</button>
+</div>
 
-  <!-- Botões acessibilidade -->
-  <div class="acess-btns" aria-label="Botões de acessibilidade">
-    <button id="btn-libras" title="Ativar Libras">🤟 LIBRAS</button>
-    <button id="btn-contraste" title="Ativar/desativar contraste">🔳 Contraste</button>
-    <button id="btn-fonte" title="Aumentar fonte">🔠 Fonte</button>
-    <button id="btn-daltonismo" title="Ativar filtro para daltonismo">🌈 Daltonismo</button>
+<!-- VLibras -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
   </div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+  new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
 
-  <!-- Áudio ambiente de pássaros -->
-  <audio id="som-passaros" loop preload="auto" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" aria-hidden="true"></audio>
+<!-- Som ambiente -->
+<audio id="som-passaros" loop preload="auto" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" aria-hidden="true"></audio>
 
-  <script src="script.js"></script>
+<!-- Confete -->
+<div id="confete-container"></div>
+
+<script>
+(() => {
+  // Produtos
+  const produtos = [
+    { nome: "Mel Orgânico", preco: 25.0, imagem: "https://via.placeholder.com/200?text=Mel" },
+    { nome: "Queijo Artesanal", preco: 40.0, imagem: "https://via.placeholder.com/200?text=Queijo" },
+    { nome: "Leite Integral", preco: 6.0, imagem: "https://via.placeholder.com/200?text=Leite" },
+    { nome: "Alface Hidropônica", preco: 4.0, imagem: "https://via.placeholder.com/200?text=Alface" },
+    { nome: "Tomate Orgânico", preco: 8.0, imagem: "https://via.placeholder.com/200?text=Tomate" },
+    { nome: "Morango Fresco", preco: 10.0, imagem: "https://via.placeholder.com/200?text=Morango" }
+  ];
+
+  // Quiz
+  const perguntasQuiz = [
+    {
+      pergunta: "Qual destes é um grão?",
+      opcoes: ["Leite", "Mel", "Arroz", "Maçã"],
+      correta: 2
+    },
+    {
+      pergunta: "Qual fruta é vermelha?",
+      opcoes: ["Mel", "Leite", "Maçã", "Arroz"],
+      correta: 2
+    }
+  ];
+
+  // Estado
+  let carrinho = [];
+
+  // Elementos
+  const listaProdutosEl = document.getElementById("lista-produtos");
+  const paginas = {
+    loja: document.getElementById("pagina-loja"),
+    quiz: document.getElementById("pagina-quiz"),
+    contato: document.getElementById("pagina-contato"),
+  };
+  const btnLoja = document.getElementById("btn-loja");
+  const btnQuiz = document.getElementById("btn-quiz");
+  const btnContato = document.getElementById("btn-contato");
+  const cartIcon = document.getElementById("cart-icon");
+  const cartCount = document.getElementById("cart-count");
+  const carrinhoEl = document.getElementById("carrinho");
+  const carrinhoLista = document.getElementById("carrinho-lista");
+  const totalEl = document.getElementById("total");
+  const btnEsvaziar = document.getElementById("btn-esvaziar-carrinho");
+  const btnFinalizar = document.getElementById("btn-finalizar-compra");
+  const btnFecharCarrinho = document.getElementById("btn-fechar-carrinho");
+  const quizForm = document.getElementById("quiz-form");
+  const resultadoEl = document.getElementById("resultado");
+  const btnSom = document.getElementById("btn-som");
+  const audioPassaros = document.getElementById("som-passaros");
+
+  // Acessibilidade
+  const btnContraste = document.getElementById("btn-contraste");
+  const btnFonte = document.getElementById("btn-fonte");
+  const btnDaltonismo = document.getElementById("btn-daltonismo");
+
+  // Função para trocar páginas
+  function mostrarPagina(pagina) {
+    Object.entries(paginas).forEach(([key, el]) => {
+      if (key === pagina) {
+        el.classList.add("active");
+        document.querySelector(`#btn-${key}`).setAttribute("aria-selected", "true");
+        el.focus();
+      } else {
+        el.classList.remove("active");
+        document.querySelector(`#btn-${key}`).setAttribute("aria-selected", "false");
+      }
+    });
+    fecharCarrinho();
+  }
+
+  // Gerar produtos na loja
+  function carregarProdutos() {
+    listaProdutosEl.innerHTML = "";
+    produtos.forEach((prod, i) => {
+      const div = document.createElement("article");
+      div.className = "produto";
+      div.tabIndex = 0;
+      div.innerHTML = `
+        <img src="${prod.imagem}" alt="${prod.nome}" />
+        <h3>${prod.nome}</h3>
+        <p>R$ ${prod.preco.toFixed(2)}</p>
+        <button class="btn-add-carrinho" data-index="${i}">Adicionar ao carrinho</button>
+      `;
+      listaProdutosEl.appendChild(div);
+    });
+  }
+
+  // Atualizar carrinho na UI
+  function atualizarCarrinho() {
+    carrinhoLista.innerHTML = "";
+    let total = 0;
+    carrinho.forEach((item, idx) => {
+      total += item.preco;
+      const li = document.createElement("li");
+      li.textContent = `${item.nome} — R$ ${item.preco.toFixed(2)}`;
+      carrinhoLista.appendChild(li);
+    });
+    totalEl.textContent = total.toFixed(2);
+    cartCount.textContent = carrinho.length;
+  }
+
+  // Abrir carrinho
+  function abrirCarrinho() {
+    carrinhoEl.style.display = "block";
+    cartIcon.setAttribute("aria-expanded", "true");
+    carrinhoEl.hidden = false;
+    carrinhoEl.focus();
+  }
+  function fecharCarrinho() {
+    carrinhoEl.style.display = "none";
+    cartIcon.setAttribute("aria-expanded", "false");
+    carrinhoEl.hidden = true;
+  }
+
+  // Adicionar produto ao carrinho
+  function adicionarCarrinho(index) {
+    const prod = produtos[index];
+    carrinho.push(prod);
+    atualizarCarrinho();
+  }
+
+  // Função para embaralhar array
+  function embaralhar(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  // Gerar perguntas do quiz
+  function carregarQuiz() {
+    quizForm.innerHTML = "";
+    const perguntasEmbaralhadas = embaralhar([...perguntasQuiz]);
+    perguntasEmbaralhadas.forEach((perguntaObj, idx) => {
+      const fieldset = document.createElement("fieldset");
+      fieldset.innerHTML = `<legend>${idx + 1}. ${perguntaObj.pergunta}</legend>`;
+      perguntaObj.opcoes.forEach((opcao, i) => {
+        const idRadio = `q${idx}o${i}`;
+        fieldset.innerHTML += `
+          <label for="${idRadio}">
+            <input type="radio" name="pergunta${idx}" id="${idRadio}" value="${i}" required>
+            ${opcao}
+          </label>
+        `;
+      });
+      quizForm.insertBefore(fieldset, quizForm.querySelector("button[type=submit]"));
+    });
+  }
+
+  // Mostrar confetes
+  function mostrarConfetes() {
+    const container = document.getElementById("confete-container");
+    for(let i=0; i<50; i++) {
+      const confete = document.createElement("div");
+      confete.className = "confete";
+      confete.style.left = Math.random() * window.innerWidth + "px";
+      confete.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+      confete.style.animationDuration = (2 + Math.random() * 3) + "s";
+      confete.style.animationDelay = (Math.random() * 3) + "s";
+      container.appendChild(confete);
+      setTimeout(() => container.removeChild(confete), 5000);
+    }
+  }
+
+  // Eventos
+  btnLoja.addEventListener("click", () => mostrarPagina("loja"));
+  btnQuiz.addEventListener("click", () => mostrarPagina("quiz"));
+  btnContato.addEventListener("click", () => mostrarPagina("contato"));
+
+  cartIcon.addEventListener("click", () => {
+    if (carrinhoEl.style.display === "block") {
+      fecharCarrinho();
+    } else {
+      abrirCarrinho();
+    }
+  });
+
+  listaProdutosEl.addEventListener("click", e => {
+    if (e.target.classList.contains("btn-add-carrinho")) {
+      const idx = e.target.getAttribute("data-index");
+      adicionarCarrinho(idx);
+    }
+  });
+
+  btnEsvaziar.addEventListener("click", () => {
+    if(confirm("Deseja esvaziar o carrinho?")) {
+      carrinho = [];
+      atualizarCarrinho();
+    }
+  });
+
+  btnFinalizar.addEventListener("click", () => {
+    if(carrinho.length === 0){
+      alert("O carrinho está vazio.");
+      return;
+    }
+    alert("Compra finalizada! Obrigado pela preferência.");
+    carrinho = [];
+    atualizarCarrinho();
+    fecharCarrinho();
+  });
+
+  btnFecharCarrinho.addEventListener("click", fecharCarrinho);
+
+  quizForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const respostas = perguntasQuiz.map((p, i) => {
+      const radios = quizForm.querySelectorAll(`input[name="pergunta${i}"]`);
+      let resp = null;
+      radios.forEach(r => { if(r.checked) resp = parseInt(r.value); });
+      return resp;
+    });
+    let acertos = 0;
+    respostas.forEach((r, i) => {
+      if(r === perguntasQuiz[i].correta) acertos++;
+    });
+    resultadoEl.textContent = `Você acertou ${acertos} de ${perguntasQuiz.length} perguntas!`;
+    if(acertos === perguntasQuiz.length) mostrarConfetes();
+  });
+
+  btnSom.addEventListener("click", () => {
+    if(audioPassaros.paused) {
+      audioPassaros.play();
+      btnSom.setAttribute("aria-pressed", "true");
+      btnSom.textContent = "🔊 Som (Ligado)";
+    } else {
+      audioPassaros.pause();
+      btnSom.setAttribute("aria-pressed", "false");
+      btnSom.textContent = "🔈 Som (Desligado)";
+    }
+  });
+
+  // Acessibilidade
+  btnContraste.addEventListener("click", () => {
+    document.body.classList.toggle("contraste");
+  });
+  btnFonte.addEventListener("click", () => {
+    document.body.classList.toggle("fonte-aumentada");
+  });
+  btnDaltonismo.addEventListener("click", () => {
+    document.body.classList.toggle("daltonismo");
+  });
+
+  // Inicialização
+  carregarProdutos();
+  carregarQuiz();
+  atualizarCarrinho();
+})();
+</script>
+
 </body>
 </html>
