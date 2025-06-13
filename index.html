@@ -2,98 +2,103 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Estação da Terra - Loja</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estação da Terra</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
-
-  <!-- Animação de boas-vindas -->
-  <div id="animacaoBoasVindas" class="animacao-boas-vindas">
-    <h1>🌿 Bem-vindo à Estação da Terra</h1>
+  <!-- Tela de Boas-Vindas -->
+  <div id="welcome-screen">
+    <h2>🌿 Bem-vindo à Estação da Terra</h2>
     <p>Onde a natureza encontra seu lar</p>
-  </div>
-
-  <!-- Acessibilidade -->
-  <div id="acessibilidade">
-    <button onclick="toggleContraste()" aria-label="Alternar contraste">🌓</button>
-    <button onclick="aumentarFonte()" aria-label="Aumentar fonte">🔠</button>
-    <button onclick="diminuirFonte()" aria-label="Diminuir fonte">🔡</button>
-  </div>
-
-  <!-- Som ambiente -->
-  <div id="audio-fundo">
-    <audio id="somAmbiente" loop>
-      <source src="sons/ambiente.mp3" type="audio/mpeg">
-      Seu navegador não suporta áudio.
-    </audio>
-    <button onclick="toggleSom()">🔊 Som Ambiente</button>
-  </div>
-
-  <!-- VLibras -->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
   </div>
 
   <!-- Cabeçalho -->
   <header>
     <h1>Estação da Terra</h1>
     <p class="slogan">Onde a natureza encontra seu lar</p>
-    <nav class="menu">
-      <ul>
-        <li><a href="quiz.html">Quiz</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-      </ul>
-    </nav>
   </header>
 
-  <!-- Loja -->
-  <main>
-    <section id="produtos">
-      <h2>Produtos à Venda</h2>
-      <div class="barracas">
-        <!-- Exemplo de produto -->
-        <div class="produto-card">
-          <img src="img/suco.jpg" alt="Suco Natural">
-          <h3>Suco Natural</h3>
-          <p>R$ 5,00</p>
-          <button onclick="adicionarAoCarrinho('Suco Natural', 5)">Adicionar</button>
-        </div>
-        <!-- (Você pode adicionar os demais produtos aqui) -->
+  <!-- Acessibilidade -->
+  <div class="acessibilidade">
+    <button onclick="aumentarFonte()">A+</button>
+    <button onclick="diminuirFonte()">A-</button>
+    <button onclick="alternarContraste()">🌗</button>
+  </div>
+
+  <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+  <!-- Botão de Som Ambiente -->
+  <div id="audio-fundo">
+    <button onclick="toggleSom()" title="Som ambiente">🎵</button>
+    <audio id="somAmbiente" loop>
+      <source src="audio.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- Loja de Produtos -->
+  <section id="produtos">
+    <h2>🛍️ Nossos Produtos</h2>
+    <div class="barracas">
+      <!-- Produtos -->
+      <div class="produto-card">
+        <img src="img/leite.jpg" alt="Leite">
+        <h3>Leite Fresco</h3>
+        <p>R$ 4,00</p>
+        <button onclick="adicionarAoCarrinho('Leite Fresco', 4)">Adicionar</button>
       </div>
-    </section>
 
-    <!-- Carrinho -->
-    <section id="carrinho">
-      <h2>🛒 Carrinho de Compras</h2>
-      <ul id="lista-carrinho"></ul>
-      <p id="total"></p>
-      <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
-      <button onclick="finalizarCompra()">✅ Finalizar Compra</button>
-    </section>
-  </main>
+      <div class="produto-card">
+        <img src="img/queijo.jpg" alt="Queijo">
+        <h3>Queijo Colonial</h3>
+        <p>R$ 10,00</p>
+        <button onclick="adicionarAoCarrinho('Queijo Colonial', 10)">Adicionar</button>
+      </div>
 
-  <button id="btnTopo" title="Voltar ao topo" aria-label="Voltar ao topo">⬆️</button>
+      <div class="produto-card">
+        <img src="img/mel.jpg" alt="Mel">
+        <h3>Mel Puro</h3>
+        <p>R$ 15,00</p>
+        <button onclick="adicionarAoCarrinho('Mel Puro', 15)">Adicionar</button>
+      </div>
 
-  <footer>
-    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
-  </footer>
+      <div class="produto-card">
+        <img src="img/suco.jpg" alt="Suco Natural">
+        <h3>Suco Natural</h3>
+        <p>R$ 5,00</p>
+        <button onclick="adicionarAoCarrinho('Suco Natural', 5)">Adicionar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Carrinho de Compras -->
+  <section id="carrinho">
+    <h2>🛒 Carrinho de Compras</h2>
+    <ul id="lista-carrinho"></ul>
+    <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
+    <button onclick="finalizarCompra()">💳 Finalizar Compra</button>
+  </section>
 
   <!-- JavaScript -->
   <script>
-    // VLibras
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-
     let carrinho = [];
 
-    function adicionarAoCarrinho(produto, preco) {
-      const itemExistente = carrinho.find(item => item.nome === produto);
-      if (itemExistente) {
-        itemExistente.quantidade++;
+    function adicionarAoCarrinho(nome, preco) {
+      const existente = carrinho.find(item => item.nome === nome);
+      if (existente) {
+        existente.quantidade += 1;
       } else {
-        carrinho.push({ nome: produto, preco: preco, quantidade: 1 });
+        carrinho.push({ nome, preco, quantidade: 1 });
       }
       atualizarCarrinho();
     }
@@ -101,17 +106,19 @@
     function atualizarCarrinho() {
       const lista = document.getElementById("lista-carrinho");
       lista.innerHTML = "";
-
       let total = 0;
       carrinho.forEach(item => {
         const li = document.createElement("li");
-        const subtotal = item.quantidade * item.preco;
-        total += subtotal;
-        li.textContent = `${item.nome} — ${item.quantidade}x — R$ ${subtotal.toFixed(2)}`;
+        li.textContent = `${item.nome} x${item.quantidade} - R$ ${(item.preco * item.quantidade).toFixed(2)}`;
         lista.appendChild(li);
+        total += item.preco * item.quantidade;
       });
 
-      document.getElementById("total").textContent = `Total: R$ ${total.toFixed(2)}`;
+      if (carrinho.length > 0) {
+        const totalLi = document.createElement("li");
+        totalLi.innerHTML = `<strong>Total: R$ ${total.toFixed(2)}</strong>`;
+        lista.appendChild(totalLi);
+      }
     }
 
     function esvaziarCarrinho() {
@@ -121,43 +128,27 @@
 
     function finalizarCompra() {
       if (carrinho.length === 0) {
-        alert("Carrinho vazio.");
-        return;
+        alert("Seu carrinho está vazio!");
+      } else {
+        const total = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
+        alert(`Compra finalizada! Total: R$ ${total.toFixed(2)}. Obrigado por comprar conosco! 🌱`);
+        carrinho = [];
+        atualizarCarrinho();
       }
-      alert("Compra finalizada com sucesso! Obrigado por comprar na Estação da Terra.");
-      esvaziarCarrinho();
     }
 
-    // Acessibilidade
-    function toggleContraste() {
-      document.body.classList.toggle("contraste");
-    }
     function aumentarFonte() {
-      let size = parseFloat(window.getComputedStyle(document.body).fontSize);
-      if (size < 24) document.body.style.fontSize = (size + 2) + "px";
+      document.body.style.fontSize = "larger";
     }
+
     function diminuirFonte() {
-      let size = parseFloat(window.getComputedStyle(document.body).fontSize);
-      if (size > 12) document.body.style.fontSize = (size - 2) + "px";
+      document.body.style.fontSize = "smaller";
     }
 
-    // Botão voltar ao topo
-    const btnTopo = document.getElementById("btnTopo");
-    window.onscroll = function() {
-      btnTopo.style.display = document.documentElement.scrollTop > 150 ? "block" : "none";
-    };
-    btnTopo.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    function alternarContraste() {
+      document.body.classList.toggle("alto-contraste");
+    }
 
-    // Animação de boas-vindas
-    window.onload = () => {
-      const animacao = document.getElementById("animacaoBoasVindas");
-      animacao.style.display = "flex";
-      setTimeout(() => animacao.style.opacity = "1", 100);
-      setTimeout(() => animacao.style.opacity = "0", 3000);
-      setTimeout(() => animacao.style.display = "none", 4000);
-    };
-
-    // Som ambiente
     function toggleSom() {
       const audio = document.getElementById("somAmbiente");
       if (audio.paused) {
