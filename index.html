@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Estação da Terra</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- VLibras para LIBRAS -->
+  <!-- Plugin VLibras para Libras -->
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
@@ -16,6 +16,8 @@
       <ul>
         <li><a href="#produtos">Produtos</a></li>
         <li><a href="#carrinho">Carrinho</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
     </nav>
@@ -25,63 +27,85 @@
     <section id="produtos" aria-label="Produtos à venda">
       <h2>Produtos à Venda</h2>
       <div class="barracas">
-        <!-- Produtos existentes -->
+        <!-- Lista dos 12 produtos -->
         <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-suco-natural">
           <img src="img/suco.jpg" alt="Imagem de Suco Natural" />
           <h3 id="produto-suco-natural">Suco Natural</h3>
           <p class="preco">R$ 5,00</p>
           <button onclick="adicionarAoCarrinho('Suco Natural', 5)" aria-label="Adicionar Suco Natural ao carrinho" class="btn-comprar">Adicionar</button>
         </div>
-        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-mel-natural">
-          <img src="img/mel.jpg" alt="Imagem de Mel Natural" />
-          <h3 id="produto-mel-natural">Mel Natural</h3>
+
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-mel">
+          <img src="img/mel.jpg" alt="Imagem de Mel" />
+          <h3 id="produto-mel">Mel</h3>
           <p class="preco">R$ 15,00</p>
-          <button onclick="adicionarAoCarrinho('Mel Natural', 15)" aria-label="Adicionar Mel Natural ao carrinho" class="btn-comprar">Adicionar</button>
-        </div>
-        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-queijo-artesanal">
-          <img src="img/queijo.jpg" alt="Imagem de Queijo Artesanal" />
-          <h3 id="produto-queijo-artesanal">Queijo Artesanal</h3>
-          <p class="preco">R$ 25,00</p>
-          <button onclick="adicionarAoCarrinho('Queijo Artesanal', 25)" aria-label="Adicionar Queijo Artesanal ao carrinho" class="btn-comprar">Adicionar</button>
-        </div>
-        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-frutas-frescas">
-          <img src="img/frutas.jpg" alt="Imagem de Frutas Frescas" />
-          <h3 id="produto-frutas-frescas">Frutas Frescas</h3>
-          <p class="preco">R$ 8,00</p>
-          <button onclick="adicionarAoCarrinho('Frutas Frescas', 8)" aria-label="Adicionar Frutas Frescas ao carrinho" class="btn-comprar">Adicionar</button>
+          <button onclick="adicionarAoCarrinho('Mel', 15)" aria-label="Adicionar Mel ao carrinho" class="btn-comprar">Adicionar</button>
         </div>
 
-        <!-- Novos 6 produtos -->
-        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-leite-organico">
-          <img src="img/leite.jpg" alt="Imagem de Leite Orgânico" />
-          <h3 id="produto-leite-organico">Leite Orgânico</h3>
-          <p class="preco">R$ 6,50</p>
-          <button onclick="adicionarAoCarrinho('Leite Orgânico', 6.5)" aria-label="Adicionar Leite Orgânico ao carrinho" class="btn-comprar">Adicionar</button>
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-queijo">
+          <img src="img/queijo.jpg" alt="Imagem de Queijo" />
+          <h3 id="produto-queijo">Queijo</h3>
+          <p class="preco">R$ 20,00</p>
+          <button onclick="adicionarAoCarrinho('Queijo', 20)" aria-label="Adicionar Queijo ao carrinho" class="btn-comprar">Adicionar</button>
         </div>
-        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-arroz-integral">
-          <img src="img/arroz.jpg" alt="Imagem de Arroz Integral" />
-          <h3 id="produto-arroz-integral">Arroz Integral</h3>
-          <p class="preco">R$ 12,00</p>
-          <button onclick="adicionarAoCarrinho('Arroz Integral', 12)" aria-label="Adicionar Arroz Integral ao carrinho" class="btn-comprar">Adicionar</button>
-        </div>
-        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-feijao-preto">
-          <img src="img/feijao.jpg" alt="Imagem de Feijão Preto" />
-          <h3 id="produto-feijao-preto">Feijão Preto</h3>
-          <p class="preco">R$ 10,00</p>
-          <button onclick="adicionarAoCarrinho('Feijão Preto', 10)" aria-label="Adicionar Feijão Preto ao carrinho" class="btn-comprar">Adicionar</button>
-        </div>
-        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-tomate-fresco">
-          <img src="img/tomate.jpg" alt="Imagem de Tomate Fresco" />
-          <h3 id="produto-tomate-fresco">Tomate Fresco</h3>
-          <p class="preco">R$ 4,50</p>
-          <button onclick="adicionarAoCarrinho('Tomate Fresco', 4.5)" aria-label="Adicionar Tomate Fresco ao carrinho" class="btn-comprar">Adicionar</button>
-        </div>
-        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-banana-nanica">
-          <img src="img/banana.jpg" alt="Imagem de Banana Nanica" />
-          <h3 id="produto-banana-nanica">Banana Nanica</h3>
+
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-leite">
+          <img src="img/leite.jpg" alt="Imagem de Leite" />
+          <h3 id="produto-leite">Leite</h3>
           <p class="preco">R$ 7,00</p>
-          <button onclick="adicionarAoCarrinho('Banana Nanica', 7)" aria-label="Adicionar Banana Nanica ao carrinho" class="btn-comprar">Adicionar</button>
+          <button onclick="adicionarAoCarrinho('Leite', 7)" aria-label="Adicionar Leite ao carrinho" class="btn-comprar">Adicionar</button>
         </div>
+
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-maca">
+          <img src="img/maca.jpg" alt="Imagem de Maçã" />
+          <h3 id="produto-maca">Maçã</h3>
+          <p class="preco">R$ 4,00</p>
+          <button onclick="adicionarAoCarrinho('Maçã', 4)" aria-label="Adicionar Maçã ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
+
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-banana">
+          <img src="img/banana.jpg" alt="Imagem de Banana" />
+          <h3 id="produto-banana">Banana</h3>
+          <p class="preco">R$ 3,50</p>
+          <button onclick="adicionarAoCarrinho('Banana', 3.5)" aria-label="Adicionar Banana ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
+
+        <!-- Mais 6 produtos adicionais -->
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-cenoura">
+          <img src="img/cenoura.jpg" alt="Imagem de Cenoura" />
+          <h3 id="produto-cenoura">Cenoura</h3>
+          <p class="preco">R$ 2,50</p>
+          <button onclick="adicionarAoCarrinho('Cenoura', 2.5)" aria-label="Adicionar Cenoura ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
+
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-tomate">
+          <img src="img/tomate.jpg" alt="Imagem de Tomate" />
+          <h3 id="produto-tomate">Tomate</h3>
+          <p class="preco">R$ 3,00</p>
+          <button onclick="adicionarAoCarrinho('Tomate', 3)" aria-label="Adicionar Tomate ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
+
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-alface">
+          <img src="img/alface.jpg" alt="Imagem de Alface" />
+          <h3 id="produto-alface">Alface</h3>
+          <p class="preco">R$ 1,50</p>
+          <button onclick="adicionarAoCarrinho('Alface', 1.5)" aria-label="Adicionar Alface ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
+
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-feijao">
+          <img src="img/feijao.jpg" alt="Imagem de Feijão" />
+          <h3 id="produto-feijao">Feijão</h3>
+          <p class="preco">R$ 6,00</p>
+          <button onclick="adicionarAoCarrinho('Feijão', 6)" aria-label="Adicionar Feijão ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
+
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-arroz">
+          <img src="img/arroz.jpg" alt="Imagem de Arroz" />
+          <h3 id="produto-arroz">Arroz</h3>
+          <p class="preco">R$ 5,00</p>
+          <button onclick="adicionarAoCarrinho('Arroz', 5)" aria-label="Adicionar Arroz ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
+
         <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-milho-verde">
           <img src="img/milho.jpg" alt="Imagem de Milho Verde" />
           <h3 id="produto-milho-verde">Milho Verde</h3>
@@ -117,8 +141,7 @@
 
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');
-    
-    // Exemplo simples funções do carrinho
+
     const carrinho = [];
 
     function adicionarAoCarrinho(nome, preco) {
@@ -143,11 +166,10 @@
     }
 
     function finalizarCompra() {
-      if(carrinho.length === 0) {
+      if (carrinho.length === 0) {
         alert("Seu carrinho está vazio!");
       } else {
-        alert("Compra finalizada. Obrigado!");
-        esvaziarCarrinho();
+        window.location.href = "pagamento.html";
       }
     }
   </script>
