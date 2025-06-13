@@ -1,408 +1,258 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Estação da Terra</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Estação da Terra - Feira Sustentável</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  /* Placeholder para estilo mínimo (vai completar no CSS) */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: #f5f9f3;
+    color: #222;
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Estação da Terra</h1>
-    <nav>
-      <ul>
-        <li><button id="btn-loja" class="nav-btn active">Loja</button></li>
-        <li><button id="btn-sobre" class="nav-btn">Sobre</button></li>
-        <li><button id="btn-contato" class="nav-btn">Contato</button></li>
-        <li><button id="btn-libras" aria-pressed="false" aria-label="Ativar tradução LIBRAS">👐 LIBRAS</button></li>
-        <li><button id="btn-contraste" aria-pressed="false" aria-label="Alternar contraste">🌓 Contraste</button></li>
-        <li><button id="btn-font" aria-pressed="false" aria-label="Aumentar fonte">A+</button></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <h1>Estação da Terra</h1>
+  <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
+  <nav>
+    <button id="btnAumentarFonte" aria-label="Aumentar fonte">A+</button>
+    <button id="btnDiminuirFonte" aria-label="Diminuir fonte">A-</button>
+    <button id="btnContraste" aria-label="Alternar alto contraste">🌓</button>
+    <button id="btnLibras" aria-label="Ativar LIBRAS">🤟</button>
+  </nav>
+</header>
 
-  <main>
-    <!-- Seção loja -->
-    <section id="loja" class="secao ativa">
-      <p class="intro">Do campo à cidade, colhendo oportunidades.</p>
-      <div class="feira-grid">
-        <article class="barraca" tabindex="0" aria-label="Categoria Leite e Derivados">
-          <img src="https://images.unsplash.com/photo-1576161653463-d48569be1f40?auto=format&fit=crop&w=400&q=80" alt="Leite e derivados" />
-          <h2>Leite e Derivados</h2>
-          <button class="btn-ver-produtos" data-categoria="leite">Ver Produtos</button>
-        </article>
+<main>
 
-        <article class="barraca" tabindex="0" aria-label="Categoria Frutas">
-          <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=400&q=80" alt="Frutas frescas" />
-          <h2>Frutas</h2>
-          <button class="btn-ver-produtos" data-categoria="frutas">Ver Produtos</button>
-        </article>
+  <!-- Seção de produtos -->
+  <section id="feira" aria-label="Produtos da feira">
+    <article class="produto" data-categoria="frutas" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1574226516831-e1dff420e8f8?auto=format&fit=crop&w=200&q=80" alt="Maçã vermelha" />
+      <h3>Maçã</h3>
+      <p>R$ 4,50 / kg</p>
+      <button class="btnAdicionar" aria-label="Adicionar maçã ao carrinho">Adicionar</button>
+    </article>
+    <article class="produto" data-categoria="verduras" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=200&q=80" alt="Alface fresca" />
+      <h3>Alface</h3>
+      <p>R$ 2,00 / unidade</p>
+      <button class="btnAdicionar" aria-label="Adicionar alface ao carrinho">Adicionar</button>
+    </article>
+    <article class="produto" data-categoria="laticinios" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1585222515068-7201a72c4181?auto=format&fit=crop&w=200&q=80" alt="Leite fresco" />
+      <h3>Leite Integral</h3>
+      <p>R$ 3,80 / litro</p>
+      <button class="btnAdicionar" aria-label="Adicionar leite ao carrinho">Adicionar</button>
+    </article>
+    <article class="produto" data-categoria="mel" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1524594157361-97b1ec78809e?auto=format&fit=crop&w=200&q=80" alt="Pote de mel" />
+      <h3>Mel Natural</h3>
+      <p>R$ 15,00 / 500g</p>
+      <button class="btnAdicionar" aria-label="Adicionar mel ao carrinho">Adicionar</button>
+    </article>
+    <article class="produto" data-categoria="graos" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=200&q=80" alt="Feijão" />
+      <h3>Feijão Preto</h3>
+      <p>R$ 7,50 / kg</p>
+      <button class="btnAdicionar" aria-label="Adicionar feijão ao carrinho">Adicionar</button>
+    </article>
+    <!-- Adicione mais produtos aqui seguindo o padrão acima -->
+  </section>
 
-        <article class="barraca" tabindex="0" aria-label="Categoria Mel">
-          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Mel natural" />
-          <h2>Mel</h2>
-          <button class="btn-ver-produtos" data-categoria="mel">Ver Produtos</button>
-        </article>
+  <!-- Quiz -->
+  <section id="quiz" aria-label="Quiz interativo" tabindex="0">
+    <h2>Teste seus conhecimentos</h2>
+    <form id="quizForm" aria-live="polite">
+      <fieldset>
+        <legend>1. Qual alimento é fonte de proteínas?</legend>
+        <label><input type="radio" name="q1" value="a" /> Maçã</label><br />
+        <label><input type="radio" name="q1" value="b" /> Feijão</label><br />
+        <label><input type="radio" name="q1" value="c" /> Alface</label>
+      </fieldset>
+      <fieldset>
+        <legend>2. Qual é um produto de origem animal?</legend>
+        <label><input type="radio" name="q2" value="a" /> Mel</label><br />
+        <label><input type="radio" name="q2" value="b" /> Leite</label><br />
+        <label><input type="radio" name="q2" value="c" /> Feijão</label>
+      </fieldset>
+      <button type="submit" aria-label="Enviar respostas do quiz">Enviar Respostas</button>
+    </form>
+    <div id="resultadoQuiz" role="alert" aria-live="assertive"></div>
+  </section>
 
-        <article class="barraca" tabindex="0" aria-label="Categoria Queijo e Derivados">
-          <img src="https://images.unsplash.com/photo-1601050690475-152382e59331?auto=format&fit=crop&w=400&q=80" alt="Queijos" />
-          <h2>Queijo e Derivados</h2>
-          <button class="btn-ver-produtos" data-categoria="queijo">Ver Produtos</button>
-        </article>
+  <!-- Animação plantar árvore -->
+  <section id="animacaoArvore" aria-label="Animação de plantar árvore" tabindex="0">
+    <h2>Plante uma árvore virtual</h2>
+    <button id="btnPlantar">Plantar árvore</button>
+    <div id="arvoreContainer" aria-live="polite"></div>
+  </section>
 
-        <article class="barraca" tabindex="0" aria-label="Categoria Verduras">
-          <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=400&q=80" alt="Verduras frescas" />
-          <h2>Verduras</h2>
-          <button class="btn-ver-produtos" data-categoria="verduras">Ver Produtos</button>
-        </article>
+</main>
 
-        <article class="barraca" tabindex="0" aria-label="Categoria Grãos">
-          <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=400&q=80" alt="Grãos variados" />
-          <h2>Grãos</h2>
-          <button class="btn-ver-produtos" data-categoria="graos">Ver Produtos</button>
-        </article>
+<!-- Carrinho de compras fixo -->
+<aside id="carrinho" aria-label="Carrinho de compras" aria-live="polite" aria-atomic="true">
+  <button id="toggleCarrinho" aria-expanded="false" aria-controls="conteudoCarrinho" aria-label="Abrir carrinho">
+    🛒 <span id="contadorCarrinho">0</span>
+  </button>
+  <div id="conteudoCarrinho" hidden>
+    <h2>Seu Carrinho</h2>
+    <ul id="listaCarrinho"></ul>
+    <p id="totalCarrinho">Total: R$ 0,00</p>
+    <button id="btnEsvaziarCarrinho" aria-label="Esvaziar carrinho">Esvaziar</button>
+    <button id="btnFinalizarCompra" aria-label="Finalizar compra">Finalizar Compra</button>
+  </div>
+</aside>
 
-        <article class="barraca" tabindex="0" aria-label="Categoria Plante">
-          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Sementes para plantar" />
-          <h2>Plante</h2>
-          <button class="btn-ver-produtos" data-categoria="plante">Ver Produtos</button>
-        </article>
-      </div>
+<footer>
+  <p>© 2025 Estação da Terra. Todos os direitos reservados.</p>
+  <nav aria-label="Redes sociais">
+    <a href="#" aria-label="Facebook">Facebook</a> |
+    <a href="#" aria-label="Instagram">Instagram</a> |
+    <a href="#" aria-label="WhatsApp">WhatsApp</a>
+  </nav>
+</footer>
 
-      <!-- Produtos e carrinho -->
-      <section id="produtos-container" aria-live="polite" aria-label="Produtos disponíveis" hidden>
-        <h3>Produtos</h3>
-        <ul id="lista-produtos" class="lista-produtos"></ul>
-        <button id="btn-fechar-produtos" aria-label="Fechar lista de produtos">Fechar</button>
-      </section>
-
-      <section id="carrinho-container" aria-label="Carrinho de compras">
-        <h3>Carrinho</h3>
-        <ul id="lista-carrinho" class="lista-carrinho"></ul>
-        <p id="total-carrinho">Total: R$ 0,00</p>
-        <button id="btn-esvaziar-carrinho">Esvaziar Carrinho</button>
-        <button id="btn-finalizar-compra">Finalizar Compra</button>
-      </section>
-    </section>
-
-    <!-- Seção Sobre -->
-    <section id="sobre" class="secao" hidden>
-      <h2>Sobre a Estação da Terra</h2>
-      <p>
-        A Estação da Terra é uma feira virtual que conecta produtores locais com consumidores urbanos, promovendo sustentabilidade, comércio justo e o incentivo à agricultura familiar.
-      </p>
-      <p>
-        Nosso objetivo é levar o frescor e a qualidade dos produtos diretamente do campo para sua casa, com facilidade e segurança.
-      </p>
-    </section>
-
-    <!-- Seção Contato -->
-    <section id="contato" class="secao" hidden>
-      <h2>Contato</h2>
-      <form id="form-contato" aria-label="Formulário de contato">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required />
-
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" required />
-
-        <label for="mensagem">Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
-
-        <button type="submit">Enviar</button>
-      </form>
-      <div id="resposta-contato" aria-live="polite"></div>
-    </section>
-
-    <!-- Seção Quiz -->
-    <section id="quiz" class="secao" hidden aria-label="Quiz interativo">
-      <h2>Quiz da Estação da Terra</h2>
-      <div id="quiz-container">
-        <div id="pergunta-container"></div>
-        <ul id="opcoes-container"></ul>
-        <button id="btn-proxima" disabled>Próxima</button>
-      </div>
-      <p id="resultado-quiz" hidden></p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Estação da Terra - Do campo à cidade, colhendo oportunidades.</p>
-  </footer>
-
-  <script>
-    // Dados produtos por categoria
-    const produtos = {
-      leite: [
-        { id: 1, nome: "Leite Integral 1L", preco: 5.9 },
-        { id: 2, nome: "Queijo Minas", preco: 15.0 },
-        { id: 3, nome: "Iogurte Natural", preco: 6.5 },
-      ],
-      frutas: [
-        { id: 4, nome: "Maçã", preco: 3.5 },
-        { id: 5, nome: "Banana", preco: 2.8 },
-        { id: 6, nome: "Laranja", preco: 3.2 },
-      ],
-      mel: [
-        { id: 7, nome: "Mel Puro 500g", preco: 20.0 },
-        { id: 8, nome: "Mel Silvestre 300g", preco: 18.5 },
-      ],
-      queijo: [
-        { id: 9, nome: "Queijo Prato", preco: 17.0 },
-        { id: 10, nome: "Requeijão", preco: 7.5 },
-      ],
-      verduras: [
-        { id: 11, nome: "Alface", preco: 2.5 },
-        { id: 12, nome: "Couve", preco: 3.0 },
-        { id: 13, nome: "Espinafre", preco: 3.5 },
-      ],
-      graos: [
-        { id: 14, nome: "Arroz Integral 1kg", preco: 10.0 },
-        { id: 15, nome: "Feijão Preto 1kg", preco: 12.0 },
-        { id: 16, nome: "Milho Verde", preco: 5.0 },
-      ],
-      plante: [
-        { id: 17, nome: "Sementes de Girassol", preco: 4.0 },
-        { id: 18, nome: "Sementes de Manjericão", preco: 3.5 },
-      ],
-    };
-
-    // Variáveis para elementos
-    const btnsCategorias = document.querySelectorAll(".btn-ver-produtos");
-    const produtosContainer = document.getElementById("produtos-container");
-    const listaProdutos = document.getElementById("lista-produtos");
-    const btnFecharProdutos = document.getElementById("btn-fechar-produtos");
-    const listaCarrinho = document.getElementById("lista-carrinho");
-    const totalCarrinho = document.getElementById("total-carrinho");
-    const btnEsvaziarCarrinho = document.getElementById("btn-esvaziar-carrinho");
-    const btnFinalizarCompra = document.getElementById("btn-finalizar-compra");
-
-    // Navegação entre seções
-    const btnLoja = document.getElementById("btn-loja");
-    const btnSobre = document.getElementById("btn-sobre");
-    const btnContato = document.getElementById("btn-contato");
-    const secoes = document.querySelectorAll("main > section.secao");
-
-    btnLoja.addEventListener("click", () => mostrarSecao("loja"));
-    btnSobre.addEventListener("click", () => mostrarSecao("sobre"));
-    btnContato.addEventListener("click", () => mostrarSecao("contato"));
-
-    function mostrarSecao(secaoId) {
-      secoes.forEach((secao) => {
-        if (secao.id === secaoId) {
-          secao.hidden = false;
-          secao.classList.add("ativa");
-        } else {
-          secao.hidden = true;
-          secao.classList.remove("ativa");
-        }
-      });
-      btnLoja.classList.toggle("active", secaoId === "loja");
-      btnSobre.classList.toggle("active", secaoId === "sobre");
-      btnContato.classList.toggle("active", secaoId === "contato");
-      // Esconder quiz e produtos ao trocar seção
-      quizSection.hidden = true;
-      produtosContainer.hidden = true;
+<script>
+  // Script para aumentar/diminuir fonte
+  const btnAumentar = document.getElementById('btnAumentarFonte');
+  const btnDiminuir = document.getElementById('btnDiminuirFonte');
+  const btnContraste = document.getElementById('btnContraste');
+  const btnLibras = document.getElementById('btnLibras');
+  let fonteAtual = 100; // %
+  btnAumentar.onclick = () => {
+    if(fonteAtual < 150) {
+      fonteAtual += 10;
+      document.body.style.fontSize = fonteAtual + '%';
     }
-
-    // Mostrar produtos da categoria selecionada
-    btnsCategorias.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const categoria = btn.getAttribute("data-categoria");
-        mostrarProdutos(categoria);
-      });
-    });
-
-    function mostrarProdutos(categoria) {
-      listaProdutos.innerHTML = "";
-      produtos[categoria].forEach((produto) => {
-        const li = document.createElement("li");
-        li.textContent = `${produto.nome} - R$ ${produto.preco.toFixed(2)}`;
-        li.tabIndex = 0;
-        li.setAttribute("data-id", produto.id);
-        li.classList.add("produto-item");
-        li.addEventListener("click", () => adicionarAoCarrinho(produto));
-        listaProdutos.appendChild(li);
-      });
-      produtosContainer.hidden = false;
-      produtosContainer.focus();
+  }
+  btnDiminuir.onclick = () => {
+    if(fonteAtual > 70) {
+      fonteAtual -= 10;
+      document.body.style.fontSize = fonteAtual + '%';
     }
+  }
 
-    btnFecharProdutos.addEventListener("click", () => {
-      produtosContainer.hidden = true;
-    });
+  // Contraste alto
+  btnContraste.onclick = () => {
+    document.body.classList.toggle('contraste-alto');
+  }
 
-    // Carrinho
-    let carrinho = [];
+  // LIBRAS (simulada - mostra um balão explicando)
+  btnLibras.onclick = () => {
+    alert('Simulação: Em breve LIBRAS funcional!');
+  }
 
-    function atualizarCarrinho() {
-      listaCarrinho.innerHTML = "";
-      let total = 0;
-      carrinho.forEach((item) => {
-        const li = document.createElement("li");
-        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
-        listaCarrinho.appendChild(li);
-        total += item.preco;
-      });
-      totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
-    }
+  // Quiz
+  const quizForm = document.getElementById('quizForm');
+  const resultadoQuiz = document.getElementById('resultadoQuiz');
 
-    function adicionarAoCarrinho(produto) {
-      carrinho.push(produto);
-      atualizarCarrinho();
-      alert(`Produto "${produto.nome}" adicionado ao carrinho!`);
-    }
+  quizForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let pontos = 0;
+    if(quizForm.q1.value === 'b') pontos++;
+    if(quizForm.q2.value === 'b') pontos++;
 
-    btnEsvaziarCarrinho.addEventListener("click", () => {
-      if (carrinho.length === 0) {
-        alert("Carrinho já está vazio!");
-        return;
-      }
-      if (confirm("Deseja esvaziar o carrinho?")) {
-        carrinho = [];
+    resultadoQuiz.textContent = `Você acertou ${pontos} de 2 perguntas.`;
+  });
+
+  // Carrinho de compras
+  const btnAdicionar = document.querySelectorAll('.btnAdicionar');
+  const carrinho = [];
+  const listaCarrinho = document.getElementById('listaCarrinho');
+  const totalCarrinho = document.getElementById('totalCarrinho');
+  const contadorCarrinho = document.getElementById('contadorCarrinho');
+  const toggleCarrinho = document.getElementById('toggleCarrinho');
+  const conteudoCarrinho = document.getElementById('conteudoCarrinho');
+  const btnEsvaziarCarrinho = document.getElementById('btnEsvaziarCarrinho');
+  const btnFinalizarCompra = document.getElementById('btnFinalizarCompra');
+
+  function atualizarCarrinho() {
+    listaCarrinho.innerHTML = '';
+    let total = 0;
+    carrinho.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
+      // Botão remover
+      const btnRemover = document.createElement('button');
+      btnRemover.textContent = 'Remover';
+      btnRemover.setAttribute('aria-label', `Remover ${item.nome} do carrinho`);
+      btnRemover.onclick = () => {
+        carrinho.splice(index, 1);
         atualizarCarrinho();
       }
+      li.appendChild(btnRemover);
+      listaCarrinho.appendChild(li);
+      total += item.preco;
     });
+    totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
+    contadorCarrinho.textContent = carrinho.length;
+  }
 
-    btnFinalizarCompra.addEventListener("click", () => {
-      if (carrinho.length === 0) {
-        alert("Carrinho vazio! Adicione produtos antes de finalizar.");
-        return;
-      }
-      alert(
-        `Compra finalizada com sucesso! Total: R$ ${carrinho
-          .reduce((acc, p) => acc + p.preco, 0)
-          .toFixed(2)}`
-      );
-      carrinho = [];
+  btnAdicionar.forEach(btn => {
+    btn.onclick = (e) => {
+      const produto = e.target.closest('.produto');
+      const nome = produto.querySelector('h3').textContent;
+      const precoText = produto.querySelector('p').textContent;
+      const preco = parseFloat(precoText.replace(/[^\d,\.]/g, '').replace(',', '.'));
+      carrinho.push({nome, preco});
       atualizarCarrinho();
-    });
+    }
+  });
 
-    // Formulário contato
-    const formContato = document.getElementById("form-contato");
-    const respostaContato = document.getElementById("resposta-contato");
-    formContato.addEventListener("submit", (e) => {
-      e.preventDefault();
-      respostaContato.textContent = "Mensagem enviada com sucesso. Obrigado!";
-      formContato.reset();
-    });
+  toggleCarrinho.onclick = () => {
+    const aberto = toggleCarrinho.getAttribute('aria-expanded') === 'true';
+    toggleCarrinho.setAttribute('aria-expanded', !aberto);
+    if(aberto) {
+      conteudoCarrinho.hidden = true;
+    } else {
+      conteudoCarrinho.hidden = false;
+    }
+  }
 
-    // Acessibilidade: contraste, fonte e LIBRAS
-    const btnContraste = document.getElementById("btn-contraste");
-    const btnFont = document.getElementById("btn-font");
-    const btnLibras = document.getElementById("btn-libras");
+  btnEsvaziarCarrinho.onclick = () => {
+    carrinho.length = 0;
+    atualizarCarrinho();
+  }
 
-    btnContraste.addEventListener("click", () => {
-      document.body.classList.toggle("contraste");
-      const pressed = btnContraste.getAttribute("aria-pressed") === "true";
-      btnContraste.setAttribute("aria-pressed", String(!pressed));
-    });
+  btnFinalizarCompra.onclick = () => {
+    if(carrinho.length === 0){
+      alert('Seu carrinho está vazio!');
+      return;
+    }
+    alert('Compra finalizada com sucesso! Obrigado pela preferência.');
+    carrinho.length = 0;
+    atualizarCarrinho();
+  }
 
-    btnFont.addEventListener("click", () => {
-      document.body.classList.toggle("fonte-grande");
-      const pressed = btnFont.getAttribute("aria-pressed") === "true";
-      btnFont.setAttribute("aria-pressed", String(!pressed));
-    });
+  // Animação plantar árvore
+  const btnPlantar = document.getElementById('btnPlantar');
+  const arvoreContainer = document.getElementById('arvoreContainer');
 
-    btnLibras.addEventListener("click", () => {
-      const pressed = btnLibras.getAttribute("aria-pressed") === "true";
-      btnLibras.setAttribute("aria-pressed", String(!pressed));
-      if (!pressed) {
-        alert(
-          "Tradução em LIBRAS ativada! (Simulação - substitua por vídeo ou plugin real)"
-        );
-      } else {
-        alert("Tradução em LIBRAS desativada.");
+  btnPlantar.onclick = () => {
+    arvoreContainer.innerHTML = '';
+    let altura = 0;
+    let tronco = document.createElement('div');
+    tronco.className = 'tronco';
+    arvoreContainer.appendChild(tronco);
+
+    let interval = setInterval(() => {
+      altura += 10;
+      tronco.style.height = altura + 'px';
+
+      if(altura >= 100){
+        clearInterval(interval);
+        let folhas = document.createElement('div');
+        folhas.className = 'folhas';
+        arvoreContainer.appendChild(folhas);
       }
-    });
+    }, 100);
+  }
 
-    // Quiz interativo (animação simples e funcional)
-    const quizData = [
-      {
-        pergunta: "Qual alimento é rico em proteínas?",
-        opcoes: ["Maçã", "Feijão", "Mel"],
-        correta: 1,
-      },
-      {
-        pergunta: "Qual item é produzido por abelhas?",
-        opcoes: ["Queijo", "Mel", "Arroz"],
-        correta: 1,
-      },
-      {
-        pergunta: "Qual destes é um grão?",
-        opcoes: ["Alface", "Milho", "Laranja"],
-        correta: 1,
-      },
-    ];
-
-    const quizSection = document.getElementById("quiz");
-    const perguntaContainer = document.getElementById("pergunta-container");
-    const opcoesContainer = document.getElementById("opcoes-container");
-    const btnProxima = document.getElementById("btn-proxima");
-    const resultadoQuiz = document.getElementById("resultado-quiz");
-
-    let indicePergunta = 0;
-    let pontos = 0;
-    let quizAtivo = false;
-
-    function iniciarQuiz() {
-      quizSection.hidden = false;
-      mostrarPergunta();
-      btnProxima.disabled = true;
-      resultadoQuiz.hidden = true;
-      pontos = 0;
-      indicePergunta = 0;
-      quizAtivo = true;
-    }
-
-    function mostrarPergunta() {
-      const item = quizData[indicePergunta];
-      perguntaContainer.textContent = item.pergunta;
-      opcoesContainer.innerHTML = "";
-      item.opcoes.forEach((opcao, i) => {
-        const li = document.createElement("li");
-        const btn = document.createElement("button");
-        btn.textContent = opcao;
-        btn.setAttribute("type", "button");
-        btn.addEventListener("click", () => selecionarOpcao(i));
-        li.appendChild(btn);
-        opcoesContainer.appendChild(li);
-      });
-    }
-
-    function selecionarOpcao(i) {
-      const item = quizData[indicePergunta];
-      btnProxima.disabled = false;
-      if (i === item.correta) {
-        pontos++;
-      }
-      // Desabilitar opções para não mudar resposta
-      [...opcoesContainer.querySelectorAll("button")].forEach((btn) =>
-        btn.setAttribute("disabled", true)
-      );
-    }
-
-    btnProxima.addEventListener("click", () => {
-      indicePergunta++;
-      if (indicePergunta < quizData.length) {
-        mostrarPergunta();
-        btnProxima.disabled = true;
-      } else {
-        mostrarResultado();
-      }
-    });
-
-    function mostrarResultado() {
-      quizAtivo = false;
-      perguntaContainer.textContent = "";
-      opcoesContainer.innerHTML = "";
-      resultadoQuiz.hidden = false;
-      resultadoQuiz.textContent = `Você acertou ${pontos} de ${quizData.length} perguntas! Obrigado por participar!`;
-      btnProxima.disabled = true;
-    }
-
-    // Por padrão abrir na loja
-    mostrarSecao("loja");
-  </script>
+</script>
 </body>
 </html>
