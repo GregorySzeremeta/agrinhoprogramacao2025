@@ -1,70 +1,145 @@
+<!-- ========================= HTML + JavaScript ========================= -->
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estação da Terra - Loja do Campo</title>
+  <title>Estação da Terra</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Cabeçalho -->
   <header>
-    <h1>Estação da Terra</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Loja</a></li>
-        <li><a href="#quiz">Quiz do Campo</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#acessibilidade">Acessibilidade</a></li>
-      </ul>
-    </nav>
+    <h1>🌱 Estação da Terra</h1>
+    <p>Do campo à cidade, colhendo oportunidades</p>
   </header>
 
-  <!-- Seção da Loja -->
-  <section id="loja">
-    <h2>Produtos do Campo</h2>
-    <div class="produtos">
-      <div class="produto">
-        <img src="img/mel.jpg" alt="Pote de Mel">
-        <h3>Mel Orgânico</h3>
-        <p>R$ 25,00</p>
-        <button>Comprar</button>
+  <main>
+    <section id="mapa-feira">
+      <h2>Mapa da Feira</h2>
+      <div class="barracas">
+        <div class="barraca" onclick="mostrarProdutos('vegetais')">
+          <img src="vegetais.png" alt="Barraca de Vegetais">
+          <p>Vegetais</p>
+        </div>
+        <div class="barraca" onclick="mostrarProdutos('frutas')">
+          <img src="frutas.png" alt="Barraca de Frutas">
+          <p>Frutas</p>
+        </div>
+        <div class="barraca" onclick="mostrarProdutos('graos')">
+          <img src="graos.png" alt="Barraca de Grãos">
+          <p>Grãos</p>
+        </div>
+        <!-- Mais barracas -->
       </div>
-      <div class="produto">
-        <img src="img/queijo.jpg" alt="Queijo artesanal">
-        <h3>Queijo Artesanal</h3>
-        <p>R$ 35,00</p>
-        <button>Comprar</button>
+    </section>
+
+    <section id="produtos">
+      <h2>Produtos</h2>
+      <div id="lista-produtos"></div>
+    </section>
+
+    <section class="quiz-wrapper">
+      <div class="quiz-container">
+        <h1>QUIZ: Agricultura</h1>
+
+        <div class="question">
+          <p>1) Qual é a principal função da agricultura?</p>
+          <label><input type="radio" name="q1" value="a" />Proteger os animais</label>
+          <label><input type="radio" name="q1" value="b" />Produzir alimentos</label>
+          <label><input type="radio" name="q1" value="c" />Cuidar das florestas</label>
+        </div>
+        <!-- Outras perguntas -->
+
+        <button onclick="corrigirQuiz()">Enviar</button>
+        <div class="resultado-container" id="resultado"></div>
       </div>
-      <!-- Adicione mais produtos aqui -->
+    </section>
+
+    <div id="acessibilidade">
+      <button onclick="alternarContraste()">🌓 Contraste</button>
+      <button onclick="aumentarFonte()">🔠 A+</button>
+      <button onclick="resetarFonte()">🔡 Reset</button>
+      <button onclick="ativarSomAmbiente()">🎵 Som da Feira</button>
+      <button onclick="abrirLibras()">👐 LIBRAS</button>
     </div>
-  </section>
+  </main>
 
-  <!-- Seção do Quiz -->
-  <section id="quiz">
-    <h2>Quiz: Você conhece o campo?</h2>
-    <div id="quiz-container"></div>
-    <button onclick="iniciarQuiz()">Iniciar Quiz</button>
-  </section>
+  <footer>
+    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
+  </footer>
 
-  <!-- Seção Sobre -->
-  <section id="sobre">
-    <h2>Sobre o Projeto</h2>
-    <p>O site Estação da Terra promove a venda de produtos naturais vindos direto do campo. Buscamos incentivar o consumo consciente e valorizar os pequenos produtores rurais.</p>
-  </section>
-
-  <!-- Acessibilidade -->
-  <section id="acessibilidade">
-    <h2>Acessibilidade</h2>
-    <p>Este site possui recursos de acessibilidade como aumento de fonte, alto contraste e intérprete de LIBRAS.</p>
-    <div id="libras-plugin"></div>
-  </section>
-
-  <!-- Scripts -->
-  <script src="quiz.js"></script>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    const produtos = {
+      vegetais: ["Alface", "Couve", "Brócolis"],
+      frutas: ["Maçã", "Banana", "Uva"],
+      graos: ["Feijão", "Milho", "Arroz"]
+    };
+
+    function mostrarProdutos(categoria) {
+      const lista = document.getElementById("lista-produtos");
+      lista.innerHTML = `<h3>${categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h3>`;
+      produtos[categoria].forEach(prod => {
+        const p = document.createElement('p');
+        p.textContent = prod;
+        lista.appendChild(p);
+      });
+    }
+
+    const gabarito = {
+      q1: 'b'
+      // Adicione os demais aqui
+    };
+
+    function corrigirQuiz() {
+      const respostas = document.querySelectorAll("input[type=radio]:checked");
+      let acertos = 0;
+      respostas.forEach(r => {
+        if (gabarito[r.name] === r.value) acertos++;
+      });
+
+      const resultado = document.getElementById("resultado");
+      resultado.innerHTML = `<h2>Você acertou ${acertos} questão(ões)!</h2>`;
+
+      if (acertos >= Object.keys(gabarito).length) {
+        criarConfetes();
+      }
+    }
+
+    function criarConfetes() {
+      const confettiContainer = document.createElement("div");
+      confettiContainer.classList.add("confetti-container");
+      document.body.appendChild(confettiContainer);
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        const colors = ['#FFC107', '#FF5722', '#4CAF50', '#03A9F4'];
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = `${Math.random() * 100}%`;
+        confettiContainer.appendChild(confetti);
+      }
+    }
+
+    function alternarContraste() {
+      document.body.classList.toggle("contraste");
+    }
+
+    function aumentarFonte() {
+      document.body.style.fontSize = "1.2em";
+    }
+
+    function resetarFonte() {
+      document.body.style.fontSize = "1em";
+    }
+
+    function ativarSomAmbiente() {
+      const audio = new Audio("som-floresta.mp3");
+      audio.loop = true;
+      audio.play();
+    }
+
+    function abrirLibras() {
+      window.open("https://www.vlibras.gov.br/app", "_blank");
+    }
   </script>
 </body>
 </html>

@@ -1,6 +1,4 @@
-/* style.css */
-
-/* Reset */
+/* Reset e fonte moderna */
 * {
   margin: 0;
   padding: 0;
@@ -8,172 +6,265 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #d0f0c0, #a1d490);
-  color: #2f3e2f;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  scroll-behavior: smooth;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header {
-  background: #3a6b35;
+  background-color: #4caf50;
   color: white;
-  padding: 1.5rem 2rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 4px solid #388e3c;
+  text-align: center;
 }
 
 header h1 {
-  font-weight: 700;
-  font-size: 1.8rem;
-  letter-spacing: 1.1px;
+  font-size: 2rem;
 }
 
-header nav {
-  display: flex;
-  gap: 1.2rem;
-}
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+.slogan {
+  margin-top: 0.5rem;
+  font-style: italic;
+  font-size: 1.1rem;
 }
 
-body {
-  background-color: #f4f4f4;
-  color: #333;
-  line-height: 1.6;
-}
-
-header {
-  background-color: #4CAF50;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-}
-
-nav ul {
+/* Menu */
+.menu ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  margin-top: 0.5rem;
+  gap: 2rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
 }
 
-nav ul li {
-  margin: 0 15px;
-}
-
-nav ul li a {
+.menu a {
   color: white;
   text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
 }
 
-nav ul li a:hover {
-  color: #dff0d8;
+.menu a:hover {
+  opacity: 0.8;
 }
 
-section {
+/* Seções */
+main section {
   padding: 2rem;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
 }
 
 h2 {
+  font-size: 1.8rem;
   margin-bottom: 1rem;
-  color: #2e7d32;
+  color: #4caf50;
+  border-bottom: 2px solid #c8e6c9;
+  padding-bottom: 0.5rem;
 }
 
-.produtos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+/* Barracas */
+.barracas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
 }
 
-.produto {
-  background: white;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.barraca {
   text-align: center;
-  width: 220px;
-}
-
-.produto img {
-  max-width: 100%;
-  border-radius: 10px;
-  height: 150px;
-  object-fit: cover;
-}
-
-.produto h3 {
-  margin-top: 0.5rem;
-}
-
-.produto p {
-  font-weight: bold;
-  color: #4CAF50;
-  margin: 0.5rem 0;
-}
-
-.produto button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-.produto button:hover {
+.barraca:hover {
+  transform: translateY(-5px);
+}
+
+.barraca img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Produtos */
+.produto-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  text-align: center;
+  margin: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.produto-card:hover {
+  transform: scale(1.02);
+}
+
+.produto-card img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+.produto-card button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 1rem;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.produto-card button:hover {
   background-color: #388e3c;
 }
 
-#acessibilidade, #sobre, #quiz {
-  background-color: #fff;
+/* Carrinho */
+#carrinho {
   margin-top: 2rem;
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-button {
-  background-color: #2e7d32;
+#carrinho h3 {
+  color: #388e3c;
+  margin-bottom: 0.5rem;
+}
+
+/* Quiz */
+.quiz-container {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.quiz-container h1 {
+  margin-bottom: 1rem;
+  color: #388e3c;
+}
+
+.question {
+  margin-bottom: 1.5rem;
+}
+
+.question label {
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.quiz-container button {
+  background-color: #4caf50;
   color: white;
-  padding: 10px 15px;
   border: none;
-  border-radius: 5px;
+  padding: 0.6rem 1rem;
+  border-radius: 1rem;
   cursor: pointer;
-  margin-top: 10px;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #1b5e20;
+.quiz-container button:hover {
+  background-color: #2e7d32;
 }
 
-#libras-plugin {
-  margin-top: 20px;
+/* Resultado */
+.resultado-container {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #2e7d32;
 }
 
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
+/* Acessibilidade */
+#acessibilidade {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#acessibilidade button {
+  font-size: 1.2rem;
+  background: white;
+  border: 2px solid #4caf50;
+  color: #4caf50;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#acessibilidade button:hover {
+  background-color: #4caf50;
+  color: white;
+}
+
+/* Contraste alto */
+body.contraste {
+  background-color: black;
+  color: yellow;
+}
+
+body.contraste header,
+body.contraste .barraca,
+body.contraste .produto-card,
+body.contraste .quiz-container,
+body.contraste #carrinho {
+  background-color: black;
+  color: yellow;
+  border: 1px solid yellow;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #388e3c;
+  color: white;
+  margin-top: 2rem;
+}
+
+/* Confetes */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.confetti {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  animation: cair 3s ease-in-out forwards;
+}
+
+@keyframes cair {
+  0% {
+    transform: translateY(-100%);
+    opacity: 1;
   }
-
-  .produtos {
-    flex-direction: column;
-    align-items: center;
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
   }
 }
