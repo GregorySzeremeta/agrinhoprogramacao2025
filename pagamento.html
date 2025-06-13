@@ -1,32 +1,61 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Formas de Pagamento - Estação da Terra</title>
+  <title>Pagamento - Estação da Terra</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Formas de Pagamento</h1>
+  <header class="header" role="banner">
+    <div class="logo" tabindex="0">Estação da Terra - Pagamento</div>
   </header>
 
-  <main>
-    <section aria-label="Informações de pagamento">
-      <h2>Como pagar</h2>
-      <ul>
-        <li>Boleto Bancário</li>
-        <li>Cartão de Crédito (Visa, Master, Elo)</li>
-        <li>Pix - chave: contato@estacaodaterra.com.br</li>
-        <li>Transferência Bancária</li>
-      </ul>
-      <p>Após a confirmação do pagamento, seu pedido será processado e entregue.</p>
-      <button onclick="window.location.href='index.html'">Voltar à Loja</button>
-    </section>
+  <main class="main-content" role="main">
+    <form id="form-pagamento" aria-label="Formulário de pagamento">
+      <fieldset>
+        <legend>Informações do Cliente</legend>
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" required />
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="endereco">Endereço de Entrega:</label>
+        <textarea id="endereco" name="endereco" required></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>Pagamento</legend>
+        <label for="cartao">Número do Cartão:</label>
+        <input type="text" id="cartao" name="cartao" maxlength="16" required />
+
+        <label for="validade">Validade:</label>
+        <input type="month" id="validade" name="validade" required />
+
+        <label for="cvv">CVV:</label>
+        <input type="password" id="cvv" name="cvv" maxlength="3" required />
+      </fieldset>
+
+      <button type="submit" aria-label="Confirmar pagamento">Confirmar Pagamento</button>
+    </form>
   </main>
 
-  <footer>
-    <p>© 2025 Estação da Terra - Todos os direitos reservados</p>
+  <footer class="footer" role="contentinfo">
+    <div class="footer-info">
+      <p>Estação da Terra - Rua das Palmeiras, 123 - Bairro Verde, Cidade Sustentável</p>
+      <p>Contato: (00) 1234-5678 | email@estacaodaterra.com.br</p>
+      <p>© 2025 Estação da Terra. Todos os direitos reservados.</p>
+    </div>
   </footer>
+
+  <script>
+    const form = document.getElementById('form-pagamento');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Pagamento confirmado! Obrigado por comprar na Estação da Terra.');
+      window.location.href = 'index.html';
+    });
+  </script>
 </body>
 </html>
