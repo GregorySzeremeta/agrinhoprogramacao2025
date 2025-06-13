@@ -1,4 +1,4 @@
-/** style.css **/
+/* style.css */
 
 /* Reset básico */
 * {
@@ -22,78 +22,78 @@ body {
   flex-direction: column;
 }
 
-/* Cabeçalho */
+/* Header */
 header {
   background: linear-gradient(90deg, #3a8d23, #8ac240);
   padding: 1rem 2rem;
-  color: #fff;
+  color: white;
   text-align: center;
   position: sticky;
   top: 0;
-  z-index: 10;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
 
 header h1 {
   font-size: 2.5rem;
-  margin-bottom: 0.25rem;
   font-weight: 700;
-  font-family: 'Segoe UI Black', Tahoma, Geneva, Verdana, sans-serif;
   letter-spacing: 1.2px;
+  margin-bottom: 0.2rem;
 }
 
 header .slogan {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-style: italic;
   font-weight: 400;
+  letter-spacing: 0.06em;
   margin-bottom: 1rem;
-  letter-spacing: 0.05em;
 }
 
 nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 nav ul li a {
-  color: #fff;
+  color: white;
   font-weight: 600;
-  text-decoration: none;
   font-size: 1.1rem;
-  padding: 0.5rem 0.8rem;
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
   border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
-nav ul li a:focus,
-nav ul li a:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+nav ul li a:hover,
+nav ul li a:focus {
+  background-color: rgba(255,255,255,0.3);
   outline: none;
+  cursor: pointer;
 }
 
-/* Botão pequeno de acessibilidade fixo */
+/* Botões de acessibilidade fixos no topo direito */
 #acessibilidade {
   position: fixed;
   top: 10px;
   right: 10px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  z-index: 100;
+  gap: 8px;
+  z-index: 1100;
 }
 
 #acessibilidade button {
   background-color: #3a8d23;
-  color: #fff;
+  color: white;
   border: none;
   border-radius: 50%;
   width: 38px;
   height: 38px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   transition: background-color 0.3s ease;
 }
 
@@ -103,22 +103,22 @@ nav ul li a:hover {
   outline: none;
 }
 
-/* Botão de som ambiente */
+/* Botão som ambiente fixo inferior direito */
 #btn-som {
   position: fixed;
   bottom: 15px;
   right: 15px;
-  background-color: #3a8d23;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
   width: 48px;
   height: 48px;
-  font-size: 1.5rem;
+  background-color: #3a8d23;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.6rem;
   cursor: pointer;
-  box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
   transition: background-color 0.3s ease;
-  z-index: 100;
+  z-index: 1100;
 }
 
 #btn-som:hover,
@@ -130,7 +130,7 @@ nav ul li a:hover {
 /* Main container */
 main {
   flex-grow: 1;
-  padding: 2rem;
+  padding: 2rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -144,9 +144,9 @@ section {
 section h2 {
   font-size: 2rem;
   color: #3a8d23;
-  margin-bottom: 1rem;
   border-bottom: 3px solid #8ac240;
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.3rem;
+  margin-bottom: 1rem;
   letter-spacing: 1.1px;
 }
 
@@ -158,7 +158,7 @@ section h2 {
   justify-content: center;
 }
 
-/* Categorias */
+/* Categoria */
 .categoria {
   flex: 1 1 100%;
   max-width: 100%;
@@ -166,11 +166,11 @@ section h2 {
 }
 
 .categoria h3 {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: #4a6b28;
   margin-bottom: 1rem;
+  padding-left: 10px;
   border-left: 6px solid #8ac240;
-  padding-left: 1rem;
 }
 
 /* Produtos */
@@ -182,7 +182,7 @@ section h2 {
 }
 
 .produto {
-  background-color: #fff;
+  background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   width: 220px;
@@ -190,14 +190,14 @@ section h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.3s ease;
   cursor: default;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.produto:focus,
-.produto:hover {
+.produto:hover,
+.produto:focus-within {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
   outline: none;
 }
 
@@ -212,9 +212,9 @@ section h2 {
 
 .produto h4 {
   font-size: 1.2rem;
-  margin-bottom: 0.4rem;
-  text-align: center;
+  margin-bottom: 0.3rem;
   color: #356918;
+  text-align: center;
 }
 
 .produto .descricao {
@@ -234,15 +234,14 @@ section h2 {
 
 .produto .btn-add {
   background-color: #3a8d23;
-  color: #fff;
+  color: white;
   border: none;
   padding: 0.5rem 1rem;
+  border-radius: 6px;
   font-size: 1rem;
-  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   width: 100%;
-  text-align: center;
+  transition: background-color 0.3s ease;
 }
 
 .produto .btn-add:hover,
@@ -258,24 +257,23 @@ section h2 {
   right: 10px;
   width: 320px;
   max-height: 70vh;
-  background-color: #fff;
+  background-color: white;
   border-radius: 8px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
   padding: 1rem;
   overflow-y: auto;
-  z-index: 90;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  z-index: 1000;
 }
 
 #carrinho h2 {
   color: #3a8d23;
   margin-bottom: 1rem;
-  text-align: center;
   font-size: 1.5rem;
   border-bottom: 2px solid #8ac240;
   padding-bottom: 0.3rem;
+  text-align: center;
 }
 
 #lista-carrinho {
@@ -309,16 +307,16 @@ section h2 {
 #btn-esvaziar,
 #btn-finalizar {
   background-color: #3a8d23;
+  color: white;
   border: none;
-  color: #fff;
   padding: 0.6rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 5px;
-  width: 100%;
-  transition: background-color 0.3s ease;
   font-size: 1rem;
+  transition: background-color 0.3s ease;
+  width: 100%;
 }
 
 #btn-esvaziar:hover,
@@ -333,7 +331,7 @@ section h2 {
 #quiz {
   max-width: 800px;
   margin: 0 auto 3rem auto;
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: #f0fff0;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -474,7 +472,7 @@ footer img {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 200;
+  z-index: 2000;
 }
 
 #libras-overlay video {
@@ -488,7 +486,7 @@ footer img {
   margin-top: 1rem;
   background: #8ac240;
   border: none;
-  color: #fff;
+  color: white;
   padding: 0.6rem 1.5rem;
   border-radius: 8px;
   cursor: pointer;
@@ -531,7 +529,7 @@ footer img {
 @media (max-width: 600px) {
   nav ul {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
   }
 
   #carrinho {
@@ -539,5 +537,18 @@ footer img {
     width: 100%;
     max-height: none;
     margin-top: 2rem;
+  }
+
+  #acessibilidade {
+    flex-direction: row;
+    gap: 10px;
+    top: auto;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  #btn-som {
+    bottom: 70px;
+    right: 15px;
   }
 }
