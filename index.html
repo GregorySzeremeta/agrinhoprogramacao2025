@@ -6,7 +6,7 @@
   <title>Estação da Terra</title>
   <link rel="stylesheet" href="style.css" />
   <!-- VLibras script -->
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js" defer></script>
 </head>
 <body>
 
@@ -22,109 +22,78 @@
   <header>
     <h1>Estação da Terra</h1>
     <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
-    <nav class="menu" role="navigation" aria-label="Menu principal">
+    <nav class="menu" aria-label="Menu principal">
       <ul>
-        <li><button type="button" onclick="location.href='quiz.html'" class="menu-btn" aria-label="Ir para Quiz">Quiz</button></li>
-        <li><button type="button" onclick="location.href='sobre.html'" class="menu-btn" aria-label="Ir para Sobre">Sobre</button></li>
+        <li><button class="menu-btn" id="btn-loja" aria-controls="sec-loja" aria-expanded="true">Loja</button></li>
+        <li><button class="menu-btn" id="btn-contato" aria-controls="sec-contato" aria-expanded="false">Contato</button></li>
+        <li><a href="quiz.html" class="menu-link">Quiz</a></li>
+        <li><a href="sobre.html" class="menu-link">Sobre</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Produtos -->
   <main>
-    <section class="produtos">
+    <!-- Seção Loja -->
+    <section class="produtos" id="sec-loja" tabindex="-1" aria-label="Seção da loja com produtos">
       <h2>Produtos à Venda</h2>
       <div class="barracas">
 
-        <!-- Produtos originais -->
-        <div class="produto-card">
-          <img src="img/maçã.jpg" alt="Maçã Orgânica" />
+        <article class="produto-card" tabindex="0">
+          <img src="imagens/maca.jpg" alt="Maçã Orgânica" />
           <h3>Maçã Orgânica</h3>
           <p>R$ 3,00/kg</p>
           <button onclick="adicionarAoCarrinho('Maçã Orgânica', 3)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/mel.jpg" alt="Mel Puro" />
+        </article>
+
+        <article class="produto-card" tabindex="0">
+          <img src="imagens/mel.jpg" alt="Mel Puro" />
           <h3>Mel Puro</h3>
           <p>R$ 15,00</p>
           <button onclick="adicionarAoCarrinho('Mel Puro', 15)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/queijo.jpg" alt="Queijo Artesanal" />
+        </article>
+
+        <article class="produto-card" tabindex="0">
+          <img src="imagens/queijo.jpg" alt="Queijo Artesanal" />
           <h3>Queijo Artesanal</h3>
           <p>R$ 25,00</p>
           <button onclick="adicionarAoCarrinho('Queijo Artesanal', 25)">Adicionar</button>
-        </div>
+        </article>
 
         <!-- Novos produtos -->
-        <div class="produto-card">
-          <img src="img/banana.jpg" alt="Banana" />
-          <h3>Banana</h3>
+        <article class="produto-card" tabindex="0">
+          <img src="imagens/azeite.jpg" alt="Azeite de Oliva" />
+          <h3>Azeite de Oliva</h3>
+          <p>R$ 40,00</p>
+          <button onclick="adicionarAoCarrinho('Azeite de Oliva', 40)">Adicionar</button>
+        </article>
+
+        <article class="produto-card" tabindex="0">
+          <img src="imagens/banana.jpg" alt="Banana Orgânica" />
+          <h3>Banana Orgânica</h3>
           <p>R$ 2,50/kg</p>
-          <button onclick="adicionarAoCarrinho('Banana', 2.5)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/tomate.jpg" alt="Tomate" />
-          <h3>Tomate</h3>
-          <p>R$ 4,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Tomate', 4)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/alface.jpg" alt="Alface" />
-          <h3>Alface</h3>
-          <p>R$ 1,80/un</p>
-          <button onclick="adicionarAoCarrinho('Alface', 1.8)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/cenoura.jpg" alt="Cenoura" />
-          <h3>Cenoura</h3>
-          <p>R$ 3,20/kg</p>
-          <button onclick="adicionarAoCarrinho('Cenoura', 3.2)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/batata.jpg" alt="Batata" />
-          <h3>Batata</h3>
-          <p>R$ 2,90/kg</p>
-          <button onclick="adicionarAoCarrinho('Batata', 2.9)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/abacate.jpg" alt="Abacate" />
-          <h3>Abacate</h3>
-          <p>R$ 7,00/un</p>
-          <button onclick="adicionarAoCarrinho('Abacate', 7)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/Pãointegral.jpg" alt="Pão Integral" />
-          <h3>Pão Integral</h3>
-          <p>R$ 6,50</p>
-          <button onclick="adicionarAoCarrinho('Pão Integral', 6.5)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/leite.jpg" alt="Leite" />
-          <h3>Leite</h3>
-          <p>R$ 4,00/litro</p>
-          <button onclick="adicionarAoCarrinho('Leite', 4)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/ovo.jpg" alt="Ovos" />
-          <h3>Ovos</h3>
-          <p>R$ 8,00/12 unidades</p>
-          <button onclick="adicionarAoCarrinho('Ovos', 8)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/arroz.jpg" alt="Arroz Integral" />
-          <h3>Arroz</h3>
-          <p>R$ 5,50/kg</p>
-          <button onclick="adicionarAoCarrinho('Arroz Integral', 5.5)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/feijão.jpg" alt="Feijão" />
-          <h3>Feijão</h3>
-          <p>R$ 6,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Feijão', 6)">Adicionar</button>
-        </div>
+          <button onclick="adicionarAoCarrinho('Banana Orgânica', 2.5)">Adicionar</button>
+        </article>
+
+        <!-- Você pode adicionar mais produtos aqui -->
 
       </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section id="sec-contato" tabindex="-1" aria-label="Seção de contato" hidden>
+      <h2>Contato</h2>
+      <form id="form-contato">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
     </section>
 
     <!-- Carrinho -->
@@ -136,12 +105,12 @@
       <button id="btn-limpar" onclick="limparCarrinho()" disabled>Limpar Carrinho</button>
     </section>
 
-    <!-- Área de Pagamento (inicialmente oculta) -->
+    <!-- Área de Pagamento -->
     <section class="pagamento" id="area-pagamento" style="display:none;">
       <h2>Pagamento</h2>
       <form id="form-pagamento" onsubmit="finalizarCompra(event)">
-        <label for="nome">Nome Completo:</label>
-        <input type="text" id="nome" name="nome" required />
+        <label for="nome-pagamento">Nome Completo:</label>
+        <input type="text" id="nome-pagamento" name="nome-pagamento" required />
 
         <label for="cartao">Número do Cartão:</label>
         <input type="text" id="cartao" name="cartao" pattern="\d{16}" maxlength="16" placeholder="0000 0000 0000 0000" required />
@@ -159,7 +128,34 @@
   </main>
 
   <script>
-    // Dados do carrinho
+    // VLibras plugin init
+    window.addEventListener('load', () => {
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+    });
+
+    // Menu: alternar entre Loja e Contato
+    const btnLoja = document.getElementById('btn-loja');
+    const btnContato = document.getElementById('btn-contato');
+    const secLoja = document.getElementById('sec-loja');
+    const secContato = document.getElementById('sec-contato');
+
+    function mostrarSecao(secMostrar, secEsconder, btnAtivo, btnInativo) {
+      secMostrar.hidden = false;
+      secEsconder.hidden = true;
+      btnAtivo.setAttribute('aria-expanded', 'true');
+      btnInativo.setAttribute('aria-expanded', 'false');
+      secMostrar.focus();
+    }
+
+    btnLoja.addEventListener('click', () => {
+      mostrarSecao(secLoja, secContato, btnLoja, btnContato);
+    });
+
+    btnContato.addEventListener('click', () => {
+      mostrarSecao(secContato, secLoja, btnContato, btnLoja);
+    });
+
+    // Carrinho
     let carrinho = [];
 
     function adicionarAoCarrinho(nome, preco) {
@@ -182,8 +178,7 @@
 
         const li = document.createElement('li');
         li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
-        
-        // Botão remover item
+
         const btnRemover = document.createElement('button');
         btnRemover.textContent = 'Remover';
         btnRemover.setAttribute('aria-label', `Remover ${item.nome} do carrinho`);
@@ -206,7 +201,7 @@
     }
 
     function limparCarrinho() {
-      if(confirm('Deseja realmente limpar o carrinho?')) {
+      if (confirm('Deseja realmente limpar o carrinho?')) {
         carrinho = [];
         atualizarCarrinho();
       }
@@ -216,26 +211,26 @@
       document.querySelector('.produtos').style.display = 'none';
       document.querySelector('.carrinho').style.display = 'none';
       document.getElementById('area-pagamento').style.display = 'block';
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
     }
 
     function voltarAoCarrinho() {
       document.querySelector('.produtos').style.display = 'block';
       document.querySelector('.carrinho').style.display = 'block';
       document.getElementById('area-pagamento').style.display = 'none';
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
     }
 
     function finalizarCompra(event) {
       event.preventDefault();
 
-      const nome = document.getElementById('nome').value.trim();
+      const nome = document.getElementById('nome-pagamento').value.trim();
       if (carrinho.length === 0) {
         alert('Seu carrinho está vazio.');
         voltarAoCarrinho();
         return;
       }
-      alert(`Obrigado pela compra, ${nome}! \nTotal: R$ ${carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0).toFixed(2)}`);
+      alert(`Obrigado pela compra, ${nome}!\nTotal: R$ ${carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0).toFixed(2)}`);
 
       // Resetar tudo
       carrinho = [];
@@ -247,8 +242,13 @@
     // Inicializa o carrinho vazio
     atualizarCarrinho();
 
-    // Inicia VLibras plugin
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    // Form contato - só exibe alerta
+    document.getElementById('form-contato').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Mensagem enviada! Obrigado pelo contato.');
+      this.reset();
+    });
   </script>
+
 </body>
 </html>
