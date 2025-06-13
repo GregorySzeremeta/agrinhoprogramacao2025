@@ -1,503 +1,338 @@
 /* Reset básico */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
-
 body {
-  background: #f0f5f1;
-  color: #2c3e50;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  font-size: 16px;
+  background: linear-gradient(to bottom, #e0f7e9, #a8d5ba);
+  color: #2c3e50;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
-
 header {
-  background-color: #27ae60;
+  background: #4caf50;
   color: white;
-  padding: 2rem 1rem;
-  text-align: center;
-  box-shadow: 0 3px 8px rgb(0 0 0 / 0.15);
-  user-select: none;
-}
-
-header h1 {
-  font-size: 2.8rem;
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  margin-bottom: 0.2rem;
-  font-family: 'Poppins', sans-serif;
-  text-transform: uppercase;
-}
-
-.slogan {
-  font-style: italic;
-  font-weight: 600;
-  color: #d5f0d7;
-  font-size: 1.1rem;
-  letter-spacing: 0.04em;
-}
-
-nav {
-  background: #2ecc71;
+  padding: 1rem 2rem;
   display: flex;
-  justify-content: center;
-  gap: 1.2rem;
-  padding: 1rem 0.5rem;
-  flex-wrap: wrap;
-  box-shadow: inset 0 -3px 5px rgb(0 0 0 / 0.05);
-  user-select: none;
+  justify-content: space-between;
+  align-items: center;
 }
-
+header h1 {
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+nav {
+  display: flex;
+  gap: 1rem;
+}
 nav button {
   background: transparent;
   border: 2px solid white;
   color: white;
-  padding: 0.6rem 1.3rem;
-  font-weight: 700;
-  border-radius: 12px;
-  cursor: pointer;
+  padding: 0.3rem 0.8rem;
   font-size: 1rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-
 nav button:hover,
 nav button:focus {
-  background-color: white;
-  color: #27ae60;
-  outline: none;
-}
-
-#acessibilidade {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.btn-acess {
-  background-color: transparent;
-  border: 2px solid #27ae60;
-  color: #27ae60;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  font-weight: 700;
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: background-color 0.25s ease, color 0.25s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-acess:hover,
-.btn-acess:focus {
-  background-color: #27ae60;
-  color: white;
+  background: white;
+  color: #4caf50;
   outline: none;
 }
 
 main {
-  flex-grow: 1;
-  max-width: 1080px;
-  margin: 2rem auto 4rem;
-  padding: 0 1rem;
-  animation: fadeIn 0.6s ease forwards;
+  flex: 1;
+  padding: 1.5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Animação fadeIn */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Slogan */
+.slogan {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2a7a2a;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-style: italic;
 }
 
-/* Grid produtos */
-.grid-produtos {
+/* Loja Grid */
+.loja-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
+  gap: 1.3rem;
 }
 
-.produto {
+.produto-card {
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 0.08);
-  padding: 15px;
-  text-align: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  user-select: none;
-  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  transition: transform 0.3s ease;
 }
-
-.produto:hover,
-.produto:focus-within {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgb(0 0 0 / 0.15);
-  outline: none;
+.produto-card:hover {
+  transform: scale(1.03);
 }
-
-.produto img {
+.produto-card img {
   width: 100%;
-  height: 150px;
+  border-radius: 6px;
   object-fit: cover;
-  border-radius: 14px;
-  margin-bottom: 12px;
-  user-select: none;
+  max-height: 140px;
 }
-
-.produto h3 {
-  font-weight: 700;
-  font-size: 1.3rem;
-  color: #27ae60;
-  margin-bottom: 8px;
-  font-family: 'Poppins', sans-serif;
+.produto-info {
+  margin-top: 0.8rem;
+  flex-grow: 1;
 }
-
-.produto p {
-  font-weight: 600;
-  font-size: 1rem;
+.produto-info h3 {
+  font-size: 1.2rem;
   color: #2c3e50;
-  margin-bottom: 10px;
 }
-
-.produto button {
-  background-color: #27ae60;
-  border: none;
-  color: white;
+.produto-info p {
+  font-size: 0.9rem;
+  margin: 0.3rem 0 0.8rem 0;
+  color: #555;
+}
+.produto-preco {
   font-weight: 700;
-  padding: 0.6rem 1.2rem;
-  border-radius: 12px;
+  color: #388e3c;
+  font-size: 1.1rem;
+}
+.btn-comprar {
+  margin-top: auto;
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
+  font-weight: 600;
   transition: background-color 0.3s ease;
 }
-
-.produto button:hover,
-.produto button:focus {
-  background-color: #219150;
+.btn-comprar:hover,
+.btn-comprar:focus {
+  background: #388e3c;
   outline: none;
 }
 
 /* Carrinho */
-#cart-icon {
+#carrinho-container {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: #27ae60;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  color: white;
-  font-size: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  box-shadow: 0 6px 15px rgb(39 174 96 / 0.6);
-  transition: background-color 0.3s ease;
-  z-index: 9999;
-  user-select: none;
-}
-
-#cart-icon:hover,
-#cart-icon:focus {
-  background-color: #219150;
-  outline: none;
-}
-
-#cart-count {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  background-color: #c0392b;
-  color: white;
-  font-weight: 700;
-  font-size: 0.8rem;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
-  pointer-events: none;
-}
-
-/* Lista carrinho */
-#carrinho-lista {
-  list-style: none;
-  max-height: 280px;
+  right: 10px;
+  top: 70px;
+  width: 300px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  padding: 1rem;
+  max-height: 70vh;
   overflow-y: auto;
-  margin-bottom: 1rem;
+  z-index: 999;
 }
-
-#carrinho-lista li {
-  background: white;
-  padding: 10px 14px;
-  margin-bottom: 10px;
-  border-radius: 12px;
-  box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 600;
-  color: #2c3e50;
-  user-select: none;
-}
-
-#carrinho-lista li button {
-  background-color: transparent;
-  border: none;
-  color: #c0392b;
-  font-weight: 700;
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0 6px;
-  transition: color 0.3s ease;
-}
-
-#carrinho-lista li button:hover,
-#carrinho-lista li button:focus {
-  color: #e74c3c;
-  outline: none;
-}
-
-/* Total */
-.total {
-  font-weight: 700;
+#carrinho-container h2 {
   font-size: 1.3rem;
-  color: #27ae60;
-  text-align: right;
-  user-select: none;
-  margin-bottom: 1.5rem;
-}
-
-/* Botões carrinho */
-#btn-esvaziar,
-#btn-finalizar {
-  background-color: #27ae60;
-  border: none;
-  color: white;
-  font-weight: 700;
-  padding: 0.7rem 1.4rem;
-  border-radius: 14px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  margin-right: 10px;
-  transition: background-color 0.3s ease;
-}
-
-#btn-esvaziar:hover,
-#btn-esvaziar:focus {
-  background-color: #1e8449;
-  outline: none;
-}
-
-#btn-finalizar:hover,
-#btn-finalizar:focus {
-  background-color: #1e8449;
-  outline: none;
-}
-
-/* Formulário contato */
-#contato-form {
-  background: white;
-  max-width: 440px;
-  margin: 3rem auto 0 auto;
-  padding: 25px 30px;
-  border-radius: 18px;
-  box-shadow: 0 6px 16px rgb(0 0 0 / 0.08);
-  user-select: none;
-}
-
-#contato-form label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 700;
-  color: #2c3e50;
-  font-size: 1rem;
-}
-
-#contato-form input,
-#contato-form textarea {
-  width: 100%;
-  padding: 12px 15px;
-  border-radius: 10px;
-  border: 1.5px solid #ccc;
-  font-size: 1rem;
-  resize: vertical;
-  margin-bottom: 18px;
-  transition: border-color 0.3s ease;
-}
-
-#contato-form input:focus,
-#contato-form textarea:focus {
-  border-color: #27ae60;
-  outline: none;
-}
-
-#contato-form button {
-  background-color: #27ae60;
-  border: none;
-  color: white;
-  font-weight: 700;
-  padding: 12px 20px;
-  border-radius: 14px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  width: 100%;
-  transition: background-color 0.3s ease;
-}
-
-#contato-form button:hover,
-#contato-form button:focus {
-  background-color: #1e8449;
-  outline: none;
-}
-
-#msg-contato {
-  margin-top: 1rem;
-  font-weight: 700;
-  color: #27ae60;
+  margin-bottom: 0.7rem;
   text-align: center;
 }
-
-/* Animação plantar árvore */
-#plantar-arvore {
-  position: fixed;
-  bottom: 100px;
-  left: 40px;
-  width: 80px;
-  height: 80px;
-  cursor: pointer;
-  user-select: none;
-  z-index: 999;
-  transition: transform 0.3s ease;
+#lista-carrinho {
+  list-style: none;
+  margin-bottom: 1rem;
 }
-
-#plantar-arvore:hover,
-#plantar-arvore:focus {
-  transform: scale(1.1);
+#lista-carrinho li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #ddd;
+}
+#lista-carrinho li span {
+  font-weight: 600;
+}
+#btn-esvaziar {
+  background: #d32f2f;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+}
+#btn-esvaziar:hover,
+#btn-esvaziar:focus {
+  background: #b71c1c;
   outline: none;
 }
 
-/* Confetes */
-#confete-container {
+/* Acessibilidade */
+#acessibilidade {
   position: fixed;
-  pointer-events: none;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: visible;
-  z-index: 10000;
+  bottom: 10px;
+  left: 10px;
+  background: #4caf50;
+  padding: 0.7rem 1rem;
+  border-radius: 50px;
+  display: flex;
+  gap: 0.6rem;
+  z-index: 9999;
+}
+#acessibilidade button {
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #4caf50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+#acessibilidade button:hover,
+#acessibilidade button:focus {
+  background: #a5d6a7;
+  outline: none;
 }
 
-.confete {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  opacity: 0.8;
-  animation: confete-caindo 3s linear forwards;
-  border-radius: 2px;
-  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.2));
-  background-color: #27ae60;
+/* Contraste alto */
+body.contraste {
+  background: #000;
+  color: #ffeb3b;
 }
-
-@keyframes confete-caindo {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0;
-  }
+body.contraste header {
+  background: #000;
 }
-
-/* Acessibilidade: daltonismo */
-body.daltonico {
-  filter: grayscale(60%);
+body.contraste nav button {
+  border-color: #ffeb3b;
+  color: #ffeb3b;
+}
+body.contraste nav button:hover,
+body.contraste nav button:focus {
+  background: #ffeb3b;
+  color: #000;
+}
+body.contraste .produto-card {
+  background: #111;
+  box-shadow: 0 0 12px #ffeb3b;
+}
+body.contraste .btn-comprar {
+  background: #ffeb3b;
+  color: #000;
+}
+body.contraste .btn-comprar:hover,
+body.contraste .btn-comprar:focus {
+  background: #fbc02d;
+}
+body.contraste #carrinho-container {
+  background: #111;
+  color: #ffeb3b;
+  box-shadow: 0 0 12px #ffeb3b;
+}
+body.contraste #btn-esvaziar {
+  background: #b71c1c;
+}
+body.contraste #btn-esvaziar:hover,
+body.contraste #btn-esvaziar:focus {
+  background: #d32f2f;
 }
 
 /* Fonte maior */
 body.fonte-grande {
-  font-size: 20px;
+  font-size: 1.2rem;
 }
 
-/* Contraste alto */
-body.contraste-alto {
-  background-color: #000;
-  color: #fff;
+/* LIBRAS */
+#libras-toggle {
+  background: #4caf50;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 700;
+  margin-left: 1rem;
+  font-size: 0.9rem;
+}
+#video-libras {
+  position: fixed;
+  bottom: 70px;
+  left: 10px;
+  width: 320px;
+  height: 180px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #4caf50;
+  background: black;
+  display: none;
+  z-index: 9999;
+}
+#video-libras video {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
 }
 
-body.contraste-alto header,
-body.contraste-alto nav {
-  background-color: #000;
-  color: #0f0;
-  border-color: #0f0;
+/* Animação de plantar árvore */
+#animacao-arvore {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #e0f7e9;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  pointer-events: none;
+}
+#arvore {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  animation: crescer 3s forwards;
+  margin-bottom: 20px;
+}
+#tronco {
+  width: 20px;
+  height: 60px;
+  background: sienna;
+  border-radius: 4px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+/* folhas simples */
+#arvore::before {
+  content: "";
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  background: #4caf50;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  z-index: 1;
+  opacity: 0;
+  animation: folhasCrescer 3s forwards;
 }
 
-body.contraste-alto .btn-verde,
-body.contraste-alto button {
-  background-color: #0f0;
-  color: #000;
-  border-color: #0f0;
+@keyframes crescer {
+  from { height: 20px; }
+  to { height: 80px; }
+}
+@keyframes folhasCrescer {
+  to { opacity: 1; }
 }
 
-body.contraste-alto .produto {
-  background-color: #222;
-  color: #0f0;
-  box-shadow: none;
-}
-
-/* Botão com foco */
-button:focus,
-input:focus,
-textarea:focus {
-  outline: 3px solid #2ecc71;
-  outline-offset: 3px;
-}
-
-/* Responsividade */
-@media (max-width: 720px) {
-  header h1 {
-    font-size: 2rem;
-  }
-
-  nav {
-    gap: 0.8rem;
-  }
-
-  nav button {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  .produto img {
-    height: 130px;
-  }
-
-  #cart-icon {
-    width: 54px;
-    height: 54px;
-    font-size: 1.5rem;
-    bottom: 20px;
-    right: 20px;
-  }
+/* Botões foco */
+button:focus {
+  outline: 3px solid #4caf50;
+  outline-offset: 2px;
 }
