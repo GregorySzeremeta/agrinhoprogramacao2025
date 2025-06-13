@@ -7,7 +7,8 @@ Um site moderno, interativo e acessível que simula uma feira digital com produt
 
 Este projeto foi desenvolvido com o objetivo de aproximar o campo das pessoas da cidade, valorizando o pequeno produtor e incentivando a sustentabilidade e o consumo consciente.
 
-A **Estação da Terra** é uma plataforma interativa construída com HTML, CSS e JavaScript, com uma proposta visual encantadora e recursos técnicos modernos.
+A **Estação da Terra** é uma plataforma interativa construída com HTML, CSS, com uma proposta visual encantadora e recursos técnicos modernos.
+O site conta conta com 87% de linguagem em *HTML* e 13% de linguagem em *CSS*
 
 O projeto passou pelas seguintes etapas:
 
