@@ -1,202 +1,153 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Estação da Terra - Loja</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estação da Terra</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- VLibras para LIBRAS -->
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
-
-  <!-- Animação de boas-vindas -->
-  <div id="animacaoBoasVindas" class="animacao-boas-vindas" role="dialog" aria-live="polite" aria-label="Mensagem de boas-vindas">
-    <h1>🌿 Bem-vindo à Estação da Terra</h1>
-    <p>Onde a natureza encontra seu lar</p>
-  </div>
-
-  <!-- Acessibilidade -->
-  <div id="acessibilidade" aria-label="Controles de acessibilidade" role="region">
-    <button onclick="toggleContraste()" aria-pressed="false" aria-label="Alternar modo de alto contraste" class="btn-acessibilidade">🌓</button>
-    <button onclick="aumentarFonte()" aria-label="Aumentar tamanho da fonte" class="btn-acessibilidade">🔠</button>
-    <button onclick="diminuirFonte()" aria-label="Diminuir tamanho da fonte" class="btn-acessibilidade">🔡</button>
-  </div>
-
-  <!-- Som ambiente -->
-  <div id="audio-fundo" aria-label="Controle de som ambiente" role="region">
-    <audio id="somAmbiente" loop>
-      <source src="sons/ambiente.mp3" type="audio/mpeg" />
-      Seu navegador não suporta áudio.
-    </audio>
-    <button id="btnSom" onclick="toggleSom()" aria-pressed="false" aria-label="Alternar som ambiente" class="btn-acessibilidade btn-som">🔊 Som Ambiente</button>
-  </div>
-
-  <!-- VLibras -->
-  <div vw class="enabled" aria-hidden="true">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
-  </div>
-
-  <!-- Cabeçalho -->
   <header>
     <h1>Estação da Terra</h1>
-    <p class="slogan">Onde a natureza encontra seu lar</p>
+    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
     <nav class="menu" aria-label="Menu principal">
       <ul>
-        <li><a href="quiz.html" tabindex="0">Quiz</a></li>
-        <li><a href="sobre.html" tabindex="0">Sobre</a></li>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#carrinho">Carrinho</a></li>
+        <li><a href="#contato">Contato</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Loja -->
   <main>
     <section id="produtos" aria-label="Produtos à venda">
       <h2>Produtos à Venda</h2>
       <div class="barracas">
+        <!-- Produtos existentes -->
         <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-suco-natural">
           <img src="img/suco.jpg" alt="Imagem de Suco Natural" />
           <h3 id="produto-suco-natural">Suco Natural</h3>
           <p class="preco">R$ 5,00</p>
           <button onclick="adicionarAoCarrinho('Suco Natural', 5)" aria-label="Adicionar Suco Natural ao carrinho" class="btn-comprar">Adicionar</button>
         </div>
-
-        <!-- Exemplos adicionais - adicione mais produtos abaixo -->
         <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-mel-natural">
           <img src="img/mel.jpg" alt="Imagem de Mel Natural" />
           <h3 id="produto-mel-natural">Mel Natural</h3>
           <p class="preco">R$ 15,00</p>
           <button onclick="adicionarAoCarrinho('Mel Natural', 15)" aria-label="Adicionar Mel Natural ao carrinho" class="btn-comprar">Adicionar</button>
         </div>
-
         <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-queijo-artesanal">
           <img src="img/queijo.jpg" alt="Imagem de Queijo Artesanal" />
           <h3 id="produto-queijo-artesanal">Queijo Artesanal</h3>
           <p class="preco">R$ 25,00</p>
           <button onclick="adicionarAoCarrinho('Queijo Artesanal', 25)" aria-label="Adicionar Queijo Artesanal ao carrinho" class="btn-comprar">Adicionar</button>
         </div>
-
         <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-frutas-frescas">
           <img src="img/frutas.jpg" alt="Imagem de Frutas Frescas" />
           <h3 id="produto-frutas-frescas">Frutas Frescas</h3>
           <p class="preco">R$ 8,00</p>
           <button onclick="adicionarAoCarrinho('Frutas Frescas', 8)" aria-label="Adicionar Frutas Frescas ao carrinho" class="btn-comprar">Adicionar</button>
         </div>
+
+        <!-- Novos 6 produtos -->
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-leite-organico">
+          <img src="img/leite.jpg" alt="Imagem de Leite Orgânico" />
+          <h3 id="produto-leite-organico">Leite Orgânico</h3>
+          <p class="preco">R$ 6,50</p>
+          <button onclick="adicionarAoCarrinho('Leite Orgânico', 6.5)" aria-label="Adicionar Leite Orgânico ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-arroz-integral">
+          <img src="img/arroz.jpg" alt="Imagem de Arroz Integral" />
+          <h3 id="produto-arroz-integral">Arroz Integral</h3>
+          <p class="preco">R$ 12,00</p>
+          <button onclick="adicionarAoCarrinho('Arroz Integral', 12)" aria-label="Adicionar Arroz Integral ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-feijao-preto">
+          <img src="img/feijao.jpg" alt="Imagem de Feijão Preto" />
+          <h3 id="produto-feijao-preto">Feijão Preto</h3>
+          <p class="preco">R$ 10,00</p>
+          <button onclick="adicionarAoCarrinho('Feijão Preto', 10)" aria-label="Adicionar Feijão Preto ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-tomate-fresco">
+          <img src="img/tomate.jpg" alt="Imagem de Tomate Fresco" />
+          <h3 id="produto-tomate-fresco">Tomate Fresco</h3>
+          <p class="preco">R$ 4,50</p>
+          <button onclick="adicionarAoCarrinho('Tomate Fresco', 4.5)" aria-label="Adicionar Tomate Fresco ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-banana-nanica">
+          <img src="img/banana.jpg" alt="Imagem de Banana Nanica" />
+          <h3 id="produto-banana-nanica">Banana Nanica</h3>
+          <p class="preco">R$ 7,00</p>
+          <button onclick="adicionarAoCarrinho('Banana Nanica', 7)" aria-label="Adicionar Banana Nanica ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-milho-verde">
+          <img src="img/milho.jpg" alt="Imagem de Milho Verde" />
+          <h3 id="produto-milho-verde">Milho Verde</h3>
+          <p class="preco">R$ 5,50</p>
+          <button onclick="adicionarAoCarrinho('Milho Verde', 5.5)" aria-label="Adicionar Milho Verde ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
       </div>
     </section>
 
-    <!-- Carrinho -->
     <section id="carrinho" aria-label="Carrinho de compras">
-      <h2>🛒 Carrinho de Compras</h2>
-      <ul id="lista-carrinho" tabindex="0" aria-live="polite" aria-relevant="additions removals"></ul>
-      <p id="total" aria-live="polite" aria-atomic="true"></p>
-      <div class="botoes-carrinho">
-        <button onclick="esvaziarCarrinho()" aria-label="Esvaziar carrinho" class="btn-carrinho">🗑️ Esvaziar Carrinho</button>
-        <button onclick="finalizarCompra()" aria-label="Finalizar compra" class="btn-carrinho">✅ Finalizar Compra</button>
-      </div>
+      <h2>Seu Carrinho</h2>
+      <ul id="lista-carrinho" aria-live="polite" aria-relevant="additions removals"></ul>
+      <button id="btn-esvaziar" onclick="esvaziarCarrinho()" aria-label="Esvaziar carrinho" class="btn-acoes">Esvaziar Carrinho</button>
+      <button id="btn-finalizar" onclick="finalizarCompra()" aria-label="Finalizar compra" class="btn-acoes">Finalizar Compra</button>
+    </section>
+
+    <section id="contato" aria-label="Contato">
+      <h2>Contato</h2>
+      <p>Email: contato@estacaodaterra.com.br</p>
+      <p>Telefone: (11) 99999-9999</p>
     </section>
   </main>
 
-  <button id="btnTopo" title="Voltar ao topo" aria-label="Voltar ao topo">⬆️</button>
-
   <footer>
-    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
+    <p>© 2025 Estação da Terra - Todos os direitos reservados</p>
   </footer>
 
-  <!-- JavaScript -->
+  <!-- VLibras -->
+  <div vw class="enabled" aria-hidden="true">
+    <div vw-access-button class="active" aria-label="Ativar VLibras"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+  </div>
+
   <script>
-    // VLibras
     new window.VLibras.Widget('https://vlibras.gov.br/app');
+    
+    // Exemplo simples funções do carrinho
+    const carrinho = [];
 
-    let carrinho = [];
-
-    function adicionarAoCarrinho(produto, preco) {
-      const itemExistente = carrinho.find(item => item.nome === produto);
-      if (itemExistente) {
-        itemExistente.quantidade++;
-      } else {
-        carrinho.push({ nome: produto, preco: preco, quantidade: 1 });
-      }
+    function adicionarAoCarrinho(nome, preco) {
+      carrinho.push({ nome, preco });
       atualizarCarrinho();
+      alert(nome + " adicionado ao carrinho!");
     }
 
     function atualizarCarrinho() {
       const lista = document.getElementById("lista-carrinho");
       lista.innerHTML = "";
-
-      let total = 0;
-      carrinho.forEach(item => {
+      carrinho.forEach((item, i) => {
         const li = document.createElement("li");
-        const subtotal = item.quantidade * item.preco;
-        total += subtotal;
-        li.textContent = `${item.nome} — ${item.quantidade}x — R$ ${subtotal.toFixed(2)}`;
+        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
         lista.appendChild(li);
       });
-
-      document.getElementById("total").textContent = `Total: R$ ${total.toFixed(2)}`;
     }
 
     function esvaziarCarrinho() {
-      carrinho = [];
+      carrinho.length = 0;
       atualizarCarrinho();
     }
 
     function finalizarCompra() {
-      if (carrinho.length === 0) {
-        alert("Carrinho vazio.");
-        return;
-      }
-      alert("Compra finalizada com sucesso! Obrigado por comprar na Estação da Terra.");
-      esvaziarCarrinho();
-    }
-
-    // Acessibilidade
-    function toggleContraste() {
-      const body = document.body;
-      body.classList.toggle("contraste");
-      const btn = document.querySelector('#acessibilidade button[aria-pressed]');
-      if (btn) {
-        let pressed = body.classList.contains("contraste");
-        btn.setAttribute("aria-pressed", pressed);
-      }
-    }
-    function aumentarFonte() {
-      let size = parseFloat(window.getComputedStyle(document.body).fontSize);
-      if (size < 24) document.body.style.fontSize = (size + 2) + "px";
-    }
-    function diminuirFonte() {
-      let size = parseFloat(window.getComputedStyle(document.body).fontSize);
-      if (size > 12) document.body.style.fontSize = (size - 2) + "px";
-    }
-
-    // Botão voltar ao topo
-    const btnTopo = document.getElementById("btnTopo");
-    window.onscroll = function() {
-      btnTopo.style.display = document.documentElement.scrollTop > 150 ? "block" : "none";
-    };
-    btnTopo.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
-    // Animação de boas-vindas
-    window.onload = () => {
-      const animacao = document.getElementById("animacaoBoasVindas");
-      animacao.style.display = "flex";
-      setTimeout(() => animacao.style.opacity = "1", 100);
-      setTimeout(() => animacao.style.opacity = "0", 3000);
-      setTimeout(() => animacao.style.display = "none", 4000);
-    };
-
-    // Som ambiente
-    const btnSom = document.getElementById("btnSom");
-    function toggleSom() {
-      const audio = document.getElementById("somAmbiente");
-      if (audio.paused) {
-        audio.play();
-        btnSom.setAttribute("aria-pressed", "true");
-        btnSom.textContent = "🔈 Som Ligado";
+      if(carrinho.length === 0) {
+        alert("Seu carrinho está vazio!");
       } else {
-        audio.pause();
-        btnSom.setAttribute("aria-pressed", "false");
-        btnSom.textContent = "🔊 Som Ambiente";
+        alert("Compra finalizada. Obrigado!");
+        esvaziarCarrinho();
       }
     }
   </script>
