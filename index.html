@@ -1,243 +1,361 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Produtos do Campo - Estação da Terra</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Estação da Terra - Produtos do Campo</title>
+<!-- Link para fonte minimalista -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <!-- Menu no topo -->
-  <header>
-    <nav class="menu-topo" aria-label="Menu principal">
-      <div class="logo">🌱 Estação da Terra</div>
-      <ul class="menu-lista" role="menubar">
-        <li role="none"><button role="menuitem" onclick="mostrarSecao('loja')">Loja</button></li>
-        <li role="none"><button role="menuitem" onclick="mostrarSecao('sobre')">Sobre</button></li>
-        <li role="none"><button role="menuitem" onclick="mostrarSecao('contato')">Contato</button></li>
-      </ul>
-      <div class="acessibilidade">
-        <button aria-label="Aumentar fonte" onclick="alterarFonte('aumentar')">A+</button>
-        <button aria-label="Diminuir fonte" onclick="alterarFonte('diminuir')">A-</button>
-        <button aria-label="Alternar contraste" onclick="toggleContraste()">🌓</button>
-        <button aria-label="Abrir tradução em LIBRAS" onclick="toggleLibras()">🤟 LIBRAS</button>
+
+<!-- Botão LIBRAS -->
+<button id="btn-libras" aria-label="Ativar tradução em LIBRAS" title="Ativar tradução em LIBRAS" style="position:fixed;bottom:15px;right:15px;z-index:1000;padding:10px;border:none;background:#4CAF50;color:#fff;border-radius:50%;font-size:20px;cursor:pointer;">👐</button>
+
+<!-- Botão Som Ambiente -->
+<button id="btn-som" aria-label="Ativar/Desativar som ambiente" title="Ativar/Desativar som ambiente" style="position:fixed;bottom:15px;right:75px;z-index:1000;padding:10px;border:none;background:#4CAF50;color:#fff;border-radius:50%;font-size:20px;cursor:pointer;">🔊</button>
+
+<!-- Animação de árvore no topo -->
+<div id="animacao-arvore" aria-hidden="true" style="text-align:center; margin: 1rem;">
+  <svg id="arvore-svg" width="150" height="200" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+    <rect id="tronco" x="45" y="100" width="10" height="40" fill="#6B4F1A"/>
+    <circle id="folhas" cx="50" cy="70" r="40" fill="#4CAF50" opacity="0" />
+  </svg>
+</div>
+
+<!-- Cabeçalho e Menu -->
+<header style="background:#e9f0e7; padding: 1rem 2rem; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:999;">
+  <h1 style="font-family: 'Montserrat', sans-serif; color:#2e4d25; margin:0;">Estação da Terra</h1>
+  <nav aria-label="Menu principal">
+    <ul style="list-style:none; margin:0; padding:0; display:flex; gap:1rem; font-family: 'Montserrat', sans-serif;">
+      <li><button class="menu-btn" data-section="loja" aria-current="page" style="background:none; border:none; color:#2e4d25; font-weight:600; cursor:pointer;">Loja</button></li>
+      <li><button class="menu-btn" data-section="quiz" style="background:none; border:none; color:#2e4d25; font-weight:600; cursor:pointer;">Quiz</button></li>
+      <li><button class="menu-btn" data-section="sobre" style="background:none; border:none; color:#2e4d25; font-weight:600; cursor:pointer;">Sobre</button></li>
+      <li><button class="menu-btn" data-section="contato" style="background:none; border:none; color:#2e4d25; font-weight:600; cursor:pointer;">Contato</button></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Conteúdo principal -->
+<main style="padding:2rem; font-family: 'Montserrat', sans-serif; color:#2e4d25;">
+  <!-- Seções -->
+  <section id="loja" aria-label="Loja de produtos do campo">
+    <h2>Produtos do Campo</h2>
+    <div id="produtos-container" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.5rem; margin-top:1rem;"></div>
+  </section>
+
+  <section id="quiz" aria-label="Quiz sobre produção no campo" hidden>
+    <h2>Quiz: Você sabe tudo sobre produção no campo?</h2>
+    <form id="quiz-form" style="max-width:600px; margin-top:1rem;">
+      <div>
+        <p>1. Qual é a principal fonte de nutrientes para as plantas?</p>
+        <label><input type="radio" name="q1" value="a" required /> a) Água</label><br />
+        <label><input type="radio" name="q1" value="b" /> b) Solo</label><br />
+        <label><input type="radio" name="q1" value="c" /> c) Luz solar</label>
       </div>
-    </nav>
-  </header>
-
-  <!-- Conteúdo principal -->
-  <main>
-    <!-- Seção loja -->
-    <section id="loja" class="secao ativa" tabindex="0" aria-label="Loja de produtos do campo">
-      <h1>Produtos do Campo</h1>
-      <div class="produtos-container" aria-live="polite">
-        <!-- Produtos serão inseridos aqui via JS -->
+      <div>
+        <p>2. O que é adubação orgânica?</p>
+        <label><input type="radio" name="q2" value="a" required /> a) Uso de fertilizantes químicos</label><br />
+        <label><input type="radio" name="q2" value="b" /> b) Uso de composto natural</label><br />
+        <label><input type="radio" name="q2" value="c" /> c) Irrigação controlada</label>
       </div>
-      <div class="carrinho" aria-label="Carrinho de compras">
-        <h2>Carrinho</h2>
-        <ul id="carrinho-lista" aria-live="polite"></ul>
-        <p id="total-carrinho">Total: R$ 0,00</p>
-        <button id="btn-finalizar" disabled onclick="finalizarCompra()">Finalizar Compra</button>
-        <button id="btn-esvaziar" disabled onclick="esvaziarCarrinho()">Esvaziar Carrinho</button>
+      <div>
+        <p>3. Qual é o benefício da rotação de culturas?</p>
+        <label><input type="radio" name="q3" value="a" required /> a) Aumenta a erosão do solo</label><br />
+        <label><input type="radio" name="q3" value="b" /> b) Melhora a saúde do solo</label><br />
+        <label><input type="radio" name="q3" value="c" /> c) Reduz a biodiversidade</label>
       </div>
-    </section>
+      <button type="submit" style="margin-top:1rem; padding: 0.5rem 1rem; font-weight:600; cursor:pointer; background:#4CAF50; color:white; border:none; border-radius:5px;">Enviar Respostas</button>
+    </form>
+    <div id="resultado-quiz" style="margin-top:1rem; font-weight:600;"></div>
+  </section>
 
-    <!-- Seção sobre -->
-    <section id="sobre" class="secao" tabindex="0" aria-label="Sobre o site e a missão">
-      <h1>Sobre a Estação da Terra</h1>
-      <p>Nosso objetivo é levar produtos frescos e sustentáveis direto do campo para a sua casa, com qualidade e responsabilidade ambiental.</p>
-      <p>Nos preocupamos com acessibilidade para todos, inclusive com tradução em LIBRAS e recursos para facilitar a navegação.</p>
-      <!-- Vídeo LIBRAS -->
-      <div class="video-libras" aria-label="Vídeo explicativo em Libras">
-        <video id="videoLibras" width="320" height="240" controls hidden>
-          <source src="https://interactive-examples.mdn.mozilla.net/media/examples/flower.webm" type="video/webm" />
-          Seu navegador não suporta vídeo.
-        </video>
-      </div>
-    </section>
+  <section id="sobre" aria-label="Sobre a Estação da Terra" hidden>
+    <h2>Sobre Nós</h2>
+    <p>Somos a Estação da Terra, uma plataforma que conecta você aos melhores produtos frescos do campo, promovendo a sustentabilidade, o consumo consciente e o apoio aos agricultores locais.</p>
+  </section>
 
-    <!-- Seção contato -->
-    <section id="contato" class="secao" tabindex="0" aria-label="Formulário de contato">
-      <h1>Contato</h1>
-      <form id="form-contato" aria-label="Formulário de contato">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required aria-required="true" />
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" required aria-required="true" />
-        <label for="mensagem">Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" rows="5" required aria-required="true"></textarea>
-        <button type="submit">Enviar</button>
-      </form>
-      <div id="resposta-contato" role="alert" aria-live="polite"></div>
-    </section>
-  </main>
+  <section id="contato" aria-label="Formulário de contato" hidden>
+    <h2>Contato</h2>
+    <form id="form-contato" style="max-width:600px; margin-top:1rem; display:flex; flex-direction:column; gap:1rem;">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required aria-required="true" />
+      
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required aria-required="true" />
+      
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem" rows="4" required aria-required="true"></textarea>
+      
+      <button type="submit" style="padding: 0.5rem 1rem; font-weight:600; cursor:pointer; background:#4CAF50; color:white; border:none; border-radius:5px;">Enviar</button>
+    </form>
+    <div id="contato-resposta" style="margin-top:1rem; font-weight:600;"></div>
+  </section>
 
-  <!-- Script JavaScript -->
-  <script>
-    // Produtos disponíveis
-    const produtos = [
-      { id: 1, nome: 'Leite Fresco', preco: 8.5, descricao: 'Leite fresco da fazenda, 1L' },
-      { id: 2, nome: 'Mel Natural', preco: 15.0, descricao: 'Mel puro, 500g' },
-      { id: 3, nome: 'Queijo Artesanal', preco: 25.0, descricao: 'Queijo fresco de cabra, 300g' },
-      { id: 4, nome: 'Tomate Orgânico', preco: 6.0, descricao: 'Tomate orgânico da estação, 1kg' },
-      { id: 5, nome: 'Arroz Integral', preco: 12.0, descricao: 'Arroz integral cultivado no campo, 2kg' },
-      { id: 6, nome: 'Feijão Preto', preco: 10.0, descricao: 'Feijão preto selecionado, 1kg' }
-    ];
+  <!-- Carrinho -->
+  <aside id="carrinho" aria-label="Carrinho de compras" style="position:fixed; right:0; top:70px; width:320px; max-height:90vh; background:#f0f5ee; border-left:3px solid #4CAF50; box-shadow: -2px 0 10px rgba(0,0,0,0.1); padding:1rem; overflow-y:auto;">
+    <h2>Carrinho</h2>
+    <ul id="lista-carrinho" style="list-style:none; padding:0; max-height:50vh; overflow-y:auto;"></ul>
+    <p id="total-carrinho" style="font-weight:600; margin-top:0.5rem;">Total: R$ 0,00</p>
+    <button id="btn-esvaziar" style="background:#a94442; border:none; color:white; padding:0.5rem 1rem; border-radius:5px; cursor:pointer;">Esvaziar Carrinho</button>
+    <button id="btn-finalizar" style="background:#4CAF50; border:none; color:white; padding:0.5rem 1rem; border-radius:5px; cursor:pointer; margin-top:0.5rem;">Finalizar Compra</button>
+  </aside>
 
-    // Carrinho inicial vazio
-    let carrinho = [];
+</main>
 
-    // Função para mostrar uma seção e esconder as outras
-    function mostrarSecao(secaoId) {
-      document.querySelectorAll('section.secao').forEach(sec => {
-        if (sec.id === secaoId) {
-          sec.classList.add('ativa');
-          sec.setAttribute('tabindex', '0');
-          sec.focus();
-        } else {
-          sec.classList.remove('ativa');
-          sec.setAttribute('tabindex', '-1');
-        }
-      });
+<!-- Áudio ambiente -->
+<audio id="audio-ambiente" loop src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_121462d362.mp3?filename=forest-birds-ambient-11139.mp3"></audio>
+
+<script>
+  // Variáveis globais
+  const produtos = [
+    {id:1, nome:"Maçã Orgânica", categoria:"Frutas", preco:6.50, img:"https://cdn.pixabay.com/photo/2017/01/20/00/30/apple-1995056_1280.jpg"},
+    {id:2, nome:"Banana Nanica", categoria:"Frutas", preco:4.20, img:"https://cdn.pixabay.com/photo/2018/08/06/18/47/banana-3582389_1280.jpg"},
+    {id:3, nome:"Leite Fresco", categoria:"Laticínios", preco:5.00, img:"https://cdn.pixabay.com/photo/2018/03/09/12/05/milk-3202721_1280.jpg"},
+    {id:4, nome:"Queijo Minas", categoria:"Laticínios", preco:12.00, img:"https://cdn.pixabay.com/photo/2017/11/09/21/41/cheese-2937839_1280.jpg"},
+    {id:5, nome:"Mel Silvestre", categoria:"Mel", preco:25.00, img:"https://cdn.pixabay.com/photo/2017/04/23/19/42/honey-2253422_1280.jpg"},
+    {id:6, nome:"Tomate Orgânico", categoria:"Verduras", preco:3.50, img:"https://cdn.pixabay.com/photo/2018/07/20/20/55/tomatoes-3559252_1280.jpg"},
+    {id:7, nome:"Alface Crespa", categoria:"Verduras", preco:2.50, img:"https://cdn.pixabay.com/photo/2014/12/21/23/28/lettuce-576719_1280.jpg"},
+    {id:8, nome:"Arroz Integral", categoria:"Grãos", preco:10.00, img:"https://cdn.pixabay.com/photo/2017/03/28/16/38/rice-2184166_1280.jpg"},
+    {id:9, nome:"Feijão Preto", categoria:"Grãos", preco:8.50, img:"https://cdn.pixabay.com/photo/2016/10/21/08/10/beans-1757283_1280.jpg"},
+    {id:10, nome:"Cenoura Orgânica", categoria:"Verduras", preco:3.20, img:"https://cdn.pixabay.com/photo/2017/01/20/00/30/carrot-1995055_1280.jpg"},
+    {id:11, nome:"Abóbora Cabotiá", categoria:"Verduras", preco:6.80, img:"https://cdn.pixabay.com/photo/2016/10/27/22/15/pumpkin-1771795_1280.jpg"},
+    {id:12, nome:"Pêssego Fresco", categoria:"Frutas", preco:7.50, img:"https://cdn.pixabay.com/photo/2017/07/31/21/58/peach-2551359_1280.jpg"},
+    {id:13, nome:"Morango Orgânico", categoria:"Frutas", preco:12.30, img:"https://cdn.pixabay.com/photo/2018/05/05/23/52/strawberries-3377751_1280.jpg"},
+    {id:14, nome:"Ovos Caipiras", categoria:"Derivados", preco:9.00, img:"https://cdn.pixabay.com/photo/2016/12/06/09/31/eggs-1889783_1280.jpg"},
+    {id:15, nome:"Iogurte Natural", categoria:"Laticínios", preco:7.20, img:"https://cdn.pixabay.com/photo/2017/03/29/19/18/yogurt-2189948_1280.jpg"},
+    {id:16, nome:"Farinha de Mandioca", categoria:"Grãos", preco:4.50, img:"https://cdn.pixabay.com/photo/2018/02/12/17/52/manioc-3148014_1280.jpg"},
+    {id:17, nome:"Café Torrado", categoria:"Grãos", preco:18.00, img:"https://cdn.pixabay.com/photo/2017/03/27/14/56/coffee-2179327_1280.jpg"},
+    {id:18, nome:"Chá de Ervas", categoria:"Derivados", preco:9.50, img:"https://cdn.pixabay.com/photo/2016/02/13/12/26/herbal-tea-1190784_1280.jpg"},
+    {id:19, nome:"Batata Doce", categoria:"Verduras", preco:3.70, img:"https://cdn.pixabay.com/photo/2016/11/29/10/07/sweet-potato-1869655_1280.jpg"},
+    {id:20, nome:"Azeite de Oliva", categoria:"Derivados", preco:30.00, img:"https://cdn.pixabay.com/photo/2017/02/01/22/02/olive-oil-2031178_1280.jpg"},
+    {id:21, nome:"Melancia", categoria:"Frutas", preco:8.00, img:"https://cdn.pixabay.com/photo/2017/01/14/12/59/watermelon-1972375_1280.jpg"},
+    {id:22, nome:"Cebola Roxa", categoria:"Verduras", preco:2.80, img:"https://cdn.pixabay.com/photo/2016/03/27/19/43/onions-1280801_1280.jpg"},
+    {id:23, nome:"Pimenta Biquinho", categoria:"Verduras", preco:4.10, img:"https://cdn.pixabay.com/photo/2016/09/14/15/42/peppers-1678528_1280.jpg"},
+    {id:24, nome:"Gengibre", categoria:"Verduras", preco:5.00, img:"https://cdn.pixabay.com/photo/2017/07/24/15/55/ginger-2539362_1280.jpg"},
+    {id:25, nome:"Suco Natural de Laranja", categoria:"Derivados", preco:6.00, img:"https://cdn.pixabay.com/photo/2018/01/15/07/51/oranges-3081364_1280.jpg"},
+    {id:26, nome:"Semente de Abóbora", categoria:"Sementes", preco:10.50, img:"https://cdn.pixabay.com/photo/2016/12/28/13/32/pumpkin-seeds-1931117_1280.jpg"},
+    {id:27, nome:"Farinha de Trigo", categoria:"Grãos", preco:5.00, img:"https://cdn.pixabay.com/photo/2015/06/24/16/05/flour-820536_1280.jpg"},
+    {id:28, nome:"Alho Orgânico", categoria:"Verduras", preco:6.00, img:"https://cdn.pixabay.com/photo/2014/04/10/11/14/garlic-320515_1280.jpg"},
+    {id:29, nome:"Couve Manteiga", categoria:"Verduras", preco:2.70, img:"https://cdn.pixabay.com/photo/2017/02/14/09/29/cabbage-2064188_1280.jpg"},
+    {id:30, nome:"Abacate", categoria:"Frutas", preco:9.00, img:"https://cdn.pixabay.com/photo/2017/02/25/17/03/avocado-2099880_1280.jpg"},
+  ];
+
+  let carrinho = [];
+
+  // Função para formatar preço em reais
+  function formatarPreco(valor){
+    return valor.toLocaleString('pt-BR',{style:'currency', currency:'BRL'});
+  }
+
+  // Criar cards dos produtos
+  function mostrarProdutos(){
+    const container = document.getElementById('produtos-container');
+    container.innerHTML = "";
+    produtos.forEach(prod => {
+      const card = document.createElement('article');
+      card.setAttribute('tabindex', '0');
+      card.style.border = "1px solid #c6d2bf";
+      card.style.borderRadius = "10px";
+      card.style.padding = "1rem";
+      card.style.background = "#fff";
+      card.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
+      card.innerHTML = `
+        <img src="${prod.img}" alt="${prod.nome}" style="width:100%; height:140px; object-fit:cover; border-radius:10px 10px 0 0;" />
+        <h3 style="margin:0.5rem 0;">${prod.nome}</h3>
+        <p><strong>Categoria:</strong> ${prod.categoria}</p>
+        <p><strong>Preço:</strong> ${formatarPreco(prod.preco)}</p>
+        <button aria-label="Adicionar ${prod.nome} ao carrinho" data-id="${prod.id}" style="background:#4CAF50; color:white; border:none; padding:0.5rem 1rem; border-radius:5px; cursor:pointer;">Adicionar</button>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  // Atualizar carrinho na tela
+  function atualizarCarrinho(){
+    const lista = document.getElementById('lista-carrinho');
+    const total = document.getElementById('total-carrinho');
+    lista.innerHTML = "";
+    let totalValor = 0;
+    carrinho.forEach(item => {
+      totalValor += item.preco * item.quantidade;
+      const li = document.createElement('li');
+      li.style.marginBottom = "0.5rem";
+      li.innerHTML = `
+        ${item.nome} - ${formatarPreco(item.preco)} x ${item.quantidade}
+        <button aria-label="Remover um ${item.nome}" data-id="${item.id}" style="margin-left:8px; background:#a94442; color:#fff; border:none; border-radius:50%; width:22px; height:22px; cursor:pointer;">−</button>
+      `;
+      lista.appendChild(li);
+    });
+    total.textContent = `Total: ${formatarPreco(totalValor)}`;
+  }
+
+  // Adicionar produto ao carrinho
+  function adicionarCarrinho(id){
+    const produto = produtos.find(p => p.id === id);
+    if(!produto) return;
+    const itemCarrinho = carrinho.find(i => i.id === id);
+    if(itemCarrinho){
+      itemCarrinho.quantidade++;
+    } else {
+      carrinho.push({...produto, quantidade:1});
     }
+    atualizarCarrinho();
+  }
 
-    // Função para formatar valor em Real
-    function formatarPreco(valor) {
-      return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  // Remover um item do carrinho
+  function removerDoCarrinho(id){
+    const itemIndex = carrinho.findIndex(i => i.id === id);
+    if(itemIndex === -1) return;
+    if(carrinho[itemIndex].quantidade > 1){
+      carrinho[itemIndex].quantidade--;
+    } else {
+      carrinho.splice(itemIndex,1);
     }
+    atualizarCarrinho();
+  }
 
-    // Renderiza os produtos na página
-    function renderizarProdutos() {
-      const container = document.querySelector('.produtos-container');
-      container.innerHTML = '';
-      produtos.forEach(prod => {
-        const card = document.createElement('article');
-        card.className = 'produto';
-        card.setAttribute('tabindex', '0');
-        card.innerHTML = `
-          <h3>${prod.nome}</h3>
-          <p>${prod.descricao}</p>
-          <p class="preco">${formatarPreco(prod.preco)}</p>
-          <button aria-label="Adicionar ${prod.nome} ao carrinho" onclick="adicionarAoCarrinho(${prod.id})">Adicionar</button>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    // Atualiza a visualização do carrinho
-    function atualizarCarrinho() {
-      const lista = document.getElementById('carrinho-lista');
-      lista.innerHTML = '';
-      if (carrinho.length === 0) {
-        lista.innerHTML = '<li>Seu carrinho está vazio.</li>';
-        document.getElementById('btn-finalizar').disabled = true;
-        document.getElementById('btn-esvaziar').disabled = true;
-        document.getElementById('total-carrinho').textContent = 'Total: R$ 0,00';
-        return;
-      }
-      carrinho.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.nome} - ${item.quantidade} x ${formatarPreco(item.preco)} = ${formatarPreco(item.preco * item.quantidade)}`;
-        const btnRemover = document.createElement('button');
-        btnRemover.textContent = 'Remover';
-        btnRemover.setAttribute('aria-label', `Remover ${item.nome} do carrinho`);
-        btnRemover.onclick = () => removerDoCarrinho(item.id);
-        li.appendChild(btnRemover);
-        lista.appendChild(li);
-      });
-      const total = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
-      document.getElementById('total-carrinho').textContent = `Total: ${formatarPreco(total)}`;
-      document.getElementById('btn-finalizar').disabled = false;
-      document.getElementById('btn-esvaziar').disabled = false;
-    }
-
-    // Adiciona produto ao carrinho
-    function adicionarAoCarrinho(id) {
-      const produto = produtos.find(p => p.id === id);
-      if (!produto) return;
-      const itemExistente = carrinho.find(i => i.id === id);
-      if (itemExistente) {
-        itemExistente.quantidade++;
-      } else {
-        carrinho.push({ ...produto, quantidade: 1 });
-      }
-      atualizarCarrinho();
-      alert(`${produto.nome} adicionado ao carrinho!`);
-    }
-
-    // Remove produto do carrinho
-    function removerDoCarrinho(id) {
-      carrinho = carrinho.filter(item => item.id !== id);
-      atualizarCarrinho();
-    }
-
-    // Esvazia o carrinho
-    function esvaziarCarrinho() {
-      if(confirm('Deseja esvaziar o carrinho?')) {
-        carrinho = [];
-        atualizarCarrinho();
-      }
-    }
-
-    // Finaliza a compra (simulação)
-    function finalizarCompra() {
-      if(carrinho.length === 0) return;
-      alert('Compra finalizada! Obrigado por comprar na Estação da Terra.');
+  // Esvaziar carrinho
+  function esvaziarCarrinho(){
+    if(confirm("Tem certeza que deseja esvaziar o carrinho?")){
       carrinho = [];
       atualizarCarrinho();
-      mostrarSecao('loja');
     }
+  }
 
-    // Controle acessibilidade - fonte
-    let tamanhoFonte = 100; // %
-    function alterarFonte(acao) {
-      if(acao === 'aumentar' && tamanhoFonte < 150) {
-        tamanhoFonte += 10;
-      } else if(acao === 'diminuir' && tamanhoFonte > 80) {
-        tamanhoFonte -= 10;
-      }
-      document.documentElement.style.fontSize = tamanhoFonte + '%';
+  // Finalizar compra (simulação)
+  function finalizarCompra(){
+    if(carrinho.length === 0){
+      alert("Seu carrinho está vazio!");
+      return;
     }
+    alert("Compra finalizada com sucesso! Obrigado por comprar na Estação da Terra.");
+    carrinho = [];
+    atualizarCarrinho();
+  }
 
-    // Controle contraste
-    function toggleContraste() {
-      document.body.classList.toggle('contraste-alto');
-    }
-
-    // Controle LIBRAS
-    let librasAtivo = false;
-    function toggleLibras() {
-      const video = document.getElementById('videoLibras');
-      librasAtivo = !librasAtivo;
-      if(librasAtivo) {
-        video.hidden = false;
-        video.play();
+  // Controlar seções visíveis do menu
+  function mostrarSecao(nome){
+    document.querySelectorAll('main > section').forEach(sec => {
+      if(sec.id === nome){
+        sec.hidden = false;
       } else {
-        video.pause();
-        video.hidden = true;
-      }
-    }
-
-    // Enviar formulário de contato
-    document.getElementById('form-contato').addEventListener('submit', function(e){
-      e.preventDefault();
-      const nome = this.nome.value.trim();
-      const email = this.email.value.trim();
-      const mensagem = this.mensagem.value.trim();
-      if(nome && email && mensagem) {
-        document.getElementById('resposta-contato').textContent = 'Mensagem enviada! Entraremos em contato em breve.';
-        this.reset();
-      } else {
-        document.getElementById('resposta-contato').textContent = 'Por favor, preencha todos os campos.';
+        sec.hidden = true;
       }
     });
+    // Atualizar aria-current nos botões do menu
+    document.querySelectorAll('.menu-btn').forEach(btn => {
+      if(btn.dataset.section === nome){
+        btn.setAttribute('aria-current','page');
+      } else {
+        btn.removeAttribute('aria-current');
+      }
+    });
+  }
 
-    // Inicialização da página
-    window.onload = () => {
-      renderizarProdutos();
-      atualizarCarrinho();
-      mostrarSecao('loja');
-    };
-  </script>
+  // Quiz
+  function checarQuiz(event){
+    event.preventDefault();
+    const respostasCertas = {q1:'b', q2:'b', q3:'b'};
+    let acertos = 0;
+    for(let q in respostasCertas){
+      const resposta = event.target[q].value;
+      if(resposta === respostasCertas[q]) acertos++;
+    }
+    const resultadoDiv = document.getElementById('resultado-quiz');
+    resultadoDiv.textContent = `Você acertou ${acertos} de 3 perguntas.`;
+  }
+
+  // Form contato
+  function enviarContato(event){
+    event.preventDefault();
+    const nome = event.target.nome.value.trim();
+    const email = event.target.email.value.trim();
+    const msg = event.target.mensagem.value.trim();
+    if(nome && email && msg){
+      document.getElementById('contato-resposta').textContent = `Obrigado pelo contato, ${nome}! Responderemos em breve.`;
+      event.target.reset();
+    }
+  }
+
+  // Botão LIBRAS (simulação simples)
+  let librasAtivo = false;
+  document.getElementById('btn-libras').addEventListener('click', ()=>{
+    librasAtivo = !librasAtivo;
+    alert(librasAtivo ? 'Tradução em LIBRAS ativada (simulação)' : 'Tradução em LIBRAS desativada');
+  });
+
+  // Botão som ambiente
+  const audioAmbiente = document.getElementById('audio-ambiente');
+  let somAtivo = false;
+  document.getElementById('btn-som').addEventListener('click', ()=>{
+    somAtivo = !somAtivo;
+    if(somAtivo){
+      audioAmbiente.play();
+      document.getElementById('btn-som').textContent = "🔈";
+    } else {
+      audioAmbiente.pause();
+      document.getElementById('btn-som').textContent = "🔊";
+    }
+  });
+
+  // Animação de crescer árvore (simplificada)
+  function animarArvore(){
+    const folhas = document.getElementById('folhas');
+    let opacidade = 0;
+    let tamanho = 10;
+    let cresc = true;
+    const anim = setInterval(()=>{
+      if(cresc){
+        tamanho += 1;
+        opacidade += 0.03;
+        if(tamanho >= 40) cresc = false;
+      } else {
+        tamanho -= 1;
+        opacidade -= 0.03;
+        if(tamanho <= 10) cresc = true;
+      }
+      folhas.setAttribute('r', tamanho);
+      folhas.setAttribute('opacity', opacidade.toFixed(2));
+    }, 80);
+  }
+
+  // Eventos de menu
+  document.querySelectorAll('.menu-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      mostrarSecao(btn.dataset.section);
+    });
+  });
+
+  // Eventos de adicionar produto no carrinho
+  document.getElementById('produtos-container').addEventListener('click', (e) => {
+    if(e.target.tagName === 'BUTTON' && e.target.dataset.id){
+      adicionarCarrinho(Number(e.target.dataset.id));
+    }
+  });
+
+  // Eventos remover item do carrinho
+  document.getElementById('lista-carrinho').addEventListener('click', (e) => {
+    if(e.target.tagName === 'BUTTON' && e.target.dataset.id){
+      removerDoCarrinho(Number(e.target.dataset.id));
+    }
+  });
+
+  // Botões carrinho
+  document.getElementById('btn-esvaziar').addEventListener('click', esvaziarCarrinho);
+  document.getElementById('btn-finalizar').addEventListener('click', finalizarCompra);
+
+  // Formulário quiz
+  document.getElementById('quiz-form').addEventListener('submit', checarQuiz);
+
+  // Form contato
+  document.getElementById('form-contato').addEventListener('submit', enviarContato);
+
+  // Inicialização
+  mostrarProdutos();
+  mostrarSecao('loja');
+  animarArvore();
+</script>
+
 </body>
 </html>
