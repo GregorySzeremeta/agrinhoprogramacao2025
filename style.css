@@ -1,5 +1,7 @@
 /* Reset básico */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -7,231 +9,434 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8f8f8;
-  color: #333;
-  line-height: 1.6;
+  background: #f4f7f6;
+  color: #2a2a2a;
+  line-height: 1.5;
   font-size: 16px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Container centralizado */
+main {
+  flex: 1;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+/* === Cabeçalho === */
 header {
-  background-color: #2c7a4b; /* verde escuro */
-  color: white;
-  padding: 1rem 2rem;
+  background-color: #246a3a; /* verde escuro elegante */
+  color: #fafafa;
   text-align: center;
+  padding: 2rem 1rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  user-select: none;
 }
 
 header h1 {
-  font-weight: 700;
-  font-size: 2.5rem;
-  margin-bottom: 0.2rem;
+  font-weight: 900;
+  font-size: 2.8rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.3rem;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 header .slogan {
-  font-style: italic;
   font-weight: 300;
+  font-style: italic;
+  font-size: 1.2rem;
+  opacity: 0.85;
+  letter-spacing: 0.8px;
   margin-bottom: 1rem;
-  font-size: 1.1rem;
+}
+
+/* Menu - nav */
+.menu {
+  margin-top: 1rem;
 }
 
 .menu ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.4rem;
+  flex-wrap: wrap;
 }
 
 .menu li {
-  /* nada aqui, para manter simples */
+  /* nada específico */
 }
 
+/* Botões do menu */
 .menu-btn {
-  background-color: #65a876; /* verde claro */
-  border: none;
-  color: white;
-  padding: 0.5rem 1.2rem;
-  border-radius: 6px;
+  background-color: #3b8a4a;
+  border: 2.5px solid transparent;
+  color: #fafafa;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.5rem 1.4rem;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
   user-select: none;
 }
 
 .menu-btn:hover,
-.menu-btn:focus {
-  background-color: #538a5e; /* verde médio escuro */
-  outline: none;
+.menu-btn:focus-visible {
+  background-color: transparent;
+  border-color: #fafafa;
+  color: #fafafa;
+  outline-offset: 3px;
+  outline-color: #d2f5d0;
+  outline-style: solid;
+  outline-width: 3px;
 }
 
-.produtos, .carrinho, .pagamento {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto 2rem;
+/* === Produtos === */
+
+.produtos {
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgb(0 0 0 / 0.06);
+  margin-bottom: 2.5rem;
 }
 
-.produtos h2,
-.carrinho h2,
-.pagamento h2 {
-  margin-bottom: 1rem;
-  color: #2c7a4b;
-  font-weight: 700;
+.produtos h2 {
+  color: #246a3a;
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
+/* Grid responsivo das barracas */
 .barracas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.8rem;
 }
 
+/* Card do produto */
 .produto-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 1rem;
-  text-align: center;
-  background-color: #fafafa;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  background: #f9fdf8;
+  border-radius: 12px;
+  border: 1.5px solid #d6e8d1;
+  box-shadow: 0 1px 5px rgba(36, 106, 58, 0.15);
+  padding: 1.4rem 1rem 1.8rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.produto-card:hover,
+.produto-card:focus-within {
+  box-shadow: 0 4px 18px rgba(36, 106, 58, 0.35);
+  border-color: #3b8a4a;
 }
 
 .produto-card img {
   max-width: 100%;
-  height: 140px;
+  height: 150px;
   object-fit: contain;
-  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  pointer-events: none;
 }
 
 .produto-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.3rem;
-  color: #2c7a4b;
+  font-weight: 700;
+  color: #1f5128;
+  margin-bottom: 0.25rem;
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 .produto-card p {
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  color: #3a6c34;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  user-select: text;
 }
 
 .produto-card button {
-  background-color: #2c7a4b;
-  color: white;
+  background-color: #246a3a;
   border: none;
-  padding: 0.5rem 0;
-  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 7px rgb(0 0 0 / 0.15);
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+  user-select: none;
 }
 
 .produto-card button:hover,
-.produto-card button:focus {
-  background-color: #1f5a38;
-  outline: none;
+.produto-card button:focus-visible {
+  background-color: #1e5930;
+  box-shadow: 0 6px 12px rgb(0 0 0 / 0.25);
+  outline-offset: 3px;
+  outline-color: #d2f5d0;
+  outline-style: solid;
+  outline-width: 3px;
+}
+
+/* === Carrinho === */
+
+.carrinho {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgb(0 0 0 / 0.06);
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.carrinho h2 {
+  color: #246a3a;
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 .carrinho ul {
   list-style: none;
-  margin-bottom: 1rem;
-  max-height: 200px;
+  max-height: 220px;
   overflow-y: auto;
-  border: 1px solid #ddd;
-  border-radius: 6px;
   padding: 0.5rem;
-  background: #fff;
+  border: 1.7px solid #d6e8d1;
+  border-radius: 8px;
+  margin-bottom: 1.2rem;
+  user-select: text;
 }
 
 .carrinho li {
   display: flex;
   justify-content: space-between;
-  padding: 0.3rem 0.5rem;
   align-items: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e3f0db;
+  padding: 0.35rem 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #2f5b22;
 }
 
+.carrinho li:last-child {
+  border-bottom: none;
+}
+
+/* Botão remover no item do carrinho */
 .carrinho li button {
-  background-color: #cc4b37;
-  color: white;
+  background-color: #b33a32;
   border: none;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
+  color: white;
+  padding: 0.25rem 0.55rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
   cursor: pointer;
-  font-weight: 600;
   transition: background-color 0.3s ease;
+  user-select: none;
 }
 
 .carrinho li button:hover,
-.carrinho li button:focus {
-  background-color: #a83727;
-  outline: none;
+.carrinho li button:focus-visible {
+  background-color: #84221a;
+  outline-offset: 2px;
+  outline-color: #ffb3b0;
+  outline-style: solid;
+  outline-width: 2px;
 }
 
+/* Total */
 #total-carrinho {
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #1b4619;
   margin-bottom: 1rem;
-  font-size: 1.2rem;
+  text-align: right;
+  user-select: text;
 }
 
+/* Botões finalizar e limpar */
 #btn-finalizar,
 #btn-limpar {
-  background-color: #2c7a4b;
+  background-color: #246a3a;
   color: white;
   border: none;
-  padding: 0.7rem 1.5rem;
-  border-radius: 6px;
+  padding: 0.75rem 1.8rem;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 1.1rem;
   cursor: pointer;
   margin-right: 1rem;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 8px rgba(36, 106, 58, 0.5);
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+  user-select: none;
 }
 
 #btn-finalizar:disabled,
 #btn-limpar:disabled {
-  background-color: #aaa;
+  background-color: #a1a19e;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 #btn-finalizar:hover:not(:disabled),
-#btn-finalizar:focus:not(:disabled),
+#btn-finalizar:focus-visible:not(:disabled),
 #btn-limpar:hover:not(:disabled),
-#btn-limpar:focus:not(:disabled) {
-  background-color: #1f5a38;
-  outline: none;
+#btn-limpar:focus-visible:not(:disabled) {
+  background-color: #1e5930;
+  box-shadow: 0 5px 15px rgba(30, 89, 48, 0.9);
+  outline-offset: 4px;
+  outline-color: #d2f5d0;
+  outline-style: solid;
+  outline-width: 3px;
+}
+
+/* === Área de pagamento === */
+
+.pagamento {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgb(0 0 0 / 0.06);
+  max-width: 460px;
+  margin: 2rem auto 4rem;
+}
+
+.pagamento h2 {
+  color: #246a3a;
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 1.3rem;
+  text-align: center;
 }
 
 .pagamento form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  max-width: 400px;
+  gap: 1.2rem;
 }
 
 .pagamento label {
-  font-weight: 600;
+  font-weight: 700;
+  color: #2e6e3d;
+  user-select: text;
 }
 
 .pagamento input {
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  border: 1.8px solid #aacfa3;
   font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.pagamento input:focus {
+  border-color: #246a3a;
+  outline: none;
+  box-shadow: 0 0 6px #8fd88dcc;
 }
 
 .pagamento button {
-  background-color: #2c7a4b;
+  background-color: #246a3a;
   color: white;
   border: none;
-  padding: 0.7rem 1.2rem;
-  border-radius: 6px;
+  font-weight: 900;
+  font-size: 1.1rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 10px;
   cursor: pointer;
-  font-weight: 700;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(36, 106, 58, 0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
 }
 
-.pagamento button:hover
+.pagamento button:hover,
+.pagamento button:focus-visible {
+  background-color: #1e5930;
+  box-shadow: 0 7px 18px rgba(30, 89, 48, 0.9);
+  outline-offset: 4px;
+  outline-color: #d2f5d0;
+  outline-style: solid;
+  outline-width: 3px;
+}
+
+/* Botão voltar específico */
+.pagamento button[type="button"] {
+  background-color: #a1a19e;
+  margin-top: 0.3rem;
+}
+
+.pagamento button[type="button"]:hover,
+.pagamento button[type="button"]:focus-visible {
+  background-color: #6b6a66;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Scroll bar para listas longas (carrinho) */
+.carrinho ul::-webkit-scrollbar {
+  width: 9px;
+}
+
+.carrinho ul::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.carrinho ul::-webkit-scrollbar-thumb {
+  background: #246a3a;
+  border-radius: 10px;
+}
+
+.carrinho ul::-webkit-scrollbar-thumb:hover {
+  background: #1e5930;
+}
+
+/* === Responsividade simples === */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .menu ul {
+    gap: 1rem;
+  }
+
+  .produto-card img {
+    height: 110px;
+  }
+
+  .produto-card h3 {
+    font-size: 1.05rem;
+  }
+
+  #btn-finalizar,
+  #btn-limpar {
+    font-size: 1rem;
+    padding: 0.5rem 1.1rem;
+  }
+}
