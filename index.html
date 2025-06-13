@@ -10,8 +10,8 @@
 
   <header class="header">
     <h1 class="logo">Estação da Terra</h1>
-    <nav class="nav">
-      <a href="index.html" class="nav-link active">Loja</a>
+    <nav class="nav" role="navigation" aria-label="Menu principal">
+      <a href="index.html" class="nav-link active" aria-current="page">Loja</a>
       <a href="quiz.html" class="nav-link">Quiz</a>
       <a href="sobre.html" class="nav-link">Sobre</a>
       <a href="contato.html" class="nav-link">Contato</a>
@@ -19,102 +19,124 @@
   </header>
 
   <main class="main-content">
-    <section class="loja-section">
+    <section class="loja-section" aria-label="Produtos do campo">
       <h2>Produtos do Campo</h2>
-      <div class="produtos-grid">
-        <!-- Exemplos de produtos -->
-        <article class="produto-card">
+      <div class="produtos-grid" role="list">
+        <article class="produto-card" role="listitem">
           <img src="img/maca.jpg" alt="Maçã Orgânica" />
           <h3>Maçã Orgânica</h3>
           <p class="preco">R$ 3,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Maçã Orgânica', 3)" class="btn-adicionar">Adicionar ao Carrinho</button>
+          <button onclick="adicionarAoCarrinho('Maçã Orgânica', 3)" class="btn-adicionar" aria-label="Adicionar Maçã Orgânica ao carrinho">Adicionar ao Carrinho</button>
         </article>
-
-        <article class="produto-card">
+        <article class="produto-card" role="listitem">
           <img src="img/mel.jpg" alt="Mel Puro" />
           <h3>Mel Puro</h3>
           <p class="preco">R$ 15,00</p>
-          <button onclick="adicionarAoCarrinho('Mel Puro', 15)" class="btn-adicionar">Adicionar ao Carrinho</button>
+          <button onclick="adicionarAoCarrinho('Mel Puro', 15)" class="btn-adicionar" aria-label="Adicionar Mel Puro ao carrinho">Adicionar ao Carrinho</button>
         </article>
-
-        <article class="produto-card">
+        <article class="produto-card" role="listitem">
           <img src="img/banana.jpg" alt="Banana" />
           <h3>Banana</h3>
           <p class="preco">R$ 2,50/kg</p>
-          <button onclick="adicionarAoCarrinho('Banana', 2.5)" class="btn-adicionar">Adicionar ao Carrinho</button>
+          <button onclick="adicionarAoCarrinho('Banana', 2.5)" class="btn-adicionar" aria-label="Adicionar Banana ao carrinho">Adicionar ao Carrinho</button>
         </article>
-
-        <!-- Mais 10 produtos extras -->
-        <article class="produto-card">
-          <img src="img/laranja.jpg" alt="Laranja" />
-          <h3>Laranja</h3>
-          <p class="preco">R$ 2,80/kg</p>
-          <button onclick="adicionarAoCarrinho('Laranja', 2.8)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        <article class="produto-card" role="listitem">
+          <img src="img/queijo.jpg" alt="Queijo Artesanal" />
+          <h3>Queijo Artesanal</h3>
+          <p class="preco">R$ 40,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Queijo Artesanal', 40)" class="btn-adicionar" aria-label="Adicionar Queijo Artesanal ao carrinho">Adicionar ao Carrinho</button>
         </article>
-
-        <article class="produto-card">
-          <img src="img/queijo.jpg" alt="Queijo Minas" />
-          <h3>Queijo Minas</h3>
-          <p class="preco">R$ 25,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Queijo Minas', 25)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        <article class="produto-card" role="listitem">
+          <img src="img/leite.jpg" alt="Leite Fresco" />
+          <h3>Leite Fresco</h3>
+          <p class="preco">R$ 5,00/L</p>
+          <button onclick="adicionarAoCarrinho('Leite Fresco', 5)" class="btn-adicionar" aria-label="Adicionar Leite Fresco ao carrinho">Adicionar ao Carrinho</button>
         </article>
-
-        <article class="produto-card">
-          <img src="img/ovos.jpg" alt="Ovos Caipira" />
-          <h3>Ovos Caipira</h3>
-          <p class="preco">R$ 12,00/duzia</p>
-          <button onclick="adicionarAoCarrinho('Ovos Caipira', 12)" class="btn-adicionar">Adicionar ao Carrinho</button>
-        </article>
-
-        <article class="produto-card">
+        <article class="produto-card" role="listitem">
           <img src="img/arroz.jpg" alt="Arroz Integral" />
           <h3>Arroz Integral</h3>
           <p class="preco">R$ 8,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Arroz Integral', 8)" class="btn-adicionar">Adicionar ao Carrinho</button>
+          <button onclick="adicionarAoCarrinho('Arroz Integral', 8)" class="btn-adicionar" aria-label="Adicionar Arroz Integral ao carrinho">Adicionar ao Carrinho</button>
         </article>
-
-        <article class="produto-card">
-          <img src="img/feijao.jpg" alt="Feijão Carioca" />
-          <h3>Feijão Carioca</h3>
+        <article class="produto-card" role="listitem">
+          <img src="img/feijao.jpg" alt="Feijão Preto" />
+          <h3>Feijão Preto</h3>
           <p class="preco">R$ 7,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Feijão Carioca', 7)" class="btn-adicionar">Adicionar ao Carrinho</button>
+          <button onclick="adicionarAoCarrinho('Feijão Preto', 7)" class="btn-adicionar" aria-label="Adicionar Feijão Preto ao carrinho">Adicionar ao Carrinho</button>
         </article>
-
-        <article class="produto-card">
+        <article class="produto-card" role="listitem">
+          <img src="img/laranja.jpg" alt="Laranja" />
+          <h3>Laranja</h3>
+          <p class="preco">R$ 3,50/kg</p>
+          <button onclick="adicionarAoCarrinho('Laranja', 3.5)" class="btn-adicionar" aria-label="Adicionar Laranja ao carrinho">Adicionar ao Carrinho</button>
+        </article>
+        <article class="produto-card" role="listitem">
           <img src="img/milho.jpg" alt="Milho Verde" />
           <h3>Milho Verde</h3>
-          <p class="preco">R$ 4,50/kg</p>
-          <button onclick="adicionarAoCarrinho('Milho Verde', 4.5)" class="btn-adicionar">Adicionar ao Carrinho</button>
+          <p class="preco">R$ 4,00/un</p>
+          <button onclick="adicionarAoCarrinho('Milho Verde', 4)" class="btn-adicionar" aria-label="Adicionar Milho Verde ao carrinho">Adicionar ao Carrinho</button>
         </article>
-
-        <article class="produto-card">
-          <img src="img/abacaxi.jpg" alt="Abacaxi" />
-          <h3>Abacaxi</h3>
-          <p class="preco">R$ 6,00/unidade</p>
-          <button onclick="adicionarAoCarrinho('Abacaxi', 6)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        <article class="produto-card" role="listitem">
+          <img src="img/morango.jpg" alt="Morango" />
+          <h3>Morango</h3>
+          <p class="preco">R$ 12,00/caixa</p>
+          <button onclick="adicionarAoCarrinho('Morango', 12)" class="btn-adicionar" aria-label="Adicionar Morango ao carrinho">Adicionar ao Carrinho</button>
         </article>
-
-        <article class="produto-card">
+        <article class="produto-card" role="listitem">
           <img src="img/tomate.jpg" alt="Tomate" />
           <h3>Tomate</h3>
-          <p class="preco">R$ 3,20/kg</p>
-          <button onclick="adicionarAoCarrinho('Tomate', 3.2)" class="btn-adicionar">Adicionar ao Carrinho</button>
+          <p class="preco">R$ 4,50/kg</p>
+          <button onclick="adicionarAoCarrinho('Tomate', 4.5)" class="btn-adicionar" aria-label="Adicionar Tomate ao carrinho">Adicionar ao Carrinho</button>
         </article>
-
-        <article class="produto-card">
+        <article class="produto-card" role="listitem">
           <img src="img/alface.jpg" alt="Alface" />
           <h3>Alface</h3>
-          <p class="preco">R$ 2,00/unidade</p>
-          <button onclick="adicionarAoCarrinho('Alface', 2)" class="btn-adicionar">Adicionar ao Carrinho</button>
+          <p class="preco">R$ 2,00/un</p>
+          <button onclick="adicionarAoCarrinho('Alface', 2)" class="btn-adicionar" aria-label="Adicionar Alface ao carrinho">Adicionar ao Carrinho</button>
+        </article>
+        <article class="produto-card" role="listitem">
+          <img src="img/cenoura.jpg" alt="Cenoura" />
+          <h3>Cenoura</h3>
+          <p class="preco">R$ 3,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Cenoura', 3)" class="btn-adicionar" aria-label="Adicionar Cenoura ao carrinho">Adicionar ao Carrinho</button>
         </article>
       </div>
 
-      <aside class="carrinho">
+      <aside class="carrinho" aria-label="Carrinho de compras">
         <h3>Carrinho</h3>
-        <ul id="lista-carrinho"></ul>
+        <ul id="lista-carrinho" tabindex="0" aria-live="polite"></ul>
         <p id="total-carrinho">Total: R$ 0,00</p>
         <button id="btn-esvaziar" disabled>Esvaziar Carrinho</button>
         <button id="btn-finalizar" disabled>Finalizar Compra</button>
+
+        <!-- Formulário para finalizar compra -->
+        <form id="form-finalizar" style="display:none; margin-top: 20px;" aria-label="Formulário de finalização de compra">
+          <h4>Finalize sua compra</h4>
+
+          <label for="nome-completo">Nome completo:</label>
+          <input type="text" id="nome-completo" name="nome-completo" required placeholder="Seu nome completo" />
+
+          <label for="endereco">Endereço:</label>
+          <textarea id="endereco" name="endereco" rows="3" required placeholder="Rua, número, bairro, cidade, CEP"></textarea>
+
+          <label for="pagamento">Método de pagamento:</label>
+          <select id="pagamento" name="pagamento" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="cartao">Cartão de Crédito</option>
+            <option value="boleto">Boleto Bancário</option>
+            <option value="pix">Pix</option>
+          </select>
+
+          <button type="submit" class="btn-finalizar-compra">Confirmar Compra</button>
+          <button type="button" id="btn-voltar" class="btn-voltar">Voltar ao Carrinho</button>
+        </form>
+
+        <!-- Mensagem de confirmação -->
+        <div id="mensagem-sucesso" style="display:none; margin-top: 20px; text-align:center;">
+          <h4>Compra realizada com sucesso!</h4>
+          <p>Obrigado pela preferência.</p>
+          <button id="btn-nova-compra" class="btn-voltar">Voltar para Loja</button>
+        </div>
       </aside>
     </section>
   </main>
@@ -125,6 +147,10 @@
     const totalCarrinho = document.getElementById('total-carrinho');
     const btnEsvaziar = document.getElementById('btn-esvaziar');
     const btnFinalizar = document.getElementById('btn-finalizar');
+    const formFinalizar = document.getElementById('form-finalizar');
+    const mensagemSucesso = document.getElementById('mensagem-sucesso');
+    const btnVoltar = document.getElementById('btn-voltar');
+    const btnNovaCompra = document.getElementById('btn-nova-compra');
 
     function atualizarCarrinho() {
       listaCarrinho.innerHTML = '';
@@ -156,24 +182,52 @@
     });
 
     btnFinalizar.addEventListener('click', () => {
-      alert('Compra finalizada! Obrigado pela preferência.');
+      if (carrinho.length === 0) {
+        alert('Seu carrinho está vazio!');
+        return;
+      }
+      // Esconde a lista do carrinho e os botões
+      listaCarrinho.style.display = 'none';
+      totalCarrinho.style.display = 'none';
+      btnEsvaziar.style.display = 'none';
+      btnFinalizar.style.display = 'none';
+
+      // Mostra o formulário
+      formFinalizar.style.display = 'block';
+    });
+
+    formFinalizar.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      alert('Compra confirmada! Em breve entraremos em contato.');
+
       carrinho.length = 0;
       atualizarCarrinho();
+
+      formFinalizar.style.display = 'none';
+      mensagemSucesso.style.display = 'block';
+    });
+
+    btnVoltar.addEventListener('click', () => {
+      formFinalizar.style.display = 'none';
+      mensagemSucesso.style.display = 'none';
+
+      listaCarrinho.style.display = 'block';
+      totalCarrinho.style.display = 'block';
+      btnEsvaziar.style.display = 'inline-block';
+      btnFinalizar.style.display = 'inline-block';
+    });
+
+    btnNovaCompra.addEventListener('click', () => {
+      mensagemSucesso.style.display = 'none';
+
+      listaCarrinho.style.display = 'block';
+      totalCarrinho.style.display = 'block';
+      btnEsvaziar.style.display = 'inline-block';
+      btnFinalizar.style.display = 'inline-block';
     });
 
     atualizarCarrinho();
-  </script>
-
-  <!-- VLibras - Plugin para tradução automática em Libras -->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper">
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
 
 </body>
