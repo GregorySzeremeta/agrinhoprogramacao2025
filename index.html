@@ -3,229 +3,252 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Estação da Terra - Loja</title>
+  <title>Estação da Terra</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- VLibras script -->
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
+
+  <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho -->
   <header>
     <h1>Estação da Terra</h1>
     <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
+    <nav class="menu">
+      <ul>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main id="main-content">
-    <!-- Loja -->
-    <section id="loja" class="active-section">
-      <div class="produtos-container">
+  <!-- Produtos -->
+  <main>
+    <section class="produtos">
+      <h2>Produtos à Venda</h2>
+      <div class="barracas">
 
-        <article class="produto" data-id="1">
-          <img src="https://i.imgur.com/gZx5cJj.jpg" alt="Mel" />
-          <h2>Mel Natural</h2>
-          <p>Mel puro e natural, direto da colmeia.</p>
-          <p class="preco">R$ 25,00</p>
-          <button class="btn-add" data-id="1">Adicionar ao carrinho</button>
-        </article>
+        <!-- Produtos originais -->
+        <div class="produto-card">
+          <img src="img/maçã.jpg" alt="Maçã Orgânica" />
+          <h3>Maçã Orgânica</h3>
+          <p>R$ 3,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Maçã Orgânica', 3)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/mel.jpg" alt="Mel Puro" />
+          <h3>Mel Puro</h3>
+          <p>R$ 15,00</p>
+          <button onclick="adicionarAoCarrinho('Mel Puro', 15)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/queijo.jpg" alt="Queijo Artesanal" />
+          <h3>Queijo Artesanal</h3>
+          <p>R$ 25,00</p>
+          <button onclick="adicionarAoCarrinho('Queijo Artesanal', 25)">Adicionar</button>
+        </div>
 
-        <article class="produto" data-id="2">
-          <img src="https://i.imgur.com/klGvEYj.jpg" alt="Queijo" />
-          <h2>Queijo Artesanal</h2>
-          <p>Queijo fresco feito artesanalmente.</p>
-          <p class="preco">R$ 40,00</p>
-          <button class="btn-add" data-id="2">Adicionar ao carrinho</button>
-        </article>
-
-        <article class="produto" data-id="3">
-          <img src="https://i.imgur.com/BTaXYlQ.jpg" alt="Frutas" />
-          <h2>Frutas Orgânicas</h2>
-          <p>Frutas frescas e cultivadas sem agrotóxicos.</p>
-          <p class="preco">R$ 15,00</p>
-          <button class="btn-add" data-id="3">Adicionar ao carrinho</button>
-        </article>
-
-        <article class="produto" data-id="4">
-          <img src="https://i.imgur.com/h6NXQbE.jpg" alt="Leite" />
-          <h2>Leite Fresco</h2>
-          <p>Leite direto da fazenda, com qualidade garantida.</p>
-          <p class="preco">R$ 8,00</p>
-          <button class="btn-add" data-id="4">Adicionar ao carrinho</button>
-        </article>
-
-        <article class="produto" data-id="5">
-          <img src="https://i.imgur.com/7aYfn1M.jpg" alt="Grãos" />
-          <h2>Grãos Selecionados</h2>
-          <p>Grãos variados para sua alimentação saudável.</p>
-          <p class="preco">R$ 12,00</p>
-          <button class="btn-add" data-id="5">Adicionar ao carrinho</button>
-        </article>
-
-        <article class="produto" data-id="6">
-          <img src="https://i.imgur.com/fPMyYHx.jpg" alt="Verduras" />
-          <h2>Verduras Frescas</h2>
-          <p>Verduras selecionadas, direto do campo para você.</p>
-          <p class="preco">R$ 10,00</p>
-          <button class="btn-add" data-id="6">Adicionar ao carrinho</button>
-        </article>
+        <!-- Novos produtos -->
+        <div class="produto-card">
+          <img src="img/banana.jpg" alt="Banana" />
+          <h3>Banana</h3>
+          <p>R$ 2,50/kg</p>
+          <button onclick="adicionarAoCarrinho('Banana', 2.5)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/tomate.jpg" alt="Tomate" />
+          <h3>Tomate</h3>
+          <p>R$ 4,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Tomate', 4)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/alface.jpg" alt="Alface" />
+          <h3>Alface</h3>
+          <p>R$ 1,80/un</p>
+          <button onclick="adicionarAoCarrinho('Alface', 1.8)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/cenoura.jpg" alt="Cenoura" />
+          <h3>Cenoura</h3>
+          <p>R$ 3,20/kg</p>
+          <button onclick="adicionarAoCarrinho('Cenoura', 3.2)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/batata.jpg" alt="Batata" />
+          <h3>Batata</h3>
+          <p>R$ 2,90/kg</p>
+          <button onclick="adicionarAoCarrinho('Batata', 2.9)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/abacate.jpg" alt="Abacate" />
+          <h3>Abacate</h3>
+          <p>R$ 7,00/un</p>
+          <button onclick="adicionarAoCarrinho('Abacate', 7)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/Pãointegral.jpg" alt="Pão Integral" />
+          <h3>Pão Integral</h3>
+          <p>R$ 6,50</p>
+          <button onclick="adicionarAoCarrinho('Pão Integral', 6.5)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/leite.jpg" alt="Leite" />
+          <h3>Leite</h3>
+          <p>R$ 4,00/litro</p>
+          <button onclick="adicionarAoCarrinho('Leite', 4)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/ovo.jpg" alt="Ovos" />
+          <h3>Ovos</h3>
+          <p>R$ 8,00/12 unidades</p>
+          <button onclick="adicionarAoCarrinho('Ovos', 8)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/arroz.jpg" alt="Arroz Integral" />
+          <h3>Arroz</h3>
+          <p>R$ 5,50/kg</p>
+          <button onclick="adicionarAoCarrinho('Arroz Integral', 5.5)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/feijão.jpg" alt="Feijão" />
+          <h3>Feijão</h3>
+          <p>R$ 6,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Feijão', 6)">Adicionar</button>
+        </div>
 
       </div>
-
-      <aside id="carrinho">
-        <h3>Carrinho</h3>
-        <ul id="lista-carrinho"></ul>
-        <p id="total">Total: R$ 0,00</p>
-        <button id="btn-finalizar" disabled>Finalizar Compra</button>
-      </aside>
     </section>
 
-    <!-- Área de Pagamento -->
-    <section id="pagamento" class="hidden-section">
-      <h2>Finalizar Compra</h2>
-      <form id="form-pagamento">
-        <fieldset>
-          <legend>Informações de Pagamento</legend>
-          <label for="nome">Nome Completo:</label>
-          <input type="text" id="nome" name="nome" required />
+    <!-- Carrinho -->
+    <section class="carrinho" aria-label="Carrinho de Compras">
+      <h2>Carrinho</h2>
+      <ul id="lista-carrinho" aria-live="polite" aria-relevant="additions removals"></ul>
+      <p id="total-carrinho">Total: R$ 0,00</p>
+      <button id="btn-finalizar" onclick="mostrarAreaPagamento()" disabled>Finalizar Compra</button>
+      <button id="btn-limpar" onclick="limparCarrinho()" disabled>Limpar Carrinho</button>
+    </section>
 
-          <label for="endereco">Endereço:</label>
-          <textarea id="endereco" name="endereco" rows="3" required></textarea>
+    <!-- Área de Pagamento (inicialmente oculta) -->
+    <section class="pagamento" id="area-pagamento" style="display:none;">
+      <h2>Pagamento</h2>
+      <form id="form-pagamento" onsubmit="finalizarCompra(event)">
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" required />
 
-          <label for="pagamento-tipo">Forma de Pagamento:</label>
-          <select id="pagamento-tipo" name="pagamento-tipo" required>
-            <option value="" disabled selected>Selecione</option>
-            <option value="cartao">Cartão de Crédito</option>
-            <option value="boleto">Boleto Bancário</option>
-            <option value="pix">PIX</option>
-          </select>
-        </fieldset>
+        <label for="cartao">Número do Cartão:</label>
+        <input type="text" id="cartao" name="cartao" pattern="\d{16}" maxlength="16" placeholder="0000 0000 0000 0000" required />
 
-        <button type="submit" id="btn-confirmar">Confirmar Pedido</button>
-        <button type="button" id="btn-voltar">Voltar para Loja</button>
+        <label for="validade">Validade:</label>
+        <input type="month" id="validade" name="validade" required />
+
+        <label for="cvv">CVV:</label>
+        <input type="password" id="cvv" name="cvv" pattern="\d{3}" maxlength="3" required />
+
+        <button type="submit">Pagar</button>
+        <button type="button" onclick="voltarAoCarrinho()">Voltar ao Carrinho</button>
       </form>
-    </section>
-
-    <!-- Mensagem de sucesso -->
-    <section id="sucesso" class="hidden-section">
-      <h2>Pedido realizado com sucesso!</h2>
-      <p>Obrigado por comprar na Estação da Terra 🌱</p>
-      <button id="btn-voltar-loja">Voltar para Loja</button>
     </section>
   </main>
 
-  <footer>
-    <p>© 2025 Estação da Terra. Todos os direitos reservados.</p>
-  </footer>
-
   <script>
-    const produtos = [
-      { id: 1, nome: "Mel Natural", preco: 25 },
-      { id: 2, nome: "Queijo Artesanal", preco: 40 },
-      { id: 3, nome: "Frutas Orgânicas", preco: 15 },
-      { id: 4, nome: "Leite Fresco", preco: 8 },
-      { id: 5, nome: "Grãos Selecionados", preco: 12 },
-      { id: 6, nome: "Verduras Frescas", preco: 10 },
-    ];
+    // Dados do carrinho
+    let carrinho = [];
 
-    const carrinho = [];
-
-    // Elementos
-    const listaCarrinho = document.getElementById("lista-carrinho");
-    const totalEl = document.getElementById("total");
-    const btnFinalizar = document.getElementById("btn-finalizar");
-
-    const secLoja = document.getElementById("loja");
-    const secPagamento = document.getElementById("pagamento");
-    const secSucesso = document.getElementById("sucesso");
-
-    const formPagamento = document.getElementById("form-pagamento");
-    const btnVoltar = document.getElementById("btn-voltar");
-    const btnVoltarLoja = document.getElementById("btn-voltar-loja");
-
-    // Função para formatar preço
-    function formatarPreco(valor) {
-      return valor.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      });
-    }
-
-    // Atualizar carrinho na UI
-    function atualizarCarrinho() {
-      listaCarrinho.innerHTML = "";
-      let total = 0;
-
-      carrinho.forEach((item) => {
-        const prod = produtos.find((p) => p.id === item.id);
-        total += prod.preco * item.quantidade;
-
-        const li = document.createElement("li");
-        li.textContent = `${prod.nome} x ${item.quantidade} - ${formatarPreco(
-          prod.preco * item.quantidade
-        )}`;
-        listaCarrinho.appendChild(li);
-      });
-
-      totalEl.textContent = `Total: ${formatarPreco(total)}`;
-
-      btnFinalizar.disabled = total === 0;
-    }
-
-    // Adicionar produto no carrinho
-    document.querySelectorAll(".btn-add").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const id = Number(btn.dataset.id);
-        const item = carrinho.find((c) => c.id === id);
-
-        if (item) {
-          item.quantidade++;
-        } else {
-          carrinho.push({ id, quantidade: 1 });
-        }
-
-        atualizarCarrinho();
-      });
-    });
-
-    // Mostrar a área de pagamento
-    btnFinalizar.addEventListener("click", () => {
-      secLoja.classList.remove("active-section");
-      secLoja.classList.add("hidden-section");
-      secPagamento.classList.remove("hidden-section");
-      secPagamento.classList.add("active-section");
-      window.scrollTo(0, 0);
-    });
-
-    // Voltar para loja
-    btnVoltar.addEventListener("click", () => {
-      secPagamento.classList.remove("active-section");
-      secPagamento.classList.add("hidden-section");
-      secLoja.classList.remove("hidden-section");
-      secLoja.classList.add("active-section");
-    });
-
-    btnVoltarLoja.addEventListener("click", () => {
-      secSucesso.classList.remove("active-section");
-      secSucesso.classList.add("hidden-section");
-      secLoja.classList.remove("hidden-section");
-      secLoja.classList.add("active-section");
-      carrinho.length = 0; // limpa carrinho
+    function adicionarAoCarrinho(nome, preco) {
+      const itemExistente = carrinho.find(item => item.nome === nome);
+      if (itemExistente) {
+        itemExistente.quantidade++;
+      } else {
+        carrinho.push({ nome, preco, quantidade: 1 });
+      }
       atualizarCarrinho();
-    });
+    }
 
-    // Confirmar pedido
-    formPagamento.addEventListener("submit", (e) => {
-      e.preventDefault();
+    function atualizarCarrinho() {
+      const lista = document.getElementById('lista-carrinho');
+      lista.innerHTML = '';
 
-      alert("Pedido confirmado! Obrigado por comprar na Estação da Terra 🌱");
+      let total = 0;
+      carrinho.forEach((item, index) => {
+        total += item.preco * item.quantidade;
 
-      secPagamento.classList.remove("active-section");
-      secPagamento.classList.add("hidden-section");
+        const li = document.createElement('li');
+        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
+        
+        // Botão remover item
+        const btnRemover = document.createElement('button');
+        btnRemover.textContent = 'Remover';
+        btnRemover.setAttribute('aria-label', `Remover ${item.nome} do carrinho`);
+        btnRemover.onclick = () => {
+          removerDoCarrinho(index);
+        };
+        li.appendChild(btnRemover);
+        lista.appendChild(li);
+      });
 
-      secSucesso.classList.remove("hidden-section");
-      secSucesso.classList.add("active-section");
+      document.getElementById('total-carrinho').textContent = `Total: R$ ${total.toFixed(2)}`;
 
-      window.scrollTo(0, 0);
-    });
+      document.getElementById('btn-finalizar').disabled = carrinho.length === 0;
+      document.getElementById('btn-limpar').disabled = carrinho.length === 0;
+    }
 
-    // Inicializa carrinho vazio
+    function removerDoCarrinho(index) {
+      carrinho.splice(index, 1);
+      atualizarCarrinho();
+    }
+
+    function limparCarrinho() {
+      if(confirm('Deseja realmente limpar o carrinho?')) {
+        carrinho = [];
+        atualizarCarrinho();
+      }
+    }
+
+    function mostrarAreaPagamento() {
+      document.querySelector('.produtos').style.display = 'none';
+      document.querySelector('.carrinho').style.display = 'none';
+      document.getElementById('area-pagamento').style.display = 'block';
+      window.scrollTo(0,0);
+    }
+
+    function voltarAoCarrinho() {
+      document.querySelector('.produtos').style.display = 'block';
+      document.querySelector('.carrinho').style.display = 'block';
+      document.getElementById('area-pagamento').style.display = 'none';
+      window.scrollTo(0,0);
+    }
+
+    function finalizarCompra(event) {
+      event.preventDefault();
+
+      const nome = document.getElementById('nome').value.trim();
+      if (carrinho.length === 0) {
+        alert('Seu carrinho está vazio.');
+        voltarAoCarrinho();
+        return;
+      }
+      alert(`Obrigado pela compra, ${nome}! \nTotal: R$ ${carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0).toFixed(2)}`);
+
+      // Resetar tudo
+      carrinho = [];
+      atualizarCarrinho();
+      document.getElementById('form-pagamento').reset();
+      voltarAoCarrinho();
+    }
+
+    // Inicializa o carrinho vazio
     atualizarCarrinho();
+
+    // Inicia VLibras plugin
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
 </body>
 </html>
