@@ -1,4 +1,4 @@
-/* Reset e fonte moderna */
+/* RESET E FONTE BASE */
 * {
   margin: 0;
   padding: 0;
@@ -9,203 +9,219 @@ body {
   font-family: "Inter", sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  background-color: #f4f4f4;
+  background-color: #fdfdfd;
   color: #333;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* CABEÇALHO */
 header {
-  background-color: #4caf50;
-  color: white;
-  padding: 1rem 2rem;
-  border-bottom: 4px solid #388e3c;
+  background: linear-gradient(90deg, #66bb6a, #43a047);
+  color: #fff;
+  padding: 2rem 1rem;
   text-align: center;
+  border-bottom: 4px solid #2e7d32;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .slogan {
-  margin-top: 0.5rem;
   font-style: italic;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  opacity: 0.9;
 }
 
-/* Menu */
+/* MENU DE NAVEGAÇÃO */
 .menu ul {
-  list-style: none;
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-top: 1rem;
   flex-wrap: wrap;
+  gap: 2rem;
+  list-style: none;
+  margin-top: 1rem;
 }
 
 .menu a {
-  color: white;
   text-decoration: none;
+  color: #fff;
   font-weight: 500;
-  transition: opacity 0.3s ease;
+  font-size: 1rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 8px;
+  transition: background 0.3s ease;
 }
 
 .menu a:hover {
-  opacity: 0.8;
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Seções */
+/* SEÇÕES */
 main section {
-  padding: 2rem;
+  padding: 3rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+  font-size: 2rem;
   color: #4caf50;
   border-bottom: 2px solid #c8e6c9;
+  margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
 }
 
-/* Barracas */
+/* PRODUTOS */
 .barracas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
 }
 
-.barraca {
-  text-align: center;
-  background-color: white;
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease;
-  cursor: pointer;
-}
-
-.barraca:hover {
-  transform: translateY(-5px);
-}
-
-.barraca img {
-  max-width: 100%;
-  border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-/* Produtos */
 .produto-card {
-  background: white;
+  background: #fff;
   border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 1rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 1.2rem;
   text-align: center;
-  margin: 1rem;
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .produto-card:hover {
-  transform: scale(1.02);
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .produto-card img {
   max-width: 100%;
-  border-radius: 0.5rem;
+  border-radius: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.produto-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: #2e7d32;
+}
+
+.produto-card p {
+  font-weight: bold;
+  color: #444;
 }
 
 .produto-card button {
-  background-color: #4caf50;
-  border: none;
+  margin-top: 1rem;
+  background: #4caf50;
   color: white;
-  padding: 0.6rem 1rem;
-  border-radius: 1rem;
-  margin-top: 0.5rem;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .produto-card button:hover {
-  background-color: #388e3c;
+  background: #2e7d32;
 }
 
-/* Carrinho */
+/* CARRINHO */
 #carrinho {
-  margin-top: 2rem;
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 1rem;
-  padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  margin-top: 2rem;
 }
 
-#carrinho h3 {
-  color: #388e3c;
-  margin-bottom: 0.5rem;
+#carrinho ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
 }
 
-/* Quiz */
+#carrinho button {
+  background-color: #e53935;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#carrinho button:hover {
+  background-color: #c62828;
+}
+
+/* QUIZ */
 .quiz-container {
   background-color: white;
   border-radius: 1rem;
   padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.quiz-container h1 {
-  margin-bottom: 1rem;
-  color: #388e3c;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 .question {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.question p {
+  font-weight: bold;
+  margin-bottom: 0.6rem;
 }
 
 .question label {
   display: block;
   margin-top: 0.3rem;
+  cursor: pointer;
 }
 
 .quiz-container button {
   background-color: #4caf50;
   color: white;
-  border: none;
   padding: 0.6rem 1rem;
-  border-radius: 1rem;
+  border-radius: 2rem;
+  border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
 }
 
 .quiz-container button:hover {
   background-color: #2e7d32;
 }
 
-/* Resultado */
+/* RESULTADO */
 .resultado-container {
   margin-top: 1rem;
   font-weight: bold;
   color: #2e7d32;
+  font-size: 1.2rem;
 }
 
-/* Acessibilidade */
+/* ACESSIBILIDADE */
 #acessibilidade {
   position: fixed;
   bottom: 1rem;
   right: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.6rem;
+  z-index: 1000;
 }
 
 #acessibilidade button {
-  font-size: 1.2rem;
   background: white;
   border: 2px solid #4caf50;
   color: #4caf50;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -215,32 +231,32 @@ h2 {
   color: white;
 }
 
-/* Contraste alto */
+/* CONTRASTE ALTO */
 body.contraste {
-  background-color: black;
-  color: yellow;
+  background-color: #000;
+  color: #ff0;
 }
 
 body.contraste header,
-body.contraste .barraca,
 body.contraste .produto-card,
 body.contraste .quiz-container,
 body.contraste #carrinho {
-  background-color: black;
-  color: yellow;
-  border: 1px solid yellow;
+  background-color: #000;
+  color: #ff0;
+  border: 1px solid #ff0;
 }
 
-/* Rodapé */
+/* RODAPÉ */
 footer {
   text-align: center;
-  padding: 1rem;
-  background-color: #388e3c;
+  padding: 1.2rem;
+  background-color: #2e7d32;
   color: white;
-  margin-top: 2rem;
+  margin-top: 3rem;
+  font-size: 0.9rem;
 }
 
-/* Confetes */
+/* ANIMAÇÃO DE CONFETES */
 .confetti-container {
   position: fixed;
   top: 0;
@@ -248,7 +264,7 @@ footer {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 999;
+  z-index: 9999;
 }
 
 .confetti {
@@ -256,6 +272,7 @@ footer {
   height: 10px;
   position: absolute;
   animation: cair 3s ease-in-out forwards;
+  border-radius: 50%;
 }
 
 @keyframes cair {

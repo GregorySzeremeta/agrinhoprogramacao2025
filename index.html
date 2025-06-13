@@ -1,145 +1,186 @@
-<!-- ========================= HTML + JavaScript ========================= -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estação da Terra</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <!-- VLibras -->
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
+
+  <!-- Animação de Entrada -->
+  <div id="entrada" class="entrada-animada" aria-label="Bem-vindo à Estação da Terra">
+    <h1>🌱 Estação da Terra 🌻</h1>
+  </div>
+
+  <!-- Botões de Acessibilidade -->
+  <div id="acessibilidade" class="acessibilidade">
+    <button onclick="toggleContraste()" aria-label="Alternar contraste">🌓</button>
+    <button onclick="aumentarFonte()" aria-label="Aumentar fonte">🔠</button>
+    <button onclick="diminuirFonte()" aria-label="Diminuir fonte">🔡</button>
+  </div>
+
+  <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho -->
   <header>
-    <h1>🌱 Estação da Terra</h1>
-    <p>Do campo à cidade, colhendo oportunidades</p>
+    <h1>Estação da Terra</h1>
+    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
+    <nav class="menu" aria-label="Menu principal">
+      <ul>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+        <li><a href="#carrinho">Carrinho</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+      </ul>
+    </nav>
   </header>
 
+  <!-- Conteúdo Principal -->
   <main>
-    <section id="mapa-feira">
-      <h2>Mapa da Feira</h2>
+    
+    <!-- Seção Produtos -->
+    <section id="produtos" aria-labelledby="produtos-titulo">
+      <h2 id="produtos-titulo">Produtos à Venda</h2>
       <div class="barracas">
-        <div class="barraca" onclick="mostrarProdutos('vegetais')">
-          <img src="vegetais.png" alt="Barraca de Vegetais">
-          <p>Vegetais</p>
+
+        <!-- Produto 1 -->
+        <div class="produto-card">
+          <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce" alt="Maçã Orgânica">
+          <h3>Maçã Orgânica</h3>
+          <p>R$ 3,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Maçã Orgânica')">Adicionar</button>
         </div>
-        <div class="barraca" onclick="mostrarProdutos('frutas')">
-          <img src="frutas.png" alt="Barraca de Frutas">
-          <p>Frutas</p>
+
+        <!-- Produto 2 -->
+        <div class="produto-card">
+          <img src="https://images.unsplash.com/photo-1582515073490-39981397c445" alt="Mel Puro">
+          <h3>Mel Puro</h3>
+          <p>R$ 15,00</p>
+          <button onclick="adicionarAoCarrinho('Mel Puro')">Adicionar</button>
         </div>
-        <div class="barraca" onclick="mostrarProdutos('graos')">
-          <img src="graos.png" alt="Barraca de Grãos">
-          <p>Grãos</p>
+
+        <!-- Produto 3 -->
+        <div class="produto-card">
+          <img src="https://images.unsplash.com/photo-1572441710263-478a1b119119" alt="Queijo Artesanal">
+          <h3>Queijo Artesanal</h3>
+          <p>R$ 25,00</p>
+          <button onclick="adicionarAoCarrinho('Queijo Artesanal')">Adicionar</button>
         </div>
-        <!-- Mais barracas -->
       </div>
     </section>
 
-    <section id="produtos">
-      <h2>Produtos</h2>
-      <div id="lista-produtos"></div>
+    <!-- Seção Carrinho -->
+    <section id="carrinho" aria-labelledby="carrinho-titulo">
+      <h2 id="carrinho-titulo">🛒 Carrinho de Compras</h2>
+      <ul id="lista-carrinho"></ul>
+      <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
     </section>
 
-    <section class="quiz-wrapper">
-      <div class="quiz-container">
-        <h1>QUIZ: Agricultura</h1>
-
+    <!-- Seção Quiz -->
+    <section id="quiz" aria-labelledby="quiz-titulo">
+      <h2 id="quiz-titulo">🌽 Quiz Agrícola</h2>
+      <div class="quiz-container" id="quiz-container">
         <div class="question">
-          <p>1) Qual é a principal função da agricultura?</p>
-          <label><input type="radio" name="q1" value="a" />Proteger os animais</label>
-          <label><input type="radio" name="q1" value="b" />Produzir alimentos</label>
-          <label><input type="radio" name="q1" value="c" />Cuidar das florestas</label>
+          <p>1. Qual desses produtos é uma leguminosa?</p>
+          <label><input type="radio" name="q1" value="errado"> Banana</label>
+          <label><input type="radio" name="q1" value="correto"> Feijão</label>
+          <label><input type="radio" name="q1" value="errado"> Tomate</label>
         </div>
-        <!-- Outras perguntas -->
-
-        <button onclick="corrigirQuiz()">Enviar</button>
+        <div class="question">
+          <p>2. Qual o melhor horário para irrigar plantas?</p>
+          <label><input type="radio" name="q2" value="correto"> De manhã cedo</label>
+          <label><input type="radio" name="q2" value="errado"> Meio-dia</label>
+          <label><input type="radio" name="q2" value="errado"> À noite</label>
+        </div>
+        <div class="question">
+          <p>3. Qual o principal benefício do adubo orgânico?</p>
+          <label><input type="radio" name="q3" value="correto"> Melhora o solo naturalmente</label>
+          <label><input type="radio" name="q3" value="errado"> Causa menos folhas</label>
+          <label><input type="radio" name="q3" value="errado"> É mais barato</label>
+        </div>
+        <div class="question">
+          <p>4. O que é uma horta vertical?</p>
+          <label><input type="radio" name="q4" value="correto"> Cultivo em paredes ou estruturas suspensas</label>
+          <label><input type="radio" name="q4" value="errado"> Horta de legumes grandes</label>
+          <label><input type="radio" name="q4" value="errado"> Nome antigo de horta</label>
+        </div>
+        <button onclick="verificarQuiz()">Verificar Respostas</button>
         <div class="resultado-container" id="resultado"></div>
       </div>
     </section>
 
-    <div id="acessibilidade">
-      <button onclick="alternarContraste()">🌓 Contraste</button>
-      <button onclick="aumentarFonte()">🔠 A+</button>
-      <button onclick="resetarFonte()">🔡 Reset</button>
-      <button onclick="ativarSomAmbiente()">🎵 Som da Feira</button>
-      <button onclick="abrirLibras()">👐 LIBRAS</button>
-    </div>
+    <!-- Seção Sobre -->
+    <section id="sobre" aria-labelledby="sobre-titulo">
+      <h2 id="sobre-titulo">História da Estação da Terra</h2>
+      <p>
+        A Estação da Terra nasceu com o propósito de aproximar o campo da cidade. Nosso objetivo é conectar pequenos produtores a consumidores conscientes, promovendo sustentabilidade, saúde e economia local. Aqui, cada barraca é uma oportunidade, cada produto é um pedaço da natureza.
+      </p>
+    </section>
   </main>
 
+  <!-- Rodapé -->
   <footer>
     <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
   </footer>
 
+  <!-- Scripts -->
   <script>
-    const produtos = {
-      vegetais: ["Alface", "Couve", "Brócolis"],
-      frutas: ["Maçã", "Banana", "Uva"],
-      graos: ["Feijão", "Milho", "Arroz"]
-    };
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
 
-    function mostrarProdutos(categoria) {
-      const lista = document.getElementById("lista-produtos");
-      lista.innerHTML = `<h3>${categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h3>`;
-      produtos[categoria].forEach(prod => {
-        const p = document.createElement('p');
-        p.textContent = prod;
-        lista.appendChild(p);
+    let carrinho = [];
+
+    function adicionarAoCarrinho(produto) {
+      carrinho.push(produto);
+      atualizarCarrinho();
+    }
+
+    function atualizarCarrinho() {
+      const lista = document.getElementById("lista-carrinho");
+      lista.innerHTML = "";
+      carrinho.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        lista.appendChild(li);
       });
     }
 
-    const gabarito = {
-      q1: 'b'
-      // Adicione os demais aqui
-    };
+    function esvaziarCarrinho() {
+      carrinho = [];
+      atualizarCarrinho();
+    }
 
-    function corrigirQuiz() {
-      const respostas = document.querySelectorAll("input[type=radio]:checked");
-      let acertos = 0;
-      respostas.forEach(r => {
-        if (gabarito[r.name] === r.value) acertos++;
+    function verificarQuiz() {
+      let total = 0;
+      document.querySelectorAll("#quiz-container input:checked").forEach(el => {
+        if (el.value === "correto") total++;
       });
-
-      const resultado = document.getElementById("resultado");
-      resultado.innerHTML = `<h2>Você acertou ${acertos} questão(ões)!</h2>`;
-
-      if (acertos >= Object.keys(gabarito).length) {
-        criarConfetes();
-      }
+      document.getElementById("resultado").textContent = `Você acertou ${total} de 4 perguntas!`;
     }
 
-    function criarConfetes() {
-      const confettiContainer = document.createElement("div");
-      confettiContainer.classList.add("confetti-container");
-      document.body.appendChild(confettiContainer);
-      for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement("div");
-        confetti.classList.add("confetti");
-        const colors = ['#FFC107', '#FF5722', '#4CAF50', '#03A9F4'];
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.left = `${Math.random() * 100}%`;
-        confettiContainer.appendChild(confetti);
-      }
-    }
-
-    function alternarContraste() {
+    function toggleContraste() {
       document.body.classList.toggle("contraste");
     }
 
     function aumentarFonte() {
-      document.body.style.fontSize = "1.2em";
+      document.body.style.fontSize = "larger";
     }
 
-    function resetarFonte() {
-      document.body.style.fontSize = "1em";
+    function diminuirFonte() {
+      document.body.style.fontSize = "initial";
     }
 
-    function ativarSomAmbiente() {
-      const audio = new Audio("som-floresta.mp3");
-      audio.loop = true;
-      audio.play();
-    }
-
-    function abrirLibras() {
-      window.open("https://www.vlibras.gov.br/app", "_blank");
-    }
+    setTimeout(() => {
+      document.getElementById("entrada").style.display = "none";
+    }, 3000);
   </script>
 </body>
 </html>
