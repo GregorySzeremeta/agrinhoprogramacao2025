@@ -1,113 +1,137 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Estação da Terra - Loja</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Acessibilidade -->
-  <div id="acessibilidade">
-    <button onclick="toggleContraste()" aria-label="Alternar contraste">🌓</button>
-    <button onclick="aumentarFonte()" aria-label="Aumentar fonte">🔠</button>
-    <button onclick="diminuirFonte()" aria-label="Diminuir fonte">🔡</button>
-  </div>
 
-  <!-- VLibras -->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
+<header class="header">
+  <div class="logo">Estação da Terra</div>
+  <nav class="nav-menu" role="navigation" aria-label="Menu principal">
+    <a href="#" class="nav-link active" aria-current="page">Loja</a>
+    <a href="quiz.html" class="nav-link">Quiz</a>
+    <a href="sobre.html" class="nav-link">Sobre</a>
+  </nav>
+</header>
+
+<main class="main-content">
+
+  <section class="store-section" aria-label="Produtos da loja">
+    <h2>Produtos</h2>
+
+    <div class="categories">
+
+      <!-- Categoria Leite -->
+      <article class="category" id="leite">
+        <h3>Leite e derivados</h3>
+        <div class="products-grid">
+          <div class="product-card" tabindex="0">
+            <img src="imagens/leite1.jpg" alt="Leite fresco 1L" />
+            <h4>Leite Fresco 1L</h4>
+            <p>Leite integral orgânico direto do produtor.</p>
+            <div class="price">R$ 5,50</div>
+            <button class="btn-add-cart" aria-label="Adicionar Leite Fresco 1L ao carrinho">Adicionar</button>
+          </div>
+
+          <div class="product-card" tabindex="0">
+            <img src="imagens/queijo-minas.jpg" alt="Queijo Minas artesanal" />
+            <h4>Queijo Minas Artesanal</h4>
+            <p>Queijo produzido artesanalmente com sabor tradicional.</p>
+            <div class="price">R$ 20,00</div>
+            <button class="btn-add-cart" aria-label="Adicionar Queijo Minas Artesanal ao carrinho">Adicionar</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Categoria Frutas -->
+      <article class="category" id="frutas">
+        <h3>Frutas</h3>
+        <div class="products-grid">
+          <div class="product-card" tabindex="0">
+            <img src="imagens/maca.jpg" alt="Maçã vermelha" />
+            <h4>Maçã Vermelha</h4>
+            <p>Maçãs frescas e suculentas, direto da fazenda.</p>
+            <div class="price">R$ 4,00/kg</div>
+            <button class="btn-add-cart" aria-label="Adicionar Maçã Vermelha ao carrinho">Adicionar</button>
+          </div>
+          <div class="product-card" tabindex="0">
+            <img src="imagens/banana.jpg" alt="Banana nanica" />
+            <h4>Banana Nanica</h4>
+            <p>Bananas doces e maduras para o seu lanche.</p>
+            <div class="price">R$ 3,50/kg</div>
+            <button class="btn-add-cart" aria-label="Adicionar Banana Nanica ao carrinho">Adicionar</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Categoria Verduras -->
+      <article class="category" id="verduras">
+        <h3>Verduras e hortaliças</h3>
+        <div class="products-grid">
+          <div class="product-card" tabindex="0">
+            <img src="imagens/alface.jpg" alt="Alface fresca" />
+            <h4>Alface Fresca</h4>
+            <p>Alface colhida na hora, crocante e saudável.</p>
+            <div class="price">R$ 2,50/un</div>
+            <button class="btn-add-cart" aria-label="Adicionar Alface Fresca ao carrinho">Adicionar</button>
+          </div>
+          <div class="product-card" tabindex="0">
+            <img src="imagens/tomate.jpg" alt="Tomate cereja" />
+            <h4>Tomate Cereja</h4>
+            <p>Tomates doces e saborosos para suas receitas.</p>
+            <div class="price">R$ 6,00/250g</div>
+            <button class="btn-add-cart" aria-label="Adicionar Tomate Cereja ao carrinho">Adicionar</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Categoria Grãos -->
+      <article class="category" id="graos">
+        <h3>Grãos e sementes</h3>
+        <div class="products-grid">
+          <div class="product-card" tabindex="0">
+            <img src="imagens/feijao.jpg" alt="Feijão carioca" />
+            <h4>Feijão Carioca</h4>
+            <p>Feijão selecionado para sua mesa.</p>
+            <div class="price">R$ 7,00/kg</div>
+            <button class="btn-add-cart" aria-label="Adicionar Feijão Carioca ao carrinho">Adicionar</button>
+          </div>
+          <div class="product-card" tabindex="0">
+            <img src="imagens/arroz.jpg" alt="Arroz integral" />
+            <h4>Arroz Integral</h4>
+            <p>Arroz nutritivo e saudável.</p>
+            <div class="price">R$ 6,50/kg</div>
+            <button class="btn-add-cart" aria-label="Adicionar Arroz Integral ao carrinho">Adicionar</button>
+          </div>
+        </div>
+      </article>
+
     </div>
+  </section>
+
+</main>
+
+<!-- Carrinho fixo lateral -->
+<aside class="cart-sidebar" aria-label="Carrinho de compras" aria-live="polite" aria-atomic="true">
+  <h3>Carrinho</h3>
+  <ul id="cart-items" class="cart-items" tabindex="0" aria-relevant="additions removals"></ul>
+  <div class="cart-total">
+    <span>Total:</span>
+    <span id="cart-total-value">R$ 0,00</span>
   </div>
+  <div class="cart-actions">
+    <button id="btn-empty-cart" aria-label="Esvaziar carrinho">Esvaziar</button>
+    <button id="btn-checkout" aria-label="Finalizar compra">Finalizar</button>
+  </div>
+</aside>
 
-  <!-- Cabeçalho -->
-  <header>
-    <h1>Estação da Terra</h1>
-    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
-    <nav class="menu">
-      <ul>
-        <li><a href="quiz.html">Quiz</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-      </ul>
-    </nav>
-  </header>
+<footer class="footer">
+  <p>© 2025 Estação da Terra - Do campo à cidade, colhendo oportunidades.</p>
+</footer>
 
-  <!-- Loja -->
-  <main>
-    <section id="produtos">
-      <h2>Produtos à Venda</h2>
-      <div class="barracas">
-        <div class="produto-card">
-          <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce" alt="Maçã Orgânica">
-          <h3>Maçã Orgânica</h3>
-          <p>R$ 3,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Maçã Orgânica')">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="https://images.unsplash.com/photo-1582515073490-39981397c445" alt="Mel Puro">
-          <h3>Mel Puro</h3>
-          <p>R$ 15,00</p>
-          <button onclick="adicionarAoCarrinho('Mel Puro')">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="https://images.unsplash.com/photo-1572441710263-478a1b119119" alt="Queijo Artesanal">
-          <h3>Queijo Artesanal</h3>
-          <p>R$ 25,00</p>
-          <button onclick="adicionarAoCarrinho('Queijo Artesanal')">Adicionar</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Carrinho -->
-    <section id="carrinho">
-      <h2>🛒 Carrinho de Compras</h2>
-      <ul id="lista-carrinho"></ul>
-      <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
-  </footer>
-
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-    let carrinho = [];
-
-    function adicionarAoCarrinho(produto) {
-      carrinho.push(produto);
-      atualizarCarrinho();
-    }
-
-    function atualizarCarrinho() {
-      const lista = document.getElementById("lista-carrinho");
-      lista.innerHTML = "";
-      carrinho.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        lista.appendChild(li);
-      });
-    }
-
-    function esvaziarCarrinho() {
-      carrinho = [];
-      atualizarCarrinho();
-    }
-
-    function toggleContraste() {
-      document.body.classList.toggle("contraste");
-    }
-
-    function aumentarFonte() {
-      document.body.style.fontSize = "larger";
-    }
-
-    function diminuirFonte() {
-      document.body.style.fontSize = "initial";
-    }
-  </script>
+<script src="script.js"></script>
 </body>
 </html>
