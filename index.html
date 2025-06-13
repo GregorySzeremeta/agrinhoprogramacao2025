@@ -1,104 +1,262 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
   <title>Estação da Terra - Loja</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <style>
+    /* Botão voltar ao topo */
+    #btnTopo {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 9999;
+      transition: background-color 0.3s;
+    }
+    #btnTopo:hover {
+      background-color: #388E3C;
+    }
+  </style>
 </head>
 <body>
+  <!-- Acessibilidade -->
+  <div id="acessibilidade">
+    <button onclick="toggleContraste()" aria-label="Alternar contraste">🌓</button>
+    <button onclick="aumentarFonte()" aria-label="Aumentar fonte">🔠</button>
+    <button onclick="diminuirFonte()" aria-label="Diminuir fonte">🔡</button>
+  </div>
 
-  <header class="header">
-    <h1 class="logo">Estação da Terra</h1>
-    <nav class="nav">
-      <a href="index.html" class="nav-link active">Loja</a>
-      <a href="quiz.html" class="nav-link">Quiz</a>
-      <a href="sobre.html" class="nav-link">Sobre</a>
-      <a href="contato.html" class="nav-link">Contato</a>
+  <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho -->
+  <header>
+    <h1>Estação da Terra</h1>
+    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
+    <nav class="menu">
+      <ul>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+      </ul>
     </nav>
   </header>
 
-  <main class="main-content">
-    <section class="loja-section">
-      <h2>Produtos do Campo</h2>
-      <div class="produtos-grid">
-        <!-- Produto exemplo -->
-        <article class="produto-card">
-          <img src="img/maça.jpg" alt="Maçã Orgânica" />
-          <h3>Maçã Orgânica</h3>
-          <p class="preco">R$ 3,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Maçã Orgânica', 3)" class="btn-adicionar">Adicionar ao Carrinho</button>
-        </article>
-        <!-- Repita os produtos aqui -->
-        <article class="produto-card">
-          <img src="img/mel.jpg" alt="Mel Puro" />
-          <h3>Mel Puro</h3>
-          <p class="preco">R$ 15,00</p>
-          <button onclick="adicionarAoCarrinho('Mel Puro', 15)" class="btn-adicionar">Adicionar ao Carrinho</button>
-        </article>
-        <article class="produto-card">
-          <img src="img/banana.jpg" alt="Banana" />
-          <h3>Banana</h3>
-          <p class="preco">R$ 2,50/kg</p>
-          <button onclick="adicionarAoCarrinho('Banana', 2.5)" class="btn-adicionar">Adicionar ao Carrinho</button>
-        </article>
-        <!-- ... adicione mais produtos aqui -->
-      </div>
+  <!-- Loja -->
+  <main>
+    <section id="produtos">
+      <h2>Produtos à Venda</h2>
+      <div class="barracas">
 
-      <aside class="carrinho">
-        <h3>Carrinho</h3>
-        <ul id="lista-carrinho"></ul>
-        <p id="total-carrinho">Total: R$ 0,00</p>
-        <button id="btn-esvaziar" disabled>Esvaziar Carrinho</button>
-        <button id="btn-finalizar" disabled>Finalizar Compra</button>
-      </aside>
+        <!-- Produtos originais -->
+        <div class="produto-card">
+          <img src="img/maçã.jpg" alt="Maçã Orgânica">
+          <h3>Maçã Orgânica</h3>
+          <p>R$ 3,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Maçã Orgânica', 3)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/mel.jpg" alt="Mel Puro">
+          <h3>Mel Puro</h3>
+          <p>R$ 15,00</p>
+          <button onclick="adicionarAoCarrinho('Mel Puro', 15)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/queijo.jpg" alt="Queijo Artesanal">
+          <h3>Queijo Artesanal</h3>
+          <p>R$ 25,00</p>
+          <button onclick="adicionarAoCarrinho('Queijo Artesanal', 25)">Adicionar</button>
+        </div>
+
+        <!-- Novos produtos adicionados -->
+        <div class="produto-card">
+          <img src="img/banana.jpg" alt="Banana">
+          <h3>Banana</h3>
+          <p>R$ 2,50/kg</p>
+          <button onclick="adicionarAoCarrinho('Banana', 2.5)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/tomate.jpg" alt="Tomate">
+          <h3>Tomate</h3>
+          <p>R$ 4,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Tomate', 4)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/alface.jpg" alt="Alface">
+          <h3>Alface</h3>
+          <p>R$ 1,80/un</p>
+          <button onclick="adicionarAoCarrinho('Alface', 1.8)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/cenoura.jpg" alt="Cenoura">
+          <h3>Cenoura</h3>
+          <p>R$ 3,20/kg</p>
+          <button onclick="adicionarAoCarrinho('Cenoura', 3.2)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/batata.jpg" alt="Batata">
+          <h3>Batata</h3>
+          <p>R$ 2,90/kg</p>
+          <button onclick="adicionarAoCarrinho('Batata', 2.9)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/abacate.jpg" alt="Abacate">
+          <h3>Abacate</h3>
+          <p>R$ 7,00/un</p>
+          <button onclick="adicionarAoCarrinho('Abacate', 7)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/Pãointegral.jpg" alt="Pão Integral">
+          <h3>Pão Integral</h3>
+          <p>R$ 6,50</p>
+          <button onclick="adicionarAoCarrinho('Pão Integral', 6.5)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/leite.jpg" alt="Leite">
+          <h3>Leite</h3>
+          <p>R$ 4,00/litro</p>
+          <button onclick="adicionarAoCarrinho('Leite', 4)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/ovo.jpg" alt="Ovos">
+          <h3>Ovos</h3>
+          <p>R$ 8,00/12 unidades</p>
+          <button onclick="adicionarAoCarrinho('Ovos', 8)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/arroz.jpg" alt="Arroz Integral">
+          <h3>Arroz</h3>
+          <p>R$ 5,50/kg</p>
+          <button onclick="adicionarAoCarrinho('Arroz Integral', 5.5)">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="img/feijão.jpg" alt="Feijão">
+          <h3>Feijão</h3>
+          <p>R$ 6,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Feijão', 6)">Adicionar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Carrinho -->
+    <section id="carrinho">
+      <h2>🛒 Carrinho de Compras</h2>
+      <ul id="lista-carrinho"></ul>
+      <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
     </section>
   </main>
 
+  <button id="btnTopo" title="Voltar ao topo" aria-label="Voltar ao topo">⬆️</button>
+
+  <footer>
+    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
+  </footer>
+
   <script>
-    const carrinho = [];
-    const listaCarrinho = document.getElementById('lista-carrinho');
-    const totalCarrinho = document.getElementById('total-carrinho');
-    const btnEsvaziar = document.getElementById('btn-esvaziar');
-    const btnFinalizar = document.getElementById('btn-finalizar');
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
 
+    let carrinho = [];
+
+    // Adiciona produto ao carrinho; recebe nome e preço
+    function adicionarAoCarrinho(produto, preco) {
+      // Verifica se produto já está no carrinho
+      const itemExistente = carrinho.find(item => item.nome === produto);
+      if (itemExistente) {
+        itemExistente.quantidade++;
+      } else {
+        carrinho.push({ nome: produto, preco: preco, quantidade: 1 });
+      }
+      atualizarCarrinho();
+    }
+
+    // Atualiza visual da lista do carrinho
     function atualizarCarrinho() {
-      listaCarrinho.innerHTML = '';
-      let total = 0;
+      const lista = document.getElementById("lista-carrinho");
+      lista.innerHTML = "";
 
-      carrinho.forEach((item, i) => {
-        const li = document.createElement('li');
-        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
-        listaCarrinho.appendChild(li);
-        total += item.preco;
+      if (carrinho.length === 0) {
+        const vazio = document.createElement("li");
+        vazio.textContent = "Carrinho vazio.";
+        lista.appendChild(vazio);
+        return;
+      }
+
+      carrinho.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.nome} — ${item.quantidade}x — R$ ${(item.preco * item.quantidade).toFixed(2)}`;
+        lista.appendChild(li);
       });
 
-      totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
-      btnEsvaziar.disabled = carrinho.length === 0;
-      btnFinalizar.disabled = carrinho.length === 0;
+      // Total geral
+      const total = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
+      const liTotal = document.createElement("li");
+      liTotal.style.fontWeight = "bold";
+      liTotal.style.marginTop = "10px";
+      liTotal.textContent = `Total: R$ ${total.toFixed(2)}`;
+      lista.appendChild(liTotal);
     }
 
-    function adicionarAoCarrinho(nome, preco) {
-      carrinho.push({ nome, preco });
+    // Esvazia carrinho
+    function esvaziarCarrinho() {
+      carrinho = [];
       atualizarCarrinho();
-      alert(`${nome} adicionado ao carrinho!`);
     }
 
-    btnEsvaziar.addEventListener('click', () => {
-      if (confirm('Deseja esvaziar o carrinho?')) {
-        carrinho.length = 0;
-        atualizarCarrinho();
+    // Contraste
+    function toggleContraste() {
+      document.body.classList.toggle("contraste");
+    }
+
+    // Fonte maior
+    function aumentarFonte() {
+      const style = window.getComputedStyle(document.body).fontSize;
+      let size = parseFloat(style);
+      if (size < 24) {
+        document.body.style.fontSize = (size + 2) + "px";
       }
+    }
+
+    // Fonte menor
+    function diminuirFonte() {
+      const style = window.getComputedStyle(document.body).fontSize;
+      let size = parseFloat(style);
+      if (size > 12) {
+        document.body.style.fontSize = (size - 2) + "px";
+      }
+    }
+
+    // Botão voltar ao topo
+    const btnTopo = document.getElementById("btnTopo");
+
+    window.onscroll = function() {
+      if (document.documentElement.scrollTop > 150) {
+        btnTopo.style.display = "block";
+      } else {
+        btnTopo.style.display = "none";
+      }
+    };
+
+    btnTopo.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    btnFinalizar.addEventListener('click', () => {
-      alert('Compra finalizada! Obrigado pela preferência.');
-      carrinho.length = 0;
-      atualizarCarrinho();
-    });
-
+    // Inicializa carrinho vazio
     atualizarCarrinho();
   </script>
-
 </body>
 </html>
