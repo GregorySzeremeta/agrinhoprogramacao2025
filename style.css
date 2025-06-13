@@ -1,14 +1,13 @@
 /* Reset básico */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
-
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 16px;
-  margin: 0;
-  background: #f2f7f0;
-  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9f9f9;
+  color: #222;
   line-height: 1.5;
   min-height: 100vh;
   display: flex;
@@ -16,453 +15,269 @@ body {
 }
 
 header {
-  background-color: #4caf50;
-  color: white;
-  padding: 1rem;
-  text-align: center;
+  background: #1e5128;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
-
 header h1 {
-  margin: 0;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  flex: 1 1 200px;
 }
-
 header .slogan {
-  margin: 0.25rem 0 1rem;
+  flex: 1 1 300px;
   font-style: italic;
   font-weight: 300;
+  opacity: 0.8;
 }
-
-nav ul.menu {
-  list-style: none;
-  padding: 0;
+nav {
   display: flex;
-  justify-content: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
-
-nav ul.menu li button {
-  background: #3e8e41;
-  border: none;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-nav ul.menu li button:hover,
-nav ul.menu li button:focus {
-  background: #2f6b2e;
-  outline: 3px solid #fff;
-  outline-offset: 2px;
-}
-
-.accessibility-controls {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.accessibility-controls button {
-  background: #eee;
-  border: 1px solid #bbb;
-  border-radius: 5px;
-  padding: 0.3rem 0.8rem;
+.nav-btn {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 0.4rem 1rem;
   font-weight: 600;
+  border-radius: 0.4rem;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background 0.3s ease;
 }
-
-.accessibility-controls button[aria-pressed="true"] {
-  background: #4caf50;
-  color: white;
-  border-color: #3e8e41;
-}
-
-.accessibility-controls button:hover,
-.accessibility-controls button:focus {
-  background-color: #d1e7dd;
+.nav-btn:hover,
+.nav-btn:focus {
+  background: #a5d6a7;
+  color: #1e5128;
   outline: none;
 }
 
-main#mainContent {
-  flex-grow: 1;
-  padding: 1rem 2rem;
-  max-width: 1200px;
+#cart-icon {
+  position: relative;
+  cursor: pointer;
+  font-size: 1.7rem;
+  user-select: none;
+  outline-offset: 3px;
+}
+#cart-icon:focus {
+  outline: 3px solid #a5d6a7;
+  border-radius: 0.3rem;
+}
+#cart-count {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background: #f44336;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 0 7px;
+  font-size: 0.8rem;
+  min-width: 22px;
+  text-align: center;
+}
+
+/* Main content */
+main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1100px;
   margin: 0 auto;
-}
-
-.produtos-lista {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-.produto-item {
   background: white;
   border-radius: 8px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+}
+
+/* Seções */
+section {
+  display: none;
+  outline: none;
+}
+section.active {
+  display: block;
+}
+
+/* Loja - grid de produtos */
+.produtos-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.produtos-categoria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.produto-card {
+  background: #e8f5e9;
   padding: 1rem;
-  box-shadow: 0 3px 6px rgb(0 0 0 / 0.1);
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: box-shadow 0.3s ease;
 }
-
-.produto-item:focus-within,
-.produto-item:hover {
-  box-shadow: 0 6px 12px rgb(0 0 0 / 0.2);
+.produto-card strong {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.produto-card p {
+  color: #2e7d32;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.btn-add {
+  background: #4caf50;
+  border: none;
+  color: white;
+  padding: 0.5rem 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 0.4rem;
+  transition: background 0.3s ease;
+}
+.btn-add:hover,
+.btn-add:focus {
+  background: #388e3c;
   outline: none;
 }
 
-.produto-nome {
+/* Carrinho */
+#carrinho ul {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+#carrinho li {
+  background: #f1f8e9;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.4rem;
+  border-radius: 4px;
+}
+.total {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+.btn-primary, .btn-secondary {
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-right: 1rem;
+}
+.btn-primary {
+  background: #1e5128;
+  color: white;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background: #145214;
+  outline: none;
+}
+.btn-secondary {
+  background: #ccc;
+  color: #222;
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background: #999;
+  outline: none;
+}
+
+/* Quiz */
+#quiz form {
+  max-width: 700px;
+  margin-top: 1rem;
+}
+.pergunta {
+  margin-bottom: 1.5rem;
+  background: #e3f2fd;
+  padding: 1rem;
+  border-radius: 6px;
+}
+.pergunta fieldset {
+  border: none;
+}
+.pergunta legend {
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
   font-size: 1.1rem;
 }
-
-.produto-preco {
-  margin-bottom: 0.75rem;
-  color: #4caf50;
-  font-weight: 600;
-}
-
-.produto-item button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.produto-item button:hover,
-.produto-item button:focus {
-  background-color: #3a8c3c;
-  outline: none;
-}
-
-#cartBtn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #4caf50;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  border-radius: 50%;
-  width: 56px;
-  height: 56px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: background-color 0.3s ease;
-}
-
-#cartBtn:hover,
-#cartBtn:focus {
-  background-color: #3a8c3c;
-  outline: none;
-}
-
-#cartCount {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background: #ff3b3b;
-  color: white;
-  font-weight: 700;
-  font-size: 0.75rem;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 18px;
-  pointer-events: none;
-}
-
-dialog#cartDialog {
-  border: none;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 480px;
-  padding: 1.5rem;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-}
-
-dialog#cartDialog::backdrop {
-  background-color: rgba(0,0,0,0.4);
-}
-
-#cartItems ul {
-  list-style: none;
-  padding-left: 0;
-  max-height: 250px;
-  overflow-y: auto;
-  margin-bottom: 1rem;
-}
-
-.cart-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
-.cart-buttons button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  flex-grow: 1;
-  transition: background-color 0.3s ease;
-}
-
-.cart-buttons button:hover,
-.cart-buttons button:focus {
-  background-color: #3a8c3c;
-  outline: none;
-}
-
-#checkoutBtn {
-  background-color: #007acc;
-}
-
-#checkoutBtn:hover,
-#checkoutBtn:focus {
-  background-color: #005a9e;
-}
-
-#quizSection {
-  max-width: 600px;
-  margin: 1rem auto;
-  background: white;
-  border-radius: 10px;
-  padding: 1rem 2rem;
-  box-shadow: 0 3px 6px rgb(0 0 0 / 0.1);
-}
-
-#quizQuestion {
-  font-weight: 700;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-
-#quizOptions button {
+.pergunta label {
   display: block;
-  width: 100%;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-  font-size: 1rem;
+  margin-bottom: 0.4rem;
   cursor: pointer;
-  border: 2px solid #4caf50;
-  background-color: white;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
+}
+input[type="radio"] {
+  margin-right: 0.5rem;
 }
 
-#quizOptions button:hover,
-#quizOptions button:focus {
-  background-color: #e4f5e9;
-  outline: none;
-}
-
-#quizOptions button.correta {
-  background-color: #4caf50;
-  color: white;
-  border-color: #388e3c;
-}
-
-#quizOptions button.errada {
-  background-color: #f44336;
-  color: white;
-  border-color: #d32f2f;
-}
-
-#quizResult {
-  font-weight: 600;
-  margin: 0.5rem 0 1rem;
-  min-height: 1.5rem;
-  color: #4caf50;
-}
-
-#quizNextBtn,
-#quizRestartBtn {
-  padding: 0.6rem 1.2rem;
-  font-weight: 700;
-  border: none;
+/* Resultado do quiz */
+#resultado {
+  margin-top: 2rem;
+  background: #c8e6c9;
+  padding: 1rem 1.5rem;
   border-radius: 6px;
-  cursor: pointer;
-  background-color: #4caf50;
-  color: white;
-  transition: background-color 0.3s ease;
 }
 
-#quizNextBtn[disabled] {
-  background-color: #a5d6a7;
-  cursor: not-allowed;
+/* Confete */
+#confete-container {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: visible;
+  z-index: 9999;
 }
-
-#quizNextBtn:hover:not([disabled]),
-#quizRestartBtn:hover {
-  background-color: #388e3c;
+.confete {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  opacity: 0.9;
+  animation-name: confete-caindo;
+  animation-duration: 5s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  border-radius: 2px;
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.15));
 }
-
-#contatoSection {
-  max-width: 600px;
-  margin: 1rem auto;
-  background: white;
-  padding: 1rem 2rem;
-  border-radius: 10px;
-  box-shadow: 0 3px 6px rgb(0 0 0 / 0.1);
-}
-
-#contatoSection form {
-  display: flex;
-  flex-direction: column;
-}
-
-#contatoSection label {
-  margin-top: 0.5rem;
-  font-weight: 600;
-}
-
-#contatoSection input,
-#contatoSection textarea {
-  margin-top: 0.3rem;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  resize: vertical;
-}
-
-#contatoSection button[type="submit"] {
-  margin-top: 1rem;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 0.7rem 1.2rem;
-  font-weight: 700;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-}
-
-#contatoSection button[type="submit"]:hover,
-#contatoSection button[type="submit"]:focus {
-  background-color: #388e3c;
-  outline: none;
-}
-
-#contatoFeedback {
-  margin-top: 1rem;
-  font-weight: 600;
-  color: #4caf50;
-  min-height: 1.2rem;
-}
-
-/* Modo alto contraste */
-body.alto-contraste {
-  background-color: black;
-  color: white;
-}
-
-body.alto-contraste header {
-  background-color: yellowgreen;
-  color: black;
-}
-
-body.alto-contraste nav ul.menu li button {
-  background-color: yellowgreen;
-  color: black;
-}
-
-body.alto-contraste nav ul.menu li button:hover,
-body.alto-contraste nav ul.menu li button:focus {
-  background-color: #cddc39;
-  color: black;
-  outline: 3px solid black;
-}
-
-body.alto-contraste .produto-item {
-  background-color: black;
-  color: yellow;
-  border: 2px solid yellow;
-}
-
-body.alto-contraste .produto-item button {
-  background-color: yellow;
-  color: black;
-}
-
-body.alto-contraste .produto-item button:hover,
-body.alto-contraste .produto-item button:focus {
-  background-color: gold;
-  color: black;
-}
-
-body.alto-contraste #cartBtn {
-  background-color: yellow;
-  color: black;
-}
-
-body.alto-contraste #cartBtn:hover,
-body.alto-contraste #cartBtn:focus {
-  background-color: gold;
-  color: black;
-}
-
-body.alto-contraste dialog#cartDialog {
-  background-color: black;
-  color: yellow;
-  border: 2px solid yellow;
-}
-
-body.alto-contraste .cart-buttons button {
-  background-color: yellow;
-  color: black;
-}
-
-body.alto-contraste .cart-buttons button:hover,
-body.alto-contraste .cart-buttons button:focus {
-  background-color: gold;
-  color: black;
-}
-
-/* Foco acessível */
-button:focus,
-input:focus,
-textarea:focus {
-  outline: 3px solid #4caf50;
-  outline-offset: 2px;
-}
-
-/* Responsivo */
-@media (max-width: 600px) {
-  nav ul.menu {
-    flex-direction: column;
-    gap: 0.5rem;
+@keyframes confete-caindo {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
   }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
 
-  main#mainContent,
-  #quizSection,
-  #contatoSection {
+/* Responsividade */
+@media (max-width: 700px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav {
+    width: 100%;
+    justify-content: space-around;
+  }
+  main {
     padding: 1rem;
-    margin: 0 1rem;
+  }
+  .produtos-categoria {
+    grid-template-columns: repeat(auto-fill,minmax(140px,1fr));
   }
 }

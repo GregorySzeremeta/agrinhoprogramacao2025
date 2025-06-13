@@ -1,509 +1,331 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Estação da Terra - Produtos do Campo</title>
 <link rel="stylesheet" href="style.css" />
+<!-- LIBRAS CDN -->
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
-  <header>
-    <h1 tabindex="0">Estação da Terra</h1>
-    <p tabindex="0" class="slogan">Do campo à cidade, colhendo oportunidades</p>
-    <nav aria-label="Menu principal">
-      <ul class="menu" role="menubar">
-        <li role="none"><button role="menuitem" id="btnLoja" tabindex="0">Loja</button></li>
-        <li role="none"><button role="menuitem" id="btnQuiz" tabindex="0">Quiz</button></li>
-        <li role="none"><button role="menuitem" id="btnContato" tabindex="0">Contato</button></li>
-      </ul>
-    </nav>
-    <div class="accessibility-controls" aria-label="Controles de acessibilidade">
-      <button id="btnIncreaseFont" aria-pressed="false" aria-label="Aumentar fonte">A+</button>
-      <button id="btnDecreaseFont" aria-pressed="false" aria-label="Diminuir fonte">A-</button>
-      <button id="btnContrast" aria-pressed="false" aria-label="Ativar modo alto contraste">Contraste</button>
-      <button id="btnLibras" aria-pressed="false" aria-label="Ativar tradução em LIBRAS">LIBRAS</button>
-      <button id="btnSom" aria-pressed="false" aria-label="Ativar som ambiente de mato">Som Mato</button>
-    </div>
-  </header>
+<!-- Plugin VLibras -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
 
-  <main id="mainContent" tabindex="0">
-    <!-- Conteúdo dinâmico será inserido aqui -->
-  </main>
+<header>
+  <h1>Estação da Terra</h1>
+  <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
+  <nav>
+    <button class="nav-btn" data-target="loja">Loja</button>
+    <button class="nav-btn" data-target="quiz">Quiz do Campo</button>
+    <button class="nav-btn" id="btn-som">Som Ambiente</button>
+  </nav>
+  <div id="cart-icon" tabindex="0" aria-label="Carrinho de compras com 0 itens">
+    🛒<span id="cart-count">0</span>
+  </div>
+</header>
 
-  <!-- Botão do carrinho -->
-  <button id="cartBtn" aria-label="Abrir carrinho de compras" aria-haspopup="dialog" aria-controls="cartDialog" aria-expanded="false">
-    🛒 <span id="cartCount" aria-live="polite" aria-atomic="true">0</span>
-  </button>
-
-  <!-- Diálogo do carrinho -->
-  <dialog id="cartDialog" aria-modal="true" aria-labelledby="cartTitle">
-    <h2 id="cartTitle">Seu Carrinho</h2>
-    <div id="cartItems" tabindex="0" aria-live="polite"></div>
-    <p id="cartTotal" tabindex="0"></p>
-    <div class="cart-buttons">
-      <button id="emptyCartBtn">Esvaziar Carrinho</button>
-      <button id="checkoutBtn">Finalizar Compra</button>
-      <button id="closeCartBtn">Fechar</button>
-    </div>
-  </dialog>
-
-  <!-- Container do quiz -->
-  <section id="quizSection" hidden aria-live="polite" aria-atomic="true">
-    <h2>Quiz: Conhecimentos sobre Produção do Campo</h2>
-    <div id="quizQuestion"></div>
-    <div id="quizOptions"></div>
-    <p id="quizResult" aria-live="assertive"></p>
-    <button id="quizNextBtn" disabled>Próxima</button>
-    <button id="quizRestartBtn" hidden>Reiniciar Quiz</button>
+<main>
+  <!-- Seção Loja -->
+  <section id="loja" class="active" aria-live="polite" tabindex="0">
+    <h2>Produtos do Campo</h2>
+    <div id="produtos" class="produtos-grid" role="list"></div>
   </section>
 
-  <!-- Contato simples -->
-  <section id="contatoSection" hidden>
-    <h2>Contato</h2>
-    <form id="contatoForm" aria-label="Formulário de contato">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required />
-      <label for="email">E-mail:</label>
-      <input type="email" id="email" name="email" required />
-      <label for="mensagem">Mensagem:</label>
-      <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
-      <button type="submit">Enviar</button>
+  <!-- Seção Carrinho -->
+  <section id="carrinho" aria-live="polite" tabindex="0" hidden>
+    <h2>Seu Carrinho</h2>
+    <ul id="lista-carrinho" role="list"></ul>
+    <div class="total">
+      <strong>Total: R$ <span id="total-preco">0,00</span></strong>
+    </div>
+    <button id="finalizar-compra" class="btn-primary">Finalizar Compra</button>
+    <button id="voltar-loja" class="btn-secondary">Voltar à Loja</button>
+  </section>
+
+  <!-- Seção Quiz -->
+  <section id="quiz" aria-live="polite" tabindex="0" hidden>
+    <h2>Quiz: Você conhece a produção do campo?</h2>
+    <form id="quiz-form" aria-label="Quiz sobre produção do campo">
+      <div id="perguntas-container"></div>
+      <button type="submit" class="btn-primary">Enviar Respostas</button>
     </form>
-    <p id="contatoFeedback" role="alert" aria-live="assertive"></p>
+    <div id="resultado" hidden>
+      <h3>Resultado: <span id="pontuacao"></span>% de acertos</h3>
+      <button id="refazer-quiz" class="btn-secondary">Refazer Quiz</button>
+    </div>
   </section>
+</main>
 
-  <!-- Áudio para som ambiente -->
-  <audio id="somMato" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/08/24/audio_c9ef5f960d.mp3?filename=forest-ambience-110113.mp3" type="audio/mpeg" />
-    Seu navegador não suporta áudio.
-  </audio>
+<!-- Áudio Som Ambiente -->
+<audio id="audio-som" loop src="https://cdn.pixabay.com/download/audio/2022/03/28/audio_49d21727f3.mp3?filename=forest-ambience-6991.mp3"></audio>
 
-  <script>
-    'use strict';
+<!-- Confete Container -->
+<div id="confete-container"></div>
 
-    // Produtos do campo - array com 30 produtos
-    const produtos = [
-      { id: 1, nome: 'Leite Fresco', categoria: 'Laticínios', preco: 4.50 },
-      { id: 2, nome: 'Queijo Minas', categoria: 'Laticínios', preco: 20.00 },
-      { id: 3, nome: 'Manteiga', categoria: 'Laticínios', preco: 12.00 },
-      { id: 4, nome: 'Mel Natural', categoria: 'Mel', preco: 15.00 },
-      { id: 5, nome: 'Maçã', categoria: 'Frutas', preco: 3.50 },
-      { id: 6, nome: 'Banana', categoria: 'Frutas', preco: 2.80 },
-      { id: 7, nome: 'Laranja', categoria: 'Frutas', preco: 3.00 },
-      { id: 8, nome: 'Tomate', categoria: 'Verduras', preco: 4.00 },
-      { id: 9, nome: 'Alface', categoria: 'Verduras', preco: 2.50 },
-      { id: 10, nome: 'Cenoura', categoria: 'Verduras', preco: 3.00 },
-      { id: 11, nome: 'Feijão Preto', categoria: 'Grãos', preco: 8.00 },
-      { id: 12, nome: 'Arroz Integral', categoria: 'Grãos', preco: 6.50 },
-      { id: 13, nome: 'Trigo', categoria: 'Grãos', preco: 5.00 },
-      { id: 14, nome: 'Sementes de Abóbora', categoria: 'Sementes', preco: 7.00 },
-      { id: 15, nome: 'Sementes de Girassol', categoria: 'Sementes', preco: 6.00 },
-      { id: 16, nome: 'Morango', categoria: 'Frutas', preco: 10.00 },
-      { id: 17, nome: 'Abacate', categoria: 'Frutas', preco: 7.50 },
-      { id: 18, nome: 'Pepino', categoria: 'Verduras', preco: 3.20 },
-      { id: 19, nome: 'Alho', categoria: 'Verduras', preco: 15.00 },
-      { id: 20, nome: 'Cebola', categoria: 'Verduras', preco: 3.80 },
-      { id: 21, nome: 'Leite de Cabra', categoria: 'Laticínios', preco: 5.00 },
-      { id: 22, nome: 'Queijo Coalho', categoria: 'Laticínios', preco: 25.00 },
-      { id: 23, nome: 'Mel Silvestre', categoria: 'Mel', preco: 18.00 },
-      { id: 24, nome: 'Abóbora', categoria: 'Verduras', preco: 4.50 },
-      { id: 25, nome: 'Batata Doce', categoria: 'Verduras', preco: 3.30 },
-      { id: 26, nome: 'Amendoim', categoria: 'Grãos', preco: 9.00 },
-      { id: 27, nome: 'Milho Verde', categoria: 'Grãos', preco: 5.50 },
-      { id: 28, nome: 'Chá de Ervas', categoria: 'Outros', preco: 12.00 },
-      { id: 29, nome: 'Farinha de Mandioca', categoria: 'Outros', preco: 7.00 },
-      { id: 30, nome: 'Óleo de Coco', categoria: 'Outros', preco: 20.00 }
-    ];
+<script>
+// Produtos (30 produtos + categorias)
+const produtos = [
+  { id:1, nome:"Tomate Orgânico", preco:4.5, categoria:"Verduras" },
+  { id:2, nome:"Alface Crespa", preco:3.0, categoria:"Verduras" },
+  { id:3, nome:"Cenoura", preco:2.8, categoria:"Verduras" },
+  { id:4, nome:"Batata Doce", preco:5.0, categoria:"Verduras" },
+  { id:5, nome:"Maçã Fuji", preco:7.0, categoria:"Frutas" },
+  { id:6, nome:"Banana Nanica", preco:4.2, categoria:"Frutas" },
+  { id:7, nome:"Laranja Pera", preco:3.8, categoria:"Frutas" },
+  { id:8, nome:"Melão", preco:6.0, categoria:"Frutas" },
+  { id:9, nome:"Leite Integral", preco:5.5, categoria:"Laticínios" },
+  { id:10, nome:"Queijo Minas", preco:15.0, categoria:"Laticínios" },
+  { id:11, nome:"Manteiga Artesanal", preco:12.0, categoria:"Laticínios" },
+  { id:12, nome:"Mel de Abelha", preco:20.0, categoria:"Mel" },
+  { id:13, nome:"Ovos Caipiras (12 un)", preco:8.0, categoria:"Derivados" },
+  { id:14, nome:"Arroz Integral", preco:10.0, categoria:"Grãos" },
+  { id:15, nome:"Feijão Preto", preco:9.0, categoria:"Grãos" },
+  { id:16, nome:"Farinha de Mandioca", preco:7.5, categoria:"Grãos" },
+  { id:17, nome:"Pimenta do Reino", preco:18.0, categoria:"Especiarias" },
+  { id:18, nome:"Chá de Erva Mate", preco:6.0, categoria:"Bebidas" },
+  { id:19, nome:"Café Torrado", preco:25.0, categoria:"Bebidas" },
+  { id:20, nome:"Sucos Naturais", preco:7.0, categoria:"Bebidas" },
+  { id:21, nome:"Abóbora", preco:3.0, categoria:"Verduras" },
+  { id:22, nome:"Cebola", preco:2.5, categoria:"Verduras" },
+  { id:23, nome:"Alho", preco:6.0, categoria:"Verduras" },
+  { id:24, nome:"Coco Verde", preco:4.0, categoria:"Frutas" },
+  { id:25, nome:"Amendoim Torrado", preco:8.0, categoria:"Grãos" },
+  { id:26, nome:"Farinha de Trigo Integral", preco:6.0, categoria:"Grãos" },
+  { id:27, nome:"Iogurte Natural", preco:5.5, categoria:"Laticínios" },
+  { id:28, nome:"Requeijão Cremoso", preco:12.0, categoria:"Laticínios" },
+  { id:29, nome:"Suco de Laranja", preco:7.0, categoria:"Bebidas" },
+  { id:30, nome:"Azeite de Oliva", preco:30.0, categoria:"Derivados" }
+];
 
-    // Quiz perguntas
-    const quizPerguntas = [
-      {
-        pergunta: 'Qual a melhor época para plantar milho?',
-        opcoes: ['Primavera', 'Verão', 'Outono', 'Inverno'],
-        correta: 0
-      },
-      {
-        pergunta: 'O que é agricultura orgânica?',
-        opcoes: ['Uso de agrotóxicos', 'Uso de técnicas naturais', 'Uso de sementes transgênicas', 'Uso de fertilizantes químicos'],
-        correta: 1
-      },
-      {
-        pergunta: 'Qual animal é mais comum na produção leiteira?',
-        opcoes: ['Gado bovino', 'Porco', 'Ovelha', 'Galinha'],
-        correta: 0
-      },
-      {
-        pergunta: 'Qual é o principal benefício do plantio direto?',
-        opcoes: ['Evita erosão', 'Diminui produção', 'Aumenta erosão', 'Aumenta custo'],
-        correta: 0
-      },
-      {
-        pergunta: 'Qual dessas sementes é oleaginosa?',
-        opcoes: ['Feijão', 'Milho', 'Soja', 'Arroz'],
-        correta: 2
-      },
-      {
-        pergunta: 'Qual fruta é mais rica em vitamina C?',
-        opcoes: ['Banana', 'Laranja', 'Maçã', 'Melancia'],
-        correta: 1
-      },
-      {
-        pergunta: 'O que é irrigação?',
-        opcoes: ['Plantio manual', 'Adubação química', 'Aplicação de água', 'Colheita mecanizada'],
-        correta: 2
-      },
-      {
-        pergunta: 'Qual a função do composto orgânico no solo?',
-        opcoes: ['Fertilizante químico', 'Aumentar a matéria orgânica', 'Eliminar pragas', 'Matar ervas daninhas'],
-        correta: 1
-      },
-      {
-        pergunta: 'Qual grão é base da alimentação brasileira?',
-        opcoes: ['Arroz', 'Milho', 'Feijão', 'Soja'],
-        correta: 2
-      },
-      {
-        pergunta: 'O que significa sustentabilidade na agricultura?',
-        opcoes: ['Uso intenso de químicos', 'Exploração sem limites', 'Equilíbrio ambiental e social', 'Desmatamento'],
-        correta: 2
-      }
-    ];
+// Variáveis Globais
+let carrinho = [];
 
-    // Variáveis globais
-    let carrinho = [];
-    let fontSize = 16; // base em px
-    let contrasteAtivo = false;
-    let librasAtivo = false;
-    let somAtivo = false;
-
-    // Elementos DOM
-    const mainContent = document.getElementById('mainContent');
-    const btnLoja = document.getElementById('btnLoja');
-    const btnQuiz = document.getElementById('btnQuiz');
-    const btnContato = document.getElementById('btnContato');
-    const cartBtn = document.getElementById('cartBtn');
-    const cartCount = document.getElementById('cartCount');
-    const cartDialog = document.getElementById('cartDialog');
-    const cartItems = document.getElementById('cartItems');
-    const cartTotal = document.getElementById('cartTotal');
-    const emptyCartBtn = document.getElementById('emptyCartBtn');
-    const closeCartBtn = document.getElementById('closeCartBtn');
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    const quizSection = document.getElementById('quizSection');
-    const quizQuestion = document.getElementById('quizQuestion');
-    const quizOptions = document.getElementById('quizOptions');
-    const quizResult = document.getElementById('quizResult');
-    const quizNextBtn = document.getElementById('quizNextBtn');
-    const quizRestartBtn = document.getElementById('quizRestartBtn');
-    const contatoSection = document.getElementById('contatoSection');
-    const contatoForm = document.getElementById('contatoForm');
-    const contatoFeedback = document.getElementById('contatoFeedback');
-    const btnIncreaseFont = document.getElementById('btnIncreaseFont');
-    const btnDecreaseFont = document.getElementById('btnDecreaseFont');
-    const btnContrast = document.getElementById('btnContrast');
-    const btnLibras = document.getElementById('btnLibras');
-    const btnSom = document.getElementById('btnSom');
-    const somMato = document.getElementById('somMato');
-
-    // --- Funções ---
-
-    // Renderiza a loja com produtos por categoria
-    function renderLoja() {
-      quizSection.hidden = true;
-      contatoSection.hidden = true;
-      mainContent.hidden = false;
-
-      // Agrupa produtos por categoria
-      const categorias = {};
-      produtos.forEach(p => {
-        if (!categorias[p.categoria]) categorias[p.categoria] = [];
-        categorias[p.categoria].push(p);
-      });
-
-      let html = '';
-      for (const categoria in categorias) {
-        html += `<section aria-label="Categoria ${categoria}"><h2>${categoria}</h2><ul class="produtos-lista">`;
-        categorias[categoria].forEach(prod => {
-          html += `
-          <li class="produto-item" tabindex="0" role="group" aria-label="${prod.nome}, preço R$ ${prod.preco.toFixed(2)}">
-            <div class="produto-nome">${prod.nome}</div>
-            <div class="produto-preco">R$ ${prod.preco.toFixed(2)}</div>
-            <button class="addCartBtn" data-id="${prod.id}" aria-label="Adicionar ${prod.nome} ao carrinho">Adicionar</button>
-          </li>`;
-        });
-        html += `</ul></section>`;
-      }
-      mainContent.innerHTML = html;
-
-      // Adiciona eventos aos botões adicionar
-      document.querySelectorAll('.addCartBtn').forEach(btn => {
-        btn.onclick = () => {
-          const id = Number(btn.dataset.id);
-          adicionarAoCarrinho(id);
-        };
-      });
-    }
-
-    // Adiciona produto ao carrinho
-    function adicionarAoCarrinho(id) {
-      const prod = produtos.find(p => p.id === id);
-      if (!prod) return;
-      const itemCarrinho = carrinho.find(i => i.id === id);
-      if (itemCarrinho) {
-        itemCarrinho.quantidade++;
-      } else {
-        carrinho.push({ ...prod, quantidade: 1 });
-      }
-      atualizarContadorCarrinho();
-      alert(`Produto "${prod.nome}" adicionado ao carrinho.`);
-    }
-
-    // Atualiza contador no botão do carrinho
-    function atualizarContadorCarrinho() {
-      const total = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
-      cartCount.textContent = total;
-      cartBtn.setAttribute('aria-label', `Abrir carrinho de compras. Você tem ${total} item${total !== 1 ? 's' : ''} no carrinho.`);
-    }
-
-    // Abre diálogo do carrinho
-    function abrirCarrinho() {
-      if (cartDialog.open) return;
-      atualizarCarrinhoUI();
-      cartDialog.showModal();
-      cartBtn.setAttribute('aria-expanded', 'true');
-      // Foca no diálogo
-      cartDialog.focus();
-    }
-
-    // Atualiza UI do carrinho
-    function atualizarCarrinhoUI() {
-      if (carrinho.length === 0) {
-        cartItems.innerHTML = '<p>Seu carrinho está vazio.</p>';
-        cartTotal.textContent = '';
-        checkoutBtn.disabled = true;
-        emptyCartBtn.disabled = true;
-      } else {
-        checkoutBtn.disabled = false;
-        emptyCartBtn.disabled = false;
-        let html = '<ul>';
-        let total = 0;
-        carrinho.forEach(item => {
-          html += `<li>${item.nome} x ${item.quantidade} - R$ ${(item.preco * item.quantidade).toFixed(2)}</li>`;
-          total += item.preco * item.quantidade;
-        });
-        html += '</ul>';
-        cartItems.innerHTML = html;
-        cartTotal.textContent = `Total: R$ ${total.toFixed(2)}`;
-      }
-    }
-
-    // Esvazia o carrinho
-    function esvaziarCarrinho() {
-      if(confirm('Deseja realmente esvaziar o carrinho?')) {
-        carrinho = [];
-        atualizarContadorCarrinho();
-        atualizarCarrinhoUI();
-      }
-    }
-
-    // Fecha diálogo do carrinho
-    function fecharCarrinho() {
-      cartDialog.close();
-      cartBtn.setAttribute('aria-expanded', 'false');
-      cartBtn.focus();
-    }
-
-    // Finalizar compra (simulação)
-    function finalizarCompra() {
-      if (carrinho.length === 0) {
-        alert('Seu carrinho está vazio.');
-        return;
-      }
-      alert('Compra finalizada com sucesso! Obrigado pela preferência.');
-      carrinho = [];
-      atualizarContadorCarrinho();
-      atualizarCarrinhoUI();
-      fecharCarrinho();
-    }
-
-    // --- Quiz ---
-
-    let quizIndex = 0;
-    let quizAcertos = 0;
-
-    function iniciarQuiz() {
-      mainContent.hidden = true;
-      contatoSection.hidden = true;
-      quizSection.hidden = false;
-      quizIndex = 0;
-      quizAcertos = 0;
-      quizResult.textContent = '';
-      quizNextBtn.disabled = true;
-      quizRestartBtn.hidden = true;
-      mostrarPergunta();
-    }
-
-    function mostrarPergunta() {
-      const q = quizPerguntas[quizIndex];
-      quizQuestion.textContent = `Pergunta ${quizIndex + 1}: ${q.pergunta}`;
-      quizOptions.innerHTML = '';
-      q.opcoes.forEach((opcao, i) => {
-        const btn = document.createElement('button');
-        btn.textContent = opcao;
-        btn.className = 'quizOptionBtn';
-        btn.onclick = () => responder(i);
-        quizOptions.appendChild(btn);
-      });
-    }
-
-    function responder(indice) {
-      const correta = quizPerguntas[quizIndex].correta;
-      const botoes = [...quizOptions.children];
-      botoes.forEach((btn, i) => {
-        btn.disabled = true;
-        if (i === correta) {
-          btn.classList.add('correta');
-        }
-        if (i === indice && i !== correta) {
-          btn.classList.add('errada');
-        }
-      });
-      if (indice === correta) {
-        quizAcertos++;
-        quizResult.textContent = 'Resposta correta! 🎉';
-      } else {
-        quizResult.textContent = 'Resposta errada.';
-      }
-      quizNextBtn.disabled = false;
-      if (quizIndex === quizPerguntas.length - 1) {
-        quizNextBtn.textContent = 'Ver Resultado';
-      } else {
-        quizNextBtn.textContent = 'Próxima';
-      }
-    }
-
-    quizNextBtn.onclick = () => {
-      quizIndex++;
-      quizResult.textContent = '';
-      quizNextBtn.disabled = true;
-      if (quizIndex < quizPerguntas.length) {
-        mostrarPergunta();
-      } else {
-        mostrarResultadoQuiz();
-      }
-    };
-
-    function mostrarResultadoQuiz() {
-      quizQuestion.textContent = `Você acertou ${quizAcertos} de ${quizPerguntas.length} perguntas! (${((quizAcertos/quizPerguntas.length)*100).toFixed(0)}%)`;
-      quizOptions.innerHTML = '';
-      quizNextBtn.hidden = true;
-      quizRestartBtn.hidden = false;
-      // Confete simples com emojis
-      quizResult.textContent = '🎉🎉 Parabéns! 🎉🎉';
-    }
-
-    quizRestartBtn.onclick = () => {
-      quizIndex = 0;
-      quizAcertos = 0;
-      quizResult.textContent = '';
-      quizNextBtn.disabled = true;
-      quizNextBtn.hidden = false;
-      quizRestartBtn.hidden = true;
-      mostrarPergunta();
-    };
-
-    // --- Contato ---
-
-    contatoForm.addEventListener('submit', e => {
-      e.preventDefault();
-      contatoFeedback.textContent = '';
-      const nome = contatoForm.nome.value.trim();
-      const email = contatoForm.email.value.trim();
-      const mensagem = contatoForm.mensagem.value.trim();
-      if (nome && email && mensagem) {
-        contatoFeedback.textContent = 'Mensagem enviada com sucesso! Entraremos em contato.';
-        contatoForm.reset();
-      } else {
-        contatoFeedback.textContent = 'Por favor, preencha todos os campos.';
-      }
+// Função para mostrar produtos na loja
+function mostrarProdutos() {
+  const container = document.getElementById('produtos');
+  container.innerHTML = '';
+  const categorias = [...new Set(produtos.map(p => p.categoria))].sort();
+  categorias.forEach(cat => {
+    const catTitle = document.createElement('h3');
+    catTitle.textContent = cat;
+    container.appendChild(catTitle);
+    const catGrid = document.createElement('div');
+    catGrid.className = 'produtos-categoria';
+    produtos.filter(p => p.categoria === cat).forEach(prod => {
+      const card = document.createElement('div');
+      card.className = 'produto-card';
+      card.setAttribute('role', 'listitem');
+      card.innerHTML = `
+        <strong>${prod.nome}</strong>
+        <p>R$ ${prod.preco.toFixed(2).replace('.', ',')}</p>
+        <button class="btn-add" aria-label="Adicionar ${prod.nome} ao carrinho" data-id="${prod.id}">Adicionar</button>
+      `;
+      catGrid.appendChild(card);
     });
+    container.appendChild(catGrid);
+  });
+}
 
-    // --- Navegação ---
+// Atualizar carrinho
+function atualizarCarrinho() {
+  const lista = document.getElementById('lista-carrinho');
+  const count = document.getElementById('cart-count');
+  const totalPreco = document.getElementById('total-preco');
+  lista.innerHTML = '';
 
-    btnLoja.onclick = () => {
-      quizSection.hidden = true;
-      contatoSection.hidden = true;
-      mainContent.hidden = false;
-      renderLoja();
-    };
+  if (carrinho.length === 0) {
+    lista.innerHTML = '<li>Seu carrinho está vazio.</li>';
+    totalPreco.textContent = '0,00';
+    count.textContent = '0';
+    document.getElementById('cart-icon').setAttribute('aria-label', 'Carrinho de compras com 0 itens');
+    return;
+  }
 
-    btnQuiz.onclick = () => {
-      iniciarQuiz();
-    };
+  let total = 0;
+  carrinho.forEach(item => {
+    const prod = produtos.find(p => p.id === item.id);
+    const li = document.createElement('li');
+    li.textContent = `${prod.nome} - R$ ${prod.preco.toFixed(2).replace('.', ',')} (Quantidade: ${item.quantidade})`;
+    lista.appendChild(li);
+    total += prod.preco * item.quantidade;
+  });
+  totalPreco.textContent = total.toFixed(2).replace('.', ',');
+  count.textContent = carrinho.reduce((acc, i) => acc + i.quantidade, 0);
+  document.getElementById('cart-icon').setAttribute('aria-label', `Carrinho de compras com ${count.textContent} itens`);
+}
 
-    btnContato.onclick = () => {
-      mainContent.hidden = true;
-      quizSection.hidden = true;
-      contatoSection.hidden = false;
-      contatoFeedback.textContent = '';
-      contatoForm.reset();
-    };
+// Adicionar produto no carrinho
+function adicionarAoCarrinho(id) {
+  const itemIndex = carrinho.findIndex(i => i.id === id);
+  if (itemIndex >= 0) {
+    carrinho[itemIndex].quantidade++;
+  } else {
+    carrinho.push({ id, quantidade: 1 });
+  }
+  atualizarCarrinho();
+}
 
-    // --- Acessibilidade ---
+// Alternar seções do site
+function mostrarSecao(secao) {
+  ['loja', 'carrinho', 'quiz'].forEach(id => {
+    document.getElementById(id).hidden = (id !== secao);
+    document.getElementById(id).classList.toggle('active', id === secao);
+  });
+}
 
-    btnIncreaseFont.onclick = () => {
-      if (fontSize < 24) {
-        fontSize += 2;
-        document.documentElement.style.fontSize = fontSize + 'px';
-      }
-    };
+// Eventos de navegação
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (btn.id === 'btn-som') {
+      toggleSom();
+      return;
+    }
+    mostrarSecao(btn.dataset.target);
+  });
+});
 
-    btnDecreaseFont.onclick = () => {
-      if (fontSize > 12) {
-        fontSize -= 2;
-        document.documentElement.style.fontSize = fontSize + 'px';
-      }
-    };
+// Ícone carrinho
+document.getElementById('cart-icon').addEventListener('click', () => {
+  mostrarSecao('carrinho');
+});
 
-    btnContrast.onclick = () => {
-      contrasteAtivo = !contrasteAtivo;
-      document.body.classList.toggle('alto-contraste', contrasteAtivo);
-      btnContrast.setAttribute('aria-pressed', contrasteAtivo);
-    };
+// Botões dentro do carrinho
+document.getElementById('voltar-loja').addEventListener('click', () => {
+  mostrarSecao('loja');
+});
+document.getElementById('finalizar-compra').addEventListener('click', () => {
+  alert('Compra finalizada com sucesso! Obrigado por comprar na Estação da Terra 🌱');
+  carrinho = [];
+  atualizarCarrinho();
+  mostrarSecao('loja');
+});
 
-    btnLibras.onclick = () => {
-      librasAtivo = !librasAtivo;
-      alert(librasAtivo ? 'Tradução LIBRAS ativada (simulação).' : 'Tradução LIBRAS desativada.');
-      btnLibras.setAttribute('aria-pressed', librasAtivo);
-    };
+// Botões Adicionar produtos
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('btn-add')) {
+    const id = Number(e.target.dataset.id);
+    adicionarAoCarrinho(id);
+  }
+});
 
-    btnSom.onclick = () => {
-      somAtivo = !somAtivo;
-      if (somAtivo) {
-        somMato.play();
-        btnSom.setAttribute('aria-pressed', 'true');
-      } else {
-        somMato.pause();
-        btnSom.setAttribute('aria-pressed', 'false');
-      }
-    };
+// Som Ambiente
+const audioSom = document.getElementById('audio-som');
+let somTocado = false;
+function toggleSom() {
+  if (somTocado) {
+    audioSom.pause();
+    somTocado = false;
+    document.getElementById('btn-som').textContent = 'Som Ambiente';
+  } else {
+    audioSom.play();
+    somTocado = true;
+    document.getElementById('btn-som').textContent = 'Parar Som';
+  }
+}
 
-    // --- Carrinho eventos ---
+// Quiz com 10 perguntas + 7 extras = 17 perguntas totais
+const perguntasQuiz = [
+  { q:"Qual é a principal cultura do Brasil?", options:["Soja","Milho","Cana-de-açúcar","Arroz"], answer:2 },
+  { q:"O que é agricultura orgânica?", options:["Uso de agrotóxicos","Produção sem químicos sintéticos","Só planta flores","Uso de sementes transgênicas"], answer:1 },
+  { q:"Qual animal produz leite na fazenda?", options:["Porco","Vaca","Cavalo","Galinha"], answer:1 },
+  { q:"Qual grão é usado para fazer pão?", options:["Arroz","Milho","Trigo","Feijão"], answer:2 },
+  { q:"O que significa irrigação?", options:["Plantar sementes","Molhar plantas","Colher frutas","Adubar solo"], answer:1 },
+  { q:"Qual destes é um legume?", options:["Tomate","Maçã","Banana","Abacaxi"], answer:0 },
+  { q:"O que é compostagem?", options:["Queimar lixo","Transformar resíduos em adubo","Plantar árvores","Construir estufas"], answer:1 },
+  { q:"O que é plantio direto?", options:["Sem revolver a terra","Usar pesticidas","Colher frutas","Criar animais"], answer:0 },
+  { q:"Qual é a importância das abelhas?", options:["Produzir mel","Polinizar plantas","Ser alimento","Fazer roupas"], answer:1 },
+  { q:"O que é agricultura sustentável?", options:["Destruir florestas","Preservar o meio ambiente","Usar só máquinas","Plantar só soja"], answer:1 },
+  // Perguntas extras:
+  { q:"O que é rotação de culturas?", options:["Plantio alternado para conservar solo","Plantar uma cultura só","Uso de máquinas","Colheita manual"], answer:0 },
+  { q:"Qual a vantagem da agroecologia?", options:["Uso de químicos fortes","Preservação da biodiversidade","Acelerar produção","Menor qualidade"], answer:1 },
+  { q:"O que é adubo orgânico?", options:["Fertilizante natural","Produto químico","Inseticida","Herbicida"], answer:0 },
+  { q:"Qual é o principal benefício da água na agricultura?", options:["Irrigação das plantas","Limpeza do solo","Pintura","Construção"], answer:0 },
+  { q:"O que são sementes crioulas?", options:["Sementes modificadas","Sementes tradicionais locais","Sementes sintéticas","Sementes importadas"], answer:1 },
+  { q:"Por que o solo é importante?", options:["Nada importante","Suporte para plantas","Para construção","Para animais"], answer:1 },
+  { q:"O que é agroflorestal?", options:["Combinação de agricultura e floresta","Uso só de máquinas","Plantar só árvores","Criar só animais"], answer:0 }
+];
 
-    cartBtn.onclick = abrirCarrinho;
-    emptyCartBtn.onclick = esvaziarCarrinho;
-    closeCartBtn.onclick = fecharCarrinho;
-    checkoutBtn.onclick = finalizarCompra;
+// Construir perguntas no quiz
+const containerQuiz = document.getElementById('perguntas-container');
+function montarQuiz() {
+  containerQuiz.innerHTML = '';
+  perguntasQuiz.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = 'pergunta';
+    div.innerHTML = `
+      <fieldset>
+        <legend>${i+1}. ${p.q}</legend>
+        ${p.options.map((opt,j) => `
+          <label>
+            <input type="radio" name="pergunta${i}" value="${j}" required />
+            ${opt}
+          </label>
+        `).join('')}
+      </fieldset>
+    `;
+    containerQuiz.appendChild(div);
+  });
+}
+montarQuiz();
 
-    // Fecha diálogo com ESC
-    cartDialog.addEventListener('keydown', e => {
-      if (e.key === 'Escape') fecharCarrinho();
-    });
+// Confete animation
+function soltarConfete() {
+  const confeteContainer = document.getElementById('confete-container');
+  confeteContainer.innerHTML = '';
+  const colors = ['#FFC700', '#FF0000', '#2E3192', '#41BBC7', '#732982'];
+  for (let i = 0; i < 150; i++) {
+    const confete = document.createElement('div');
+    confete.classList.add('confete');
+    confete.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confete.style.left = Math.random() * 100 + 'vw';
+    confete.style.animationDelay = Math.random() * 3 + 's';
+    confeteContainer.appendChild(confete);
+  }
+  setTimeout(() => { confeteContainer.innerHTML = ''; }, 5000);
+}
 
-    // Inicializa loja
-    renderLoja();
-    atualizarContadorCarrinho();
+// Enviar quiz
+document.getElementById('quiz-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const respostas = [];
+  let acertou = 0;
+  perguntasQuiz.forEach((p, i) => {
+    const val = document.querySelector(`input[name="pergunta${i}"]:checked`);
+    if (val && parseInt(val.value) === p.answer) acertou++;
+  });
+  const percentual = Math.round((acertou / perguntasQuiz.length) * 100);
+  document.getElementById('pontuacao').textContent = percentual;
+  document.getElementById('resultado').hidden = false;
+  soltarConfete();
+  // Scroll para resultado
+  document.getElementById('resultado').focus();
+  // Oculta quiz e formulário
+  document.getElementById('quiz-form').hidden = true;
+});
 
-  </script>
+// Refazer quiz
+document.getElementById('refazer-quiz').addEventListener('click', () => {
+  document.getElementById('resultado').hidden = true;
+  document.getElementById('quiz-form').hidden = false;
+  document.getElementById('quiz-form').reset();
+  containerQuiz.focus();
+});
+
+// Inicialização
+mostrarProdutos();
+atualizarCarrinho();
+
+// Inicializar VLibras
+window.onload = function() {
+  new window.VLibras.Widget('vlibras-plugin');
+};
+</script>
+
 </body>
 </html>
