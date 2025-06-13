@@ -1,162 +1,104 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estação da Terra</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estação da Terra - Loja</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Tela de Boas-Vindas -->
-  <div id="welcome-screen">
-    <h2>🌿 Bem-vindo à Estação da Terra</h2>
-    <p>Onde a natureza encontra seu lar</p>
-  </div>
 
-  <!-- Cabeçalho -->
-  <header>
-    <h1>Estação da Terra</h1>
-    <p class="slogan">Onde a natureza encontra seu lar</p>
+  <header class="header">
+    <h1 class="logo">Estação da Terra</h1>
+    <nav class="nav">
+      <a href="index.html" class="nav-link active">Loja</a>
+      <a href="quiz.html" class="nav-link">Quiz</a>
+      <a href="sobre.html" class="nav-link">Sobre</a>
+      <a href="contato.html" class="nav-link">Contato</a>
+    </nav>
   </header>
 
-  <!-- Acessibilidade -->
-  <div class="acessibilidade">
-    <button onclick="aumentarFonte()">A+</button>
-    <button onclick="diminuirFonte()">A-</button>
-    <button onclick="alternarContraste()">🌗</button>
-  </div>
+  <main class="main-content">
+    <section class="loja-section">
+      <h2>Produtos do Campo</h2>
+      <div class="produtos-grid">
+        <!-- Produto exemplo -->
+        <article class="produto-card">
+          <img src="img/maça.jpg" alt="Maçã Orgânica" />
+          <h3>Maçã Orgânica</h3>
+          <p class="preco">R$ 3,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Maçã Orgânica', 3)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+        <!-- Repita os produtos aqui -->
+        <article class="produto-card">
+          <img src="img/mel.jpg" alt="Mel Puro" />
+          <h3>Mel Puro</h3>
+          <p class="preco">R$ 15,00</p>
+          <button onclick="adicionarAoCarrinho('Mel Puro', 15)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+        <article class="produto-card">
+          <img src="img/banana.jpg" alt="Banana" />
+          <h3>Banana</h3>
+          <p class="preco">R$ 2,50/kg</p>
+          <button onclick="adicionarAoCarrinho('Banana', 2.5)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+        <!-- ... adicione mais produtos aqui -->
+      </div>
 
-  <!-- VLibras -->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+      <aside class="carrinho">
+        <h3>Carrinho</h3>
+        <ul id="lista-carrinho"></ul>
+        <p id="total-carrinho">Total: R$ 0,00</p>
+        <button id="btn-esvaziar" disabled>Esvaziar Carrinho</button>
+        <button id="btn-finalizar" disabled>Finalizar Compra</button>
+      </aside>
+    </section>
+  </main>
+
   <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
-
-  <!-- Botão de Som Ambiente -->
-  <div id="audio-fundo">
-    <button onclick="toggleSom()" title="Som ambiente">🎵</button>
-    <audio id="somAmbiente" loop>
-      <source src="audio.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-
-  <!-- Loja de Produtos -->
-  <section id="produtos">
-    <h2>🛍️ Nossos Produtos</h2>
-    <div class="barracas">
-      <!-- Produtos -->
-      <div class="produto-card">
-        <img src="img/leite.jpg" alt="Leite">
-        <h3>Leite Fresco</h3>
-        <p>R$ 4,00</p>
-        <button onclick="adicionarAoCarrinho('Leite Fresco', 4)">Adicionar</button>
-      </div>
-
-      <div class="produto-card">
-        <img src="img/queijo.jpg" alt="Queijo">
-        <h3>Queijo Colonial</h3>
-        <p>R$ 10,00</p>
-        <button onclick="adicionarAoCarrinho('Queijo Colonial', 10)">Adicionar</button>
-      </div>
-
-      <div class="produto-card">
-        <img src="img/mel.jpg" alt="Mel">
-        <h3>Mel Puro</h3>
-        <p>R$ 15,00</p>
-        <button onclick="adicionarAoCarrinho('Mel Puro', 15)">Adicionar</button>
-      </div>
-
-      <div class="produto-card">
-        <img src="img/suco.jpg" alt="Suco Natural">
-        <h3>Suco Natural</h3>
-        <p>R$ 5,00</p>
-        <button onclick="adicionarAoCarrinho('Suco Natural', 5)">Adicionar</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Carrinho de Compras -->
-  <section id="carrinho">
-    <h2>🛒 Carrinho de Compras</h2>
-    <ul id="lista-carrinho"></ul>
-    <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
-    <button onclick="finalizarCompra()">💳 Finalizar Compra</button>
-  </section>
-
-  <!-- JavaScript -->
-  <script>
-    let carrinho = [];
-
-    function adicionarAoCarrinho(nome, preco) {
-      const existente = carrinho.find(item => item.nome === nome);
-      if (existente) {
-        existente.quantidade += 1;
-      } else {
-        carrinho.push({ nome, preco, quantidade: 1 });
-      }
-      atualizarCarrinho();
-    }
+    const carrinho = [];
+    const listaCarrinho = document.getElementById('lista-carrinho');
+    const totalCarrinho = document.getElementById('total-carrinho');
+    const btnEsvaziar = document.getElementById('btn-esvaziar');
+    const btnFinalizar = document.getElementById('btn-finalizar');
 
     function atualizarCarrinho() {
-      const lista = document.getElementById("lista-carrinho");
-      lista.innerHTML = "";
+      listaCarrinho.innerHTML = '';
       let total = 0;
-      carrinho.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = `${item.nome} x${item.quantidade} - R$ ${(item.preco * item.quantidade).toFixed(2)}`;
-        lista.appendChild(li);
-        total += item.preco * item.quantidade;
+
+      carrinho.forEach((item, i) => {
+        const li = document.createElement('li');
+        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
+        listaCarrinho.appendChild(li);
+        total += item.preco;
       });
 
-      if (carrinho.length > 0) {
-        const totalLi = document.createElement("li");
-        totalLi.innerHTML = `<strong>Total: R$ ${total.toFixed(2)}</strong>`;
-        lista.appendChild(totalLi);
-      }
+      totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
+      btnEsvaziar.disabled = carrinho.length === 0;
+      btnFinalizar.disabled = carrinho.length === 0;
     }
 
-    function esvaziarCarrinho() {
-      carrinho = [];
+    function adicionarAoCarrinho(nome, preco) {
+      carrinho.push({ nome, preco });
       atualizarCarrinho();
+      alert(`${nome} adicionado ao carrinho!`);
     }
 
-    function finalizarCompra() {
-      if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio!");
-      } else {
-        const total = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
-        alert(`Compra finalizada! Total: R$ ${total.toFixed(2)}. Obrigado por comprar conosco! 🌱`);
-        carrinho = [];
+    btnEsvaziar.addEventListener('click', () => {
+      if (confirm('Deseja esvaziar o carrinho?')) {
+        carrinho.length = 0;
         atualizarCarrinho();
       }
-    }
+    });
 
-    function aumentarFonte() {
-      document.body.style.fontSize = "larger";
-    }
+    btnFinalizar.addEventListener('click', () => {
+      alert('Compra finalizada! Obrigado pela preferência.');
+      carrinho.length = 0;
+      atualizarCarrinho();
+    });
 
-    function diminuirFonte() {
-      document.body.style.fontSize = "smaller";
-    }
-
-    function alternarContraste() {
-      document.body.classList.toggle("alto-contraste");
-    }
-
-    function toggleSom() {
-      const audio = document.getElementById("somAmbiente");
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
-    }
+    atualizarCarrinho();
   </script>
+
 </body>
 </html>
