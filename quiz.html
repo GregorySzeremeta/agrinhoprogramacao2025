@@ -3,16 +3,245 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Estação da Terra - Quiz</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Estação da Terra - Quiz Interativo</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #a8d5ba, #d1e8e2);
+      color: #2c3e50;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background-color: #1e5128;
+      padding: 1rem 2rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-link {
+      color: #dff0d8;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background-color: #9cd39c;
+      color: #1e5128;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      padding: 2rem 1rem;
+      max-width: 700px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #2c3e50;
+      letter-spacing: 1.1px;
+      user-select: none;
+    }
+
+    #progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #eee;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    #progress-fill {
+      height: 100%;
+      background: #4caf50;
+      width: 0;
+      transition: width 0.4s ease;
+      border-radius: 8px;
+    }
+
+    .pergunta {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      min-height: 60px;
+      user-select: none;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .opcoes {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .opcao-btn {
+      background-color: #e7f0e9;
+      border: 2px solid #4caf50;
+      padding: 12px 18px;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+
+    .opcao-btn:hover:not(:disabled) {
+      background-color: #b6d7b9;
+      color: #1b3a16;
+    }
+
+    .opcao-btn:disabled {
+      cursor: default;
+      opacity: 0.7;
+    }
+
+    .correta-btn {
+      background-color: #4caf50 !important;
+      border-color: #3a7d20 !important;
+      color: white !important;
+    }
+
+    .errada-btn {
+      background-color: #e74c3c !important;
+      border-color: #a83e27 !important;
+      color: white !important;
+    }
+
+    .resultado {
+      font-weight: 700;
+      font-size: 1.15rem;
+      min-height: 28px;
+      margin-bottom: 1.5rem;
+      user-select: none;
+    }
+
+    .resultado.correta {
+      color: #2e7d32;
+    }
+
+    .resultado.errada {
+      color: #c62828;
+    }
+
+    .resultado.final {
+      color: #1565c0;
+    }
+
+    .btn {
+      background-color: #1e5128;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      margin: 0 auto 1rem;
+      display: inline-block;
+      min-width: 140px;
+    }
+
+    .btn:hover:not(:disabled) {
+      background-color: #4caf50;
+    }
+
+    .btn:disabled {
+      background-color: #a5d6a7;
+      cursor: default;
+    }
+
+    .btn-reiniciar {
+      background-color: #4caf50;
+      margin-top: 0;
+    }
+
+    .footer {
+      background-color: #1e5128;
+      color: white;
+      padding: 1rem 0;
+      text-align: center;
+      user-select: none;
+    }
+
+    #btn-som {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+
+    #btn-som:hover {
+      color: #b0d395;
+    }
+
+    @media (max-width: 480px) {
+      .main-content {
+        margin: 1rem;
+        padding: 1.5rem 1rem;
+      }
+      .opcao-btn {
+        font-size: 0.9rem;
+        padding: 10px 16px;
+      }
+      .btn {
+        min-width: 120px;
+        padding: 10px 18px;
+      }
+      .logo {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
   <header class="header">
     <h1 class="logo">Estação da Terra</h1>
-    <nav class="nav">
+    <nav class="nav" role="navigation" aria-label="Menu principal">
       <a href="index.html" class="nav-link">Loja</a>
-      <a href="quiz.html" class="nav-link active">Quiz</a>
+      <a href="quiz.html" class="nav-link active" aria-current="page">Quiz</a>
       <a href="sobre.html" class="nav-link">Sobre</a>
       <a href="contato.html" class="nav-link">Contato</a>
     </nav>
@@ -20,13 +249,26 @@
 
   <main class="main-content quiz-main">
     <h2>Quiz sobre Agricultura</h2>
-    <div id="quiz-container">
-      <div id="pergunta-container"></div>
-      <div id="opcoes-container"></div>
-      <button id="btn-proxima" disabled>Próxima</button>
-      <div id="resultado" class="resultado"></div>
+    <div id="progress-bar" aria-hidden="true">
+      <div id="progress-fill"></div>
     </div>
+    <section id="quiz-container" aria-live="polite" aria-atomic="true" aria-relevant="additions removals">
+      <div id="pergunta-container" class="pergunta"></div>
+      <div id="opcoes-container" class="opcoes"></div>
+      <button id="btn-proxima" disabled class="btn" aria-disabled="true">Próxima</button>
+      <button id="btn-reiniciar" class="btn btn-reiniciar" style="display:none;">Reiniciar Quiz</button>
+      <div id="resultado" class="resultado" role="alert"></div>
+    </section>
   </main>
+
+  <footer class="footer">
+    <button id="btn-som" aria-pressed="false" aria-label="Ativar ou desativar som ambiente">🔈 Som Ambiente</button>
+  </footer>
+
+  <audio id="audio-ambiente" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/23/audio_8493e97c2c.mp3?filename=peaceful-ambient-11248.mp3" type="audio/mpeg" />
+    Seu navegador não suporta áudio.
+  </audio>
 
   <script>
     const perguntas = [
@@ -45,7 +287,6 @@
         ],
         correta: 1
       },
-      // ... (adicione as outras 8 perguntas seguindo este modelo)
       {
         pergunta: "Qual é o nome do processo que converte luz solar em energia para as plantas?",
         opcoes: ["Fotossíntese", "Respiração", "Germinação", "Polinização"],
@@ -114,39 +355,78 @@
     const perguntaContainer = document.getElementById('pergunta-container');
     const opcoesContainer = document.getElementById('opcoes-container');
     const btnProxima = document.getElementById('btn-proxima');
+    const btnReiniciar = document.getElementById('btn-reiniciar');
     const resultadoDiv = document.getElementById('resultado');
+    const progressFill = document.getElementById('progress-fill');
 
+    const audioAmbiente = document.getElementById('audio-ambiente');
+    const btnSom = document.getElementById('btn-som');
+
+    // Atualiza barra de progresso
+    function atualizarProgressBar() {
+      const progresso = ((indicePerguntaAtual) / perguntas.length) * 100;
+      progressFill.style.width = `${progresso}%`;
+    }
+
+    // Mostrar pergunta com animação suave
     function mostrarPergunta() {
       btnProxima.disabled = true;
+      btnProxima.setAttribute('aria-disabled', 'true');
       resultadoDiv.textContent = '';
-      const perguntaAtual = perguntas[indicePerguntaAtual];
-      perguntaContainer.textContent = `Pergunta ${indicePerguntaAtual + 1}: ${perguntaAtual.pergunta}`;
+      resultadoDiv.classList.remove('correta', 'errada', 'final');
 
-      opcoesContainer.innerHTML = '';
-      perguntaAtual.opcoes.forEach((opcao, i) => {
-        const btn = document.createElement('button');
-        btn.textContent = opcao;
-        btn.classList.add('opcao-btn');
-        btn.addEventListener('click', () => {
-          if (i === perguntaAtual.correta) {
-            pontuacao++;
-            resultadoDiv.textContent = 'Resposta correta!';
-            resultadoDiv.style.color = 'green';
-          } else {
-            resultadoDiv.textContent = `Errado! A resposta certa é: ${perguntaAtual.opcoes[perguntaAtual.correta]}`;
-            resultadoDiv.style.color = 'red';
-          }
-          btnProxima.disabled = false;
-          desabilitarOpcoes();
+      // animação fade out e in
+      perguntaContainer.style.opacity = 0;
+      opcoesContainer.style.opacity = 0;
+
+      setTimeout(() => {
+        const perguntaAtual = perguntas[indicePerguntaAtual];
+        perguntaContainer.textContent = `Pergunta ${indicePerguntaAtual + 1}: ${perguntaAtual.pergunta}`;
+
+        opcoesContainer.innerHTML = '';
+        perguntaAtual.opcoes.forEach((opcao, i) => {
+          const btn = document.createElement('button');
+          btn.textContent = opcao;
+          btn.classList.add('opcao-btn');
+          btn.setAttribute('type', 'button');
+          btn.setAttribute('aria-label', `Opção ${i + 1}: ${opcao}`);
+          btn.addEventListener('click', () => {
+            if (i === perguntaAtual.correta) {
+              pontuacao++;
+              resultadoDiv.textContent = 'Resposta correta!';
+              resultadoDiv.classList.add('correta');
+            } else {
+              resultadoDiv.textContent = `Errado! A resposta certa é: ${perguntaAtual.opcoes[perguntaAtual.correta]}`;
+              resultadoDiv.classList.add('errada');
+            }
+            btnProxima.disabled = false;
+            btnProxima.setAttribute('aria-disabled', 'false');
+            desabilitarOpcoes();
+          });
+          opcoesContainer.appendChild(btn);
         });
-        opcoesContainer.appendChild(btn);
-      });
+
+        perguntaContainer.style.opacity = 1;
+        opcoesContainer.style.opacity = 1;
+
+        atualizarProgressBar();
+
+      }, 300);
     }
 
     function desabilitarOpcoes() {
       const botoes = opcoesContainer.querySelectorAll('button');
       botoes.forEach(btn => {
         btn.disabled = true;
+      });
+      // marcar resposta correta/errada nos botões
+      const botoesArray = Array.from(botoes);
+      botoesArray.forEach((btn, index) => {
+        if(index === perguntas[indicePerguntaAtual].correta) {
+          btn.classList.add('correta-btn');
+        } else {
+          btn.classList.add('errada-btn');
+        }
       });
     }
 
@@ -159,16 +439,48 @@
       }
     });
 
+    btnReiniciar.addEventListener('click', () => {
+      indicePerguntaAtual = 0;
+      pontuacao = 0;
+      btnReiniciar.style.display = 'none';
+      btnProxima.style.display = 'inline-block';
+      btnProxima.disabled = true;
+      btnProxima.setAttribute('aria-disabled', 'true');
+      resultadoDiv.textContent = '';
+      mostrarPergunta();
+    });
+
     function mostrarResultadoFinal() {
       perguntaContainer.textContent = 'Quiz finalizado!';
       opcoesContainer.innerHTML = '';
-      resultadoDiv.style.color = 'blue';
       resultadoDiv.textContent = `Você acertou ${pontuacao} de ${perguntas.length} perguntas. Parabéns!`;
-      btnProxima.disabled = true;
+      resultadoDiv.classList.remove('correta', 'errada');
+      resultadoDiv.classList.add('final');
+
+      btnProxima.style.display = 'none';
+      btnReiniciar.style.display = 'inline-block';
+
+      progressFill.style.width = '100%';
     }
 
+    // Controle som ambiente
+    btnSom.addEventListener('click', () => {
+      if(audioAmbiente.paused) {
+        audioAmbiente.volume = 0.25; // volume suave
+        audioAmbiente.play();
+        btnSom.textContent = '🔊 Som Ligado';
+        btnSom.setAttribute('aria-pressed', 'true');
+      } else {
+        audioAmbiente.pause();
+        btnSom.textContent = '🔈 Som Ambiente';
+        btnSom.setAttribute('aria-pressed', 'false');
+      }
+    });
+
+    // Começa mostrando a primeira pergunta
     mostrarPergunta();
   </script>
 
 </body>
 </html>
+
