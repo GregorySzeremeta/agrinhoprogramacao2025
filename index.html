@@ -2,270 +2,230 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Estação da Terra - Loja</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
-  <!-- Acessibilidade -->
-  <div id="acessibilidade">
-    <button onclick="toggleContraste()" aria-label="Alternar contraste">🌓</button>
-    <button onclick="aumentarFonte()" aria-label="Aumentar fonte">🔠</button>
-    <button onclick="diminuirFonte()" aria-label="Diminuir fonte">🔡</button>
-  </div>
-
-  <!-- VLibras -->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-
-  <!-- Animação de boas-vindas -->
-  <div id="welcome-overlay">
-    <div class="welcome-content">
-      <h1>Bem-vindo à Estação da Terra!</h1>
-      <p>Do campo à cidade, colhendo oportunidades.</p>
-      <button id="btn-enter">Entrar</button>
-    </div>
-  </div>
-
-  <!-- Cabeçalho -->
   <header>
     <h1>Estação da Terra</h1>
     <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
-    <nav class="menu">
-      <ul>
-        <li><a href="quiz.html">Quiz</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-      </ul>
-    </nav>
   </header>
 
-  <!-- Loja -->
-  <main>
-    <section id="produtos">
-      <h2>Produtos à Venda</h2>
-      <div class="barracas">
+  <main id="main-content">
+    <!-- Loja -->
+    <section id="loja" class="active-section">
+      <div class="produtos-container">
 
-        <!-- Produtos originais mantidos, só um novo adicionado -->
-        <div class="produto-card">
-          <img src="img/maçã.jpg" alt="Maçã Orgânica" />
-          <h3>Maçã Orgânica</h3>
-          <p>R$ 3,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Maçã Orgânica', 3)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/mel.jpg" alt="Mel Puro" />
-          <h3>Mel Puro</h3>
-          <p>R$ 15,00</p>
-          <button onclick="adicionarAoCarrinho('Mel Puro', 15)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/queijo.jpg" alt="Queijo Artesanal" />
-          <h3>Queijo Artesanal</h3>
-          <p>R$ 25,00</p>
-          <button onclick="adicionarAoCarrinho('Queijo Artesanal', 25)">Adicionar</button>
-        </div>
+        <article class="produto" data-id="1">
+          <img src="https://i.imgur.com/gZx5cJj.jpg" alt="Mel" />
+          <h2>Mel Natural</h2>
+          <p>Mel puro e natural, direto da colmeia.</p>
+          <p class="preco">R$ 25,00</p>
+          <button class="btn-add" data-id="1">Adicionar ao carrinho</button>
+        </article>
 
-        <!-- Produtos novos e antigos mantidos -->
-        <!-- ... (todos os seus produtos existentes aqui) ... -->
+        <article class="produto" data-id="2">
+          <img src="https://i.imgur.com/klGvEYj.jpg" alt="Queijo" />
+          <h2>Queijo Artesanal</h2>
+          <p>Queijo fresco feito artesanalmente.</p>
+          <p class="preco">R$ 40,00</p>
+          <button class="btn-add" data-id="2">Adicionar ao carrinho</button>
+        </article>
 
-        <!-- Produto novo adicionado -->
-        <div class="produto-card">
-          <img src="img/morango.jpg" alt="Morango Fresco" />
-          <h3>Morango Fresco</h3>
-          <p>R$ 7,50/caixa</p>
-          <button onclick="adicionarAoCarrinho('Morango Fresco', 7.5)">Adicionar</button>
-        </div>
+        <article class="produto" data-id="3">
+          <img src="https://i.imgur.com/BTaXYlQ.jpg" alt="Frutas" />
+          <h2>Frutas Orgânicas</h2>
+          <p>Frutas frescas e cultivadas sem agrotóxicos.</p>
+          <p class="preco">R$ 15,00</p>
+          <button class="btn-add" data-id="3">Adicionar ao carrinho</button>
+        </article>
+
+        <article class="produto" data-id="4">
+          <img src="https://i.imgur.com/h6NXQbE.jpg" alt="Leite" />
+          <h2>Leite Fresco</h2>
+          <p>Leite direto da fazenda, com qualidade garantida.</p>
+          <p class="preco">R$ 8,00</p>
+          <button class="btn-add" data-id="4">Adicionar ao carrinho</button>
+        </article>
+
+        <article class="produto" data-id="5">
+          <img src="https://i.imgur.com/7aYfn1M.jpg" alt="Grãos" />
+          <h2>Grãos Selecionados</h2>
+          <p>Grãos variados para sua alimentação saudável.</p>
+          <p class="preco">R$ 12,00</p>
+          <button class="btn-add" data-id="5">Adicionar ao carrinho</button>
+        </article>
+
+        <article class="produto" data-id="6">
+          <img src="https://i.imgur.com/fPMyYHx.jpg" alt="Verduras" />
+          <h2>Verduras Frescas</h2>
+          <p>Verduras selecionadas, direto do campo para você.</p>
+          <p class="preco">R$ 10,00</p>
+          <button class="btn-add" data-id="6">Adicionar ao carrinho</button>
+        </article>
+
       </div>
+
+      <aside id="carrinho">
+        <h3>Carrinho</h3>
+        <ul id="lista-carrinho"></ul>
+        <p id="total">Total: R$ 0,00</p>
+        <button id="btn-finalizar" disabled>Finalizar Compra</button>
+      </aside>
     </section>
 
-    <!-- Carrinho -->
-    <section id="carrinho">
-      <h2>🛒 Carrinho de Compras</h2>
-      <ul id="lista-carrinho"></ul>
-      <div class="carrinho-total"></div>
-      <div class="botoes-carrinho">
-        <button onclick="esvaziarCarrinho()" class="btn-red">🗑️ Esvaziar Carrinho</button>
-        <button onclick="finalizarCompra()" class="btn-green" id="btn-finalizar">Finalizar Compra</button>
-      </div>
-    </section>
-
-    <!-- Área de pagamento (inicialmente escondida) -->
-    <section id="area-pagamento" class="hidden">
-      <h2>Pagamento</h2>
+    <!-- Área de Pagamento -->
+    <section id="pagamento" class="hidden-section">
+      <h2>Finalizar Compra</h2>
       <form id="form-pagamento">
-        <label for="nome">Nome Completo:</label>
-        <input type="text" id="nome" name="nome" required />
+        <fieldset>
+          <legend>Informações de Pagamento</legend>
+          <label for="nome">Nome Completo:</label>
+          <input type="text" id="nome" name="nome" required />
 
-        <label for="endereco">Endereço de Entrega:</label>
-        <textarea id="endereco" name="endereco" rows="3" required></textarea>
+          <label for="endereco">Endereço:</label>
+          <textarea id="endereco" name="endereco" rows="3" required></textarea>
 
-        <label for="pagamento">Forma de Pagamento:</label>
-        <select id="pagamento" name="pagamento" required>
-          <option value="" disabled selected>Selecione</option>
-          <option value="boleto">Boleto Bancário</option>
-          <option value="cartao">Cartão de Crédito</option>
-          <option value="pix">PIX</option>
-          <option value="dinheiro">Dinheiro na Entrega</option>
-        </select>
+          <label for="pagamento-tipo">Forma de Pagamento:</label>
+          <select id="pagamento-tipo" name="pagamento-tipo" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="cartao">Cartão de Crédito</option>
+            <option value="boleto">Boleto Bancário</option>
+            <option value="pix">PIX</option>
+          </select>
+        </fieldset>
 
-        <button type="submit" class="btn-green">Confirmar Pagamento</button>
-        <button type="button" class="btn-gray" onclick="voltarParaCarrinho()">Voltar ao Carrinho</button>
+        <button type="submit" id="btn-confirmar">Confirmar Pedido</button>
+        <button type="button" id="btn-voltar">Voltar para Loja</button>
       </form>
+    </section>
+
+    <!-- Mensagem de sucesso -->
+    <section id="sucesso" class="hidden-section">
+      <h2>Pedido realizado com sucesso!</h2>
+      <p>Obrigado por comprar na Estação da Terra 🌱</p>
+      <button id="btn-voltar-loja">Voltar para Loja</button>
     </section>
   </main>
 
-  <button id="btnTopo" title="Voltar ao topo" aria-label="Voltar ao topo">⬆️</button>
-
   <footer>
-    <div class="redes-sociais">
-      <a href="https://instagram.com/estacaodaterra" target="_blank" aria-label="Instagram"><img src="img/instagram.svg" alt="Instagram" /></a>
-      <a href="https://facebook.com/estacaodaterra" target="_blank" aria-label="Facebook"><img src="img/facebook.svg" alt="Facebook" /></a>
-    </div>
-    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
+    <p>© 2025 Estação da Terra. Todos os direitos reservados.</p>
   </footer>
 
-  <!-- Som Ambiente -->
-  <audio id="audio-fundo" src="audio/som-mato.mp3" loop autoplay></audio>
-  <button id="btn-som" aria-label="Ativar/Desativar som ambiente">🔈</button>
-
   <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    const produtos = [
+      { id: 1, nome: "Mel Natural", preco: 25 },
+      { id: 2, nome: "Queijo Artesanal", preco: 40 },
+      { id: 3, nome: "Frutas Orgânicas", preco: 15 },
+      { id: 4, nome: "Leite Fresco", preco: 8 },
+      { id: 5, nome: "Grãos Selecionados", preco: 12 },
+      { id: 6, nome: "Verduras Frescas", preco: 10 },
+    ];
 
-    let carrinho = [];
+    const carrinho = [];
 
-    function adicionarAoCarrinho(produto, preco) {
-      const itemExistente = carrinho.find((item) => item.nome === produto);
-      if (itemExistente) {
-        itemExistente.quantidade++;
-      } else {
-        carrinho.push({ nome: produto, preco: preco, quantidade: 1 });
-      }
-      atualizarCarrinho();
+    // Elementos
+    const listaCarrinho = document.getElementById("lista-carrinho");
+    const totalEl = document.getElementById("total");
+    const btnFinalizar = document.getElementById("btn-finalizar");
+
+    const secLoja = document.getElementById("loja");
+    const secPagamento = document.getElementById("pagamento");
+    const secSucesso = document.getElementById("sucesso");
+
+    const formPagamento = document.getElementById("form-pagamento");
+    const btnVoltar = document.getElementById("btn-voltar");
+    const btnVoltarLoja = document.getElementById("btn-voltar-loja");
+
+    // Função para formatar preço
+    function formatarPreco(valor) {
+      return valor.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      });
     }
 
+    // Atualizar carrinho na UI
     function atualizarCarrinho() {
-      const lista = document.getElementById("lista-carrinho");
-      lista.innerHTML = "";
-
-      if (carrinho.length === 0) {
-        const vazio = document.createElement("li");
-        vazio.textContent = "Carrinho vazio.";
-        lista.appendChild(vazio);
-        document.querySelector(".carrinho-total").textContent = "";
-        document.getElementById("btn-finalizar").disabled = true;
-        return;
-      }
+      listaCarrinho.innerHTML = "";
+      let total = 0;
 
       carrinho.forEach((item) => {
+        const prod = produtos.find((p) => p.id === item.id);
+        total += prod.preco * item.quantidade;
+
         const li = document.createElement("li");
-        li.textContent = `${item.nome} — ${item.quantidade}x — R$ ${(item.preco * item.quantidade).toFixed(2)}`;
-        lista.appendChild(li);
+        li.textContent = `${prod.nome} x ${item.quantidade} - ${formatarPreco(
+          prod.preco * item.quantidade
+        )}`;
+        listaCarrinho.appendChild(li);
       });
 
-      const total = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
-      document.querySelector(".carrinho-total").textContent = `Total: R$ ${total.toFixed(2)}`;
-      document.getElementById("btn-finalizar").disabled = false;
+      totalEl.textContent = `Total: ${formatarPreco(total)}`;
+
+      btnFinalizar.disabled = total === 0;
     }
 
-    function esvaziarCarrinho() {
-      carrinho = [];
+    // Adicionar produto no carrinho
+    document.querySelectorAll(".btn-add").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = Number(btn.dataset.id);
+        const item = carrinho.find((c) => c.id === id);
+
+        if (item) {
+          item.quantidade++;
+        } else {
+          carrinho.push({ id, quantidade: 1 });
+        }
+
+        atualizarCarrinho();
+      });
+    });
+
+    // Mostrar a área de pagamento
+    btnFinalizar.addEventListener("click", () => {
+      secLoja.classList.remove("active-section");
+      secLoja.classList.add("hidden-section");
+      secPagamento.classList.remove("hidden-section");
+      secPagamento.classList.add("active-section");
+      window.scrollTo(0, 0);
+    });
+
+    // Voltar para loja
+    btnVoltar.addEventListener("click", () => {
+      secPagamento.classList.remove("active-section");
+      secPagamento.classList.add("hidden-section");
+      secLoja.classList.remove("hidden-section");
+      secLoja.classList.add("active-section");
+    });
+
+    btnVoltarLoja.addEventListener("click", () => {
+      secSucesso.classList.remove("active-section");
+      secSucesso.classList.add("hidden-section");
+      secLoja.classList.remove("hidden-section");
+      secLoja.classList.add("active-section");
+      carrinho.length = 0; // limpa carrinho
       atualizarCarrinho();
-      esconderAreaPagamento();
-    }
+    });
 
-    // Mostrar área de pagamento
-    function finalizarCompra() {
-      if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio!");
-        return;
-      }
-      document.getElementById("carrinho").classList.add("hidden");
-      document.getElementById("area-pagamento").classList.remove("hidden");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    // Voltar para carrinho
-    function voltarParaCarrinho() {
-      document.getElementById("area-pagamento").classList.add("hidden");
-      document.getElementById("carrinho").classList.remove("hidden");
-    }
-
-    // Submissão do formulário de pagamento
-    document.getElementById("form-pagamento").addEventListener("submit", function (e) {
+    // Confirmar pedido
+    formPagamento.addEventListener("submit", (e) => {
       e.preventDefault();
-      alert("Pagamento confirmado! Obrigado pela compra.");
-      carrinho = [];
-      atualizarCarrinho();
-      voltarParaCarrinho();
+
+      alert("Pedido confirmado! Obrigado por comprar na Estação da Terra 🌱");
+
+      secPagamento.classList.remove("active-section");
+      secPagamento.classList.add("hidden-section");
+
+      secSucesso.classList.remove("hidden-section");
+      secSucesso.classList.add("active-section");
+
+      window.scrollTo(0, 0);
     });
 
-    // Contraste
-    function toggleContraste() {
-      document.body.classList.toggle("contraste");
-    }
-
-    // Fonte maior
-    function aumentarFonte() {
-      const style = window.getComputedStyle(document.body).fontSize;
-      let size = parseFloat(style);
-      if (size < 24) {
-        document.body.style.fontSize = size + 2 + "px";
-      }
-    }
-
-    // Fonte menor
-    function diminuirFonte() {
-      const style = window.getComputedStyle(document.body).fontSize;
-      let size = parseFloat(style);
-      if (size > 12) {
-        document.body.style.fontSize = size - 2 + "px";
-      }
-    }
-
-    // Botão voltar ao topo
-    const btnTopo = document.getElementById("btnTopo");
-    window.onscroll = function () {
-      if (document.documentElement.scrollTop > 150) {
-        btnTopo.style.display = "block";
-      } else {
-        btnTopo.style.display = "none";
-      }
-    };
-    btnTopo.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    // Som ambiente
-    const audio = document.getElementById("audio-fundo");
-    const btnSom = document.getElementById("btn-som");
-    btnSom.addEventListener("click", () => {
-      if (audio.paused) {
-        audio.play();
-        btnSom.textContent = "🔈";
-      } else {
-        audio.pause();
-        btnSom.textContent = "🔇";
-      }
-    });
-
-    // Animação boas-vindas
-    const welcomeOverlay = document.getElementById("welcome-overlay");
-    const btnEnter = document.getElementById("btn-enter");
-    btnEnter.addEventListener("click", () => {
-      welcomeOverlay.classList.add("fadeout");
-      setTimeout(() => {
-        welcomeOverlay.style.display = "none";
-      }, 1000);
-    });
-
-    // Inicializa carrinho
+    // Inicializa carrinho vazio
     atualizarCarrinho();
   </script>
 </body>
 </html>
-
