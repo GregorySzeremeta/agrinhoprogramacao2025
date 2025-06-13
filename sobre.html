@@ -1,38 +1,81 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Estação da Terra - Sobre</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
+  <!-- Acessibilidade -->
+  <div id="acessibilidade">
+    <button onclick="toggleContraste()" aria-label="Alternar contraste">🌓</button>
+    <button onclick="aumentarFonte()" aria-label="Aumentar fonte">🔠</button>
+    <button onclick="diminuirFonte()" aria-label="Diminuir fonte">🔡</button>
+  </div>
+
+  <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper">
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho -->
   <header>
-    <h1>Sobre a Estação da Terra</h1>
+    <h1>Estação da Terra</h1>
+    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
     <nav class="menu">
-      <a href="index.html">Início</a>
-      <a href="quiz.html">Quiz</a>
+      <ul>
+        <li><a href="index.html">Loja</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="sobre.html" aria-current="page">Sobre</a></li>
+      </ul>
     </nav>
   </header>
 
+  <!-- Conteúdo Sobre -->
   <main>
-    <section id="sobre">
-      <h2>Nossa História</h2>
+    <section id="sobre" style="max-width: 900px; margin: 40px auto; padding: 0 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #2e7d32; line-height: 1.6;">
+      <h2 style="text-align:center; font-size: 2.2rem; margin-bottom: 20px;">Sobre a Estação da Terra</h2>
       <p>
-        A Estação da Terra nasceu com o propósito de aproximar o campo da cidade.
-        Nosso objetivo é conectar pequenos produtores a consumidores conscientes,
-        promovendo sustentabilidade, saúde e economia local.
+        Seja bem-vindo(a) à <strong>Estação da Terra</strong>, o seu espaço online que conecta o campo à cidade de forma sustentável, prática e cheia de sabor! Aqui, valorizamos cada produto cultivado com carinho e respeito pela natureza, levando até você o melhor da agricultura familiar, com frescor, qualidade e preço justo.
       </p>
       <p>
-        Aqui, cada barraca é uma oportunidade, cada produto é um pedaço da natureza.
-        Acreditamos na força da agricultura familiar, no cuidado com o meio ambiente
-        e na valorização da produção regional.
+        Nosso objetivo é muito mais do que vender — queremos cultivar uma relação verdadeira entre você e a origem dos alimentos que chegam à sua mesa. Cada fruta, grão, verdura, mel ou queijo disponível em nossa loja carrega consigo histórias de produtores que trabalham com amor e dedicação para garantir saúde e bem-estar para toda a família.
+      </p>
+      <p>
+        Navegue pelas nossas barracas virtuais e descubra uma variedade de produtos fresquinhos, colhidos direto do campo para a sua casa. Acreditamos que comprar com consciência e responsabilidade faz toda a diferença — por isso, incentivamos práticas agrícolas sustentáveis e apoiamos quem cuida da terra para garantir um futuro melhor.
+      </p>
+      <p>
+        <em>Do campo à cidade, colhendo oportunidades.</em> Essa é a nossa missão! E você faz parte dela ao escolher produtos que respeitam o meio ambiente e valorizam o trabalho rural. Aproveite para explorar, aprender e se encantar com o universo da agricultura familiar e sustentável.
+      </p>
+      <p style="text-align:center; margin-top: 30px; font-size: 1.2rem;">
+        <strong>Junte-se a nós nessa jornada de sabor, saúde e conexão com a terra!</strong>
       </p>
     </section>
   </main>
 
   <footer>
-    &copy; 2025 Estação da Terra. Todos os direitos reservados.
+    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
   </footer>
+
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+
+    function toggleContraste() {
+      document.body.classList.toggle("contraste");
+    }
+
+    function aumentarFonte() {
+      document.body.style.fontSize = "larger";
+    }
+
+    function diminuirFonte() {
+      document.body.style.fontSize = "initial";
+    }
+  </script>
 </body>
 </html>
