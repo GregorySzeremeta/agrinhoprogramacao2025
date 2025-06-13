@@ -1,60 +1,113 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
   <title>Estação da Terra - Loja</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
-
-<header class="header">
-  <h1>Estação da Terra</h1>
-</header>
-
-<main class="main-content">
-  <section class="store-section" aria-label="Produtos da loja">
-    <h2>Produtos</h2>
-
-    <div class="products-grid">
-      <div class="product-card">
-        <img src="imagens/leite1.jpg" alt="Leite fresco 1L" />
-        <h3>Leite Fresco 1L</h3>
-        <p>Leite integral orgânico direto do produtor.</p>
-        <div class="price">R$ 5,50</div>
-        <button class="btn-add-cart">Adicionar</button>
-      </div>
-
-      <div class="product-card">
-        <img src="imagens/maca.jpg" alt="Maçã vermelha" />
-        <h3>Maçã Vermelha</h3>
-        <p>Maçãs frescas e suculentas, direto da fazenda.</p>
-        <div class="price">R$ 4,00/kg</div>
-        <button class="btn-add-cart">Adicionar</button>
-      </div>
-
-      <div class="product-card">
-        <img src="imagens/alface.jpg" alt="Alface fresca" />
-        <h3>Alface Fresca</h3>
-        <p>Alface colhida na hora, crocante e saudável.</p>
-        <div class="price">R$ 2,50/un</div>
-        <button class="btn-add-cart">Adicionar</button>
-      </div>
-    </div>
-  </section>
-</main>
-
-<aside class="cart-sidebar" aria-label="Carrinho de compras">
-  <h2>Carrinho</h2>
-  <ul id="cart-items"></ul>
-  <div class="cart-total">
-    <span>Total:</span>
-    <span id="cart-total-value">R$ 0,00</span>
+  <!-- Acessibilidade -->
+  <div id="acessibilidade">
+    <button onclick="toggleContraste()" aria-label="Alternar contraste">🌓</button>
+    <button onclick="aumentarFonte()" aria-label="Aumentar fonte">🔠</button>
+    <button onclick="diminuirFonte()" aria-label="Diminuir fonte">🔡</button>
   </div>
-  <button id="btn-empty-cart">Esvaziar</button>
-  <button id="btn-checkout">Finalizar</button>
-</aside>
 
-<script src="script.js"></script>
+  <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho -->
+  <header>
+    <h1>Estação da Terra</h1>
+    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
+    <nav class="menu">
+      <ul>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Loja -->
+  <main>
+    <section id="produtos">
+      <h2>Produtos à Venda</h2>
+      <div class="barracas">
+        <div class="produto-card">
+          <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce" alt="Maçã Orgânica">
+          <h3>Maçã Orgânica</h3>
+          <p>R$ 3,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Maçã Orgânica')">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="https://images.unsplash.com/photo-1582515073490-39981397c445" alt="Mel Puro">
+          <h3>Mel Puro</h3>
+          <p>R$ 15,00</p>
+          <button onclick="adicionarAoCarrinho('Mel Puro')">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="https://images.unsplash.com/photo-1572441710263-478a1b119119" alt="Queijo Artesanal">
+          <h3>Queijo Artesanal</h3>
+          <p>R$ 25,00</p>
+          <button onclick="adicionarAoCarrinho('Queijo Artesanal')">Adicionar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Carrinho -->
+    <section id="carrinho">
+      <h2>🛒 Carrinho de Compras</h2>
+      <ul id="lista-carrinho"></ul>
+      <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    let carrinho = [];
+
+    function adicionarAoCarrinho(produto) {
+      carrinho.push(produto);
+      atualizarCarrinho();
+    }
+
+    function atualizarCarrinho() {
+      const lista = document.getElementById("lista-carrinho");
+      lista.innerHTML = "";
+      carrinho.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        lista.appendChild(li);
+      });
+    }
+
+    function esvaziarCarrinho() {
+      carrinho = [];
+      atualizarCarrinho();
+    }
+
+    function toggleContraste() {
+      document.body.classList.toggle("contraste");
+    }
+
+    function aumentarFonte() {
+      document.body.style.fontSize = "larger";
+    }
+
+    function diminuirFonte() {
+      document.body.style.fontSize = "initial";
+    }
+  </script>
 </body>
 </html>
