@@ -24,16 +24,12 @@
 
   <main>
     <section id="produtos" class="pagina">
-      <div class="grid-produtos" id="lista-produtos">
-        <!-- Produtos são gerados por JavaScript -->
-      </div>
+      <div class="grid-produtos" id="lista-produtos"></div>
     </section>
 
     <section id="quiz" class="pagina" style="display:none">
       <h2>Quiz: Produção do Campo</h2>
-      <form id="quiz-form">
-        <!-- Questões do quiz inseridas via JavaScript -->
-      </form>
+      <form id="quiz-form"></form>
       <div id="resultado"></div>
     </section>
 
@@ -42,13 +38,10 @@
       <form>
         <label for="nome">Nome:</label>
         <input type="text" id="nome">
-
         <label for="email">Email:</label>
         <input type="email" id="email">
-
         <label for="mensagem">Mensagem:</label>
         <textarea id="mensagem"></textarea>
-
         <button type="submit">Enviar</button>
       </form>
     </section>
@@ -57,7 +50,11 @@
       <h2>Carrinho de Compras</h2>
       <ul id="carrinho-lista"></ul>
       <p class="total" id="total">Total: R$ 0,00</p>
-      <button onclick="finalizarCompra()">Finalizar Compra</button>
+      <div>
+        <button onclick="finalizarCompra('pix')">Pagar com PIX</button>
+        <button onclick="finalizarCompra('credito')">Cartão de Crédito</button>
+        <button onclick="finalizarCompra('debito')">Cartão de Débito</button>
+      </div>
     </section>
 
     <div id="confete-container"></div>
@@ -85,43 +82,31 @@
       { nome: "Queijo Artesanal", preco: 40, imagem: "https://via.placeholder.com/200?text=Queijo" },
       { nome: "Leite Integral", preco: 6, imagem: "https://via.placeholder.com/200?text=Leite" },
       { nome: "Alface Hidropônica", preco: 4, imagem: "https://via.placeholder.com/200?text=Alface" },
-      { nome: "Tomate Orgânico", preco: 8, imagem: "https://via.placeholder.com/200?text=Tomate" },
-      { nome: "Morango Fresco", preco: 10, imagem: "https://via.placeholder.com/200?text=Morango" },
-      { nome: "Ovos Caipira", preco: 12, imagem: "https://via.placeholder.com/200?text=Ovos" },
-      { nome: "Arroz Integral", preco: 18, imagem: "https://via.placeholder.com/200?text=Arroz" },
-      { nome: "Feijão Preto", preco: 14, imagem: "https://via.placeholder.com/200?text=Feijao" },
-      { nome: "Batata Doce", preco: 5, imagem: "https://via.placeholder.com/200?text=Batata" },
-      // ... mais 20 produtos fictícios
+      { nome: "Tomate Orgânico", preco: 8, imagem: "https://via.placeholder.com/200?text=Tomate" }
     ];
 
     const perguntasQuiz = [
-      {
-        pergunta: "Qual é o melhor horário para colher alface?",
-        opcoes: ["Manhã", "Tarde", "Meia-noite"],
-        correta: 0
-      },
-      {
-        pergunta: "Qual é o tempo médio de produção de mel?",
-        opcoes: ["2 dias", "1 mês", "6 meses"],
-        correta: 2
-      },
-      // ... +5 perguntas
+      { pergunta: "Qual é o melhor horário para colher alface?", opcoes: ["Manhã", "Tarde", "Meia-noite"], correta: 0 },
+      { pergunta: "Qual é o tempo médio de produção de mel?", opcoes: ["2 dias", "1 mês", "6 meses"], correta: 2 }
     ];
 
     const carrinho = [];
-    const listaProdutos = document.getElementById('lista-produtos');
 
-    produtos.forEach((produto, index) => {
-      const div = document.createElement('div');
-      div.className = 'produto';
-      div.innerHTML = `
-        <img src="${produto.imagem}" alt="${produto.nome}">
-        <h3>${produto.nome}</h3>
-        <p>R$ ${produto.preco.toFixed(2)}</p>
-        <button onclick="adicionarAoCarrinho(${index})">Adicionar ao carrinho</button>
-      `;
-      listaProdutos.appendChild(div);
-    });
+    function atualizarProdutos() {
+      const lista = document.getElementById('lista-produtos');
+      lista.innerHTML = '';
+      produtos.forEach((produto, index) => {
+        const div = document.createElement('div');
+        div.className = 'produto';
+        div.innerHTML = `
+          <img src="${produto.imagem}" alt="${produto.nome}">
+          <h3>${produto.nome}</h3>
+          <p>R$ ${produto.preco.toFixed(2)}</p>
+          <button onclick="adicionarAoCarrinho(${index})">Adicionar ao carrinho</button>
+        `;
+        lista.appendChild(div);
+      });
+    }
 
     function adicionarAoCarrinho(index) {
       carrinho.push(produtos[index]);
@@ -129,8 +114,7 @@
     }
 
     function mostrarCarrinho() {
-      document.querySelectorAll('.pagina').forEach(sec => sec.style.display = 'none');
-      document.getElementById('carrinho').style.display = 'block';
+      mostrarPagina('carrinho');
       const lista = document.getElementById('carrinho-lista');
       lista.innerHTML = '';
       let total = 0;
@@ -143,8 +127,8 @@
       document.getElementById('total').innerText = `Total: R$ ${total.toFixed(2)}`;
     }
 
-    function finalizarCompra() {
-      alert("Compra finalizada com sucesso!");
+    function finalizarCompra(metodo) {
+      alert(`Compra finalizada com ${metodo.toUpperCase()}`);
     }
 
     function mostrarPagina(id) {
@@ -152,48 +136,50 @@
       document.getElementById(id).style.display = 'block';
     }
 
-    perguntasQuiz.forEach((q, i) => {
-      const div = document.createElement('fieldset');
-      div.className = 'quiz-pergunta';
-      div.innerHTML = `<legend>${q.pergunta}</legend>` +
-        q.opcoes.map((op, j) => `
-          <label><input type="radio" name="q${i}" value="${j}"> ${op}</label>
-        `).join('');
-      document.getElementById('quiz-form').appendChild(div);
-    });
-
-    const confeteContainer = document.getElementById('confete-container');
+    function montarQuiz() {
+      const quizForm = document.getElementById('quiz-form');
+      quizForm.innerHTML = '';
+      perguntasQuiz.forEach((q, i) => {
+        const div = document.createElement('fieldset');
+        div.className = 'quiz-pergunta';
+        div.innerHTML = `<legend>${q.pergunta}</legend>` +
+          q.opcoes.map((op, j) => `
+            <label><input type="radio" name="q${i}" value="${j}"> ${op}</label>
+          `).join('');
+        quizForm.appendChild(div);
+      });
+      quizForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        let acertos = 0;
+        perguntasQuiz.forEach((q, i) => {
+          const marcada = document.querySelector(`input[name='q${i}']:checked`);
+          if (marcada && Number(marcada.value) === q.correta) acertos++;
+        });
+        const percentual = Math.round((acertos / perguntasQuiz.length) * 100);
+        document.getElementById('resultado').innerText = `Você acertou ${acertos}/${perguntasQuiz.length} perguntas (${percentual}%)!`;
+        if (acertos > 0) soltarConfetes();
+      });
+    }
 
     function soltarConfetes() {
+      const container = document.getElementById('confete-container');
       for (let i = 0; i < 100; i++) {
         const confete = document.createElement('div');
         confete.className = 'confete';
         confete.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
         confete.style.left = `${Math.random() * 100}%`;
-        confeteContainer.appendChild(confete);
+        container.appendChild(confete);
         setTimeout(() => confete.remove(), 3000);
       }
     }
 
-    document.getElementById('quiz-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      let acertos = 0;
-      perguntasQuiz.forEach((q, i) => {
-        const marcada = document.querySelector(`input[name='q${i}']:checked`);
-        if (marcada && Number(marcada.value) === q.correta) {
-          acertos++;
-        }
-      });
-      const percentual = Math.round((acertos / perguntasQuiz.length) * 100);
-      document.getElementById('resultado').innerText = `Você acertou ${acertos}/${perguntasQuiz.length} perguntas (${percentual}%)!`;
-      if (acertos > 0) soltarConfetes();
-    });
-
     function toggleSomAmbiente() {
       const audio = document.getElementById('som-ambiente');
-      if (audio.paused) audio.play();
-      else audio.pause();
+      if (audio.paused) audio.play(); else audio.pause();
     }
+
+    atualizarProdutos();
+    montarQuiz();
   </script>
 </body>
 </html>
