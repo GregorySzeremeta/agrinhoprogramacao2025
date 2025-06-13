@@ -22,26 +22,97 @@
     <section class="loja-section">
       <h2>Produtos do Campo</h2>
       <div class="produtos-grid">
-        <!-- Exemplo de produtos -->
+        <!-- Produtos -->
         <article class="produto-card">
-          <img src="img/maça.jpg" alt="Maçã Orgânica" />
+          <img src="img/maca.jpg" alt="Maçã Orgânica" />
           <h3>Maçã Orgânica</h3>
           <p class="preco">R$ 3,00/kg</p>
           <button onclick="adicionarAoCarrinho('Maçã Orgânica', 3)" class="btn-adicionar">Adicionar ao Carrinho</button>
         </article>
+
         <article class="produto-card">
           <img src="img/mel.jpg" alt="Mel Puro" />
           <h3>Mel Puro</h3>
           <p class="preco">R$ 15,00</p>
           <button onclick="adicionarAoCarrinho('Mel Puro', 15)" class="btn-adicionar">Adicionar ao Carrinho</button>
         </article>
+
         <article class="produto-card">
           <img src="img/banana.jpg" alt="Banana" />
           <h3>Banana</h3>
           <p class="preco">R$ 2,50/kg</p>
           <button onclick="adicionarAoCarrinho('Banana', 2.5)" class="btn-adicionar">Adicionar ao Carrinho</button>
         </article>
-        <!-- ... Mais produtos aqui ... -->
+
+        <article class="produto-card">
+          <img src="img/laranja.jpg" alt="Laranja" />
+          <h3>Laranja</h3>
+          <p class="preco">R$ 2,80/kg</p>
+          <button onclick="adicionarAoCarrinho('Laranja', 2.8)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/queijo.jpg" alt="Queijo Minas" />
+          <h3>Queijo Minas</h3>
+          <p class="preco">R$ 20,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Queijo Minas', 20)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/leite.jpg" alt="Leite Fresco" />
+          <h3>Leite Fresco</h3>
+          <p class="preco">R$ 4,50/litro</p>
+          <button onclick="adicionarAoCarrinho('Leite Fresco', 4.5)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/tomate.jpg" alt="Tomate" />
+          <h3>Tomate</h3>
+          <p class="preco">R$ 3,20/kg</p>
+          <button onclick="adicionarAoCarrinho('Tomate', 3.2)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/milho.jpg" alt="Milho" />
+          <h3>Milho</h3>
+          <p class="preco">R$ 1,80/kg</p>
+          <button onclick="adicionarAoCarrinho('Milho', 1.8)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/arroz.jpg" alt="Arroz Integral" />
+          <h3>Arroz Integral</h3>
+          <p class="preco">R$ 7,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Arroz Integral', 7)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/feijao.jpg" alt="Feijão Preto" />
+          <h3>Feijão Preto</h3>
+          <p class="preco">R$ 6,50/kg</p>
+          <button onclick="adicionarAoCarrinho('Feijão Preto', 6.5)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/ovo.jpg" alt="Ovos Caipira" />
+          <h3>Ovos Caipira (12 un)</h3>
+          <p class="preco">R$ 8,00</p>
+          <button onclick="adicionarAoCarrinho('Ovos Caipira', 8)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/couve.jpg" alt="Couve" />
+          <h3>Couve</h3>
+          <p class="preco">R$ 3,00/maço</p>
+          <button onclick="adicionarAoCarrinho('Couve', 3)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/abobora.jpg" alt="Abóbora" />
+          <h3>Abóbora</h3>
+          <p class="preco">R$ 4,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Abóbora', 4)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
       </div>
 
       <aside class="carrinho" aria-label="Carrinho de compras">
@@ -55,7 +126,14 @@
   </main>
 
   <!-- Botão Acessibilidade -->
-  <button id="btn-acessibilidade" aria-pressed="false" aria-label="Ativar opções de acessibilidade">Acessibilidade</button>
+  <button id="btn-acessibilidade" aria-pressed="false" aria-label="Ativar opções de acessibilidade" title="Ativar opções de acessibilidade">
+    <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12" y2="16"></line>
+    </svg>
+    Acessibilidade
+  </button>
 
   <script>
     // Carrinho
@@ -113,12 +191,26 @@
         document.body.classList.add('alto-contraste');
         document.body.classList.add('fonte-grande');
         btnAcessibilidade.setAttribute('aria-pressed', 'true');
-        btnAcessibilidade.textContent = 'Desativar Acessibilidade';
+        btnAcessibilidade.textContent = '';
+        btnAcessibilidade.insertAdjacentHTML('afterbegin', `
+          <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12" y2="16"></line>
+          </svg> Desativar Acessibilidade
+        `);
       } else {
         document.body.classList.remove('alto-contraste');
         document.body.classList.remove('fonte-grande');
         btnAcessibilidade.setAttribute('aria-pressed', 'false');
-        btnAcessibilidade.textContent = 'Acessibilidade';
+        btnAcessibilidade.textContent = '';
+        btnAcessibilidade.insertAdjacentHTML('afterbegin', `
+          <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12" y2="16"></line>
+          </svg> Acessibilidade
+        `);
       }
     });
   </script>
