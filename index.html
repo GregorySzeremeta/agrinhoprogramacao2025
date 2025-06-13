@@ -1,26 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Estação da Terra</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estação da Terra - Feira Virtual</title>
   <link rel="stylesheet" href="style.css">
-  <!-- VLibras Plugin -->
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
-<body>
+<body class="entrada-animada">
 
   <!-- Animação de entrada -->
-  <div id="entrada" class="entrada-animada">
-    🌱 Estação da Terra 🌻
+  <div id="entrada" class="entrada">
+    <h1>🌱 Bem-vindo à Estação da Terra 🌍</h1>
   </div>
+
+  <!-- Cabeçalho -->
+  <header>
+    <h1>Estação da Terra</h1>
+    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
+
+    <!-- Menu Interativo -->
+    <nav class="menu">
+      <ul>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="quiz.html">Quizis</a></li>
+        <li><a href="contato.html">Entre em Contato</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <!-- Acessibilidade -->
   <div id="acessibilidade">
-    <button onclick="toggleContraste()">🌓</button>
-    <button onclick="aumentarFonte()">🔠</button>
-    <button onclick="diminuirFonte()">🔡</button>
+    <button onclick="ativarContraste()" title="Contraste">🌗</button>
+    <button onclick="aumentarFonte()" title="Aumentar Fonte">🔠</button>
+    <button onclick="ativarVLibras()" title="LIBRAS">🧏‍♂️</button>
   </div>
+
+  <!-- Seções da Feira -->
+  <main>
+    <section>
+      <h2>Feira Virtual</h2>
+      <div class="barracas">
+        <div class="barraca" onclick="mostrarProdutos('graos')">
+          <img src="imagens/graos.jpg" alt="Grãos">
+          <h3>Grãos</h3>
+        </div>
+        <div class="barraca" onclick="mostrarProdutos('verduras')">
+          <img src="imagens/verduras.jpg" alt="Verduras">
+          <h3>Verduras</h3>
+        </div>
+        <div class="barraca" onclick="mostrarProdutos('laticinios')">
+          <img src="imagens/laticinios.jpg" alt="Laticínios">
+          <h3>Laticínios</h3>
+        </div>
+        <div class="barraca" onclick="mostrarProdutos('sementes')">
+          <img src="imagens/sementes.jpg" alt="Sementes">
+          <h3>Sementes</h3>
+        </div>
+        <div class="barraca" onclick="mostrarProdutos('frutas')">
+          <img src="imagens/frutas.jpg" alt="Frutas">
+          <h3>Frutas</h3>
+        </div>
+        <div class="barraca" onclick="mostrarProdutos('mel')">
+          <img src="imagens/mel.jpg" alt="Mel e derivados">
+          <h3>Mel</h3>
+        </div>
+        <div class="barraca" onclick="mostrarProdutos('hortalicas')">
+          <img src="imagens/hortalicas.jpg" alt="Hortaliças">
+          <h3>Hortaliças</h3>
+        </div>
+        <div class="barraca" onclick="mostrarProdutos('organicos')">
+          <img src="imagens/organicos.jpg" alt="Orgânicos">
+          <h3>Orgânicos</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Área de Produtos -->
+    <section id="produtos">
+      <h2>Produtos</h2>
+      <div id="lista-produtos" class="produtos-container">
+        <!-- Produtos serão carregados dinamicamente com JS -->
+      </div>
+    </section>
+
+    <!-- Carrinho -->
+    <section id="carrinho">
+      <h2>🛒 Carrinho de Compras</h2>
+      <ul id="itens-carrinho"></ul>
+      <p>Total: R$ <span id="total-carrinho">0.00</span></p>
+      <button onclick="finalizarCompra()">Finalizar Compra</button>
+      <button onclick="esvaziarCarrinho()">Esvaziar Carrinho</button>
+    </section>
+  </main>
+
+  <!-- Rodapé com redes sociais -->
+  <footer>
+    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
+    <a href="https://instagram.com" target="_blank" class="btn-social">🌿 Instagram</a>
+    <a href="https://facebook.com" target="_blank" class="btn-social">🌾 Facebook</a>
+  </footer>
 
   <!-- VLibras -->
   <div vw class="enabled">
@@ -30,137 +109,12 @@
     </div>
   </div>
 
-  <!-- Cabeçalho -->
-  <header>
-    <h1>Estação da Terra</h1>
-    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
-    <nav class="menu">
-      <ul>
-        <li><a href="#produtos">Produtos</a></li>
-        <li><a href="#quiz">Quiz</a></li>
-        <li><a href="#carrinho">Carrinho</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-      </ul>
-    </nav>
-  </header>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 
-  <!-- Principal -->
-  <main>
-    <!-- Produtos -->
-    <section id="produtos">
-      <h2>Produtos à Venda</h2>
-      <div class="barracas">
-        <div class="produto-card">
-          <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce" alt="Maçã">
-          <h3>Maçã Orgânica</h3>
-          <p>R$ 3,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Maçã Orgânica')">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="https://images.unsplash.com/photo-1582515073490-39981397c445" alt="Mel Puro">
-          <h3>Mel Puro</h3>
-          <p>R$ 15,00</p>
-          <button onclick="adicionarAoCarrinho('Mel Puro')">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="https://images.unsplash.com/photo-1572441710263-478a1b119119" alt="Queijo Artesanal">
-          <h3>Queijo Artesanal</h3>
-          <p>R$ 25,00</p>
-          <button onclick="adicionarAoCarrinho('Queijo Artesanal')">Adicionar</button>
-        </div>
-        <!-- Adicione mais produtos aqui -->
-      </div>
-    </section>
-
-    <!-- Carrinho -->
-    <section id="carrinho">
-      <h2>🛒 Carrinho de Compras</h2>
-      <ul id="lista-carrinho"></ul>
-      <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
-    </section>
-
-    <!-- Quiz -->
-    <section id="quiz">
-      <h2>🌽 Quiz Agrícola</h2>
-      <div class="quiz-container" id="quiz-container">
-        <div class="question">
-          <p>1. Qual desses produtos é uma leguminosa?</p>
-          <label><input type="radio" name="q1" value="errado"> Banana</label>
-          <label><input type="radio" name="q1" value="correto"> Feijão</label>
-          <label><input type="radio" name="q1" value="errado"> Tomate</label>
-        </div>
-        <div class="question">
-          <p>2. Qual o melhor horário para irrigar plantas?</p>
-          <label><input type="radio" name="q2" value="correto"> De manhã cedo</label>
-          <label><input type="radio" name="q2" value="errado"> Meio-dia</label>
-          <label><input type="radio" name="q2" value="errado"> À noite</label>
-        </div>
-        <div class="question">
-          <p>3. Qual o principal benefício do adubo orgânico?</p>
-          <label><input type="radio" name="q3" value="correto"> Melhora o solo naturalmente</label>
-          <label><input type="radio" name="q3" value="errado"> Causa menos folhas</label>
-          <label><input type="radio" name="q3" value="errado"> É mais barato</label>
-        </div>
-        <div class="question">
-          <p>4. O que é uma horta vertical?</p>
-          <label><input type="radio" name="q4" value="correto"> Cultivo em paredes ou estruturas suspensas</label>
-          <label><input type="radio" name="q4" value="errado"> Horta de legumes grandes</label>
-          <label><input type="radio" name="q4" value="errado"> Nome antigo de horta</label>
-        </div>
-        <button onclick="verificarQuiz()">Verificar Respostas</button>
-        <div class="resultado-container" id="resultado"></div>
-      </div>
-    </section>
-
-    <!-- Sobre -->
-    <section id="sobre">
-      <h2>História da Estação da Terra</h2>
-      <p>
-        A Estação da Terra nasceu com o propósito de aproximar o campo da cidade. Nosso objetivo é conectar pequenos produtores a consumidores conscientes, promovendo sustentabilidade, saúde e economia local. Aqui, cada barraca é uma oportunidade, cada produto é um pedaço da natureza.
-      </p>
-    </section>
-  </main>
-
-  <!-- Rodapé -->
-  <footer>
-    &copy; 2025 Estação da Terra. Todos os direitos reservados.
-  </footer>
-
-  <!-- JavaScript -->
+  <!-- Script principal -->
   <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-
-    let carrinho = [];
-
-    function adicionarAoCarrinho(produto) {
-      carrinho.push(produto);
-      atualizarCarrinho();
-    }
-
-    function atualizarCarrinho() {
-      const lista = document.getElementById("lista-carrinho");
-      lista.innerHTML = "";
-      carrinho.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        lista.appendChild(li);
-      });
-    }
-
-    function esvaziarCarrinho() {
-      carrinho = [];
-      atualizarCarrinho();
-    }
-
-    function verificarQuiz() {
-      let total = 0;
-      document.querySelectorAll("#quiz-container input:checked").forEach(el => {
-        if (el.value === "correto") total++;
-      });
-      document.getElementById("resultado").textContent = `Você acertou ${total} de 4 perguntas!`;
-    }
-
-    function toggleContraste() {
+    // Acessibilidade
+    function ativarContraste() {
       document.body.classList.toggle("contraste");
     }
 
@@ -168,14 +122,75 @@
       document.body.style.fontSize = "larger";
     }
 
-    function diminuirFonte() {
-      document.body.style.fontSize = "initial";
+    function ativarVLibras() {
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
     }
 
-    // Remover tela de entrada após animação
-    setTimeout(() => {
-      document.getElementById("entrada").style.display = "none";
-    }, 3000);
+    // Entrada
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById("entrada").style.display = "none";
+      }, 3000);
+    };
+
+    // Produtos
+    const produtos = {
+      graos: [
+        { nome: "Arroz Orgânico", preco: 7.99, imagem: "imagens/arroz.jpg" },
+        { nome: "Feijão Preto", preco: 6.50, imagem: "imagens/feijao.jpg" }
+      ],
+      verduras: [
+        { nome: "Alface", preco: 2.50, imagem: "imagens/alface.jpg" },
+        { nome: "Couve", preco: 3.00, imagem: "imagens/couve.jpg" }
+      ],
+      // adicionar mais categorias...
+    };
+
+    function mostrarProdutos(categoria) {
+      const container = document.getElementById("lista-produtos");
+      container.innerHTML = "";
+      produtos[categoria].forEach(p => {
+        const card = document.createElement("div");
+        card.className = "produto-card";
+        card.innerHTML = `
+          <img src="${p.imagem}" alt="${p.nome}" />
+          <h3>${p.nome}</h3>
+          <p>R$ ${p.preco.toFixed(2)}</p>
+          <button onclick="adicionarAoCarrinho('${p.nome}', ${p.preco})">Adicionar</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Carrinho
+    let carrinho = [];
+    function adicionarAoCarrinho(nome, preco) {
+      carrinho.push({ nome, preco });
+      atualizarCarrinho();
+    }
+
+    function atualizarCarrinho() {
+      const lista = document.getElementById("itens-carrinho");
+      lista.innerHTML = "";
+      let total = 0;
+      carrinho.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
+        lista.appendChild(li);
+        total += item.preco;
+      });
+      document.getElementById("total-carrinho").textContent = total.toFixed(2);
+    }
+
+    function esvaziarCarrinho() {
+      carrinho = [];
+      atualizarCarrinho();
+    }
+
+    function finalizarCompra() {
+      alert("Obrigado pela sua compra! 🌱");
+      esvaziarCarrinho();
+    }
   </script>
 </body>
 </html>
