@@ -1,50 +1,390 @@
-/* Reset básico */
+/* style.css */
+
+/* Reset */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
 }
 
 body {
-  background: #f0f8ff;
-  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #d0f0c0, #a1d490);
+  color: #2f3e2f;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  scroll-behavior: smooth;
 }
 
 header {
-  background-color: #4caf50;
+  background: #3a6b35;
   color: white;
-  padding: 15px 20px;
-  text-align: center;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 header h1 {
-  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 1.1px;
 }
 
-nav button {
-  background: #66bb6a;
-  border: none;
-  padding: 10px 15px;
-  margin: 0 5px;
+header nav {
+  display: flex;
+  gap: 1.2rem;
+}
+
+header nav button {
+  background: transparent;
+  border: 2px solid white;
   color: white;
-  font-weight: bold;
-  border-radius: 4px;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 
-nav button:hover {
-  background-color: #388e3c;
+header nav button:hover,
+header nav button:focus {
+  background: white;
+  color: #3a6b35;
+  outline: none;
 }
 
 main {
   flex: 1;
-  padding: 20px;
-  max-width: 1100px;
-  margin: 0 auto;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 2rem;
+}
+
+section {
+  background: rgba(255 255 255 / 0.9);
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgb(0 0 0 / 0.1);
+  padding: 1.5rem 2rem;
   display: flex;
-  gap: 30px;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section.active {
+  display: flex !important;
+}
+
+section:focus {
+  outline: 3px solid #4caf50;
+  outline-offset: 3px;
+}
+
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.produto-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.12);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.produto-card:hover,
+.produto-card:focus-within {
+  box-shadow: 0 8px 20px rgb(0 0 0 / 0.2);
+  transform: translateY(-4px);
+}
+
+.produto-card img {
+  max-width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  height: 150px;
+  margin-bottom: 1rem;
+}
+
+.produto-card h3 {
+  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
+  color: #2a4d14;
+}
+
+.produto-card p {
+  font-size: 0.9rem;
+  color: #4a5d27;
+  margin-bottom: 0.6rem;
+  text-align: center;
+}
+
+.produto-card .preco {
+  font-weight: 700;
+  color: #3a6b35;
+  margin-bottom: 1rem;
+}
+
+.produto-card button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.produto-card button:hover,
+.produto-card button:focus {
+  background-color: #388e3c;
+  outline: none;
+}
+
+#carrinho-container {
+  margin-top: 2rem;
+  border-top: 2px solid #3a6b35;
+  padding-top: 1rem;
+}
+
+#carrinho-container h3 {
+  margin-bottom: 0.5rem;
+  color: #2a4d14;
+}
+
+#carrinho-lista {
+  list-style: none;
+  margin-bottom: 1rem;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+#carrinho-lista li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.3rem;
+  background: #d9f0d9;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+}
+
+#carrinho-lista li button {
+  background: #f44336;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#carrinho-lista li button:hover,
+#carrinho-lista li button:focus {
+  background-color: #d32f2f;
+  outline: none;
+}
+
+#carrinho-total {
+  font-weight: 700;
+  color: #2a4d14;
+  margin-bottom: 0.5rem;
+}
+
+#carrinho-esvaziar,
+#carrinho-finalizar {
+  background-color: #3a6b35;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  font-weight: 700;
+  border-radius: 8px;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#carrinho-esvaziar:disabled,
+#carrinho-finalizar:disabled {
+  background-color: #a9c8a6;
+  cursor: not-allowed;
+}
+
+#carrinho-esvaziar:hover:not(:disabled),
+#carrinho-finalizar:hover:not(:disabled),
+#carrinho-esvaziar:focus:not(:disabled),
+#carrinho-finalizar:focus:not(:disabled) {
+  background-color: #2e5830;
+  outline: none;
+}
+
+/* Quiz */
+#quiz-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#quiz-pergunta {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2a4d14;
+}
+
+#quiz-opcoes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+#quiz-opcoes li button {
+  background: #c7e4b9;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: #2f3e2f;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  text-align: left;
+}
+
+#quiz-opcoes li button:hover,
+#quiz-opcoes li button:focus {
+  background-color: #a6d479;
+  border-color: #4caf50;
+  outline: none;
+}
+
+#quiz-proximo {
+  align-self: flex-start;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+#quiz-proximo:disabled {
+  background-color: #a9c8a6;
+  cursor: not-allowed;
+}
+
+#quiz-proximo:hover:not(:disabled),
+#quiz-proximo:focus:not(:disabled) {
+  background-color: #388e3c;
+  outline: none;
+}
+
+#quiz-resultado {
+  background: #d9f0d9;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  color: #2a4d14;
+}
+
+/* Sobre e Contato */
+section#sobre p,
+section#contato form {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #2f3e2f;
+}
+
+#form-contato {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+}
+
+#form-contato label {
+  font-weight: 600;
+  color: #3a6b35;
+}
+
+#form-contato input,
+#form-contato textarea {
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1.8px solid #a9c8a6;
+  font-size: 1rem;
+  resize: vertical;
+  font-family: inherit;
+  color: #2f3e2f;
+}
+
+#form-contato input:focus,
+#form-contato textarea:focus {
+  outline: 2px solid #4caf50;
+  border-color: #4caf50;
+}
+
+#form-contato button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#form-contato button:hover,
+#form-contato button:focus {
+  background-color: #388e3c;
+  outline: none;
+}
+
+#contato-feedback {
+  margin-top: 0.8rem;
+  font-weight: 700;
+  color: #2a4d14;
+  min-height: 1.2rem;
+}
+
+/* Footer */
+footer {
+  background: #3a6b35;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  main {
+    grid-template-columns: 1fr;
+    margin: 1rem;
+  }
+
+  header nav {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+}

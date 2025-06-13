@@ -3,151 +3,364 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Produtos do Interior - Estação Rural</title>
+  <title>Estação da Terra — Do campo à cidade, colhendo oportunidades</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Produtos do Interior - Estação Rural</h1>
+    <h1>Estação da Terra</h1>
     <nav>
-      <button onclick="location.href='index.html'">Loja</button>
-      <button onclick="location.href='quiz.html'">Quiz Sustentabilidade</button>
-      <button onclick="location.href='about.html'">Sobre</button>
-      <button onclick="location.href='contact.html'">Contato</button>
+      <button data-section="loja" aria-label="Ir para a loja">Loja</button>
+      <button data-section="quiz" aria-label="Ir para o quiz">Quiz</button>
+      <button data-section="sobre" aria-label="Ir para a página Sobre">Sobre</button>
+      <button data-section="contato" aria-label="Ir para contato">Contato</button>
     </nav>
   </header>
 
   <main>
-    <section id="products">
-      <h2>Produtos</h2>
-      <div class="product-list">
-        <!-- Produtos carregados via JS -->
+    <!-- Seções são mostradas/ocultadas via JS -->
+    <section id="loja" class="active" tabindex="0" aria-live="polite">
+      <h2>Produtos do Interior</h2>
+      <div id="produtos" class="produtos-grid" aria-label="Lista de produtos disponíveis">
+        <!-- Produtos serão inseridos via JS -->
+      </div>
+      <div id="carrinho-container" aria-label="Carrinho de compras">
+        <h3>Seu Carrinho</h3>
+        <ul id="carrinho-lista" aria-live="polite"></ul>
+        <p id="carrinho-total">Total: R$ 0,00</p>
+        <button id="carrinho-esvaziar" disabled>Limpar Carrinho</button>
+        <button id="carrinho-finalizar" disabled>Finalizar Compra</button>
       </div>
     </section>
 
-    <section id="cart">
-      <h2>Carrinho de Compras</h2>
-      <div id="cart-items">Carrinho vazio</div>
-      <div id="cart-total">Total: R$ 0,00</div>
-      <button id="clear-cart-btn">Esvaziar Carrinho</button>
+    <section id="quiz" tabindex="0" aria-live="polite" hidden>
+      <h2>Quiz sobre o Campo e Sustentabilidade</h2>
+      <div id="quiz-container">
+        <div id="quiz-pergunta"></div>
+        <ul id="quiz-opcoes" role="list"></ul>
+        <button id="quiz-proximo" disabled>Próxima</button>
+      </div>
+      <div id="quiz-resultado" hidden>
+        <h3>Resultados do Quiz</h3>
+        <p id="quiz-pontos"></p>
+        <p id="quiz-porcentagem"></p>
+        <button id="quiz-reiniciar">Reiniciar Quiz</button>
+      </div>
+    </section>
+
+    <section id="sobre" tabindex="0" hidden>
+      <h2>Sobre a Estação da Terra</h2>
+      <p>
+        A Estação da Terra é um espaço virtual que conecta você aos melhores produtos do campo, valorizando a agricultura sustentável e a cultura do interior.
+        Nosso objetivo é levar o frescor da roça diretamente para a sua casa, com qualidade, carinho e responsabilidade ambiental.
+      </p>
+      <p>
+        Navegue pelo site, participe dos nossos quizzes, e venha plantar conosco um futuro mais verde!
+      </p>
+    </section>
+
+    <section id="contato" tabindex="0" hidden>
+      <h2>Contato</h2>
+      <form id="form-contato" aria-label="Formulário de contato">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+      <p id="contato-feedback" role="alert" aria-live="assertive"></p>
     </section>
   </main>
 
+  <footer>
+    <p>© 2025 Estação da Terra — Do campo à cidade, colhendo oportunidades</p>
+  </footer>
+
   <script>
-    // Lista de produtos (pode expandir)
-    const products = [
-      { id: 1, name: "Mel Puro", price: 25.00, description: "Mel natural do campo", img: "https://i.imgur.com/hF7XYGh.jpg" },
-      { id: 2, name: "Queijo Artesanal", price: 40.00, description: "Queijo fresco produzido localmente", img: "https://i.imgur.com/fb2WJJb.jpg" },
-      { id: 3, name: "Frutas Orgânicas", price: 15.00, description: "Mix de frutas colhidas no campo", img: "https://i.imgur.com/zTvwdZV.jpg" },
-      { id: 4, name: "Verduras Frescas", price: 10.00, description: "Verduras direto da horta", img: "https://i.imgur.com/4rAvQVP.jpg" },
-      { id: 5, name: "Leite de Fazenda", price: 8.00, description: "Leite fresco e natural", img: "https://i.imgur.com/UJzQbFN.jpg" }
+    // Dados de produtos
+    const produtos = [
+      { id: 1, nome: "Mel Puro", preco: 30.0, descricao: "Mel artesanal direto da colmeia", imagem: "https://i.imgur.com/8Km9tLL.jpg" },
+      { id: 2, nome: "Queijo Minas", preco: 25.5, descricao: "Queijo artesanal fresquinho", imagem: "https://i.imgur.com/vzWq3VN.jpg" },
+      { id: 3, nome: "Frutas Orgânicas", preco: 15.0, descricao: "Caixa com frutas variadas da estação", imagem: "https://i.imgur.com/Wx4fjLk.jpg" },
+      { id: 4, nome: "Leite Fresco", preco: 8.5, descricao: "Leite natural da fazenda", imagem: "https://i.imgur.com/YRz3e7f.jpg" },
+      { id: 5, nome: "Verduras da Horta", preco: 12.0, descricao: "Pacote de verduras orgânicas", imagem: "https://i.imgur.com/4vPzOeX.jpg" },
+      { id: 6, nome: "Grãos Selecionados", preco: 20.0, descricao: "Pacote de grãos variados", imagem: "https://i.imgur.com/1NvpySC.jpg" }
     ];
 
-    const productList = document.querySelector(".product-list");
-    const cartItems = document.getElementById("cart-items");
-    const cartTotal = document.getElementById("cart-total");
-    const clearCartBtn = document.getElementById("clear-cart-btn");
+    // Estado do carrinho
+    let carrinho = [];
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    // Elementos
+    const produtosContainer = document.getElementById('produtos');
+    const carrinhoLista = document.getElementById('carrinho-lista');
+    const carrinhoTotal = document.getElementById('carrinho-total');
+    const btnEsvaziar = document.getElementById('carrinho-esvaziar');
+    const btnFinalizar = document.getElementById('carrinho-finalizar');
 
-    // Função para formatar preço em reais
-    function formatPrice(price) {
-      return price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    // Função para formatar preço em R$
+    function formatarPreco(preco) {
+      return preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
-    // Mostrar produtos na tela
-    function showProducts() {
-      productList.innerHTML = "";
-      products.forEach(prod => {
-        const productDiv = document.createElement("div");
-        productDiv.className = "product";
-
-        productDiv.innerHTML = `
-          <img src="${prod.img}" alt="${prod.name}" />
-          <h3>${prod.name}</h3>
-          <p>${prod.description}</p>
-          <p><strong>${formatPrice(prod.price)}</strong></p>
-          <button data-id="${prod.id}">Adicionar ao Carrinho</button>
+    // Renderizar produtos na loja
+    function renderizarProdutos() {
+      produtosContainer.innerHTML = '';
+      produtos.forEach(produto => {
+        const card = document.createElement('article');
+        card.className = 'produto-card';
+        card.setAttribute('tabindex', '0');
+        card.innerHTML = `
+          <img src="${produto.imagem}" alt="${produto.nome}" />
+          <h3>${produto.nome}</h3>
+          <p>${produto.descricao}</p>
+          <p class="preco">${formatarPreco(produto.preco)}</p>
+          <button aria-label="Adicionar ${produto.nome} ao carrinho" data-id="${produto.id}">Adicionar</button>
         `;
-
-        productList.appendChild(productDiv);
+        produtosContainer.appendChild(card);
       });
     }
 
-    // Atualiza o carrinho na tela
-    function updateCart() {
-      if (cart.length === 0) {
-        cartItems.textContent = "Carrinho vazio";
-        cartTotal.textContent = "Total: R$ 0,00";
+    // Atualizar carrinho na interface
+    function atualizarCarrinho() {
+      carrinhoLista.innerHTML = '';
+      if (carrinho.length === 0) {
+        carrinhoLista.innerHTML = '<li>O carrinho está vazio.</li>';
+        btnEsvaziar.disabled = true;
+        btnFinalizar.disabled = true;
+        carrinhoTotal.textContent = 'Total: R$ 0,00';
         return;
       }
 
-      cartItems.innerHTML = "";
       let total = 0;
-
-      cart.forEach(item => {
-        const prod = products.find(p => p.id === item.id);
-        total += prod.price * item.quantity;
-
-        const itemDiv = document.createElement("div");
-        itemDiv.className = "cart-item";
-        itemDiv.innerHTML = `
-          <span>${prod.name} (x${item.quantity})</span>
-          <span>${formatPrice(prod.price * item.quantity)}</span>
-          <button class="remove-item" data-id="${item.id}">Remover</button>
-        `;
-        cartItems.appendChild(itemDiv);
+      carrinho.forEach(item => {
+        total += item.preco * item.quantidade;
+        const li = document.createElement('li');
+        li.textContent = `${item.nome} — ${item.quantidade} x ${formatarPreco(item.preco)} = ${formatarPreco(item.preco * item.quantidade)}`;
+        
+        const btnRemover = document.createElement('button');
+        btnRemover.textContent = 'Remover';
+        btnRemover.setAttribute('aria-label', `Remover ${item.nome} do carrinho`);
+        btnRemover.addEventListener('click', () => {
+          removerDoCarrinho(item.id);
+        });
+        li.appendChild(btnRemover);
+        carrinhoLista.appendChild(li);
       });
-
-      cartTotal.textContent = `Total: ${formatPrice(total)}`;
+      carrinhoTotal.textContent = `Total: ${formatarPreco(total)}`;
+      btnEsvaziar.disabled = false;
+      btnFinalizar.disabled = false;
     }
 
-    // Adiciona item ao carrinho
-    function addToCart(id) {
-      const itemIndex = cart.findIndex(i => i.id === id);
-      if (itemIndex > -1) {
-        cart[itemIndex].quantity++;
+    // Adicionar produto ao carrinho
+    function adicionarAoCarrinho(id) {
+      const produto = produtos.find(p => p.id === id);
+      if (!produto) return;
+
+      const itemCarrinho = carrinho.find(item => item.id === id);
+      if (itemCarrinho) {
+        itemCarrinho.quantidade++;
       } else {
-        cart.push({ id: id, quantity: 1 });
+        carrinho.push({ ...produto, quantidade: 1 });
       }
-      localStorage.setItem("cart", JSON.stringify(cart));
-      updateCart();
+      atualizarCarrinho();
     }
 
-    // Remove item do carrinho
-    function removeFromCart(id) {
-      cart = cart.filter(i => i.id !== id);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      updateCart();
+    // Remover item do carrinho
+    function removerDoCarrinho(id) {
+      carrinho = carrinho.filter(item => item.id !== id);
+      atualizarCarrinho();
     }
 
     // Esvaziar carrinho
-    function clearCart() {
-      cart = [];
-      localStorage.setItem("cart", JSON.stringify(cart));
-      updateCart();
+    btnEsvaziar.addEventListener('click', () => {
+      carrinho = [];
+      atualizarCarrinho();
+    });
+
+    // Finalizar compra (simulação)
+    btnFinalizar.addEventListener('click', () => {
+      if (carrinho.length === 0) return alert('O carrinho está vazio.');
+      alert(`Compra finalizada com sucesso!\nTotal: ${carrinhoTotal.textContent.split('Total: ')[1]}`);
+      carrinho = [];
+      atualizarCarrinho();
+    });
+
+    // Delegação de evento para botões adicionar
+    produtosContainer.addEventListener('click', e => {
+      if (e.target.tagName === 'BUTTON') {
+        const id = Number(e.target.dataset.id);
+        adicionarAoCarrinho(id);
+      }
+    });
+
+    // Menu Navegação
+    const botoesMenu = document.querySelectorAll('header nav button');
+    const secoes = document.querySelectorAll('main section');
+
+    botoesMenu.forEach(botao => {
+      botao.addEventListener('click', () => {
+        const secaoAlvo = botao.dataset.section;
+        secoes.forEach(sec => {
+          if (sec.id === secaoAlvo) {
+            sec.hidden = false;
+            sec.classList.add('active');
+            sec.focus();
+          } else {
+            sec.hidden = true;
+            sec.classList.remove('active');
+          }
+        });
+      });
+    });
+
+    // --- Quiz sobre campo e sustentabilidade ---
+    const perguntasQuiz = [
+      {
+        pergunta: "Qual é a importância da rotação de culturas na agricultura?",
+        opcoes: [
+          "Evitar o desgaste do solo e controlar pragas",
+          "Aumentar o uso de fertilizantes químicos",
+          "Reduzir a biodiversidade",
+          "Diminuir a produtividade"
+        ],
+        correta: 0
+      },
+      {
+        pergunta: "O que significa agricultura sustentável?",
+        opcoes: [
+          "Uso excessivo de agrotóxicos",
+          "Produzir alimentos sem esgotar os recursos naturais",
+          "Desmatar áreas para plantar",
+          "Produzir somente para exportação"
+        ],
+        correta: 1
+      },
+      {
+        pergunta: "Qual é o benefício do uso de adubos orgânicos?",
+        opcoes: [
+          "Aumentar a poluição do solo",
+          "Melhorar a fertilidade do solo sem agredir o meio ambiente",
+          "Aumentar a erosão do solo",
+          "Diminuir a produção agrícola"
+        ],
+        correta: 1
+      },
+      {
+        pergunta: "O que é compostagem?",
+        opcoes: [
+          "Transformar resíduos orgânicos em adubo natural",
+          "Queimar restos de plantas",
+          "Usar produtos químicos para adubar",
+          "Plantio em áreas urbanas"
+        ],
+        correta: 0
+      }
+    ];
+
+    let indiceAtual = 0;
+    let pontos = 0;
+
+    const quizPerguntaElem = document.getElementById('quiz-pergunta');
+    const quizOpcoesElem = document.getElementById('quiz-opcoes');
+    const btnProximo = document.getElementById('quiz-proximo');
+    const quizResultado = document.getElementById('quiz-resultado');
+    const quizContainer = document.getElementById('quiz-container');
+    const quizPontos = document.getElementById('quiz-pontos');
+    const quizPorcentagem = document.getElementById('quiz-porcentagem');
+    const btnReiniciar = document.getElementById('quiz-reiniciar');
+
+    function carregarPergunta() {
+      btnProximo.disabled = true;
+      quizOpcoesElem.innerHTML = '';
+      quizPerguntaElem.textContent = perguntasQuiz[indiceAtual].pergunta;
+
+      perguntasQuiz[indiceAtual].opcoes.forEach((opcao, idx) => {
+        const li = document.createElement('li');
+        const botao = document.createElement('button');
+        botao.textContent = opcao;
+        botao.setAttribute('type', 'button');
+        botao.setAttribute('aria-pressed', 'false');
+        botao.addEventListener('click', () => {
+          checarResposta(idx);
+        });
+        li.appendChild(botao);
+        quizOpcoesElem.appendChild(li);
+      });
     }
 
-    // Eventos
-    productList.addEventListener("click", e => {
-      if (e.target.tagName === "BUTTON") {
-        const id = Number(e.target.getAttribute("data-id"));
-        addToCart(id);
+    function checarResposta(escolha) {
+      const correta = perguntasQuiz[indiceAtual].correta;
+      if (escolha === correta) {
+        pontos++;
+      }
+      // Desabilitar todos os botões após a resposta
+      [...quizOpcoesElem.querySelectorAll('button')].forEach((btn, idx) => {
+        btn.disabled = true;
+        btn.setAttribute('aria-pressed', idx === escolha ? 'true' : 'false');
+        if (idx === correta) {
+          btn.style.backgroundColor = '#4caf50';
+          btn.style.color = '#fff';
+        } else if (idx === escolha && escolha !== correta) {
+          btn.style.backgroundColor = '#f44336';
+          btn.style.color = '#fff';
+        }
+      });
+      btnProximo.disabled = false;
+    }
+
+    btnProximo.addEventListener('click', () => {
+      indiceAtual++;
+      if (indiceAtual >= perguntasQuiz.length) {
+        mostrarResultado();
+      } else {
+        carregarPergunta();
       }
     });
 
-    cartItems.addEventListener("click", e => {
-      if (e.target.classList.contains("remove-item")) {
-        const id = Number(e.target.getAttribute("data-id"));
-        removeFromCart(id);
-      }
+    function mostrarResultado() {
+      quizContainer.hidden = true;
+      quizResultado.hidden = false;
+      quizPontos.textContent = `Você acertou ${pontos} de ${perguntasQuiz.length} perguntas.`;
+      const percentual = Math.round((pontos / perguntasQuiz.length) * 100);
+      quizPorcentagem.textContent = `Percentual: ${percentual}%`;
+    }
+
+    btnReiniciar.addEventListener('click', () => {
+      pontos = 0;
+      indiceAtual = 0;
+      quizResultado.hidden = true;
+      quizContainer.hidden = false;
+      carregarPergunta();
     });
 
-    clearCartBtn.addEventListener("click", clearCart);
+    // Inicialização do site
+    renderizarProdutos();
+    atualizarCarrinho();
+    carregarPergunta();
 
-    // Inicializar
-    showProducts();
-    updateCart();
+    // Contato - Formulário simples com feedback
+    const formContato = document.getElementById('form-contato');
+    const feedbackContato = document.getElementById('contato-feedback');
+
+    formContato.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const nome = formContato.nome.value.trim();
+      const email = formContato.email.value.trim();
+      const mensagem = formContato.mensagem.value.trim();
+
+      if (nome && email && mensagem) {
+        feedbackContato.textContent = "Mensagem enviada com sucesso! Obrigado pelo contato.";
+        formContato.reset();
+      } else {
+        feedbackContato.textContent = "Por favor, preencha todos os campos.";
+      }
+    });
   </script>
 </body>
 </html>
