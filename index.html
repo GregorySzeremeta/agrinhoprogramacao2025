@@ -18,44 +18,158 @@
     </nav>
   </header>
 
+  <!-- Botão de Acessibilidade -->
+  <div id="btn-acessibilidade" aria-label="Menu de acessibilidade" role="button" tabindex="0" title="Acessibilidade">
+    ⚙️
+  </div>
+
+  <!-- Menu de Acessibilidade -->
+  <div id="menu-acessibilidade" aria-hidden="true" role="region" aria-label="Opções de acessibilidade" style="display:none;">
+    <h2>Acessibilidade</h2>
+    <button id="btn-contraste" type="button">Alto Contraste</button>
+    <button id="btn-aumentar-fonte" type="button">Aumentar Fonte</button>
+    <button id="btn-diminuir-fonte" type="button">Diminuir Fonte</button>
+    <button id="btn-fonte-facil" type="button">Fonte Fácil</button>
+    <button id="btn-som" type="button">Som Ambiente: Ligado</button>
+    <button id="btn-fechar-acess" type="button" aria-label="Fechar menu de acessibilidade">Fechar</button>
+  </div>
+
+  <!-- Janela LIBRAS gov.br -->
+  <div id="libras-container" aria-label="Intérprete de Libras" role="complementary">
+    <iframe
+      title="Intérprete de Libras"
+      src="https://www.gov.br/acessibilidade/portal/acessibilidade-em-destaque/libras-virtual"
+      frameborder="0"
+      allowfullscreen
+      ></iframe>
+  </div>
+
   <main class="main-content">
     <section class="loja-section">
       <h2>Produtos do Campo</h2>
       <div class="produtos-grid">
-        <!-- Exemplo de produtos -->
+        <!-- Produtos adicionados (exemplos com 12 produtos) -->
         <article class="produto-card">
-          <img src="img/maça.jpg" alt="Maçã Orgânica" />
+          <img src="img/maca.jpg" alt="Maçã Orgânica" />
           <h3>Maçã Orgânica</h3>
           <p class="preco">R$ 3,00/kg</p>
           <button onclick="adicionarAoCarrinho('Maçã Orgânica', 3)" class="btn-adicionar">Adicionar ao Carrinho</button>
         </article>
+
         <article class="produto-card">
           <img src="img/mel.jpg" alt="Mel Puro" />
           <h3>Mel Puro</h3>
           <p class="preco">R$ 15,00</p>
           <button onclick="adicionarAoCarrinho('Mel Puro', 15)" class="btn-adicionar">Adicionar ao Carrinho</button>
         </article>
+
         <article class="produto-card">
           <img src="img/banana.jpg" alt="Banana" />
           <h3>Banana</h3>
           <p class="preco">R$ 2,50/kg</p>
           <button onclick="adicionarAoCarrinho('Banana', 2.5)" class="btn-adicionar">Adicionar ao Carrinho</button>
         </article>
-        <!-- ... Mais produtos aqui ... -->
+
+        <article class="produto-card">
+          <img src="img/laranja.jpg" alt="Laranja" />
+          <h3>Laranja</h3>
+          <p class="preco">R$ 2,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Laranja', 2)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/queijo.jpg" alt="Queijo Artesanal" />
+          <h3>Queijo Artesanal</h3>
+          <p class="preco">R$ 25,00</p>
+          <button onclick="adicionarAoCarrinho('Queijo Artesanal', 25)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/leite.jpg" alt="Leite Fresco" />
+          <h3>Leite Fresco</h3>
+          <p class="preco">R$ 4,00/litro</p>
+          <button onclick="adicionarAoCarrinho('Leite Fresco', 4)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/ovo.jpg" alt="Ovos Caipiras" />
+          <h3>Ovos Caipiras</h3>
+          <p class="preco">R$ 12,00/dúzia</p>
+          <button onclick="adicionarAoCarrinho('Ovos Caipiras', 12)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/arroz.jpg" alt="Arroz Integral" />
+          <h3>Arroz Integral</h3>
+          <p class="preco">R$ 8,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Arroz Integral', 8)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/feijao.jpg" alt="Feijão Preto" />
+          <h3>Feijão Preto</h3>
+          <p class="preco">R$ 7,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Feijão Preto', 7)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/milho.jpg" alt="Milho Verde" />
+          <h3>Milho Verde</h3>
+          <p class="preco">R$ 5,00/kg</p>
+          <button onclick="adicionarAoCarrinho('Milho Verde', 5)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/tomate.jpg" alt="Tomate" />
+          <h3>Tomate</h3>
+          <p class="preco">R$ 3,50/kg</p>
+          <button onclick="adicionarAoCarrinho('Tomate', 3.5)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
+
+        <article class="produto-card">
+          <img src="img/alface.jpg" alt="Alface" />
+          <h3>Alface</h3>
+          <p class="preco">R$ 1,50/unidade</p>
+          <button onclick="adicionarAoCarrinho('Alface', 1.5)" class="btn-adicionar">Adicionar ao Carrinho</button>
+        </article>
       </div>
 
-      <aside class="carrinho" aria-label="Carrinho de compras">
+      <aside class="carrinho">
         <h3>Carrinho</h3>
         <ul id="lista-carrinho" aria-live="polite" aria-relevant="additions"></ul>
         <p id="total-carrinho">Total: R$ 0,00</p>
         <button id="btn-esvaziar" disabled>Esvaziar Carrinho</button>
         <button id="btn-finalizar" disabled>Finalizar Compra</button>
       </aside>
+
+      <!-- Formulário de finalização (inicialmente oculto) -->
+      <aside id="finalizar-compra" style="display:none;">
+        <form id="form-finalizar" aria-label="Formulário de finalização de compra">
+          <h3>Finalizar Compra</h3>
+          <label for="nome">Nome Completo:</label>
+          <input id="nome" type="text" required />
+          <label for="endereco">Endereço:</label>
+          <input id="endereco" type="text" required />
+          <label for="pagamento">Forma de Pagamento:</label>
+          <select id="pagamento" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="cartao">Cartão de Crédito</option>
+            <option value="boleto">Boleto Bancário</option>
+            <option value="pix">PIX</option>
+          </select>
+          <button type="submit" class="btn-finalizar-compra">Confirmar Compra</button>
+          <button type="button" id="btn-voltar" class="btn-voltar">Voltar ao Carrinho</button>
+        </form>
+
+        <!-- Mensagem de confirmação -->
+        <div id="mensagem-sucesso" style="display:none; margin-top: 20px; text-align:center;">
+          <h4>Compra realizada com sucesso!</h4>
+          <p>Obrigado pela preferência.</p>
+          <button id="btn-nova-compra" class="btn-voltar">Voltar para Loja</button>
+        </div>
+      </aside>
     </section>
   </main>
-
-  <!-- Botão Acessibilidade -->
-  <button id="btn-acessibilidade" aria-pressed="false" aria-label="Ativar opções de acessibilidade">Acessibilidade</button>
 
   <script>
     // Carrinho
@@ -64,12 +178,17 @@
     const totalCarrinho = document.getElementById('total-carrinho');
     const btnEsvaziar = document.getElementById('btn-esvaziar');
     const btnFinalizar = document.getElementById('btn-finalizar');
+    const formFinalizar = document.getElementById('form-finalizar');
+    const mensagemSucesso = document.getElementById('mensagem-sucesso');
+    const btnVoltar = document.getElementById('btn-voltar');
+    const btnNovaCompra = document.getElementById('btn-nova-compra');
+    const finalizarCompra = document.getElementById('finalizar-compra');
 
     function atualizarCarrinho() {
       listaCarrinho.innerHTML = '';
       let total = 0;
 
-      carrinho.forEach(item => {
+      carrinho.forEach((item, i) => {
         const li = document.createElement('li');
         li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
         listaCarrinho.appendChild(li);
@@ -95,46 +214,116 @@
     });
 
     btnFinalizar.addEventListener('click', () => {
-      alert('Compra finalizada! Obrigado pela preferência.');
+      if (carrinho.length === 0) {
+        alert('Seu carrinho está vazio!');
+        return;
+      }
+      // Esconde lista, total e botões do carrinho
+      listaCarrinho.style.display = 'none';
+      totalCarrinho.style.display = 'none';
+      btnEsvaziar.style.display = 'none';
+      btnFinalizar.style.display = 'none';
+
+      // Mostra formulário
+      finalizarCompra.style.display = 'block';
+      formFinalizar.style.display = 'block';
+      mensagemSucesso.style.display = 'none';
+    });
+
+    formFinalizar.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      alert('Compra confirmada! Em breve entraremos em contato.');
+
       carrinho.length = 0;
       atualizarCarrinho();
-      // Aqui você pode redirecionar para página de endereço/pagamento
-      // window.location.href = 'endereco.html';
+
+      formFinalizar.style.display = 'none';
+      mensagemSucesso.style.display = 'block';
+    });
+
+    btnVoltar.addEventListener('click', () => {
+      finalizarCompra.style.display = 'none';
+
+      listaCarrinho.style.display = 'block';
+      totalCarrinho.style.display = 'block';
+      btnEsvaziar.style.display = 'inline-block';
+      btnFinalizar.style.display = 'inline-block';
+    });
+
+    btnNovaCompra.addEventListener('click', () => {
+      mensagemSucesso.style.display = 'none';
+
+      listaCarrinho.style.display = 'block';
+      totalCarrinho.style.display = 'block';
+      btnEsvaziar.style.display = 'inline-block';
+      btnFinalizar.style.display = 'inline-block';
     });
 
     atualizarCarrinho();
 
-    // Acessibilidade - toggle contraste e fonte maior
+    // Acessibilidade
     const btnAcessibilidade = document.getElementById('btn-acessibilidade');
+    const menuAcessibilidade = document.getElementById('menu-acessibilidade');
+    const btnContraste = document.getElementById('btn-contraste');
+    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
+    const btnDiminuirFonte = document.getElementById('btn-diminuir-fonte');
+    const btnFonteFacil = document.getElementById('btn-fonte-facil');
+    const btnFechar = document.getElementById('btn-fechar-acess');
+    const btnSom = document.getElementById('btn-som');
+
+    let fonteTamanho = 100;
+    let somAtivo = true;
 
     btnAcessibilidade.addEventListener('click', () => {
-      const ativo = btnAcessibilidade.getAttribute('aria-pressed') === 'true';
-      if (!ativo) {
-        document.body.classList.add('alto-contraste');
-        document.body.classList.add('fonte-grande');
-        btnAcessibilidade.setAttribute('aria-pressed', 'true');
-        btnAcessibilidade.textContent = 'Desativar Acessibilidade';
-      } else {
-        document.body.classList.remove('alto-contraste');
-        document.body.classList.remove('fonte-grande');
-        btnAcessibilidade.setAttribute('aria-pressed', 'false');
-        btnAcessibilidade.textContent = 'Acessibilidade';
+      const isVisible = menuAcessibilidade.style.display === 'flex';
+      menuAcessibilidade.style.display = isVisible ? 'none' : 'flex';
+      menuAcessibilidade.setAttribute('aria-hidden', isVisible);
+    });
+
+    btnFechar.addEventListener('click', () => {
+      menuAcessibilidade.style.display = 'none';
+      menuAcessibilidade.setAttribute('aria-hidden', 'true');
+    });
+
+    btnContraste.addEventListener('click', () => {
+      document.body.classList.toggle('alto-contraste');
+    });
+
+    btnAumentarFonte.addEventListener('click', () => {
+      if (fonteTamanho < 150) {
+        fonteTamanho += 10;
+        document.documentElement.style.fontSize = fonteTamanho + '%';
       }
     });
+
+    btnDiminuirFonte.addEventListener('click', () => {
+      if (fonteTamanho > 70) {
+        fonteTamanho -= 10;
+        document.documentElement.style.fontSize = fonteTamanho + '%';
+      }
+    });
+
+    btnFonteFacil.addEventListener('click', () => {
+      document.body.classList.toggle('fonte-facil');
+    });
+
+    btnSom.addEventListener('click', () => {
+      somAtivo = !somAtivo;
+      btnSom.textContent = somAtivo ? 'Som Ambiente: Ligado' : 'Som Ambiente: Desligado';
+      if (somAtivo) {
+        somAmbiente.play();
+      } else {
+        somAmbiente.pause();
+      }
+    });
+
+    // Som ambiente (exemplo simples)
+    const somAmbiente = new Audio('audio/som-ambiente.mp3'); // Coloque o caminho correto
+    somAmbiente.loop = true;
+    somAmbiente.volume = 0.2;
+    somAmbiente.play();
+
   </script>
-
-  <!-- VLibras 3D com boneco no canto -->
-  <div vw class="enabled vlibras-widget" aria-label="Plugin VLibras para tradução em Libras">
-    <div vw-access-button class="active" aria-label="Botão VLibras"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
-
 </body>
 </html>
