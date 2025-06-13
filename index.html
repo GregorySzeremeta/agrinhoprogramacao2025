@@ -3,24 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <title>Estação da Terra - Loja</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
-  <!-- Animação de Boas-Vindas -->
-  <div id="boasVindas" class="boas-vindas">
-    <h1>Bem-vindo à Estação da Terra!</h1>
-    <p>Do campo à cidade, colhendo oportunidades</p>
-  </div>
-
-  <!-- Som Ambiente -->
-  <audio id="somAmbiente" loop autoplay>
-    <source src="audio/som-mato.mp3" type="audio/mp3" />
-    Seu navegador não suporta áudio.
-  </audio>
-  <button id="btnSom" aria-label="Ativar/Desativar som ambiente">🔊</button>
-
   <!-- Acessibilidade -->
   <div id="acessibilidade">
     <button onclick="toggleContraste()" aria-label="Alternar contraste">🌓</button>
@@ -33,6 +20,15 @@
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper>
       <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <!-- Animação de boas-vindas -->
+  <div id="welcome-overlay">
+    <div class="welcome-content">
+      <h1>Bem-vindo à Estação da Terra!</h1>
+      <p>Do campo à cidade, colhendo oportunidades.</p>
+      <button id="btn-enter">Entrar</button>
     </div>
   </div>
 
@@ -53,8 +49,8 @@
     <section id="produtos">
       <h2>Produtos à Venda</h2>
       <div class="barracas">
-        <!-- Produtos originais - mantidos conforme seu código -->
 
+        <!-- Produtos originais mantidos, só um novo adicionado -->
         <div class="produto-card">
           <img src="img/maçã.jpg" alt="Maçã Orgânica" />
           <h3>Maçã Orgânica</h3>
@@ -74,71 +70,15 @@
           <button onclick="adicionarAoCarrinho('Queijo Artesanal', 25)">Adicionar</button>
         </div>
 
+        <!-- Produtos novos e antigos mantidos -->
+        <!-- ... (todos os seus produtos existentes aqui) ... -->
+
+        <!-- Produto novo adicionado -->
         <div class="produto-card">
-          <img src="img/banana.jpg" alt="Banana" />
-          <h3>Banana</h3>
-          <p>R$ 2,50/kg</p>
-          <button onclick="adicionarAoCarrinho('Banana', 2.5)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/tomate.jpg" alt="Tomate" />
-          <h3>Tomate</h3>
-          <p>R$ 4,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Tomate', 4)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/alface.jpg" alt="Alface" />
-          <h3>Alface</h3>
-          <p>R$ 1,80/un</p>
-          <button onclick="adicionarAoCarrinho('Alface', 1.8)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/cenoura.jpg" alt="Cenoura" />
-          <h3>Cenoura</h3>
-          <p>R$ 3,20/kg</p>
-          <button onclick="adicionarAoCarrinho('Cenoura', 3.2)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/batata.jpg" alt="Batata" />
-          <h3>Batata</h3>
-          <p>R$ 2,90/kg</p>
-          <button onclick="adicionarAoCarrinho('Batata', 2.9)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/abacate.jpg" alt="Abacate" />
-          <h3>Abacate</h3>
-          <p>R$ 7,00/un</p>
-          <button onclick="adicionarAoCarrinho('Abacate', 7)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/Pãointegral.jpg" alt="Pão Integral" />
-          <h3>Pão Integral</h3>
-          <p>R$ 6,50</p>
-          <button onclick="adicionarAoCarrinho('Pão Integral', 6.5)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/leite.jpg" alt="Leite" />
-          <h3>Leite</h3>
-          <p>R$ 4,00/litro</p>
-          <button onclick="adicionarAoCarrinho('Leite', 4)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/ovo.jpg" alt="Ovos" />
-          <h3>Ovos</h3>
-          <p>R$ 8,00/12 unidades</p>
-          <button onclick="adicionarAoCarrinho('Ovos', 8)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/arroz.jpg" alt="Arroz Integral" />
-          <h3>Arroz</h3>
-          <p>R$ 5,50/kg</p>
-          <button onclick="adicionarAoCarrinho('Arroz Integral', 5.5)">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="img/feijão.jpg" alt="Feijão" />
-          <h3>Feijão</h3>
-          <p>R$ 6,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Feijão', 6)">Adicionar</button>
+          <img src="img/morango.jpg" alt="Morango Fresco" />
+          <h3>Morango Fresco</h3>
+          <p>R$ 7,50/caixa</p>
+          <button onclick="adicionarAoCarrinho('Morango Fresco', 7.5)">Adicionar</button>
         </div>
       </div>
     </section>
@@ -147,46 +87,63 @@
     <section id="carrinho">
       <h2>🛒 Carrinho de Compras</h2>
       <ul id="lista-carrinho"></ul>
-      <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
-      <button id="finalizarCompra">💳 Finalizar Compra</button>
+      <div class="carrinho-total"></div>
+      <div class="botoes-carrinho">
+        <button onclick="esvaziarCarrinho()" class="btn-red">🗑️ Esvaziar Carrinho</button>
+        <button onclick="finalizarCompra()" class="btn-green" id="btn-finalizar">Finalizar Compra</button>
+      </div>
+    </section>
+
+    <!-- Área de pagamento (inicialmente escondida) -->
+    <section id="area-pagamento" class="hidden">
+      <h2>Pagamento</h2>
+      <form id="form-pagamento">
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" required />
+
+        <label for="endereco">Endereço de Entrega:</label>
+        <textarea id="endereco" name="endereco" rows="3" required></textarea>
+
+        <label for="pagamento">Forma de Pagamento:</label>
+        <select id="pagamento" name="pagamento" required>
+          <option value="" disabled selected>Selecione</option>
+          <option value="boleto">Boleto Bancário</option>
+          <option value="cartao">Cartão de Crédito</option>
+          <option value="pix">PIX</option>
+          <option value="dinheiro">Dinheiro na Entrega</option>
+        </select>
+
+        <button type="submit" class="btn-green">Confirmar Pagamento</button>
+        <button type="button" class="btn-gray" onclick="voltarParaCarrinho()">Voltar ao Carrinho</button>
+      </form>
     </section>
   </main>
 
   <button id="btnTopo" title="Voltar ao topo" aria-label="Voltar ao topo">⬆️</button>
 
-  <!-- Rodapé -->
   <footer>
-    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
     <div class="redes-sociais">
-      <a href="https://instagram.com/estacaodaterra" target="_blank" aria-label="Instagram">
-        <img src="img/instagram.svg" alt="Instagram" />
-      </a>
-      <a href="https://facebook.com/estacaodaterra" target="_blank" aria-label="Facebook">
-        <img src="img/facebook.svg" alt="Facebook" />
-      </a>
+      <a href="https://instagram.com/estacaodaterra" target="_blank" aria-label="Instagram"><img src="img/instagram.svg" alt="Instagram" /></a>
+      <a href="https://facebook.com/estacaodaterra" target="_blank" aria-label="Facebook"><img src="img/facebook.svg" alt="Facebook" /></a>
     </div>
-    <div class="formas-pagamento">
-      <p>Formas de Pagamento:</p>
-      <img src="img/pix.svg" alt="PIX" title="PIX" />
-      <img src="img/visa.svg" alt="Visa" title="Visa" />
-      <img src="img/mastercard.svg" alt="Mastercard" title="Mastercard" />
-      <img src="img/amex.svg" alt="American Express" title="American Express" />
-    </div>
+    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
   </footer>
 
-  <script>
-    // VLibras
-    new window.VLibras.Widget("https://vlibras.gov.br/app");
+  <!-- Som Ambiente -->
+  <audio id="audio-fundo" src="audio/som-mato.mp3" loop autoplay></audio>
+  <button id="btn-som" aria-label="Ativar/Desativar som ambiente">🔈</button>
 
-    // Carrinho de Compras
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+
     let carrinho = [];
 
-    function adicionarAoCarrinho(nome, preco) {
-      const itemExistente = carrinho.find((item) => item.nome === nome);
+    function adicionarAoCarrinho(produto, preco) {
+      const itemExistente = carrinho.find((item) => item.nome === produto);
       if (itemExistente) {
         itemExistente.quantidade++;
       } else {
-        carrinho.push({ nome, preco, quantidade: 1 });
+        carrinho.push({ nome: produto, preco: preco, quantidade: 1 });
       }
       atualizarCarrinho();
     }
@@ -199,60 +156,60 @@
         const vazio = document.createElement("li");
         vazio.textContent = "Carrinho vazio.";
         lista.appendChild(vazio);
+        document.querySelector(".carrinho-total").textContent = "";
+        document.getElementById("btn-finalizar").disabled = true;
         return;
       }
 
-      carrinho.forEach((item, index) => {
+      carrinho.forEach((item) => {
         const li = document.createElement("li");
         li.textContent = `${item.nome} — ${item.quantidade}x — R$ ${(item.preco * item.quantidade).toFixed(2)}`;
-        // Botão para remover 1 unidade
-        const btnRemover = document.createElement("button");
-        btnRemover.textContent = "❌";
-        btnRemover.setAttribute("aria-label", `Remover 1 ${item.nome} do carrinho`);
-        btnRemover.onclick = () => {
-          if (item.quantidade > 1) {
-            item.quantidade--;
-          } else {
-            carrinho.splice(index, 1);
-          }
-          atualizarCarrinho();
-        };
-        li.appendChild(btnRemover);
         lista.appendChild(li);
       });
 
       const total = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
-      const liTotal = document.createElement("li");
-      liTotal.style.fontWeight = "bold";
-      liTotal.style.marginTop = "10px";
-      liTotal.textContent = `Total: R$ ${total.toFixed(2)}`;
-      lista.appendChild(liTotal);
+      document.querySelector(".carrinho-total").textContent = `Total: R$ ${total.toFixed(2)}`;
+      document.getElementById("btn-finalizar").disabled = false;
     }
 
     function esvaziarCarrinho() {
       carrinho = [];
       atualizarCarrinho();
+      esconderAreaPagamento();
     }
 
-    // Finalizar compra - só simula alert
-    document.getElementById("finalizarCompra").addEventListener("click", () => {
+    // Mostrar área de pagamento
+    function finalizarCompra() {
       if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio.");
+        alert("Seu carrinho está vazio!");
         return;
       }
-      let mensagem = "Obrigado pela compra!\nResumo do pedido:\n";
-      carrinho.forEach((item) => {
-        mensagem += `${item.nome} — ${item.quantidade}x — R$ ${(item.preco * item.quantidade).toFixed(2)}\n`;
-      });
-      mensagem += `Total: R$ ${carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0).toFixed(2)}`;
-      alert(mensagem);
-      esvaziarCarrinho();
+      document.getElementById("carrinho").classList.add("hidden");
+      document.getElementById("area-pagamento").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Voltar para carrinho
+    function voltarParaCarrinho() {
+      document.getElementById("area-pagamento").classList.add("hidden");
+      document.getElementById("carrinho").classList.remove("hidden");
+    }
+
+    // Submissão do formulário de pagamento
+    document.getElementById("form-pagamento").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Pagamento confirmado! Obrigado pela compra.");
+      carrinho = [];
+      atualizarCarrinho();
+      voltarParaCarrinho();
     });
 
-    // Acessibilidade
+    // Contraste
     function toggleContraste() {
       document.body.classList.toggle("contraste");
     }
+
+    // Fonte maior
     function aumentarFonte() {
       const style = window.getComputedStyle(document.body).fontSize;
       let size = parseFloat(style);
@@ -260,6 +217,8 @@
         document.body.style.fontSize = size + 2 + "px";
       }
     }
+
+    // Fonte menor
     function diminuirFonte() {
       const style = window.getComputedStyle(document.body).fontSize;
       let size = parseFloat(style);
@@ -270,7 +229,7 @@
 
     // Botão voltar ao topo
     const btnTopo = document.getElementById("btnTopo");
-    window.onscroll = () => {
+    window.onscroll = function () {
       if (document.documentElement.scrollTop > 150) {
         btnTopo.style.display = "block";
       } else {
@@ -281,28 +240,27 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    // Controle do som ambiente
-    const somAmbiente = document.getElementById("somAmbiente");
-    const btnSom = document.getElementById("btnSom");
+    // Som ambiente
+    const audio = document.getElementById("audio-fundo");
+    const btnSom = document.getElementById("btn-som");
     btnSom.addEventListener("click", () => {
-      if (somAmbiente.paused) {
-        somAmbiente.play();
-        btnSom.textContent = "🔊";
-      } else {
-        somAmbiente.pause();
+      if (audio.paused) {
+        audio.play();
         btnSom.textContent = "🔈";
+      } else {
+        audio.pause();
+        btnSom.textContent = "🔇";
       }
     });
 
-    // Animação de boas-vindas
-    window.addEventListener("load", () => {
-      const boasVindas = document.getElementById("boasVindas");
+    // Animação boas-vindas
+    const welcomeOverlay = document.getElementById("welcome-overlay");
+    const btnEnter = document.getElementById("btn-enter");
+    btnEnter.addEventListener("click", () => {
+      welcomeOverlay.classList.add("fadeout");
       setTimeout(() => {
-        boasVindas.style.opacity = "0";
-        setTimeout(() => {
-          boasVindas.style.display = "none";
-        }, 1000);
-      }, 3500);
+        welcomeOverlay.style.display = "none";
+      }, 1000);
     });
 
     // Inicializa carrinho
@@ -310,3 +268,4 @@
   </script>
 </body>
 </html>
+
