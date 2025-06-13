@@ -1,8 +1,5 @@
 # 🌱 Estação da Terra
 
-**Do campo à cidade, colhendo oportunidades.**  
-Um site moderno, interativo e acessível que simula uma feira digital com produtos frescos, animações, carrinho de compras, acessibilidade com LIBRAS, sons ambientes, categorias variadas e uma proposta encantadora de valorização do campo e da agricultura sustentável.
-
 ## 🛠️ Sobre o Projeto
 
 Este projeto foi desenvolvido com o objetivo de aproximar o campo das pessoas da cidade, valorizando o pequeno produtor e incentivando a sustentabilidade e o consumo consciente.
