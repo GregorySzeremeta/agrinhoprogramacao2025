@@ -241,4 +241,64 @@ body.alto-contraste a {
   bottom: 0;
   width: 100%;
   box-shadow: 0 -4px 8px rgba(0,0,0,0.1);
- 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  z-index: 900;
+}
+
+.footer-logo {
+  max-width: 100px;
+  height: auto;
+}
+
+/* Responsividade */
+@media (min-width: 768px) {
+  .carrinho {
+    margin: 40px 0 0 40px;
+    position: sticky;
+    top: 100px;
+  }
+  .main-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  .loja-section {
+    flex: 1;
+  }
+  .produtos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .nav {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .header {
+    flex-direction: column;
+  }
+  .produtos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  .carrinho {
+    max-width: 90vw;
+  }
+}
+
+/* VLibras widget */
+.vlibras-widget {
+  position: fixed;
+  bottom: 120px;
+  right: 15px;
+  z-index: 1000;
+}
+
+/* Música ambiente (botão oculto para controle futuro se quiser) */
+audio#musica-ambiente {
+  display: none;
+}
