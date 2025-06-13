@@ -1,183 +1,390 @@
-/* Reset básico */
+/* style.css */
+
+/* Reset */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
+
 body {
-  margin: 0;
-  background: #f5f9f3;
-  color: #222;
-  font-size: 100%;
-  line-height: 1.5;
-}
-header {
-  background: #2a7a2a;
-  color: white;
-  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #d0f0c0, #a1d490);
+  color: #2f3e2f;
+  min-height: 100vh;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+header {
+  background: #3a6b35;
+  color: white;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 header h1 {
-  margin: 0;
-  font-weight: 900;
-  font-size: 2rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 1.1px;
 }
-.slogan {
-  font-style: italic;
-  font-size: 1.1rem;
-  margin-left: 1rem;
-  flex-grow: 1;
+
+header nav {
+  display: flex;
+  gap: 1.2rem;
 }
-nav button {
-  background: #4caf50;
-  border: none;
+
+header nav button {
+  background: transparent;
+  border: 2px solid white;
   color: white;
-  padding: 0.5rem 1rem;
-  margin-left: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
-  border-radius: 5px;
-  font-size: 1rem;
-  transition: background 0.3s ease;
+  transition: background 0.3s, color 0.3s;
 }
-nav button:hover, nav button:focus {
-  background: #3e8e41;
+
+header nav button:hover,
+header nav button:focus {
+  background: white;
+  color: #3a6b35;
   outline: none;
 }
 
 main {
-  padding: 1rem;
+  flex: 1;
   max-width: 1200px;
-  margin: auto;
-}
-
-#feira {
+  margin: 2rem auto;
+  padding: 0 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-bottom: 3rem;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 2rem;
 }
 
-.produto {
+section {
+  background: rgba(255 255 255 / 0.9);
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgb(0 0 0 / 0.1);
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section.active {
+  display: flex !important;
+}
+
+section:focus {
+  outline: 3px solid #4caf50;
+  outline-offset: 3px;
+}
+
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.produto-card {
   background: white;
-  border-radius: 8px;
+  border-radius: 14px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.12);
   padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.2s ease;
+  transition: box-shadow 0.3s ease;
 }
-.produto:hover, .produto:focus {
-  transform: scale(1.05);
-  outline: none;
+
+.produto-card:hover,
+.produto-card:focus-within {
+  box-shadow: 0 8px 20px rgb(0 0 0 / 0.2);
+  transform: translateY(-4px);
 }
-.produto img {
-  width: 100%;
-  border-radius: 8px;
-  max-height: 150px;
+
+.produto-card img {
+  max-width: 100%;
+  border-radius: 12px;
   object-fit: cover;
-  margin-bottom: 0.5rem;
-}
-.produto h3 {
-  margin: 0.2rem 0;
-  font-weight: 700;
-}
-.produto p {
-  margin: 0.2rem 0 1rem 0;
-  color: #4caf50;
-  font-weight: 600;
-}
-.btnAdicionar {
-  background: #2a7a2a;
-  border: none;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 700;
-  transition: background 0.3s ease;
-}
-.btnAdicionar:hover, .btnAdicionar:focus {
-  background: #1f5e1f;
-  outline: none;
-}
-
-#quiz {
-  background: white;
-  padding: 1rem 2rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  margin-bottom: 3rem;
-}
-#quiz h2 {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-#quiz fieldset {
-  border: none;
-  margin-bottom: 1rem;
-}
-#quiz legend {
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-#quiz label {
-  cursor: pointer;
-}
-#quiz button {
-  display: block;
-  margin: 1rem auto 0 auto;
-  background: #2a7a2a;
-  color: white;
-  border: none;
-  padding: 0.6rem 2rem;
-  font-size: 1.1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 700;
-  transition: background 0.3s ease;
-}
-#quiz button:hover, #quiz button:focus {
-  background: #1f5e1f;
-  outline: none;
-}
-#resultadoQuiz {
-  margin-top: 1rem;
-  font-weight: 700;
-  text-align: center;
-  font-size: 1.2rem;
-  color: #2a7a2a;
-}
-
-#animacaoArvore {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-#btnPlantar {
-  background: #2a7a2a;
-  color: white;
-  border: none;
-  padding: 0.8rem 2rem;
-  font-size: 1.1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 700;
-  transition: background 0.3s ease;
-}
-#btnPlantar:hover, #btnPlantar:focus {
-  background: #1f5e1f;
-  outline: none;
-}
-#arvoreContainer {
-  margin-top: 2rem;
   height: 150px;
-  position: relative;
+  margin-bottom: 1rem;
 }
-.tronco {
-  width: 30px;
-  height: 0;
-  background: sienna;
-  margin: 0 auto;
-  border-radius: 4px 4px 0 0;
-  transition: height
+
+.produto-card h3 {
+  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
+  color: #2a4d14;
+}
+
+.produto-card p {
+  font-size: 0.9rem;
+  color: #4a5d27;
+  margin-bottom: 0.6rem;
+  text-align: center;
+}
+
+.produto-card .preco {
+  font-weight: 700;
+  color: #3a6b35;
+  margin-bottom: 1rem;
+}
+
+.produto-card button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.produto-card button:hover,
+.produto-card button:focus {
+  background-color: #388e3c;
+  outline: none;
+}
+
+#carrinho-container {
+  margin-top: 2rem;
+  border-top: 2px solid #3a6b35;
+  padding-top: 1rem;
+}
+
+#carrinho-container h3 {
+  margin-bottom: 0.5rem;
+  color: #2a4d14;
+}
+
+#carrinho-lista {
+  list-style: none;
+  margin-bottom: 1rem;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+#carrinho-lista li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.3rem;
+  background: #d9f0d9;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+}
+
+#carrinho-lista li button {
+  background: #f44336;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#carrinho-lista li button:hover,
+#carrinho-lista li button:focus {
+  background-color: #d32f2f;
+  outline: none;
+}
+
+#carrinho-total {
+  font-weight: 700;
+  color: #2a4d14;
+  margin-bottom: 0.5rem;
+}
+
+#carrinho-esvaziar,
+#carrinho-finalizar {
+  background-color: #3a6b35;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  font-weight: 700;
+  border-radius: 8px;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#carrinho-esvaziar:disabled,
+#carrinho-finalizar:disabled {
+  background-color: #a9c8a6;
+  cursor: not-allowed;
+}
+
+#carrinho-esvaziar:hover:not(:disabled),
+#carrinho-finalizar:hover:not(:disabled),
+#carrinho-esvaziar:focus:not(:disabled),
+#carrinho-finalizar:focus:not(:disabled) {
+  background-color: #2e5830;
+  outline: none;
+}
+
+/* Quiz */
+#quiz-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#quiz-pergunta {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2a4d14;
+}
+
+#quiz-opcoes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+#quiz-opcoes li button {
+  background: #c7e4b9;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: #2f3e2f;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  text-align: left;
+}
+
+#quiz-opcoes li button:hover,
+#quiz-opcoes li button:focus {
+  background-color: #a6d479;
+  border-color: #4caf50;
+  outline: none;
+}
+
+#quiz-proximo {
+  align-self: flex-start;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+#quiz-proximo:disabled {
+  background-color: #a9c8a6;
+  cursor: not-allowed;
+}
+
+#quiz-proximo:hover:not(:disabled),
+#quiz-proximo:focus:not(:disabled) {
+  background-color: #388e3c;
+  outline: none;
+}
+
+#quiz-resultado {
+  background: #d9f0d9;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  color: #2a4d14;
+}
+
+/* Sobre e Contato */
+section#sobre p,
+section#contato form {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #2f3e2f;
+}
+
+#form-contato {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+}
+
+#form-contato label {
+  font-weight: 600;
+  color: #3a6b35;
+}
+
+#form-contato input,
+#form-contato textarea {
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1.8px solid #a9c8a6;
+  font-size: 1rem;
+  resize: vertical;
+  font-family: inherit;
+  color: #2f3e2f;
+}
+
+#form-contato input:focus,
+#form-contato textarea:focus {
+  outline: 2px solid #4caf50;
+  border-color: #4caf50;
+}
+
+#form-contato button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#form-contato button:hover,
+#form-contato button:focus {
+  background-color: #388e3c;
+  outline: none;
+}
+
+#contato-feedback {
+  margin-top: 0.8rem;
+  font-weight: 700;
+  color: #2a4d14;
+  min-height: 1.2rem;
+}
+
+/* Footer */
+footer {
+  background: #3a6b35;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  main {
+    grid-template-columns: 1fr;
+    margin: 1rem;
+  }
+
+  header nav {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+}
