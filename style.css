@@ -16,7 +16,6 @@ body {
   flex-direction: column;
 }
 
-/* Cabeçalho */
 .header {
   background-color: #5e936b;
   color: white;
@@ -35,7 +34,6 @@ body {
   font-weight: 700;
 }
 
-/* Navegação */
 .nav {
   display: flex;
   gap: 20px;
@@ -61,7 +59,6 @@ body {
   background-color: #3c6648;
 }
 
-/* Conteúdo principal */
 .main-content {
   flex: 1;
   padding: 30px 25px;
@@ -70,7 +67,7 @@ body {
   width: 100%;
 }
 
-/* Seção da loja */
+/* Loja */
 .loja-section {
   display: flex;
   gap: 20px;
@@ -78,7 +75,6 @@ body {
   justify-content: center;
 }
 
-/* Grid dos produtos */
 .produtos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -86,7 +82,6 @@ body {
   flex: 1;
 }
 
-/* Cartão de produto */
 .produto-card {
   background: white;
   border-radius: 12px;
@@ -98,13 +93,10 @@ body {
   transition: transform 0.3s ease;
 }
 
-.produto-card:hover,
-.produto-card:focus {
+.produto-card:hover {
   transform: translateY(-8px);
-  outline: none;
 }
 
-/* Imagem do produto */
 .produto-card img {
   max-width: 100%;
   max-height: 160px;
@@ -113,7 +105,6 @@ body {
   border-radius: 10px;
 }
 
-/* Título do produto */
 .produto-card h3 {
   margin-bottom: 10px;
   font-size: 1.2rem;
@@ -121,14 +112,12 @@ body {
   color: #2e4d25;
 }
 
-/* Preço do produto */
 .preco {
   font-weight: 700;
   margin-bottom: 15px;
   color: #5e936b;
 }
 
-/* Botão de adicionar ao carrinho */
 .btn-adicionar {
   background-color: #5e936b;
   color: white;
@@ -147,7 +136,7 @@ body {
   outline: none;
 }
 
-/* Carrinho de compras */
+/* Carrinho */
 .carrinho {
   background: white;
   border-radius: 12px;
@@ -168,7 +157,6 @@ body {
   color: #2e4d25;
 }
 
-/* Lista de itens no carrinho */
 .carrinho ul {
   list-style: none;
   overflow-y: auto;
@@ -178,14 +166,12 @@ body {
   border-radius: 8px;
 }
 
-/* Item no carrinho */
 .carrinho li {
   margin-bottom: 8px;
   color: #3c6648;
   font-weight: 600;
 }
 
-/* Total do carrinho */
 #total-carrinho {
   font-weight: 700;
   color: #5e936b;
@@ -193,7 +179,6 @@ body {
   margin-bottom: 10px;
 }
 
-/* Botões do carrinho */
 .carrinho button {
   padding: 10px;
   border-radius: 8px;
@@ -216,127 +201,48 @@ body {
   outline: none;
 }
 
-/* Botões de acessibilidade */
-.acessibilidade-container {
+/* Botão acessibilidade fixo */
+#btn-acessibilidade {
   position: fixed;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   background-color: #5e936b;
-  border-radius: 6px;
-  padding: 5px;
-  display: flex;
-  gap: 5px;
-  z-index: 2100;
-}
-
-.acessibilidade-btn {
-  background: white;
-  color: #5e936b;
   border: none;
-  border-radius: 4px;
-  font-weight: 700;
-  cursor: pointer;
-  padding: 4px 8px;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease;
-}
-
-.acessibilidade-btn:hover,
-.acessibilidade-btn:focus {
-  background-color: #c2d5b2;
-  outline: none;
-}
-
-/* Formulário da página de pagamento */
-form {
-  max-width: 600px;
-  margin: 30px auto;
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
-}
-
-form fieldset {
-  border: 1px solid #5e936b;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  padding: 15px;
-}
-
-form legend {
-  font-weight: 700;
-  color: #2e4d25;
-  margin-bottom: 10px;
-  padding: 0 10px;
-}
-
-form label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #3c6648;
-}
-
-form input[type="text"],
-form input[type="email"],
-form input[type="password"],
-form input[type="month"],
-form textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #a3bca1;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-form input:focus,
-form textarea:focus {
-  border-color: #5e936b;
-  outline: none;
-}
-
-form button[type="submit"] {
-  background-color: #5e936b;
   color: white;
-  border: none;
-  padding: 15px 20px;
-  border-radius: 10px;
-  font-weight: 700;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
+  z-index: 2000;
+  box-shadow: 0 0 8px rgba(0,0,0,0.15);
   transition: background-color 0.3s ease;
-  width: 100%;
-  font-size: 1.1rem;
 }
 
-form button[type="submit"]:hover,
-form button[type="submit"]:focus {
+#btn-acessibilidade:hover,
+#btn-acessibilidade:focus {
   background-color: #3c6648;
   outline: none;
 }
 
-/* Rodapé */
-.footer {
-  background-color: #5e936b;
-  color: white;
-  text-align: center;
-  padding: 20px 10px;
-  font-size: 0.9rem;
-  margin-top: auto;
+/* Modos de acessibilidade */
+body.alto-contraste {
+  background-color: #000;
+  color: #fff;
 }
 
-/* Responsividade */
-@media(max-width: 900px) {
-  .loja-section {
-    flex-direction: column;
-    align-items: center;
-  }
+body.alto-contraste a,
+body.alto-contraste .nav-link {
+  color: #ff0;
+}
 
-  .carrinho {
-    width: 90%;
-    position: static;
-    max-height: none;
-  }
+body.fonte-grande {
+  font-size: 20px;
+}
+
+/* Espaço para o widget do VLibras 3D */
+.vlibras-widget {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 1500 !important;
 }
