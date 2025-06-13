@@ -5,122 +5,272 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Estação da Terra</title>
   <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Música ambiente -->
-  <audio id="musica-ambiente" autoplay loop>
-    <source src="musica-ambiente.mp3" type="audio/mpeg" />
+  <!-- Botão pequeno de acessibilidade -->
+  <div id="acessibilidade">
+    <button id="btn-mais-fonte" aria-label="Aumentar fonte">A+</button>
+    <button id="btn-menos-fonte" aria-label="Diminuir fonte">A-</button>
+    <button id="btn-modo" aria-label="Alternar modo escuro/claro">🌙/☀️</button>
+    <button id="btn-libras" aria-label="Ativar tradução em LIBRAS">👐 LIBRAS</button>
+  </div>
+
+  <!-- Som ambiente -->
+  <audio id="audio-ambiente" loop>
+    <source src="audio/ambiente.mp3" type="audio/mpeg" />
     Seu navegador não suporta áudio.
   </audio>
+  <button id="btn-som" aria-label="Tocar/parar som ambiente">🔈</button>
 
-  <!-- Botão acessibilidade -->
-  <button id="btn-acessibilidade" aria-label="Acessibilidade">A+</button>
-
-  <!-- Cabeçalho -->
-  <header class="header">
-    <h1 class="logo">Estação da Terra</h1>
-    <nav class="nav">
-      <a href="#loja" class="nav-link active">Loja</a>
-      <a href="#contato" class="nav-link">Contato</a>
+  <header>
+    <h1>Estação da Terra</h1>
+    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
+    <nav>
+      <ul>
+        <li><a href="#loja" tabindex="0">Loja</a></li>
+        <li><a href="#quiz" tabindex="0">Quiz</a></li>
+        <li><a href="#sobre" tabindex="0">Sobre</a></li>
+        <li><a href="#contato" tabindex="0">Contato</a></li>
+        <li><a href="pagamento.html" tabindex="0" id="link-pagamento">Pagamento</a></li>
+      </ul>
     </nav>
   </header>
 
-  <!-- Conteúdo principal -->
-  <main class="main-content">
-    <section id="loja" class="loja-section">
-      <h2>Produtos do Campo</h2>
-      <div class="produtos-grid">
-        <!-- 20 produtos completos -->
-        <article class="produto-card"><img src="img/prod1.jpg" alt="Produto 1"><h3>Maçã Orgânica</h3><p class="preco">R$ 3,00/kg</p><button onclick="adicionarAoCarrinho('Maçã Orgânica',3)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod2.jpg" alt="Produto 2"><h3>Mel Puro</h3><p class="preco">R$ 15,00</p><button onclick="adicionarAoCarrinho('Mel Puro',15)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod3.jpg" alt="Produto 3"><h3>Banana Nanica</h3><p class="preco">R$ 2,50/kg</p><button onclick="adicionarAoCarrinho('Banana Nanica',2.5)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod4.jpg" alt="Produto 4"><h3>Laranja</h3><p class="preco">R$ 2,80/kg</p><button onclick="adicionarAoCarrinho('Laranja',2.8)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod5.jpg" alt="Produto 5"><h3>Queijo Minas</h3><p class="preco">R$ 20,00/kg</p><button onclick="adicionarAoCarrinho('Queijo Minas',20)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod6.jpg" alt="Produto 6"><h3>Leite Fresco</h3><p class="preco">R$ 4,50/litro</p><button onclick="adicionarAoCarrinho('Leite Fresco',4.5)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod7.jpg" alt="Produto 7"><h3>Tomate Italiano</h3><p class="preco">R$ 3,20/kg</p><button onclick="adicionarAoCarrinho('Tomate Italiano',3.2)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod8.jpg" alt="Produto 8"><h3>Milho Verde</h3><p class="preco">R$ 1,80/kg</p><button onclick="adicionarAoCarrinho('Milho Verde',1.8)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod9.jpg" alt="Produto 9"><h3>Arroz Integral</h3><p class="preco">R$ 7,00/kg</p><button onclick="adicionarAoCarrinho('Arroz Integral',7)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod10.jpg" alt="Produto 10"><h3>Feijão Preto</h3><p class="preco">R$ 6,50/kg</p><button onclick="adicionarAoCarrinho('Feijão Preto',6.5)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod11.jpg" alt="Produto 11"><h3>Ovos Caipira (12 un)</h3><p class="preco">R$ 8,00</p><button onclick="adicionarAoCarrinho('Ovos Caipira',8)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod12.jpg" alt="Produto 12"><h3>Couve Fresca</h3><p class="preco">R$ 3,00/maço</p><button onclick="adicionarAoCarrinho('Couve Fresca',3)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod13.jpg" alt="Produto 13"><h3>Abóbora</h3><p class="preco">R$ 4,00/kg</p><button onclick="adicionarAoCarrinho('Abóbora',4)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod14.jpg" alt="Produto 14"><h3>Alface Crespa</h3><p class="preco">R$ 2,50/maço</p><button onclick="adicionarAoCarrinho('Alface Crespa',2.5)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod15.jpg" alt="Produto 15"><h3>Batata Doce</h3><p class="preco">R$ 5,50/kg</p><button onclick="adicionarAoCarrinho('Batata Doce',5.5)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod16.jpg" alt="Produto 16"><h3>Pepino</h3><p class="preco">R$ 3,00/kg</p><button onclick="adicionarAoCarrinho('Pepino',3)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod17.jpg" alt="Produto 17"><h3>Morango</h3><p class="preco">R$ 12,00/caixa</p><button onclick="adicionarAoCarrinho('Morango',12)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod18.jpg" alt="Produto 18"><h3>Abacaxi</h3><p class="preco">R$ 8,00/un</p><button onclick="adicionarAoCarrinho('Abacaxi',8)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod19.jpg" alt="Produto 19"><h3>Melancia</h3><p class="preco">R$ 4,50/kg</p><button onclick="adicionarAoCarrinho('Melancia',4.5)" class="btn-adicionar">Adicionar</button></article>
-        <article class="produto-card"><img src="img/prod20.jpg" alt="Produto 20"><h3>Goiaba</h3><p class="preco">R$ 3,20/kg</p><button onclick="adicionarAoCarrinho('Goiaba',3.2)" class="btn-adicionar">Adicionar</button></article>
+  <main>
+    <!-- Área da loja -->
+    <section id="loja" aria-label="Loja Estação da Terra">
+      <h2>Produtos</h2>
+
+      <div class="feira">
+        <!-- Seção: Leite -->
+        <div class="categoria" id="leite">
+          <h3>Leite</h3>
+          <div class="produtos">
+            <article class="produto" tabindex="0" aria-label="Leite Integral 1L - R$6,50">
+              <img src="imagens/leite_integral.jpg" alt="Leite Integral 1 litro" />
+              <h4>Leite Integral 1L</h4>
+              <p class="descricao">Leite fresco integral direto do campo.</p>
+              <p class="preco">R$ 6,50</p>
+              <button class="btn-add" data-id="produto01" aria-label="Adicionar Leite Integral ao carrinho">Adicionar</button>
+            </article>
+
+            <article class="produto" tabindex="0" aria-label="Leite Desnatado 1L - R$6,80">
+              <img src="imagens/leite_desnatado.jpg" alt="Leite Desnatado 1 litro" />
+              <h4>Leite Desnatado 1L</h4>
+              <p class="descricao">Leite desnatado saudável e nutritivo.</p>
+              <p class="preco">R$ 6,80</p>
+              <button class="btn-add" data-id="produto02" aria-label="Adicionar Leite Desnatado ao carrinho">Adicionar</button>
+            </article>
+          </div>
+        </div>
+
+        <!-- Seção: Frutas -->
+        <div class="categoria" id="frutas">
+          <h3>Frutas</h3>
+          <div class="produtos">
+            <article class="produto" tabindex="0" aria-label="Maçã Fuji 1kg - R$8,90">
+              <img src="imagens/maca_fuji.jpg" alt="Maçã Fuji" />
+              <h4>Maçã Fuji 1kg</h4>
+              <p class="descricao">Maçã doce e crocante colhida recentemente.</p>
+              <p class="preco">R$ 8,90</p>
+              <button class="btn-add" data-id="produto03" aria-label="Adicionar Maçã Fuji ao carrinho">Adicionar</button>
+            </article>
+
+            <article class="produto" tabindex="0" aria-label="Banana Nanica 1kg - R$5,50">
+              <img src="imagens/banana_nanica.jpg" alt="Banana Nanica" />
+              <h4>Banana Nanica 1kg</h4>
+              <p class="descricao">Banana doce e madura perfeita para lanches.</p>
+              <p class="preco">R$ 5,50</p>
+              <button class="btn-add" data-id="produto04" aria-label="Adicionar Banana Nanica ao carrinho">Adicionar</button>
+            </article>
+          </div>
+        </div>
+
+        <!-- Seção: Mel -->
+        <div class="categoria" id="mel">
+          <h3>Mel</h3>
+          <div class="produtos">
+            <article class="produto" tabindex="0" aria-label="Mel Puro 500g - R$25,00">
+              <img src="imagens/mel_puro.jpg" alt="Mel Puro" />
+              <h4>Mel Puro 500g</h4>
+              <p class="descricao">Mel natural colhido de abelhas orgânicas.</p>
+              <p class="preco">R$ 25,00</p>
+              <button class="btn-add" data-id="produto05" aria-label="Adicionar Mel Puro ao carrinho">Adicionar</button>
+            </article>
+          </div>
+        </div>
+
+        <!-- Seção: Queijo e derivados -->
+        <div class="categoria" id="queijos">
+          <h3>Queijos e Derivados</h3>
+          <div class="produtos">
+            <article class="produto" tabindex="0" aria-label="Queijo Minas Frescal 300g - R$18,00">
+              <img src="imagens/queijo_minas.jpg" alt="Queijo Minas Frescal" />
+              <h4>Queijo Minas Frescal 300g</h4>
+              <p class="descricao">Queijo artesanal com sabor suave e fresco.</p>
+              <p class="preco">R$ 18,00</p>
+              <button class="btn-add" data-id="produto06" aria-label="Adicionar Queijo Minas Frescal ao carrinho">Adicionar</button>
+            </article>
+
+            <article class="produto" tabindex="0" aria-label="Requeijão Cremoso 250g - R$12,50">
+              <img src="imagens/requeijao.jpg" alt="Requeijão Cremoso" />
+              <h4>Requeijão Cremoso 250g</h4>
+              <p class="descricao">Requeijão fresquinho, perfeito para o café da manhã.</p>
+              <p class="preco">R$ 12,50</p>
+              <button class="btn-add" data-id="produto07" aria-label="Adicionar Requeijão ao carrinho">Adicionar</button>
+            </article>
+          </div>
+        </div>
+
+        <!-- Seção: Verduras -->
+        <div class="categoria" id="verduras">
+          <h3>Verduras</h3>
+          <div class="produtos">
+            <article class="produto" tabindex="0" aria-label="Alface Crespa - R$3,50">
+              <img src="imagens/alface_crespa.jpg" alt="Alface Crespa" />
+              <h4>Alface Crespa</h4>
+              <p class="descricao">Alface fresca e crocante colhida hoje cedo.</p>
+              <p class="preco">R$ 3,50</p>
+              <button class="btn-add" data-id="produto08" aria-label="Adicionar Alface ao carrinho">Adicionar</button>
+            </article>
+
+            <article class="produto" tabindex="0" aria-label="Couve Manteiga - R$4,00">
+              <img src="imagens/couve_manteiga.jpg" alt="Couve Manteiga" />
+              <h4>Couve Manteiga</h4>
+              <p class="descricao">Couve verdinha e saudável direto da roça.</p>
+              <p class="preco">R$ 4,00</p>
+              <button class="btn-add" data-id="produto09" aria-label="Adicionar Couve ao carrinho">Adicionar</button>
+            </article>
+          </div>
+        </div>
+
+        <!-- Seção: Grãos -->
+        <div class="categoria" id="graos">
+          <h3>Grãos</h3>
+          <div class="produtos">
+            <article class="produto" tabindex="0" aria-label="Arroz Integral 1kg - R$10,00">
+              <img src="imagens/arroz_integral.jpg" alt="Arroz Integral" />
+              <h4>Arroz Integral 1kg</h4>
+              <p class="descricao">Arroz integral de qualidade para alimentação saudável.</p>
+              <p class="preco">R$ 10,00</p>
+              <button class="btn-add" data-id="produto10" aria-label="Adicionar Arroz Integral ao carrinho">Adicionar</button>
+            </article>
+
+            <article class="produto" tabindex="0" aria-label="Feijão Carioca 1kg - R$12,00">
+              <img src="imagens/feijao_carioca.jpg" alt="Feijão Carioca" />
+              <h4>Feijão Carioca 1kg</h4>
+              <p class="descricao">Feijão saboroso, colhido e selecionado com cuidado.</p>
+              <p class="preco">R$ 12,00</p>
+              <button class="btn-add" data-id="produto11" aria-label="Adicionar Feijão Carioca ao carrinho">Adicionar</button>
+            </article>
+          </div>
+        </div>
+
+        <!-- Seção: Sementes -->
+        <div class="categoria" id="sementes">
+          <h3>Sementes</h3>
+          <div class="produtos">
+            <article class="produto" tabindex="0" aria-label="Semente de Girassol 200g - R$15,00">
+              <img src="imagens/semente_girassol.jpg" alt="Semente de Girassol" />
+              <h4>Semente de Girassol 200g</h4>
+              <p class="descricao">Sementes selecionadas para plantio e consumo.</p>
+              <p class="preco">R$ 15,00</p>
+              <button class="btn-add" data-id="produto12" aria-label="Adicionar Semente de Girassol ao carrinho">Adicionar</button>
+            </article>
+
+            <article class="produto" tabindex="0" aria-label="Semente de Abóbora 200g - R$14,00">
+              <img src="imagens/semente_abobora.jpg" alt="Semente de Abóbora" />
+              <h4>Semente de Abóbora 200g</h4>
+              <p class="descricao">Sementes de abóbora para plantio e alimentação.</p>
+              <p class="preco">R$ 14,00</p>
+              <button class="btn-add" data-id="produto13" aria-label="Adicionar Semente de Abóbora ao carrinho">Adicionar</button>
+            </article>
+          </div>
+        </div>
+
+        <!-- Seção: Outras -->
+        <div class="categoria" id="outras">
+          <h3>Outras</h3>
+          <div class="produtos">
+            <article class="produto" tabindex="0" aria-label="Melado de Cana 500g - R$7,00">
+              <img src="imagens/melado_cana.jpg" alt="Melado de Cana" />
+              <h4>Melado de Cana 500g</h4>
+              <p class="descricao">Melado tradicional para adoçar e cozinhar.</p>
+              <p class="preco">R$ 7,00</p>
+              <button class="btn-add" data-id="produto14" aria-label="Adicionar Melado de Cana ao carrinho">Adicionar</button>
+            </article>
+
+            <article class="produto" tabindex="0" aria-label="Farinha de Mandioca 1kg - R$9,50">
+              <img src="imagens/farinha_mandioca.jpg" alt="Farinha de Mandioca" />
+              <h4>Farinha de Mandioca 1kg</h4>
+              <p class="descricao">Farinha fina para uso culinário tradicional.</p>
+              <p class="preco">R$ 9,50</p>
+              <button class="btn-add" data-id="produto15" aria-label="Adicionar Farinha de Mandioca ao carrinho">Adicionar</button>
+            </article>
+          </div>
+        </div>
+
       </div>
-      <!-- Carrinho -->
-      <aside class="carrinho">
-        <h3>Carrinho</h3>
-        <ul id="lista-carrinho"></ul>
-        <p id="total-carrinho">Total: R$ 0,00</p>
-        <button id="btn-finalizar" onclick="finalizarCompra()" disabled>Finalizar Compra</button>
-      </aside>
     </section>
+
+    <!-- Carrinho de compras fixo -->
+    <aside id="carrinho" aria-label="Carrinho de compras" role="region">
+      <h2>Seu Carrinho</h2>
+      <ul id="lista-carrinho" tabindex="0" aria-live="polite" aria-relevant="additions removals"></ul>
+      <p id="total">Total: R$ 0,00</p>
+      <button id="btn-esvaziar" aria-label="Esvaziar carrinho">Esvaziar Carrinho</button>
+      <button id="btn-finalizar" aria-label="Finalizar compra">Finalizar Compra</button>
+    </aside>
+
+    <!-- Quiz -->
+    <section id="quiz" aria-label="Quiz sobre agricultura">
+      <h2>Quiz: Teste seus conhecimentos</h2>
+      <div id="quiz-container">
+        <!-- Perguntas do quiz serão inseridas via JS -->
+      </div>
+      <button id="btn-iniciar-quiz" aria-label="Iniciar quiz">Iniciar Quiz</button>
+      <div id="resultado-quiz" aria-live="polite"></div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" aria-label="Sobre Estação da Terra">
+      <h2>Sobre</h2>
+      <p>Somos a Estação da Terra, uma feira online que conecta o campo à cidade, oferecendo produtos naturais, frescos e sustentáveis diretamente dos produtores.</p>
+      <p>Nossa missão é promover o consumo consciente, a valorização da agricultura familiar e o desenvolvimento sustentável.</p>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" aria-label="Contato">
+      <h2>Contato</h2>
+      <form id="form-contato" aria-label="Formulário de contato">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required aria-required="true" />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required aria-required="true" />
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" rows="5" required aria-required="true"></textarea>
+        <button type="submit" aria-label="Enviar mensagem">Enviar</button>
+      </form>
+      <div id="contato-msg" role="alert" aria-live="assertive"></div>
+    </section>
+
   </main>
 
-  <!-- Rodapé -->
-  <footer class="footer">
-    <img src="logo.png" alt="Logo" class="footer-logo">
-    <p>© 2025 Estação da Terra. Todos os direitos reservados.</p>
+  <footer>
+    <img src="imagens/logo.png" alt="Logo Estação da Terra" />
+    <p>© 2025 Estação da Terra - Todos os direitos reservados</p>
   </footer>
 
-  <!-- VLibras -->
-  <div vw class="vlibras-widget">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
+  <!-- Tradução em LIBRAS (vídeo ou animação) -->
+  <div id="libras-overlay" aria-hidden="true" hidden>
+    <!-- Pode colocar um vídeo ou animação em LIBRAS aqui -->
+    <video autoplay loop muted>
+      <source src="videos/libras.mp4" type="video/mp4" />
+      Seu navegador não suporta vídeo.
+    </video>
+    <button id="btn-fechar-libras" aria-label="Fechar tradução em LIBRAS">✖</button>
   </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
 
-  <!-- Scripts -->
-  <script>
-    const btnAcessibilidade = document.getElementById('btn-acessibilidade');
-    let etapa = 0;
-    btnAcessibilidade.addEventListener('click', () => {
-      if (etapa === 0) {
-        document.body.classList.toggle('fonte-grande');
-        etapa = 1;
-      } else if (etapa === 1) {
-        document.body.classList.toggle('alto-contraste');
-        etapa = 2;
-      } else {
-        document.body.classList.remove('fonte-grande', 'alto-contraste');
-        etapa = 0;
-      }
-    });
-
-    const lista = document.getElementById('lista-carrinho');
-    const totalEl = document.getElementById('total-carrinho');
-    const btnFinal = document.getElementById('btn-finalizar');
-    let carrinho = [];
-
-    function adicionarAoCarrinho(nome, preco) {
-      carrinho.push({ nome, preco });
-      atualizarCarrinho();
-    }
-
-    function atualizarCarrinho() {
-      lista.innerHTML = '';
-      let soma = 0;
-      carrinho.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
-        lista.appendChild(li);
-        soma += item.preco;
-      });
-      totalEl.textContent = `Total: R$ ${soma.toFixed(2)}`;
-      btnFinal.disabled = carrinho.length === 0;
-    }
-
-    function finalizarCompra() {
-      window.location.href = 'pagamento.html';
-    }
-  </script>
 </body>
 </html>
