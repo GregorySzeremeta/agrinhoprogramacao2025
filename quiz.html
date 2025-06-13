@@ -1,138 +1,162 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz Agrícola</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Quiz - Estação da Terra</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 0;
+    /* <-----QUIZ----> */
+    .quiz-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+      gap: 40px;
     }
-    header {
-      background: #4CAF50;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    .menu a {
-      margin: 0 10px;
-      color: white;
-      text-decoration: none;
-    }
+
     .quiz-container {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      animation: fadeIn 1s ease-in-out;
+      background-color: #c8f8b5;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.4);
+      width: 90%;
+      max-width: 500px;
+      color: #09380b;
+      font-size: 1em;
+      font-family: Arial, sans-serif;
+      border: 2px solid rgb(46, 97, 42);
     }
+
     .question {
-      margin-bottom: 1.5rem;
+      margin-bottom: 20px;
+      border: 2px solid rgb(15, 54, 12);
+      border-radius: 12px;
+      padding: 15px;
+      background-color: #78c57f;
     }
-    .question p {
-      font-weight: bold;
-      color: #333;
-    }
+
     label {
       display: block;
-      margin-bottom: 0.5rem;
+      margin-top: 8px;
       cursor: pointer;
+      color: #0b3006;
+      font-weight: 600;
     }
+
     button {
-      background-color: #4CAF50;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #2e752f;
       color: white;
       border: none;
-      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1em;
       cursor: pointer;
-      border-radius: 5px;
-      font-size: 1rem;
-      transition: background 0.3s;
     }
-    button:hover {
-      background-color: #45a049;
-    }
-    .resultado-container {
-      margin-top: 1rem;
+
+    .resultado {
       font-weight: bold;
-      font-size: 1.2rem;
-      color: #333;
-      text-align: center;
+      font-size: 1.2em;
+      margin-top: 20px;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    .confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 9999;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      animation: confetti-fall 3s linear infinite;
+    }
+
+    @keyframes confetti-fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🌽 Quiz Agrícola</h1>
-    <nav class="menu">
-      <a href="index.html">Início</a>
-      <a href="sobre.html">Sobre</a>
-    </nav>
-  </header>
+  <div class="quiz-wrapper">
+    <div class="quiz-container">
+      <h1>QUIZ: Agricultura 🌱</h1>
 
-  <main>
-    <section id="quiz">
-      <div class="quiz-container" id="quiz-container">
-        <div class="question">
-          <p>1. Qual desses produtos é uma leguminosa?</p>
-          <label><input type="radio" name="q1" value="errado"> 🍌 Banana</label>
-          <label><input type="radio" name="q1" value="correto"> 🫘 Feijão</label>
-          <label><input type="radio" name="q1" value="errado"> 🍅 Tomate</label>
-        </div>
-        <div class="question">
-          <p>2. Qual o melhor horário para irrigar plantas?</p>
-          <label><input type="radio" name="q2" value="correto"> 🌅 De manhã cedo</label>
-          <label><input type="radio" name="q2" value="errado"> ☀️ Meio-dia</label>
-          <label><input type="radio" name="q2" value="errado"> 🌙 À noite</label>
-        </div>
-        <div class="question">
-          <p>3. Qual o principal benefício do adubo orgânico?</p>
-          <label><input type="radio" name="q3" value="correto"> 🌱 Melhora o solo naturalmente</label>
-          <label><input type="radio" name="q3" value="errado"> 🍂 Causa menos folhas</label>
-          <label><input type="radio" name="q3" value="errado"> 💸 É mais barato</label>
-        </div>
-        <div class="question">
-          <p>4. O que é uma horta vertical?</p>
-          <label><input type="radio" name="q4" value="correto"> 🧱 Cultivo em paredes ou estruturas suspensas</label>
-          <label><input type="radio" name="q4" value="errado"> 🥕 Horta de legumes grandes</label>
-          <label><input type="radio" name="q4" value="errado"> 🕰️ Nome antigo de horta</label>
-        </div>
-        <button onclick="verificarQuiz()">Verificar Respostas</button>
-        <div class="resultado-container" id="resultado"></div>
+      <div class="question">
+        <p>1) Qual é a principal função da agricultura?</p>
+        <label><input type="radio" name="q1" value="a" /> Proteger os animais</label>
+        <label><input type="radio" name="q1" value="b" /> Produzir alimentos</label>
+        <label><input type="radio" name="q1" value="c" /> Cuidar das florestas</label>
+        <label><input type="radio" name="q1" value="d" /> Preservar rios</label>
       </div>
-    </section>
-  </main>
 
-  <footer>
-    <p style="text-align: center; padding: 1rem; background: #eee; color: #555;">&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
-  </footer>
+      <div class="question">
+        <p>2) O que são agrotóxicos?</p>
+        <label><input type="radio" name="q2" value="a" /> Produtos naturais que melhoram o solo</label>
+        <label><input type="radio" name="q2" value="b" /> Máquinas agrícolas</label>
+        <label><input type="radio" name="q2" value="c" /> Produtos químicos que combatem pragas</label>
+      </div>
+
+      <!-- Adicione mais perguntas aqui seguindo o padrão -->
+
+      <button onclick="verificarRespostas()">Verificar Respostas</button>
+      <div id="resultado" class="resultado"></div>
+    </div>
+  </div>
 
   <script>
-    function verificarQuiz() {
-      let total = 0;
-      const inputs = document.querySelectorAll("#quiz-container input:checked");
-      inputs.forEach(el => {
-        if (el.value === "correto") total++;
-      });
+    document.addEventListener("DOMContentLoaded", function () {
+      const gabarito = {
+        q1: 'b',
+        q2: 'c',
+      };
 
-      const resultado = document.getElementById("resultado");
-      resultado.innerHTML = `🎉 Você acertou <strong>${total}</strong> de 4 perguntas!`;
-      resultado.style.background = total >= 3 ? '#d4edda' : '#f8d7da';
-      resultado.style.color = total >= 3 ? '#155724' : '#721c24';
-      resultado.style.border = '1px solid ' + (total >= 3 ? '#c3e6cb' : '#f5c6cb');
-      resultado.style.padding = '10px';
-      resultado.style.borderRadius = '8px';
-      resultado.style.marginTop = '20px';
-      resultado.style.animation = 'fadeIn 0.5s ease-in-out';
-    }
+      function createConfetti() {
+        const confettiContainer = document.createElement('div');
+        confettiContainer.classList.add('confetti-container');
+        document.body.appendChild(confettiContainer);
+
+        for (let i = 0; i < 50; i++) {
+          const confetti = document.createElement('div');
+          confetti.classList.add('confetti');
+
+          const colors = ['#FFC107', '#FF5722', '#4CAF50', '#03A9F4', '#E91E63'];
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.top = '-10px';
+          confetti.style.animationDelay = Math.random() + 's';
+          confettiContainer.appendChild(confetti);
+
+          setTimeout(() => confetti.remove(), 3000);
+        }
+      }
+
+      window.verificarRespostas = function () {
+        let acertos = 0;
+        for (let questao in gabarito) {
+          const respostaSelecionada = document.querySelector(`input[name="${questao}"]:checked`);
+          if (respostaSelecionada && respostaSelecionada.value === gabarito[questao]) {
+            acertos++;
+          }
+        }
+        const resultado = document.getElementById("resultado");
+        resultado.textContent = `Você acertou ${acertos} de ${Object.keys(gabarito).length} perguntas!`;
+        resultado.style.color = acertos >= 2 ? 'green' : 'red';
+
+        if (acertos === Object.keys(gabarito).length) {
+          createConfetti();
+        }
+      }
+    });
   </script>
 </body>
 </html>
