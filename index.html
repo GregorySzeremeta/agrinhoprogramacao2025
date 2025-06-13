@@ -1,258 +1,509 @@
-// script.js
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Estação da Terra - Produtos do Campo</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1 tabindex="0">Estação da Terra</h1>
+    <p tabindex="0" class="slogan">Do campo à cidade, colhendo oportunidades</p>
+    <nav aria-label="Menu principal">
+      <ul class="menu" role="menubar">
+        <li role="none"><button role="menuitem" id="btnLoja" tabindex="0">Loja</button></li>
+        <li role="none"><button role="menuitem" id="btnQuiz" tabindex="0">Quiz</button></li>
+        <li role="none"><button role="menuitem" id="btnContato" tabindex="0">Contato</button></li>
+      </ul>
+    </nav>
+    <div class="accessibility-controls" aria-label="Controles de acessibilidade">
+      <button id="btnIncreaseFont" aria-pressed="false" aria-label="Aumentar fonte">A+</button>
+      <button id="btnDecreaseFont" aria-pressed="false" aria-label="Diminuir fonte">A-</button>
+      <button id="btnContrast" aria-pressed="false" aria-label="Ativar modo alto contraste">Contraste</button>
+      <button id="btnLibras" aria-pressed="false" aria-label="Ativar tradução em LIBRAS">LIBRAS</button>
+      <button id="btnSom" aria-pressed="false" aria-label="Ativar som ambiente de mato">Som Mato</button>
+    </div>
+  </header>
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Elementos
-  const mainContent = document.getElementById('mainContent');
-  const menuButtons = document.querySelectorAll('.menu button');
-  const cartBtn = document.getElementById('cartBtn');
-  const cartCount = document.getElementById('cartCount');
-  const cartDialog = document.getElementById('cartDialog');
-  const cartItemsContainer = document.getElementById('cartItems');
-  const emptyCartBtn = document.getElementById('emptyCartBtn');
-  const closeCartBtn = document.getElementById('closeCartBtn');
+  <main id="mainContent" tabindex="0">
+    <!-- Conteúdo dinâmico será inserido aqui -->
+  </main>
 
-  const btnContrast = document.getElementById('btnContrast');
-  const btnFontIncrease = document.getElementById('btnFontIncrease');
-  const btnFontDecrease = document.getElementById('btnFontDecrease');
+  <!-- Botão do carrinho -->
+  <button id="cartBtn" aria-label="Abrir carrinho de compras" aria-haspopup="dialog" aria-controls="cartDialog" aria-expanded="false">
+    🛒 <span id="cartCount" aria-live="polite" aria-atomic="true">0</span>
+  </button>
 
-  let cart = [];
-  let fontSize = 16;
-  let contrastOn = false;
+  <!-- Diálogo do carrinho -->
+  <dialog id="cartDialog" aria-modal="true" aria-labelledby="cartTitle">
+    <h2 id="cartTitle">Seu Carrinho</h2>
+    <div id="cartItems" tabindex="0" aria-live="polite"></div>
+    <p id="cartTotal" tabindex="0"></p>
+    <div class="cart-buttons">
+      <button id="emptyCartBtn">Esvaziar Carrinho</button>
+      <button id="checkoutBtn">Finalizar Compra</button>
+      <button id="closeCartBtn">Fechar</button>
+    </div>
+  </dialog>
 
-  // Quiz perguntas (15 no total)
-  const quizQuestions = [
-    { question: "Qual destes é um grão?", options: ["Arroz", "Maçã", "Leite"], answer: 0 },
-    { question: "Qual fruta é vermelha?", options: ["Banana", "Morango", "Cenoura"], answer: 1 },
-    { question: "Qual destes é um derivado do leite?", options: ["Queijo", "Mel", "Pão"], answer: 0 },
-    { question: "Qual verdura é usada em saladas?", options: ["Alface", "Tomate", "Batata"], answer: 0 },
-    { question: "Qual semente é muito usada para fazer óleo?", options: ["Soja", "Milho", "Feijão"], answer: 0 },
-    { question: "Qual destes é uma fruta cítrica?", options: ["Laranja", "Maçã", "Uva"], answer: 0 },
-    { question: "Qual destes grãos é usado para fazer pão?", options: ["Trigo", "Milho", "Aveia"], answer: 0 },
-    { question: "Qual é o nome do mel produzido pelas abelhas?", options: ["Mel", "Néctar", "Pólen"], answer: 0 },
-    { question: "Qual destes vegetais cresce na terra?", options: ["Cenoura", "Maçã", "Banana"], answer: 0 },
-    { question: "Qual é a semente que usamos para fazer café?", options: ["Café", "Soja", "Milho"], answer: 0 },
-    { question: "Qual é um produto derivado do leite?", options: ["Iogurte", "Mel", "Carne"], answer: 0 },
-    { question: "Qual fruta tem vitamina C?", options: ["Laranja", "Cenoura", "Feijão"], answer: 0 },
-    { question: "Qual grão é usado para fazer pipoca?", options: ["Milho", "Trigo", "Aveia"], answer: 0 },
-    { question: "Qual verdura é verde e muito usada em saladas?", options: ["Alface", "Cenoura", "Tomate"], answer: 0 },
-    { question: "Qual fruta é pequena e roxa?", options: ["Uva", "Laranja", "Banana"], answer: 0 },
-  ];
+  <!-- Container do quiz -->
+  <section id="quizSection" hidden aria-live="polite" aria-atomic="true">
+    <h2>Quiz: Conhecimentos sobre Produção do Campo</h2>
+    <div id="quizQuestion"></div>
+    <div id="quizOptions"></div>
+    <p id="quizResult" aria-live="assertive"></p>
+    <button id="quizNextBtn" disabled>Próxima</button>
+    <button id="quizRestartBtn" hidden>Reiniciar Quiz</button>
+  </section>
 
-  let currentQuizIndex = 0;
-  let correctAnswers = 0;
+  <!-- Contato simples -->
+  <section id="contatoSection" hidden>
+    <h2>Contato</h2>
+    <form id="contatoForm" aria-label="Formulário de contato">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required />
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required />
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="contatoFeedback" role="alert" aria-live="assertive"></p>
+  </section>
 
-  // Função para mostrar a seção selecionada
-  function showSection(section) {
-    if (section === 'quiz') {
-      showQuiz();
-    } else if (section === 'contact') {
-      showContact();
-    } else {
-      showProducts(section);
-    }
-  }
+  <!-- Áudio para som ambiente -->
+  <audio id="somMato" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/08/24/audio_c9ef5f960d.mp3?filename=forest-ambience-110113.mp3" type="audio/mpeg" />
+    Seu navegador não suporta áudio.
+  </audio>
 
-  // Função para mostrar produtos (exemplo simples)
-  function showProducts(category) {
-    mainContent.innerHTML = `<h2>${capitalize(category)}</h2><p>Produtos da categoria ${category} ainda em desenvolvimento.</p>`;
-    mainContent.focus();
-  }
+  <script>
+    'use strict';
 
-  // Função para mostrar o contato
-  function showContact() {
-    mainContent.innerHTML = `
-      <h2>Contato</h2>
-      <p>Email: contato@estacaodaterra.com.br</p>
-      <p>Telefone: (99) 99999-9999</p>
-      <p>Endereço: Rua do Campo, 123</p>
-    `;
-    mainContent.focus();
-  }
+    // Produtos do campo - array com 30 produtos
+    const produtos = [
+      { id: 1, nome: 'Leite Fresco', categoria: 'Laticínios', preco: 4.50 },
+      { id: 2, nome: 'Queijo Minas', categoria: 'Laticínios', preco: 20.00 },
+      { id: 3, nome: 'Manteiga', categoria: 'Laticínios', preco: 12.00 },
+      { id: 4, nome: 'Mel Natural', categoria: 'Mel', preco: 15.00 },
+      { id: 5, nome: 'Maçã', categoria: 'Frutas', preco: 3.50 },
+      { id: 6, nome: 'Banana', categoria: 'Frutas', preco: 2.80 },
+      { id: 7, nome: 'Laranja', categoria: 'Frutas', preco: 3.00 },
+      { id: 8, nome: 'Tomate', categoria: 'Verduras', preco: 4.00 },
+      { id: 9, nome: 'Alface', categoria: 'Verduras', preco: 2.50 },
+      { id: 10, nome: 'Cenoura', categoria: 'Verduras', preco: 3.00 },
+      { id: 11, nome: 'Feijão Preto', categoria: 'Grãos', preco: 8.00 },
+      { id: 12, nome: 'Arroz Integral', categoria: 'Grãos', preco: 6.50 },
+      { id: 13, nome: 'Trigo', categoria: 'Grãos', preco: 5.00 },
+      { id: 14, nome: 'Sementes de Abóbora', categoria: 'Sementes', preco: 7.00 },
+      { id: 15, nome: 'Sementes de Girassol', categoria: 'Sementes', preco: 6.00 },
+      { id: 16, nome: 'Morango', categoria: 'Frutas', preco: 10.00 },
+      { id: 17, nome: 'Abacate', categoria: 'Frutas', preco: 7.50 },
+      { id: 18, nome: 'Pepino', categoria: 'Verduras', preco: 3.20 },
+      { id: 19, nome: 'Alho', categoria: 'Verduras', preco: 15.00 },
+      { id: 20, nome: 'Cebola', categoria: 'Verduras', preco: 3.80 },
+      { id: 21, nome: 'Leite de Cabra', categoria: 'Laticínios', preco: 5.00 },
+      { id: 22, nome: 'Queijo Coalho', categoria: 'Laticínios', preco: 25.00 },
+      { id: 23, nome: 'Mel Silvestre', categoria: 'Mel', preco: 18.00 },
+      { id: 24, nome: 'Abóbora', categoria: 'Verduras', preco: 4.50 },
+      { id: 25, nome: 'Batata Doce', categoria: 'Verduras', preco: 3.30 },
+      { id: 26, nome: 'Amendoim', categoria: 'Grãos', preco: 9.00 },
+      { id: 27, nome: 'Milho Verde', categoria: 'Grãos', preco: 5.50 },
+      { id: 28, nome: 'Chá de Ervas', categoria: 'Outros', preco: 12.00 },
+      { id: 29, nome: 'Farinha de Mandioca', categoria: 'Outros', preco: 7.00 },
+      { id: 30, nome: 'Óleo de Coco', categoria: 'Outros', preco: 20.00 }
+    ];
 
-  // Função para mostrar o quiz
-  function showQuiz() {
-    currentQuizIndex = 0;
-    correctAnswers = 0;
-    renderQuizQuestion();
-  }
-
-  // Renderiza a questão atual do quiz
-  function renderQuizQuestion() {
-    const q = quizQuestions[currentQuizIndex];
-    let optionsHTML = '';
-    q.options.forEach((opt, i) => {
-      optionsHTML += `<button class="quiz-option" data-index="${i}">${opt}</button>`;
-    });
-
-    mainContent.innerHTML = `
-      <h2>Quiz - Pergunta ${currentQuizIndex + 1} de ${quizQuestions.length}</h2>
-      <p>${q.question}</p>
-      <div class="quiz-options">${optionsHTML}</div>
-      <div id="quiz-feedback" aria-live="assertive" style="margin-top: 1rem;"></div>
-    `;
-
-    mainContent.focus();
-
-    // Adiciona evento nas opções
-    const optionButtons = mainContent.querySelectorAll('.quiz-option');
-    optionButtons.forEach(btn => {
-      btn.addEventListener('click', () => handleAnswer(parseInt(btn.dataset.index)));
-    });
-  }
-
-  // Trata a resposta do usuário
-  function handleAnswer(selectedIndex) {
-    const q = quizQuestions[currentQuizIndex];
-    const feedback = mainContent.querySelector('#quiz-feedback');
-
-    if (selectedIndex === q.answer) {
-      correctAnswers++;
-      feedback.textContent = 'Resposta correta! 🎉';
-      triggerConfetti();
-    } else {
-      feedback.textContent = 'Resposta incorreta.';
-    }
-
-    // Desabilita botões para não clicar de novo
-    mainContent.querySelectorAll('.quiz-option').forEach(btn => btn.disabled = true);
-
-    // Próxima questão após 2s
-    setTimeout(() => {
-      currentQuizIndex++;
-      if (currentQuizIndex < quizQuestions.length) {
-        renderQuizQuestion();
-      } else {
-        showQuizResult();
+    // Quiz perguntas
+    const quizPerguntas = [
+      {
+        pergunta: 'Qual a melhor época para plantar milho?',
+        opcoes: ['Primavera', 'Verão', 'Outono', 'Inverno'],
+        correta: 0
+      },
+      {
+        pergunta: 'O que é agricultura orgânica?',
+        opcoes: ['Uso de agrotóxicos', 'Uso de técnicas naturais', 'Uso de sementes transgênicas', 'Uso de fertilizantes químicos'],
+        correta: 1
+      },
+      {
+        pergunta: 'Qual animal é mais comum na produção leiteira?',
+        opcoes: ['Gado bovino', 'Porco', 'Ovelha', 'Galinha'],
+        correta: 0
+      },
+      {
+        pergunta: 'Qual é o principal benefício do plantio direto?',
+        opcoes: ['Evita erosão', 'Diminui produção', 'Aumenta erosão', 'Aumenta custo'],
+        correta: 0
+      },
+      {
+        pergunta: 'Qual dessas sementes é oleaginosa?',
+        opcoes: ['Feijão', 'Milho', 'Soja', 'Arroz'],
+        correta: 2
+      },
+      {
+        pergunta: 'Qual fruta é mais rica em vitamina C?',
+        opcoes: ['Banana', 'Laranja', 'Maçã', 'Melancia'],
+        correta: 1
+      },
+      {
+        pergunta: 'O que é irrigação?',
+        opcoes: ['Plantio manual', 'Adubação química', 'Aplicação de água', 'Colheita mecanizada'],
+        correta: 2
+      },
+      {
+        pergunta: 'Qual a função do composto orgânico no solo?',
+        opcoes: ['Fertilizante químico', 'Aumentar a matéria orgânica', 'Eliminar pragas', 'Matar ervas daninhas'],
+        correta: 1
+      },
+      {
+        pergunta: 'Qual grão é base da alimentação brasileira?',
+        opcoes: ['Arroz', 'Milho', 'Feijão', 'Soja'],
+        correta: 2
+      },
+      {
+        pergunta: 'O que significa sustentabilidade na agricultura?',
+        opcoes: ['Uso intenso de químicos', 'Exploração sem limites', 'Equilíbrio ambiental e social', 'Desmatamento'],
+        correta: 2
       }
-    }, 2000);
-  }
+    ];
 
-  // Mostra resultado final do quiz
-  function showQuizResult() {
-    const percent = Math.round((correctAnswers / quizQuestions.length) * 100);
-    mainContent.innerHTML = `
-      <h2>Resultado do Quiz</h2>
-      <p>Você acertou ${correctAnswers} de ${quizQuestions.length} perguntas.</p>
-      <p>Porcentagem de acertos: ${percent}%</p>
-      <button id="restartQuizBtn">Recomeçar Quiz</button>
-    `;
-    mainContent.focus();
+    // Variáveis globais
+    let carrinho = [];
+    let fontSize = 16; // base em px
+    let contrasteAtivo = false;
+    let librasAtivo = false;
+    let somAtivo = false;
 
-    document.getElementById('restartQuizBtn').addEventListener('click', () => {
-      showQuiz();
-    });
-  }
+    // Elementos DOM
+    const mainContent = document.getElementById('mainContent');
+    const btnLoja = document.getElementById('btnLoja');
+    const btnQuiz = document.getElementById('btnQuiz');
+    const btnContato = document.getElementById('btnContato');
+    const cartBtn = document.getElementById('cartBtn');
+    const cartCount = document.getElementById('cartCount');
+    const cartDialog = document.getElementById('cartDialog');
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const emptyCartBtn = document.getElementById('emptyCartBtn');
+    const closeCartBtn = document.getElementById('closeCartBtn');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const quizSection = document.getElementById('quizSection');
+    const quizQuestion = document.getElementById('quizQuestion');
+    const quizOptions = document.getElementById('quizOptions');
+    const quizResult = document.getElementById('quizResult');
+    const quizNextBtn = document.getElementById('quizNextBtn');
+    const quizRestartBtn = document.getElementById('quizRestartBtn');
+    const contatoSection = document.getElementById('contatoSection');
+    const contatoForm = document.getElementById('contatoForm');
+    const contatoFeedback = document.getElementById('contatoFeedback');
+    const btnIncreaseFont = document.getElementById('btnIncreaseFont');
+    const btnDecreaseFont = document.getElementById('btnDecreaseFont');
+    const btnContrast = document.getElementById('btnContrast');
+    const btnLibras = document.getElementById('btnLibras');
+    const btnSom = document.getElementById('btnSom');
+    const somMato = document.getElementById('somMato');
 
-  // Função simples para confetes (feito com emojis)
-  function triggerConfetti() {
-    // Confetes animados simples
-    const confettiContainer = document.createElement('div');
-    confettiContainer.style.position = 'fixed';
-    confettiContainer.style.top = '0';
-    confettiContainer.style.left = '0';
-    confettiContainer.style.width = '100%';
-    confettiContainer.style.height = '100%';
-    confettiContainer.style.pointerEvents = 'none';
-    confettiContainer.style.zIndex = '9999';
+    // --- Funções ---
 
-    for (let i = 0; i < 30; i++) {
-      const confetti = document.createElement('div');
-      confetti.textContent = '🎉';
-      confetti.style.position = 'absolute';
-      confetti.style.fontSize = `${Math.random() * 20 + 10}px`;
-      confetti.style.left = `${Math.random() * window.innerWidth}px`;
-      confetti.style.top = `${Math.random() * window.innerHeight}px`;
-      confetti.style.opacity = '1';
-      confetti.style.transition = 'opacity 1s ease-out';
-      confettiContainer.appendChild(confetti);
+    // Renderiza a loja com produtos por categoria
+    function renderLoja() {
+      quizSection.hidden = true;
+      contatoSection.hidden = true;
+      mainContent.hidden = false;
 
-      setTimeout(() => {
-        confetti.style.opacity = '0';
-      }, 500);
-    }
+      // Agrupa produtos por categoria
+      const categorias = {};
+      produtos.forEach(p => {
+        if (!categorias[p.categoria]) categorias[p.categoria] = [];
+        categorias[p.categoria].push(p);
+      });
 
-    document.body.appendChild(confettiContainer);
-    setTimeout(() => {
-      document.body.removeChild(confettiContainer);
-    }, 1500);
-  }
+      let html = '';
+      for (const categoria in categorias) {
+        html += `<section aria-label="Categoria ${categoria}"><h2>${categoria}</h2><ul class="produtos-lista">`;
+        categorias[categoria].forEach(prod => {
+          html += `
+          <li class="produto-item" tabindex="0" role="group" aria-label="${prod.nome}, preço R$ ${prod.preco.toFixed(2)}">
+            <div class="produto-nome">${prod.nome}</div>
+            <div class="produto-preco">R$ ${prod.preco.toFixed(2)}</div>
+            <button class="addCartBtn" data-id="${prod.id}" aria-label="Adicionar ${prod.nome} ao carrinho">Adicionar</button>
+          </li>`;
+        });
+        html += `</ul></section>`;
+      }
+      mainContent.innerHTML = html;
 
-  // Função para capitalizar palavra
-  function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
-  // Menu: troca de seções
-  menuButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      showSection(btn.dataset.section);
-    });
-  });
-
-  // Carrinho de compras
-  cartBtn.addEventListener('click', () => {
-    showCart();
-  });
-
-  emptyCartBtn.addEventListener('click', () => {
-    cart = [];
-    updateCartUI();
-  });
-
-  closeCartBtn.addEventListener('click', () => {
-    cartDialog.close();
-  });
-
-  // Atualiza visual do carrinho
-  function updateCartUI() {
-    cartCount.textContent = cart.length;
-    cartBtn.setAttribute('aria-label', `Carrinho de compras, ${cart.length} itens`);
-
-    if (cart.length === 0) {
-      cartItemsContainer.innerHTML = '<p>Carrinho vazio.</p>';
-    } else {
-      cartItemsContainer.innerHTML = '<ul>' + cart.map(item => `<li>${item}</li>`).join('') + '</ul>';
-    }
-  }
-
-  function showCart() {
-    updateCartUI();
-    cartDialog.showModal();
-  }
-
-  // Exemplo simples para adicionar item ao carrinho
-  function addToCart(item) {
-    cart.push(item);
-    updateCartUI();
-  }
-
-  // Exemplo: adiciona produto clicando menu de produtos (para teste)
-  menuButtons.forEach(btn => {
-    if (btn.dataset.section !== 'quiz' && btn.dataset.section !== 'contact') {
-      btn.addEventListener('dblclick', () => {
-        addToCart(`Produto da categoria ${btn.dataset.section}`);
-        alert(`Produto da categoria ${btn.dataset.section} adicionado ao carrinho!`);
+      // Adiciona eventos aos botões adicionar
+      document.querySelectorAll('.addCartBtn').forEach(btn => {
+        btn.onclick = () => {
+          const id = Number(btn.dataset.id);
+          adicionarAoCarrinho(id);
+        };
       });
     }
-  });
 
-  // Acessibilidade: contraste
-  btnContrast.addEventListener('click', () => {
-    contrastOn = !contrastOn;
-    document.body.classList.toggle('high-contrast', contrastOn);
-    btnContrast.setAttribute('aria-pressed', contrastOn);
-  });
+    // Adiciona produto ao carrinho
+    function adicionarAoCarrinho(id) {
+      const prod = produtos.find(p => p.id === id);
+      if (!prod) return;
+      const itemCarrinho = carrinho.find(i => i.id === id);
+      if (itemCarrinho) {
+        itemCarrinho.quantidade++;
+      } else {
+        carrinho.push({ ...prod, quantidade: 1 });
+      }
+      atualizarContadorCarrinho();
+      alert(`Produto "${prod.nome}" adicionado ao carrinho.`);
+    }
 
-  // Acessibilidade: aumento/diminuição fonte
-  btnFontIncrease.addEventListener('click', () => {
-    fontSize = Math.min(fontSize + 2, 24);
-    document.documentElement.style.fontSize = fontSize + 'px';
-  });
-  btnFontDecrease.addEventListener('click', () => {
-    fontSize = Math.max(fontSize - 2, 12);
-    document.documentElement.style.fontSize = fontSize + 'px';
-  });
+    // Atualiza contador no botão do carrinho
+    function atualizarContadorCarrinho() {
+      const total = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+      cartCount.textContent = total;
+      cartBtn.setAttribute('aria-label', `Abrir carrinho de compras. Você tem ${total} item${total !== 1 ? 's' : ''} no carrinho.`);
+    }
 
-  // Inicializa com seção principal (produtos)
-  showSection('grains');
-});
+    // Abre diálogo do carrinho
+    function abrirCarrinho() {
+      if (cartDialog.open) return;
+      atualizarCarrinhoUI();
+      cartDialog.showModal();
+      cartBtn.setAttribute('aria-expanded', 'true');
+      // Foca no diálogo
+      cartDialog.focus();
+    }
+
+    // Atualiza UI do carrinho
+    function atualizarCarrinhoUI() {
+      if (carrinho.length === 0) {
+        cartItems.innerHTML = '<p>Seu carrinho está vazio.</p>';
+        cartTotal.textContent = '';
+        checkoutBtn.disabled = true;
+        emptyCartBtn.disabled = true;
+      } else {
+        checkoutBtn.disabled = false;
+        emptyCartBtn.disabled = false;
+        let html = '<ul>';
+        let total = 0;
+        carrinho.forEach(item => {
+          html += `<li>${item.nome} x ${item.quantidade} - R$ ${(item.preco * item.quantidade).toFixed(2)}</li>`;
+          total += item.preco * item.quantidade;
+        });
+        html += '</ul>';
+        cartItems.innerHTML = html;
+        cartTotal.textContent = `Total: R$ ${total.toFixed(2)}`;
+      }
+    }
+
+    // Esvazia o carrinho
+    function esvaziarCarrinho() {
+      if(confirm('Deseja realmente esvaziar o carrinho?')) {
+        carrinho = [];
+        atualizarContadorCarrinho();
+        atualizarCarrinhoUI();
+      }
+    }
+
+    // Fecha diálogo do carrinho
+    function fecharCarrinho() {
+      cartDialog.close();
+      cartBtn.setAttribute('aria-expanded', 'false');
+      cartBtn.focus();
+    }
+
+    // Finalizar compra (simulação)
+    function finalizarCompra() {
+      if (carrinho.length === 0) {
+        alert('Seu carrinho está vazio.');
+        return;
+      }
+      alert('Compra finalizada com sucesso! Obrigado pela preferência.');
+      carrinho = [];
+      atualizarContadorCarrinho();
+      atualizarCarrinhoUI();
+      fecharCarrinho();
+    }
+
+    // --- Quiz ---
+
+    let quizIndex = 0;
+    let quizAcertos = 0;
+
+    function iniciarQuiz() {
+      mainContent.hidden = true;
+      contatoSection.hidden = true;
+      quizSection.hidden = false;
+      quizIndex = 0;
+      quizAcertos = 0;
+      quizResult.textContent = '';
+      quizNextBtn.disabled = true;
+      quizRestartBtn.hidden = true;
+      mostrarPergunta();
+    }
+
+    function mostrarPergunta() {
+      const q = quizPerguntas[quizIndex];
+      quizQuestion.textContent = `Pergunta ${quizIndex + 1}: ${q.pergunta}`;
+      quizOptions.innerHTML = '';
+      q.opcoes.forEach((opcao, i) => {
+        const btn = document.createElement('button');
+        btn.textContent = opcao;
+        btn.className = 'quizOptionBtn';
+        btn.onclick = () => responder(i);
+        quizOptions.appendChild(btn);
+      });
+    }
+
+    function responder(indice) {
+      const correta = quizPerguntas[quizIndex].correta;
+      const botoes = [...quizOptions.children];
+      botoes.forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === correta) {
+          btn.classList.add('correta');
+        }
+        if (i === indice && i !== correta) {
+          btn.classList.add('errada');
+        }
+      });
+      if (indice === correta) {
+        quizAcertos++;
+        quizResult.textContent = 'Resposta correta! 🎉';
+      } else {
+        quizResult.textContent = 'Resposta errada.';
+      }
+      quizNextBtn.disabled = false;
+      if (quizIndex === quizPerguntas.length - 1) {
+        quizNextBtn.textContent = 'Ver Resultado';
+      } else {
+        quizNextBtn.textContent = 'Próxima';
+      }
+    }
+
+    quizNextBtn.onclick = () => {
+      quizIndex++;
+      quizResult.textContent = '';
+      quizNextBtn.disabled = true;
+      if (quizIndex < quizPerguntas.length) {
+        mostrarPergunta();
+      } else {
+        mostrarResultadoQuiz();
+      }
+    };
+
+    function mostrarResultadoQuiz() {
+      quizQuestion.textContent = `Você acertou ${quizAcertos} de ${quizPerguntas.length} perguntas! (${((quizAcertos/quizPerguntas.length)*100).toFixed(0)}%)`;
+      quizOptions.innerHTML = '';
+      quizNextBtn.hidden = true;
+      quizRestartBtn.hidden = false;
+      // Confete simples com emojis
+      quizResult.textContent = '🎉🎉 Parabéns! 🎉🎉';
+    }
+
+    quizRestartBtn.onclick = () => {
+      quizIndex = 0;
+      quizAcertos = 0;
+      quizResult.textContent = '';
+      quizNextBtn.disabled = true;
+      quizNextBtn.hidden = false;
+      quizRestartBtn.hidden = true;
+      mostrarPergunta();
+    };
+
+    // --- Contato ---
+
+    contatoForm.addEventListener('submit', e => {
+      e.preventDefault();
+      contatoFeedback.textContent = '';
+      const nome = contatoForm.nome.value.trim();
+      const email = contatoForm.email.value.trim();
+      const mensagem = contatoForm.mensagem.value.trim();
+      if (nome && email && mensagem) {
+        contatoFeedback.textContent = 'Mensagem enviada com sucesso! Entraremos em contato.';
+        contatoForm.reset();
+      } else {
+        contatoFeedback.textContent = 'Por favor, preencha todos os campos.';
+      }
+    });
+
+    // --- Navegação ---
+
+    btnLoja.onclick = () => {
+      quizSection.hidden = true;
+      contatoSection.hidden = true;
+      mainContent.hidden = false;
+      renderLoja();
+    };
+
+    btnQuiz.onclick = () => {
+      iniciarQuiz();
+    };
+
+    btnContato.onclick = () => {
+      mainContent.hidden = true;
+      quizSection.hidden = true;
+      contatoSection.hidden = false;
+      contatoFeedback.textContent = '';
+      contatoForm.reset();
+    };
+
+    // --- Acessibilidade ---
+
+    btnIncreaseFont.onclick = () => {
+      if (fontSize < 24) {
+        fontSize += 2;
+        document.documentElement.style.fontSize = fontSize + 'px';
+      }
+    };
+
+    btnDecreaseFont.onclick = () => {
+      if (fontSize > 12) {
+        fontSize -= 2;
+        document.documentElement.style.fontSize = fontSize + 'px';
+      }
+    };
+
+    btnContrast.onclick = () => {
+      contrasteAtivo = !contrasteAtivo;
+      document.body.classList.toggle('alto-contraste', contrasteAtivo);
+      btnContrast.setAttribute('aria-pressed', contrasteAtivo);
+    };
+
+    btnLibras.onclick = () => {
+      librasAtivo = !librasAtivo;
+      alert(librasAtivo ? 'Tradução LIBRAS ativada (simulação).' : 'Tradução LIBRAS desativada.');
+      btnLibras.setAttribute('aria-pressed', librasAtivo);
+    };
+
+    btnSom.onclick = () => {
+      somAtivo = !somAtivo;
+      if (somAtivo) {
+        somMato.play();
+        btnSom.setAttribute('aria-pressed', 'true');
+      } else {
+        somMato.pause();
+        btnSom.setAttribute('aria-pressed', 'false');
+      }
+    };
+
+    // --- Carrinho eventos ---
+
+    cartBtn.onclick = abrirCarrinho;
+    emptyCartBtn.onclick = esvaziarCarrinho;
+    closeCartBtn.onclick = fecharCarrinho;
+    checkoutBtn.onclick = finalizarCompra;
+
+    // Fecha diálogo com ESC
+    cartDialog.addEventListener('keydown', e => {
+      if (e.key === 'Escape') fecharCarrinho();
+    });
+
+    // Inicializa loja
+    renderLoja();
+    atualizarContadorCarrinho();
+
+  </script>
+</body>
+</html>
