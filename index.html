@@ -1,181 +1,153 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Estação da Terra</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <!-- VLibras Plugin -->
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Produtos do Interior - Estação Rural</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <!-- Animação de entrada -->
-  <div id="entrada" class="entrada-animada">
-    🌱 Estação da Terra 🌻
-  </div>
-
-  <!-- Acessibilidade -->
-  <div id="acessibilidade">
-    <button onclick="toggleContraste()">🌓</button>
-    <button onclick="aumentarFonte()">🔠</button>
-    <button onclick="diminuirFonte()">🔡</button>
-  </div>
-
-  <!-- VLibras -->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-
-  <!-- Cabeçalho -->
   <header>
-    <h1>Estação da Terra</h1>
-    <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
-    <nav class="menu">
-      <ul>
-        <li><a href="#produtos">Produtos</a></li>
-        <li><a href="#quiz">Quiz</a></li>
-        <li><a href="#carrinho">Carrinho</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-      </ul>
+    <h1>Produtos do Interior - Estação Rural</h1>
+    <nav>
+      <button onclick="location.href='index.html'">Loja</button>
+      <button onclick="location.href='quiz.html'">Quiz Sustentabilidade</button>
+      <button onclick="location.href='about.html'">Sobre</button>
+      <button onclick="location.href='contact.html'">Contato</button>
     </nav>
   </header>
 
-  <!-- Principal -->
   <main>
-    <!-- Produtos -->
-    <section id="produtos">
-      <h2>Produtos à Venda</h2>
-      <div class="barracas">
-        <div class="produto-card">
-          <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce" alt="Maçã">
-          <h3>Maçã Orgânica</h3>
-          <p>R$ 3,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Maçã Orgânica')">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="https://images.unsplash.com/photo-1582515073490-39981397c445" alt="Mel Puro">
-          <h3>Mel Puro</h3>
-          <p>R$ 15,00</p>
-          <button onclick="adicionarAoCarrinho('Mel Puro')">Adicionar</button>
-        </div>
-        <div class="produto-card">
-          <img src="https://images.unsplash.com/photo-1572441710263-478a1b119119" alt="Queijo Artesanal">
-          <h3>Queijo Artesanal</h3>
-          <p>R$ 25,00</p>
-          <button onclick="adicionarAoCarrinho('Queijo Artesanal')">Adicionar</button>
-        </div>
-        <!-- Adicione mais produtos aqui -->
+    <section id="products">
+      <h2>Produtos</h2>
+      <div class="product-list">
+        <!-- Produtos carregados via JS -->
       </div>
     </section>
 
-    <!-- Carrinho -->
-    <section id="carrinho">
-      <h2>🛒 Carrinho de Compras</h2>
-      <ul id="lista-carrinho"></ul>
-      <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
-    </section>
-
-    <!-- Quiz -->
-    <section id="quiz">
-      <h2>🌽 Quiz Agrícola</h2>
-      <div class="quiz-container" id="quiz-container">
-        <div class="question">
-          <p>1. Qual desses produtos é uma leguminosa?</p>
-          <label><input type="radio" name="q1" value="errado"> Banana</label>
-          <label><input type="radio" name="q1" value="correto"> Feijão</label>
-          <label><input type="radio" name="q1" value="errado"> Tomate</label>
-        </div>
-        <div class="question">
-          <p>2. Qual o melhor horário para irrigar plantas?</p>
-          <label><input type="radio" name="q2" value="correto"> De manhã cedo</label>
-          <label><input type="radio" name="q2" value="errado"> Meio-dia</label>
-          <label><input type="radio" name="q2" value="errado"> À noite</label>
-        </div>
-        <div class="question">
-          <p>3. Qual o principal benefício do adubo orgânico?</p>
-          <label><input type="radio" name="q3" value="correto"> Melhora o solo naturalmente</label>
-          <label><input type="radio" name="q3" value="errado"> Causa menos folhas</label>
-          <label><input type="radio" name="q3" value="errado"> É mais barato</label>
-        </div>
-        <div class="question">
-          <p>4. O que é uma horta vertical?</p>
-          <label><input type="radio" name="q4" value="correto"> Cultivo em paredes ou estruturas suspensas</label>
-          <label><input type="radio" name="q4" value="errado"> Horta de legumes grandes</label>
-          <label><input type="radio" name="q4" value="errado"> Nome antigo de horta</label>
-        </div>
-        <button onclick="verificarQuiz()">Verificar Respostas</button>
-        <div class="resultado-container" id="resultado"></div>
-      </div>
-    </section>
-
-    <!-- Sobre -->
-    <section id="sobre">
-      <h2>História da Estação da Terra</h2>
-      <p>
-        A Estação da Terra nasceu com o propósito de aproximar o campo da cidade. Nosso objetivo é conectar pequenos produtores a consumidores conscientes, promovendo sustentabilidade, saúde e economia local. Aqui, cada barraca é uma oportunidade, cada produto é um pedaço da natureza.
-      </p>
+    <section id="cart">
+      <h2>Carrinho de Compras</h2>
+      <div id="cart-items">Carrinho vazio</div>
+      <div id="cart-total">Total: R$ 0,00</div>
+      <button id="clear-cart-btn">Esvaziar Carrinho</button>
     </section>
   </main>
 
-  <!-- Rodapé -->
-  <footer>
-    &copy; 2025 Estação da Terra. Todos os direitos reservados.
-  </footer>
-
-  <!-- JavaScript -->
   <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    // Lista de produtos (pode expandir)
+    const products = [
+      { id: 1, name: "Mel Puro", price: 25.00, description: "Mel natural do campo", img: "https://i.imgur.com/hF7XYGh.jpg" },
+      { id: 2, name: "Queijo Artesanal", price: 40.00, description: "Queijo fresco produzido localmente", img: "https://i.imgur.com/fb2WJJb.jpg" },
+      { id: 3, name: "Frutas Orgânicas", price: 15.00, description: "Mix de frutas colhidas no campo", img: "https://i.imgur.com/zTvwdZV.jpg" },
+      { id: 4, name: "Verduras Frescas", price: 10.00, description: "Verduras direto da horta", img: "https://i.imgur.com/4rAvQVP.jpg" },
+      { id: 5, name: "Leite de Fazenda", price: 8.00, description: "Leite fresco e natural", img: "https://i.imgur.com/UJzQbFN.jpg" }
+    ];
 
-    let carrinho = [];
+    const productList = document.querySelector(".product-list");
+    const cartItems = document.getElementById("cart-items");
+    const cartTotal = document.getElementById("cart-total");
+    const clearCartBtn = document.getElementById("clear-cart-btn");
 
-    function adicionarAoCarrinho(produto) {
-      carrinho.push(produto);
-      atualizarCarrinho();
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Função para formatar preço em reais
+    function formatPrice(price) {
+      return price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
     }
 
-    function atualizarCarrinho() {
-      const lista = document.getElementById("lista-carrinho");
-      lista.innerHTML = "";
-      carrinho.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        lista.appendChild(li);
+    // Mostrar produtos na tela
+    function showProducts() {
+      productList.innerHTML = "";
+      products.forEach(prod => {
+        const productDiv = document.createElement("div");
+        productDiv.className = "product";
+
+        productDiv.innerHTML = `
+          <img src="${prod.img}" alt="${prod.name}" />
+          <h3>${prod.name}</h3>
+          <p>${prod.description}</p>
+          <p><strong>${formatPrice(prod.price)}</strong></p>
+          <button data-id="${prod.id}">Adicionar ao Carrinho</button>
+        `;
+
+        productList.appendChild(productDiv);
       });
     }
 
-    function esvaziarCarrinho() {
-      carrinho = [];
-      atualizarCarrinho();
-    }
+    // Atualiza o carrinho na tela
+    function updateCart() {
+      if (cart.length === 0) {
+        cartItems.textContent = "Carrinho vazio";
+        cartTotal.textContent = "Total: R$ 0,00";
+        return;
+      }
 
-    function verificarQuiz() {
+      cartItems.innerHTML = "";
       let total = 0;
-      document.querySelectorAll("#quiz-container input:checked").forEach(el => {
-        if (el.value === "correto") total++;
+
+      cart.forEach(item => {
+        const prod = products.find(p => p.id === item.id);
+        total += prod.price * item.quantity;
+
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "cart-item";
+        itemDiv.innerHTML = `
+          <span>${prod.name} (x${item.quantity})</span>
+          <span>${formatPrice(prod.price * item.quantity)}</span>
+          <button class="remove-item" data-id="${item.id}">Remover</button>
+        `;
+        cartItems.appendChild(itemDiv);
       });
-      document.getElementById("resultado").textContent = `Você acertou ${total} de 4 perguntas!`;
+
+      cartTotal.textContent = `Total: ${formatPrice(total)}`;
     }
 
-    function toggleContraste() {
-      document.body.classList.toggle("contraste");
+    // Adiciona item ao carrinho
+    function addToCart(id) {
+      const itemIndex = cart.findIndex(i => i.id === id);
+      if (itemIndex > -1) {
+        cart[itemIndex].quantity++;
+      } else {
+        cart.push({ id: id, quantity: 1 });
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCart();
     }
 
-    function aumentarFonte() {
-      document.body.style.fontSize = "larger";
+    // Remove item do carrinho
+    function removeFromCart(id) {
+      cart = cart.filter(i => i.id !== id);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCart();
     }
 
-    function diminuirFonte() {
-      document.body.style.fontSize = "initial";
+    // Esvaziar carrinho
+    function clearCart() {
+      cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCart();
     }
 
-    // Remover tela de entrada após animação
-    setTimeout(() => {
-      document.getElementById("entrada").style.display = "none";
-    }, 3000);
+    // Eventos
+    productList.addEventListener("click", e => {
+      if (e.target.tagName === "BUTTON") {
+        const id = Number(e.target.getAttribute("data-id"));
+        addToCart(id);
+      }
+    });
+
+    cartItems.addEventListener("click", e => {
+      if (e.target.classList.contains("remove-item")) {
+        const id = Number(e.target.getAttribute("data-id"));
+        removeFromCart(id);
+      }
+    });
+
+    clearCartBtn.addEventListener("click", clearCart);
+
+    // Inicializar
+    showProducts();
+    updateCart();
   </script>
 </body>
 </html>
