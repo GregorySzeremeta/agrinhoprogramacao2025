@@ -1,4 +1,6 @@
-/* Reset e Base */
+/** style.css **/
+
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -6,154 +8,198 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f3fbe9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f8f8;
   color: #333;
   line-height: 1.6;
-  padding: 20px;
+  font-size: 16px;
+  transition: background 0.3s, color 0.3s;
 }
 
-/* Tela de Boas-Vindas */
-#welcome-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #e8f5e9;
-  color: #2E7D32;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  z-index: 99999;
-  animation: fadeOut 3s forwards;
-  animation-delay: 3s;
-}
-
-#welcome-screen p {
-  font-size: 1.2rem;
-  margin-top: 10px;
-  font-style: italic;
-}
-
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
+body.contraste {
+  background-color: #000;
+  color: #fff;
 }
 
 header {
-  text-align: center;
-  background-color: #81c784;
+  background-color: #4CAF50;
   color: white;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 30px;
+  padding: 1rem;
+  text-align: center;
 }
 
-.slogan {
-  font-size: 1.2rem;
+header .slogan {
   font-style: italic;
+  font-size: 1.1rem;
 }
 
-.acessibilidade {
+.menu ul {
+  list-style: none;
   display: flex;
-  gap: 10px;
   justify-content: center;
-  margin-bottom: 20px;
+  gap: 1rem;
+  margin-top: 0.5rem;
 }
 
-.acessibilidade button {
-  padding: 10px;
-  font-size: 1rem;
-  border: none;
-  background-color: #66bb6a;
+.menu ul li a {
   color: white;
-  border-radius: 8px;
-  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
-.acessibilidade button:hover {
-  background-color: #558b2f;
+.menu ul li a:hover {
+  color: #d4ffd4;
 }
 
-#audio-fundo {
-  text-align: center;
-  margin-bottom: 20px;
+#acessibilidade {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-#audio-fundo button {
+#acessibilidade button {
   background-color: #4CAF50;
   border: none;
   color: white;
-  font-size: 20px;
   padding: 8px;
-  border-radius: 50%;
+  font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  transition: background-color 0.3s;
 }
 
-#audio-fundo button:hover {
+#acessibilidade button:hover {
   background-color: #388E3C;
 }
 
-section {
-  margin: 30px auto;
-  max-width: 1000px;
+main {
+  padding: 2rem;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #2E7D32;
 }
 
 .barracas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
 }
 
 .produto-card {
-  background-color: #fff;
-  border: 2px solid #c8e6c9;
-  padding: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
   border-radius: 12px;
+  padding: 1rem;
   text-align: center;
-  box-shadow: 2px 2px 5px #ccc;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .produto-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .produto-card img {
-  width: 100%;
+  max-width: 100%;
   height: 140px;
   object-fit: cover;
   border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.produto-card h3 {
+  margin-bottom: 0.3rem;
+  font-size: 1.2rem;
+}
+
+.produto-card p {
+  font-weight: bold;
+  color: #388E3C;
+  margin-bottom: 0.5rem;
 }
 
 .produto-card button {
-  margin-top: 10px;
-  padding: 6px 10px;
-  font-size: 14px;
-  background-color: #66bb6a;
-  border: none;
+  background-color: #4CAF50;
   color: white;
-  border-radius: 6px;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .produto-card button:hover {
-  background-color: #388e3c;
+  background-color: #2E7D32;
+}
+
+#carrinho {
+  margin-top: 2rem;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 #carrinho ul {
   list-style: none;
-  padding-left: 0;
+  margin-top: 1rem;
 }
 
 #carrinho button {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
   margin-top: 10px;
-  margin-right: 10px;
-  padding:
+  transition: background-color 0.3s;
+}
+
+#carrinho button:hover {
+  background-color: #b71c1c;
+}
+
+footer {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+/* Estilo para áudio de fundo */
+#audio-fundo {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  z-index: 10000;
+  background: white;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Estilo LIBRAS VLibras */
+[vw] {
+  z-index: 1000 !important;
+}
+
+/* Animação inicial (opcional) */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+body {
+  animation: fadeIn 1s ease-in;
+}
