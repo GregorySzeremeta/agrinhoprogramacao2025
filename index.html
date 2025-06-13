@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Estação da Terra - Produtos do Campo</title>
 <link rel="stylesheet" href="style.css" />
-<!-- LIBRAS CDN -->
+<!-- VLibras -->
 <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
-<!-- Plugin VLibras -->
+
+<!-- VLibras Widget -->
 <div vw class="enabled">
   <div vw-access-button class="active"></div>
   <div vw-plugin-wrapper>
@@ -18,313 +19,433 @@
 </div>
 
 <header>
-  <h1>Estação da Terra</h1>
-  <p class="slogan">Do campo à cidade, colhendo oportunidades</p>
-  <nav>
-    <button class="nav-btn" data-target="loja">Loja</button>
-    <button class="nav-btn" data-target="quiz">Quiz do Campo</button>
-    <button class="nav-btn" id="btn-som">Som Ambiente</button>
+  <h1 tabindex="0">Estação da Terra</h1>
+  <nav aria-label="Menu principal">
+    <button class="nav-btn" id="btn-loja" aria-controls="loja" aria-expanded="true">Loja</button>
+    <button class="nav-btn" id="btn-quiz" aria-controls="quiz" aria-expanded="false">Quiz</button>
+    <button class="nav-btn" id="btn-contato" aria-controls="contato" aria-expanded="false">Contato</button>
+    <button class="nav-btn" id="btn-som" aria-pressed="false" aria-label="Ativar som ambiente">Som Ambiente</button>
+    <div id="cart-icon" tabindex="0" aria-label="Abrir carrinho de compras" role="button" aria-haspopup="dialog" aria-controls="carrinho">
+      🛒<span id="cart-count" aria-live="polite">0</span>
+    </div>
   </nav>
-  <div id="cart-icon" tabindex="0" aria-label="Carrinho de compras com 0 itens">
-    🛒<span id="cart-count">0</span>
-  </div>
+  <p class="slogan" tabindex="0">Do campo à cidade, colhendo oportunidades</p>
 </header>
 
 <main>
-  <!-- Seção Loja -->
-  <section id="loja" class="active" aria-live="polite" tabindex="0">
-    <h2>Produtos do Campo</h2>
-    <div id="produtos" class="produtos-grid" role="list"></div>
-  </section>
-
-  <!-- Seção Carrinho -->
-  <section id="carrinho" aria-live="polite" tabindex="0" hidden>
-    <h2>Seu Carrinho</h2>
-    <ul id="lista-carrinho" role="list"></ul>
-    <div class="total">
-      <strong>Total: R$ <span id="total-preco">0,00</span></strong>
+  <!-- Loja -->
+  <section id="loja" class="active" tabindex="0" aria-label="Seção da loja de produtos do campo">
+    <h2>Produtos</h2>
+    <div class="produtos-categoria" id="produtos-lista">
+      <!-- Produtos serão inseridos por JS -->
     </div>
-    <button id="finalizar-compra" class="btn-primary">Finalizar Compra</button>
-    <button id="voltar-loja" class="btn-secondary">Voltar à Loja</button>
   </section>
 
-  <!-- Seção Quiz -->
-  <section id="quiz" aria-live="polite" tabindex="0" hidden>
-    <h2>Quiz: Você conhece a produção do campo?</h2>
-    <form id="quiz-form" aria-label="Quiz sobre produção do campo">
-      <div id="perguntas-container"></div>
-      <button type="submit" class="btn-primary">Enviar Respostas</button>
+  <!-- Carrinho -->
+  <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" hidden>
+    <h2>Carrinho de Compras</h2>
+    <ul id="carrinho-lista"></ul>
+    <p class="total" id="total-valor">Total: R$ 0,00</p>
+    <button class="btn-primary" id="btn-finalizar">Finalizar Compra</button>
+    <button class="btn-secondary" id="btn-voltar-loja">Voltar para Loja</button>
+  </section>
+
+  <!-- Quiz -->
+  <section id="quiz" tabindex="0" aria-label="Quiz sobre produção do campo" hidden>
+    <h2>Quiz - Produção do Campo</h2>
+    <form id="quiz-form" aria-live="polite" aria-relevant="additions removals">
+      <!-- Perguntas serão inseridas por JS -->
+      <button type="submit" class="btn-primary" aria-label="Enviar respostas do quiz">Enviar Respostas</button>
     </form>
-    <div id="resultado" hidden>
-      <h3>Resultado: <span id="pontuacao"></span>% de acertos</h3>
-      <button id="refazer-quiz" class="btn-secondary">Refazer Quiz</button>
-    </div>
+    <div id="resultado" aria-live="polite" tabindex="0"></div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato" tabindex="0" aria-label="Formulário de contato" hidden>
+    <h2>Entre em Contato</h2>
+    <form id="form-contato">
+      <label for="nome">Nome:</label><br />
+      <input type="text" id="nome" name="nome" required /><br /><br />
+      <label for="email">E-mail:</label><br />
+      <input type="email" id="email" name="email" required /><br /><br />
+      <label for="mensagem">Mensagem:</label><br />
+      <textarea id="mensagem" name="mensagem" rows="4" required></textarea><br /><br />
+      <button type="submit" class="btn-primary">Enviar</button>
+    </form>
+    <p id="contato-resposta" role="alert" aria-live="assertive"></p>
   </section>
 </main>
 
-<!-- Áudio Som Ambiente -->
-<audio id="audio-som" loop src="https://cdn.pixabay.com/download/audio/2022/03/28/audio_49d21727f3.mp3?filename=forest-ambience-6991.mp3"></audio>
+<!-- Confete container -->
+<div id="confete-container" aria-hidden="true"></div>
 
-<!-- Confete Container -->
-<div id="confete-container"></div>
+<!-- Audio Som Ambiente -->
+<audio id="som-ambiente" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_3c58600f8f.mp3?filename=forest-birds-ambient-sound-6414.mp3" type="audio/mpeg" />
+  Seu navegador não suporta áudio.
+</audio>
 
 <script>
-// Produtos (30 produtos + categorias)
-const produtos = [
-  { id:1, nome:"Tomate Orgânico", preco:4.5, categoria:"Verduras" },
-  { id:2, nome:"Alface Crespa", preco:3.0, categoria:"Verduras" },
-  { id:3, nome:"Cenoura", preco:2.8, categoria:"Verduras" },
-  { id:4, nome:"Batata Doce", preco:5.0, categoria:"Verduras" },
-  { id:5, nome:"Maçã Fuji", preco:7.0, categoria:"Frutas" },
-  { id:6, nome:"Banana Nanica", preco:4.2, categoria:"Frutas" },
-  { id:7, nome:"Laranja Pera", preco:3.8, categoria:"Frutas" },
-  { id:8, nome:"Melão", preco:6.0, categoria:"Frutas" },
-  { id:9, nome:"Leite Integral", preco:5.5, categoria:"Laticínios" },
-  { id:10, nome:"Queijo Minas", preco:15.0, categoria:"Laticínios" },
-  { id:11, nome:"Manteiga Artesanal", preco:12.0, categoria:"Laticínios" },
-  { id:12, nome:"Mel de Abelha", preco:20.0, categoria:"Mel" },
-  { id:13, nome:"Ovos Caipiras (12 un)", preco:8.0, categoria:"Derivados" },
-  { id:14, nome:"Arroz Integral", preco:10.0, categoria:"Grãos" },
-  { id:15, nome:"Feijão Preto", preco:9.0, categoria:"Grãos" },
-  { id:16, nome:"Farinha de Mandioca", preco:7.5, categoria:"Grãos" },
-  { id:17, nome:"Pimenta do Reino", preco:18.0, categoria:"Especiarias" },
-  { id:18, nome:"Chá de Erva Mate", preco:6.0, categoria:"Bebidas" },
-  { id:19, nome:"Café Torrado", preco:25.0, categoria:"Bebidas" },
-  { id:20, nome:"Sucos Naturais", preco:7.0, categoria:"Bebidas" },
-  { id:21, nome:"Abóbora", preco:3.0, categoria:"Verduras" },
-  { id:22, nome:"Cebola", preco:2.5, categoria:"Verduras" },
-  { id:23, nome:"Alho", preco:6.0, categoria:"Verduras" },
-  { id:24, nome:"Coco Verde", preco:4.0, categoria:"Frutas" },
-  { id:25, nome:"Amendoim Torrado", preco:8.0, categoria:"Grãos" },
-  { id:26, nome:"Farinha de Trigo Integral", preco:6.0, categoria:"Grãos" },
-  { id:27, nome:"Iogurte Natural", preco:5.5, categoria:"Laticínios" },
-  { id:28, nome:"Requeijão Cremoso", preco:12.0, categoria:"Laticínios" },
-  { id:29, nome:"Suco de Laranja", preco:7.0, categoria:"Bebidas" },
-  { id:30, nome:"Azeite de Oliva", preco:30.0, categoria:"Derivados" }
-];
+  // Inicialização VLibras
+  new window.VLibras.Widget('https://vlibras.gov.br/app');
 
-// Variáveis Globais
-let carrinho = [];
+  // Dados dos produtos (30 produtos)
+  const produtos = [
+    { id:1, nome:"Maçã Orgânica", preco:5.50, categoria:"Frutas" },
+    { id:2, nome:"Banana Nanica", preco:3.00, categoria:"Frutas" },
+    { id:3, nome:"Laranja Lima", preco:4.00, categoria:"Frutas" },
+    { id:4, nome:"Tomate Italiano", preco:6.20, categoria:"Verduras" },
+    { id:5, nome:"Alface Crespa", preco:2.50, categoria:"Verduras" },
+    { id:6, nome:"Cenoura", preco:3.80, categoria:"Verduras" },
+    { id:7, nome:"Batata Doce", preco:4.50, categoria:"Verduras" },
+    { id:8, nome:"Cebola Roxa", preco:3.20, categoria:"Verduras" },
+    { id:9, nome:"Mel Orgânico", preco:15.00, categoria:"Mel" },
+    { id:10, nome:"Leite Integral", preco:4.90, categoria:"Laticínios" },
+    { id:11, nome:"Queijo Minas", preco:25.00, categoria:"Laticínios" },
+    { id:12, nome:"Iogurte Natural", preco:6.00, categoria:"Laticínios" },
+    { id:13, nome:"Arroz Integral", preco:8.00, categoria:"Grãos" },
+    { id:14, nome:"Feijão Preto", preco:7.50, categoria:"Grãos" },
+    { id:15, nome:"Milho Verde", preco:6.30, categoria:"Grãos" },
+    { id:16, nome:"Sementes de Girassol", preco:5.00, categoria:"Sementes" },
+    { id:17, nome:"Sementes de Abóbora", preco:6.00, categoria:"Sementes" },
+    { id:18, nome:"Morango Fresco", preco:12.00, categoria:"Frutas" },
+    { id:19, nome:"Pêssego", preco:10.00, categoria:"Frutas" },
+    { id:20, nome:"Abobrinha", preco:5.50, categoria:"Verduras" },
+    { id:21, nome:"Brócolis", preco:7.00, categoria:"Verduras" },
+    { id:22, nome:"Couve", preco:3.50, categoria:"Verduras" },
+    { id:23, nome:"Requeijão", preco:8.50, categoria:"Laticínios" },
+    { id:24, nome:"Queijo Coalho", preco:22.00, categoria:"Laticínios" },
+    { id:25, nome:"Chá de Ervas", preco:7.00, categoria:"Outros" },
+    { id:26, nome:"Azeite de Oliva", preco:30.00, categoria:"Outros" },
+    { id:27, nome:"Melancia", preco:9.00, categoria:"Frutas" },
+    { id:28, nome:"Pimenta Biquinho", preco:4.20, categoria:"Verduras" },
+    { id:29, nome:"Alho", preco:5.00, categoria:"Verduras" },
+    { id:30, nome:"Farinha de Mandioca", preco:6.50, categoria:"Grãos" }
+  ];
 
-// Função para mostrar produtos na loja
-function mostrarProdutos() {
-  const container = document.getElementById('produtos');
-  container.innerHTML = '';
-  const categorias = [...new Set(produtos.map(p => p.categoria))].sort();
-  categorias.forEach(cat => {
-    const catTitle = document.createElement('h3');
-    catTitle.textContent = cat;
-    container.appendChild(catTitle);
-    const catGrid = document.createElement('div');
-    catGrid.className = 'produtos-categoria';
-    produtos.filter(p => p.categoria === cat).forEach(prod => {
-      const card = document.createElement('div');
-      card.className = 'produto-card';
-      card.setAttribute('role', 'listitem');
-      card.innerHTML = `
-        <strong>${prod.nome}</strong>
-        <p>R$ ${prod.preco.toFixed(2).replace('.', ',')}</p>
-        <button class="btn-add" aria-label="Adicionar ${prod.nome} ao carrinho" data-id="${prod.id}">Adicionar</button>
-      `;
-      catGrid.appendChild(card);
+  // Categorias para agrupar
+  const categorias = [...new Set(produtos.map(p => p.categoria))];
+
+  // Carrinho
+  let carrinho = [];
+
+  // Função para formatar preço
+  function formatarPreco(valor){
+    return 'R$ ' + valor.toFixed(2).replace('.', ',');
+  }
+
+  // Renderizar produtos
+  function renderizarProdutos(){
+    const container = document.getElementById('produtos-lista');
+    container.innerHTML = '';
+    categorias.forEach(cat => {
+      const sectionCat = document.createElement('div');
+      sectionCat.className = 'produtos-categoria';
+      const tituloCat = document.createElement('h3');
+      tituloCat.textContent = cat;
+      sectionCat.appendChild(tituloCat);
+
+      const grid = document.createElement('div');
+      grid.className = 'grid-produtos';
+
+      produtos.filter(p => p.categoria === cat).forEach(prod => {
+        const card = document.createElement('article');
+        card.className = 'produto-card';
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', `${prod.nome} - preço ${formatarPreco(prod.preco)}`);
+
+        const nome = document.createElement('strong');
+        nome.textContent = prod.nome;
+        const preco = document.createElement('p');
+        preco.textContent = formatarPreco(prod.preco);
+
+        const btnAdd = document.createElement('button');
+        btnAdd.className = 'btn-add';
+        btnAdd.textContent = 'Adicionar';
+        btnAdd.setAttribute('aria-label', `Adicionar ${prod.nome} ao carrinho`);
+        btnAdd.addEventListener('click', () => adicionarAoCarrinho(prod.id));
+
+        card.appendChild(nome);
+        card.appendChild(preco);
+        card.appendChild(btnAdd);
+        grid.appendChild(card);
+      });
+
+      sectionCat.appendChild(grid);
+      container.appendChild(sectionCat);
     });
-    container.appendChild(catGrid);
-  });
-}
-
-// Atualizar carrinho
-function atualizarCarrinho() {
-  const lista = document.getElementById('lista-carrinho');
-  const count = document.getElementById('cart-count');
-  const totalPreco = document.getElementById('total-preco');
-  lista.innerHTML = '';
-
-  if (carrinho.length === 0) {
-    lista.innerHTML = '<li>Seu carrinho está vazio.</li>';
-    totalPreco.textContent = '0,00';
-    count.textContent = '0';
-    document.getElementById('cart-icon').setAttribute('aria-label', 'Carrinho de compras com 0 itens');
-    return;
   }
 
-  let total = 0;
-  carrinho.forEach(item => {
-    const prod = produtos.find(p => p.id === item.id);
-    const li = document.createElement('li');
-    li.textContent = `${prod.nome} - R$ ${prod.preco.toFixed(2).replace('.', ',')} (Quantidade: ${item.quantidade})`;
-    lista.appendChild(li);
-    total += prod.preco * item.quantidade;
-  });
-  totalPreco.textContent = total.toFixed(2).replace('.', ',');
-  count.textContent = carrinho.reduce((acc, i) => acc + i.quantidade, 0);
-  document.getElementById('cart-icon').setAttribute('aria-label', `Carrinho de compras com ${count.textContent} itens`);
-}
-
-// Adicionar produto no carrinho
-function adicionarAoCarrinho(id) {
-  const itemIndex = carrinho.findIndex(i => i.id === id);
-  if (itemIndex >= 0) {
-    carrinho[itemIndex].quantidade++;
-  } else {
-    carrinho.push({ id, quantidade: 1 });
+  // Adicionar produto ao carrinho
+  function adicionarAoCarrinho(id){
+    const item = produtos.find(p => p.id === id);
+    const existente = carrinho.find(c => c.id === id);
+    if (existente) {
+      existente.quantidade++;
+    } else {
+      carrinho.push({...item, quantidade:1});
+    }
+    atualizarCarrinho();
+    alert(`Produto "${item.nome}" adicionado ao carrinho.`);
   }
-  atualizarCarrinho();
-}
 
-// Alternar seções do site
-function mostrarSecao(secao) {
-  ['loja', 'carrinho', 'quiz'].forEach(id => {
-    document.getElementById(id).hidden = (id !== secao);
-    document.getElementById(id).classList.toggle('active', id === secao);
+  // Atualizar visual do carrinho
+  function atualizarCarrinho(){
+    const count = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+    document.getElementById('cart-count').textContent = count;
+
+    const lista = document.getElementById('carrinho-lista');
+    lista.innerHTML = '';
+    carrinho.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.nome} x${item.quantidade} - ${formatarPreco(item.preco * item.quantidade)}`;
+      lista.appendChild(li);
+    });
+
+    const total = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
+    document.getElementById('total-valor').textContent = `Total: ${formatarPreco(total)}`;
+  }
+
+  // Mostrar/ocultar seções
+  function mostrarSecao(id){
+    document.querySelectorAll('main section').forEach(sec => {
+      sec.hidden = sec.id !== id;
+      if(sec.id === id){
+        sec.classList.add('active');
+        sec.focus();
+      } else {
+        sec.classList.remove('active');
+      }
+    });
+  }
+
+  // Eventos menu
+  document.getElementById('btn-loja').addEventListener('click', () => mostrarSecao('loja'));
+  document.getElementById('btn-quiz').addEventListener('click', () => mostrarSecao('quiz'));
+  document.getElementById('btn-contato').addEventListener('click', () => mostrarSecao('contato'));
+
+  // Mostrar carrinho ao clicar no ícone
+  document.getElementById('cart-icon').addEventListener('click', () => {
+    mostrarSecao('carrinho');
   });
-}
 
-// Eventos de navegação
-document.querySelectorAll('.nav-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    if (btn.id === 'btn-som') {
-      toggleSom();
+  // Voltar para loja do carrinho
+  document.getElementById('btn-voltar-loja').addEventListener('click', () => {
+    mostrarSecao('loja');
+  });
+
+  // Finalizar compra
+  document.getElementById('btn-finalizar').addEventListener('click', () => {
+    if (carrinho.length === 0) {
+      alert('Carrinho vazio!');
       return;
     }
-    mostrarSecao(btn.dataset.target);
+    alert('Compra finalizada! Obrigado.');
+    carrinho = [];
+    atualizarCarrinho();
+    mostrarSecao('loja');
   });
-});
 
-// Ícone carrinho
-document.getElementById('cart-icon').addEventListener('click', () => {
-  mostrarSecao('carrinho');
-});
+  // Quiz perguntas (17 perguntas)
+  const perguntasQuiz = [
+    {
+      pergunta: "Qual é o principal benefício da agricultura orgânica?",
+      opcoes: ["Uso de agrotóxicos", "Preservação do solo", "Uso intensivo de máquinas", "Cultivo em estufas"],
+      correta: 1
+    },
+    {
+      pergunta: "Qual animal é responsável pela polinização na produção agrícola?",
+      opcoes: ["Abelha", "Vaca", "Gato", "Cavalo"],
+      correta: 0
+    },
+    {
+      pergunta: "O que é adubo orgânico?",
+      opcoes: ["Fertilizante químico", "Composto natural", "Pesticida", "Herbicida"],
+      correta: 1
+    },
+    {
+      pergunta: "Qual é a importância da rotação de culturas?",
+      opcoes: ["Reduz pragas", "Aumenta o uso de agrotóxicos", "Diminui o solo fértil", "Eleva o custo"],
+      correta: 0
+    },
+    {
+      pergunta: "Qual a principal fonte de energia para as plantas?",
+      opcoes: ["Água", "Solo", "Luz solar", "Ar"],
+      correta: 2
+    },
+    {
+      pergunta: "Qual técnica reduz o uso de água na agricultura?",
+      opcoes: ["Irrigação por gotejamento", "Inundação", "Chuva artificial", "Irrigação por aspersão"],
+      correta: 0
+    },
+    {
+      pergunta: "O que é plantio direto?",
+      opcoes: ["Plantio sem revolver o solo", "Uso de sementes híbridas", "Plantio em estufa", "Uso de agrotóxicos"],
+      correta: 0
+    },
+    {
+      pergunta: "Qual produto é típico da apicultura?",
+      opcoes: ["Mel", "Leite", "Trigo", "Farinha"],
+      correta: 0
+    },
+    {
+      pergunta: "O que é compostagem?",
+      opcoes: ["Reciclagem de resíduos orgânicos", "Uso de pesticidas", "Plantio com máquinas", "Irrigação"],
+      correta: 0
+    },
+    {
+      pergunta: "Qual é o efeito dos agrotóxicos no meio ambiente?",
+      opcoes: ["Contaminação", "Proteção do solo", "Melhora da água", "Aumento da biodiversidade"],
+      correta: 0
+    },
+    {
+      pergunta: "Qual cultura é mais resistente à seca?",
+      opcoes: ["Milho", "Soja", "Cactos", "Feijão"],
+      correta: 2
+    },
+    {
+      pergunta: "Qual a importância das sementes crioulas?",
+      opcoes: ["Variedade tradicional preservada", "Híbridas modernas", "Transgênicas", "Sementes sintéticas"],
+      correta: 0
+    },
+    {
+      pergunta: "Qual o principal componente do solo fértil?",
+      opcoes: ["Areia", "Argila", "Matéria orgânica", "Pedras"],
+      correta: 2
+    },
+    {
+      pergunta: "Qual prática evita a erosão do solo?",
+      opcoes: ["Cobertura vegetal", "Queimada", "Desmatamento", "Construção"],
+      correta: 0
+    },
+    {
+      pergunta: "Qual é a função da agroeocologia?",
+      opcoes: ["Sustentabilidade agrícola", "Uso de pesticidas", "Desmatamento", "Monocultura"],
+      correta: 0
+    },
+    {
+      pergunta: "O que é permacultura?",
+      opcoes: ["Design sustentável para agricultura", "Uso de máquinas", "Agrotóxicos", "Irrigação artificial"],
+      correta: 0
+    },
+    {
+      pergunta: "Qual é um benefício do plantio agroflorestal?",
+      opcoes: ["Biodiversidade", "Desmatamento", "Erosão", "Poluição"],
+      correta: 0
+    }
+  ];
 
-// Botões dentro do carrinho
-document.getElementById('voltar-loja').addEventListener('click', () => {
-  mostrarSecao('loja');
-});
-document.getElementById('finalizar-compra').addEventListener('click', () => {
-  alert('Compra finalizada com sucesso! Obrigado por comprar na Estação da Terra 🌱');
-  carrinho = [];
-  atualizarCarrinho();
-  mostrarSecao('loja');
-});
+  // Renderizar quiz
+  function renderizarQuiz() {
+    const form = document.getElementById('quiz-form');
+    form.innerHTML = '';
+    perguntasQuiz.forEach((p, i) => {
+      const fieldset = document.createElement('fieldset');
+      fieldset.className = 'pergunta';
+      fieldset.setAttribute('tabindex','0');
+      const legend = document.createElement('legend');
+      legend.textContent = `${i + 1}. ${p.pergunta}`;
+      fieldset.appendChild(legend);
 
-// Botões Adicionar produtos
-document.addEventListener('click', e => {
-  if (e.target.classList.contains('btn-add')) {
-    const id = Number(e.target.dataset.id);
-    adicionarAoCarrinho(id);
+      p.opcoes.forEach((op, idx) => {
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = `pergunta${i}`;
+        input.value = idx;
+        input.required = true;
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(op));
+        fieldset.appendChild(label);
+      });
+      form.appendChild(fieldset);
+    });
+    const btnEnviar = document.createElement('button');
+    btnEnviar.type = 'submit';
+    btnEnviar.className = 'btn-primary';
+    btnEnviar.textContent = 'Enviar Respostas';
+    form.appendChild(btnEnviar);
   }
-});
 
-// Som Ambiente
-const audioSom = document.getElementById('audio-som');
-let somTocado = false;
-function toggleSom() {
-  if (somTocado) {
-    audioSom.pause();
-    somTocado = false;
-    document.getElementById('btn-som').textContent = 'Som Ambiente';
-  } else {
-    audioSom.play();
-    somTocado = true;
-    document.getElementById('btn-som').textContent = 'Parar Som';
-  }
-}
-
-// Quiz com 10 perguntas + 7 extras = 17 perguntas totais
-const perguntasQuiz = [
-  { q:"Qual é a principal cultura do Brasil?", options:["Soja","Milho","Cana-de-açúcar","Arroz"], answer:2 },
-  { q:"O que é agricultura orgânica?", options:["Uso de agrotóxicos","Produção sem químicos sintéticos","Só planta flores","Uso de sementes transgênicas"], answer:1 },
-  { q:"Qual animal produz leite na fazenda?", options:["Porco","Vaca","Cavalo","Galinha"], answer:1 },
-  { q:"Qual grão é usado para fazer pão?", options:["Arroz","Milho","Trigo","Feijão"], answer:2 },
-  { q:"O que significa irrigação?", options:["Plantar sementes","Molhar plantas","Colher frutas","Adubar solo"], answer:1 },
-  { q:"Qual destes é um legume?", options:["Tomate","Maçã","Banana","Abacaxi"], answer:0 },
-  { q:"O que é compostagem?", options:["Queimar lixo","Transformar resíduos em adubo","Plantar árvores","Construir estufas"], answer:1 },
-  { q:"O que é plantio direto?", options:["Sem revolver a terra","Usar pesticidas","Colher frutas","Criar animais"], answer:0 },
-  { q:"Qual é a importância das abelhas?", options:["Produzir mel","Polinizar plantas","Ser alimento","Fazer roupas"], answer:1 },
-  { q:"O que é agricultura sustentável?", options:["Destruir florestas","Preservar o meio ambiente","Usar só máquinas","Plantar só soja"], answer:1 },
-  // Perguntas extras:
-  { q:"O que é rotação de culturas?", options:["Plantio alternado para conservar solo","Plantar uma cultura só","Uso de máquinas","Colheita manual"], answer:0 },
-  { q:"Qual a vantagem da agroecologia?", options:["Uso de químicos fortes","Preservação da biodiversidade","Acelerar produção","Menor qualidade"], answer:1 },
-  { q:"O que é adubo orgânico?", options:["Fertilizante natural","Produto químico","Inseticida","Herbicida"], answer:0 },
-  { q:"Qual é o principal benefício da água na agricultura?", options:["Irrigação das plantas","Limpeza do solo","Pintura","Construção"], answer:0 },
-  { q:"O que são sementes crioulas?", options:["Sementes modificadas","Sementes tradicionais locais","Sementes sintéticas","Sementes importadas"], answer:1 },
-  { q:"Por que o solo é importante?", options:["Nada importante","Suporte para plantas","Para construção","Para animais"], answer:1 },
-  { q:"O que é agroflorestal?", options:["Combinação de agricultura e floresta","Uso só de máquinas","Plantar só árvores","Criar só animais"], answer:0 }
-];
-
-// Construir perguntas no quiz
-const containerQuiz = document.getElementById('perguntas-container');
-function montarQuiz() {
-  containerQuiz.innerHTML = '';
-  perguntasQuiz.forEach((p, i) => {
-    const div = document.createElement('div');
-    div.className = 'pergunta';
-    div.innerHTML = `
-      <fieldset>
-        <legend>${i+1}. ${p.q}</legend>
-        ${p.options.map((opt,j) => `
-          <label>
-            <input type="radio" name="pergunta${i}" value="${j}" required />
-            ${opt}
-          </label>
-        `).join('')}
-      </fieldset>
-    `;
-    containerQuiz.appendChild(div);
-  });
-}
-montarQuiz();
-
-// Confete animation
-function soltarConfete() {
-  const confeteContainer = document.getElementById('confete-container');
-  confeteContainer.innerHTML = '';
-  const colors = ['#FFC700', '#FF0000', '#2E3192', '#41BBC7', '#732982'];
-  for (let i = 0; i < 150; i++) {
+  // Confete simples
+  function criarConfete(){
+    const container = document.getElementById('confete-container');
     const confete = document.createElement('div');
-    confete.classList.add('confete');
-    confete.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confete.className = 'confete';
     confete.style.left = Math.random() * 100 + 'vw';
-    confete.style.animationDelay = Math.random() * 3 + 's';
-    confeteContainer.appendChild(confete);
+    confete.style.animationDuration = 3 + Math.random() * 2 + 's';
+    container.appendChild(confete);
+    setTimeout(() => container.removeChild(confete), 5000);
   }
-  setTimeout(() => { confeteContainer.innerHTML = ''; }, 5000);
-}
+  function explodirConfete() {
+    for(let i=0; i<100; i++){
+      setTimeout(criarConfete, i * 10);
+    }
+  }
 
-// Enviar quiz
-document.getElementById('quiz-form').addEventListener('submit', e => {
-  e.preventDefault();
-  const respostas = [];
-  let acertou = 0;
-  perguntasQuiz.forEach((p, i) => {
-    const val = document.querySelector(`input[name="pergunta${i}"]:checked`);
-    if (val && parseInt(val.value) === p.answer) acertou++;
+  // Avaliar respostas do quiz
+  document.getElementById('quiz-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    let acertou = 0;
+    perguntasQuiz.forEach((p,i) => {
+      const resposta = this[`pergunta${i}`].value;
+      if(parseInt(resposta) === p.correta){
+        acertou++;
+      }
+    });
+    const perc = Math.round((acertou / perguntasQuiz.length) * 100);
+    const resDiv = document.getElementById('resultado');
+    resDiv.textContent = `Você acertou ${acertou} de ${perguntasQuiz.length} perguntas. (${perc}%)`;
+    if(perc >= 80){
+      explodirConfete();
+      resDiv.textContent += ' Parabéns! Você é um expert em sustentabilidade!';
+    } else if(perc >= 50){
+      resDiv.textContent += ' Bom trabalho! Continue aprendendo!';
+    } else {
+      resDiv.textContent += ' Continue estudando para melhorar!';
+    }
+    resDiv.focus();
   });
-  const percentual = Math.round((acertou / perguntasQuiz.length) * 100);
-  document.getElementById('pontuacao').textContent = percentual;
-  document.getElementById('resultado').hidden = false;
-  soltarConfete();
-  // Scroll para resultado
-  document.getElementById('resultado').focus();
-  // Oculta quiz e formulário
-  document.getElementById('quiz-form').hidden = true;
-});
 
-// Refazer quiz
-document.getElementById('refazer-quiz').addEventListener('click', () => {
-  document.getElementById('resultado').hidden = true;
-  document.getElementById('quiz-form').hidden = false;
-  document.getElementById('quiz-form').reset();
-  containerQuiz.focus();
-});
+  // Contato
+  document.getElementById('form-contato').addEventListener('submit', function(e){
+    e.preventDefault();
+    // Simulação envio
+    const nome = this.nome.value.trim();
+    const email = this.email.value.trim();
+    const msg = this.mensagem.value.trim();
+    if(nome && email && msg){
+      document.getElementById('contato-resposta').textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
+      this.reset();
+    } else {
+      document.getElementById('contato-resposta').textContent = 'Por favor, preencha todos os campos.';
+    }
+  });
 
-// Inicialização
-mostrarProdutos();
-atualizarCarrinho();
+  // Som ambiente
+  const btnSom = document.getElementById('btn-som');
+  const som = document.getElementById('som-ambiente');
+  btnSom.addEventListener('click', () => {
+    if(som.paused){
+      som.play();
+      btnSom.setAttribute('aria-pressed','true');
+      btnSom.textContent = 'Som Ambiente: ON';
+      btnSom.setAttribute('aria-label','Desativar som ambiente');
+    } else {
+      som.pause();
+      btnSom.setAttribute('aria-pressed','false');
+      btnSom.textContent = 'Som Ambiente: OFF';
+      btnSom.setAttribute('aria-label','Ativar som ambiente');
+    }
+  });
 
-// Inicializar VLibras
-window.onload = function() {
-  new window.VLibras.Widget('vlibras-plugin');
-};
+  // Inicializações
+  renderizarProdutos();
+  renderizarQuiz();
+  atualizarCarrinho();
+
+  // Mostrar loja como default
+  mostrarSecao('loja');
 </script>
 
 </body>
