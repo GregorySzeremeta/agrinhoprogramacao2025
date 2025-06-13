@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Estação da Terra - Loja</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+  <link rel="stylesheet" href="style.css" />
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
 
   <!-- Animação de boas-vindas -->
-  <div id="animacaoBoasVindas" class="animacao-boas-vindas">
+  <div id="animacaoBoasVindas" class="animacao-boas-vindas" role="dialog" aria-live="polite" aria-label="Mensagem de boas-vindas">
     <h1>🌿 Bem-vindo à Estação da Terra</h1>
     <p>Onde a natureza encontra seu lar</p>
   </div>
 
   <!-- Acessibilidade -->
-  <div id="acessibilidade">
-    <button onclick="toggleContraste()" aria-label="Alternar contraste">🌓</button>
-    <button onclick="aumentarFonte()" aria-label="Aumentar fonte">🔠</button>
-    <button onclick="diminuirFonte()" aria-label="Diminuir fonte">🔡</button>
+  <div id="acessibilidade" aria-label="Controles de acessibilidade" role="region">
+    <button onclick="toggleContraste()" aria-pressed="false" aria-label="Alternar modo de alto contraste" class="btn-acessibilidade">🌓</button>
+    <button onclick="aumentarFonte()" aria-label="Aumentar tamanho da fonte" class="btn-acessibilidade">🔠</button>
+    <button onclick="diminuirFonte()" aria-label="Diminuir tamanho da fonte" class="btn-acessibilidade">🔡</button>
   </div>
 
   <!-- Som ambiente -->
-  <div id="audio-fundo">
+  <div id="audio-fundo" aria-label="Controle de som ambiente" role="region">
     <audio id="somAmbiente" loop>
-      <source src="sons/ambiente.mp3" type="audio/mpeg">
+      <source src="sons/ambiente.mp3" type="audio/mpeg" />
       Seu navegador não suporta áudio.
     </audio>
-    <button onclick="toggleSom()">🔊 Som Ambiente</button>
+    <button id="btnSom" onclick="toggleSom()" aria-pressed="false" aria-label="Alternar som ambiente" class="btn-acessibilidade btn-som">🔊 Som Ambiente</button>
   </div>
 
   <!-- VLibras -->
-  <div vw class="enabled">
+  <div vw class="enabled" aria-hidden="true">
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
   </div>
@@ -41,37 +41,59 @@
   <header>
     <h1>Estação da Terra</h1>
     <p class="slogan">Onde a natureza encontra seu lar</p>
-    <nav class="menu">
+    <nav class="menu" aria-label="Menu principal">
       <ul>
-        <li><a href="quiz.html">Quiz</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="quiz.html" tabindex="0">Quiz</a></li>
+        <li><a href="sobre.html" tabindex="0">Sobre</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Loja -->
   <main>
-    <section id="produtos">
+    <section id="produtos" aria-label="Produtos à venda">
       <h2>Produtos à Venda</h2>
       <div class="barracas">
-        <!-- Exemplo de produto -->
-        <div class="produto-card">
-          <img src="img/suco.jpg" alt="Suco Natural">
-          <h3>Suco Natural</h3>
-          <p>R$ 5,00</p>
-          <button onclick="adicionarAoCarrinho('Suco Natural', 5)">Adicionar</button>
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-suco-natural">
+          <img src="img/suco.jpg" alt="Imagem de Suco Natural" />
+          <h3 id="produto-suco-natural">Suco Natural</h3>
+          <p class="preco">R$ 5,00</p>
+          <button onclick="adicionarAoCarrinho('Suco Natural', 5)" aria-label="Adicionar Suco Natural ao carrinho" class="btn-comprar">Adicionar</button>
         </div>
-        <!-- (Você pode adicionar os demais produtos aqui) -->
+
+        <!-- Exemplos adicionais - adicione mais produtos abaixo -->
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-mel-natural">
+          <img src="img/mel.jpg" alt="Imagem de Mel Natural" />
+          <h3 id="produto-mel-natural">Mel Natural</h3>
+          <p class="preco">R$ 15,00</p>
+          <button onclick="adicionarAoCarrinho('Mel Natural', 15)" aria-label="Adicionar Mel Natural ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
+
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-queijo-artesanal">
+          <img src="img/queijo.jpg" alt="Imagem de Queijo Artesanal" />
+          <h3 id="produto-queijo-artesanal">Queijo Artesanal</h3>
+          <p class="preco">R$ 25,00</p>
+          <button onclick="adicionarAoCarrinho('Queijo Artesanal', 25)" aria-label="Adicionar Queijo Artesanal ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
+
+        <div class="produto-card" tabindex="0" role="group" aria-labelledby="produto-frutas-frescas">
+          <img src="img/frutas.jpg" alt="Imagem de Frutas Frescas" />
+          <h3 id="produto-frutas-frescas">Frutas Frescas</h3>
+          <p class="preco">R$ 8,00</p>
+          <button onclick="adicionarAoCarrinho('Frutas Frescas', 8)" aria-label="Adicionar Frutas Frescas ao carrinho" class="btn-comprar">Adicionar</button>
+        </div>
       </div>
     </section>
 
     <!-- Carrinho -->
-    <section id="carrinho">
+    <section id="carrinho" aria-label="Carrinho de compras">
       <h2>🛒 Carrinho de Compras</h2>
-      <ul id="lista-carrinho"></ul>
-      <p id="total"></p>
-      <button onclick="esvaziarCarrinho()">🗑️ Esvaziar Carrinho</button>
-      <button onclick="finalizarCompra()">✅ Finalizar Compra</button>
+      <ul id="lista-carrinho" tabindex="0" aria-live="polite" aria-relevant="additions removals"></ul>
+      <p id="total" aria-live="polite" aria-atomic="true"></p>
+      <div class="botoes-carrinho">
+        <button onclick="esvaziarCarrinho()" aria-label="Esvaziar carrinho" class="btn-carrinho">🗑️ Esvaziar Carrinho</button>
+        <button onclick="finalizarCompra()" aria-label="Finalizar compra" class="btn-carrinho">✅ Finalizar Compra</button>
+      </div>
     </section>
   </main>
 
@@ -130,7 +152,13 @@
 
     // Acessibilidade
     function toggleContraste() {
-      document.body.classList.toggle("contraste");
+      const body = document.body;
+      body.classList.toggle("contraste");
+      const btn = document.querySelector('#acessibilidade button[aria-pressed]');
+      if (btn) {
+        let pressed = body.classList.contains("contraste");
+        btn.setAttribute("aria-pressed", pressed);
+      }
     }
     function aumentarFonte() {
       let size = parseFloat(window.getComputedStyle(document.body).fontSize);
@@ -158,12 +186,17 @@
     };
 
     // Som ambiente
+    const btnSom = document.getElementById("btnSom");
     function toggleSom() {
       const audio = document.getElementById("somAmbiente");
       if (audio.paused) {
         audio.play();
+        btnSom.setAttribute("aria-pressed", "true");
+        btnSom.textContent = "🔈 Som Ligado";
       } else {
         audio.pause();
+        btnSom.setAttribute("aria-pressed", "false");
+        btnSom.textContent = "🔊 Som Ambiente";
       }
     }
   </script>
