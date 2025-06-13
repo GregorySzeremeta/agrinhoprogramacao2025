@@ -5,25 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Estação da Terra</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- VLibras script -->
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js" defer></script>
 </head>
 <body>
-
-  <!-- Animação de boas-vindas -->
-  <div id="animacao-boas-vindas">
-    <h1 class="animacao-texto">🌱 Estação da Terra 🌾</h1>
-    <p class="animacao-subtexto">Do campo à cidade, colhendo oportunidades</p>
-  </div>
-
-  <!-- Botões de acessibilidade -->
-  <div id="acessibilidade">
-    <button onclick="aumentarFonte()">A+</button>
-    <button onclick="alternarContraste()">Alto Contraste</button>
-    <button onclick="tocarSomAmbiente()">🎵</button>
-  </div>
-  <audio id="somAmbiente" loop>
-    <source src="sons/campo.mp3" type="audio/mpeg">
-  </audio>
 
   <!-- VLibras -->
   <div vw class="enabled">
@@ -51,43 +36,203 @@
     <!-- Seção Loja -->
     <section class="produtos" id="sec-loja" tabindex="-1" aria-label="Seção da loja com produtos">
       <h2>Produtos à Venda</h2>
+
+      <nav aria-label="Categorias de produtos" class="categoria-menu">
+        <button class="categoria-btn active" data-categoria="frutas">Frutas</button>
+        <button class="categoria-btn" data-categoria="laticinios">Laticínios</button>
+        <button class="categoria-btn" data-categoria="graos">Grãos</button>
+        <button class="categoria-btn" data-categoria="verduras">Verduras</button>
+        <button class="categoria-btn" data-categoria="derivados">Derivados</button>
+      </nav>
+
       <div class="barracas">
 
-        <article class="produto-card" tabindex="0">
-          <img src="imagens/maca.jpg" alt="Maçã Orgânica" />
-          <h3>Maçã Orgânica</h3>
-          <p>R$ 3,00/kg</p>
-          <button onclick="adicionarAoCarrinho('Maçã Orgânica', 3)">Adicionar</button>
-        </article>
+        <!-- Frutas -->
+        <div class="categoria-produtos" id="frutas">
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/maca.jpg" alt="Maçã Orgânica" />
+            <h3>Maçã Orgânica</h3>
+            <p>R$ 3,00/kg</p>
+            <button onclick="adicionarAoCarrinho('Maçã Orgânica', 3)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/banana.jpg" alt="Banana Orgânica" />
+            <h3>Banana Orgânica</h3>
+            <p>R$ 2,50/kg</p>
+            <button onclick="adicionarAoCarrinho('Banana Orgânica', 2.5)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/laranja.jpg" alt="Laranja Doce" />
+            <h3>Laranja Doce</h3>
+            <p>R$ 3,20/kg</p>
+            <button onclick="adicionarAoCarrinho('Laranja Doce', 3.2)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/morango.jpg" alt="Morango Fresco" />
+            <h3>Morango Fresco</h3>
+            <p>R$ 10,00/caixa</p>
+            <button onclick="adicionarAoCarrinho('Morango Fresco', 10)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/uva.jpg" alt="Uva Verde" />
+            <h3>Uva Verde</h3>
+            <p>R$ 7,50/kg</p>
+            <button onclick="adicionarAoCarrinho('Uva Verde', 7.5)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/pessego.jpg" alt="Pêssego" />
+            <h3>Pêssego</h3>
+            <p>R$ 5,00/kg</p>
+            <button onclick="adicionarAoCarrinho('Pêssego', 5)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/abacaxi.jpg" alt="Abacaxi" />
+            <h3>Abacaxi</h3>
+            <p>R$ 4,00/unidade</p>
+            <button onclick="adicionarAoCarrinho('Abacaxi', 4)">Adicionar</button>
+          </article>
+          <!-- Adicione mais frutas aqui -->
+        </div>
 
-        <article class="produto-card" tabindex="0">
-          <img src="imagens/mel.jpg" alt="Mel Puro" />
-          <h3>Mel Puro</h3>
-          <p>R$ 15,00</p>
-          <button onclick="adicionarAoCarrinho('Mel Puro', 15)">Adicionar</button>
-        </article>
+        <!-- Laticínios -->
+        <div class="categoria-produtos" id="laticinios" hidden>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/queijo.jpg" alt="Queijo Artesanal" />
+            <h3>Queijo Artesanal</h3>
+            <p>R$ 25,00</p>
+            <button onclick="adicionarAoCarrinho('Queijo Artesanal', 25)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/leite.jpg" alt="Leite Integral" />
+            <h3>Leite Integral</h3>
+            <p>R$ 4,00/litro</p>
+            <button onclick="adicionarAoCarrinho('Leite Integral', 4)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/requeijao.jpg" alt="Requeijão Cremoso" />
+            <h3>Requeijão Cremoso</h3>
+            <p>R$ 8,00</p>
+            <button onclick="adicionarAoCarrinho('Requeijão Cremoso', 8)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/iogurte.jpg" alt="Iogurte Natural" />
+            <h3>Iogurte Natural</h3>
+            <p>R$ 5,50</p>
+            <button onclick="adicionarAoCarrinho('Iogurte Natural', 5.5)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/manteiga.jpg" alt="Manteiga Artesanal" />
+            <h3>Manteiga Artesanal</h3>
+            <p>R$ 12,00</p>
+            <button onclick="adicionarAoCarrinho('Manteiga Artesanal', 12)">Adicionar</button>
+          </article>
+          <!-- Mais laticínios -->
+        </div>
 
-        <article class="produto-card" tabindex="0">
-          <img src="imagens/queijo.jpg" alt="Queijo Artesanal" />
-          <h3>Queijo Artesanal</h3>
-          <p>R$ 25,00</p>
-          <button onclick="adicionarAoCarrinho('Queijo Artesanal', 25)">Adicionar</button>
-        </article>
+        <!-- Grãos -->
+        <div class="categoria-produtos" id="graos" hidden>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/arroz.jpg" alt="Arroz Integral" />
+            <h3>Arroz Integral</h3>
+            <p>R$ 7,00/kg</p>
+            <button onclick="adicionarAoCarrinho('Arroz Integral', 7)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/feijao.jpg" alt="Feijão Preto" />
+            <h3>Feijão Preto</h3>
+            <p>R$ 8,00/kg</p>
+            <button onclick="adicionarAoCarrinho('Feijão Preto', 8)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/milho.jpg" alt="Milho Verde" />
+            <h3>Milho Verde</h3>
+            <p>R$ 5,00/kg</p>
+            <button onclick="adicionarAoCarrinho('Milho Verde', 5)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/aveia.jpg" alt="Aveia em Flocos" />
+            <h3>Aveia em Flocos</h3>
+            <p>R$ 6,00/kg</p>
+            <button onclick="adicionarAoCarrinho('Aveia em Flocos', 6)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/soja.jpg" alt="Soja" />
+            <h3>Soja</h3>
+            <p>R$ 7,50/kg</p>
+            <button onclick="adicionarAoCarrinho('Soja', 7.5)">Adicionar</button>
+          </article>
+          <!-- Mais grãos -->
+        </div>
 
-        <article class="produto-card" tabindex="0">
-          <img src="imagens/azeite.jpg" alt="Azeite de Oliva" />
-          <h3>Azeite de Oliva</h3>
-          <p>R$ 40,00</p>
-          <button onclick="adicionarAoCarrinho('Azeite de Oliva', 40)">Adicionar</button>
-        </article>
+        <!-- Verduras -->
+        <div class="categoria-produtos" id="verduras" hidden>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/alface.jpg" alt="Alface Fresca" />
+            <h3>Alface Fresca</h3>
+            <p>R$ 2,00/unidade</p>
+            <button onclick="adicionarAoCarrinho('Alface Fresca', 2)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/cebola.jpg" alt="Cebola" />
+            <h3>Cebola</h3>
+            <p>R$ 3,00/kg</p>
+            <button onclick="adicionarAoCarrinho('Cebola', 3)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/tomate.jpg" alt="Tomate" />
+            <h3>Tomate</h3>
+            <p>R$ 4,00/kg</p>
+            <button onclick="adicionarAoCarrinho('Tomate', 4)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/cenoura.jpg" alt="Cenoura" />
+            <h3>Cenoura</h3>
+            <p>R$ 3,50/kg</p>
+            <button onclick="adicionarAoCarrinho('Cenoura', 3.5)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/beterraba.jpg" alt="Beterraba" />
+            <h3>Beterraba</h3>
+            <p>R$ 4,00/kg</p>
+            <button onclick="adicionarAoCarrinho('Beterraba', 4)">Adicionar</button>
+          </article>
+          <!-- Mais verduras -->
+        </div>
 
-        <article class="produto-card" tabindex="0">
-          <img src="imagens/banana.jpg" alt="Banana Orgânica" />
-          <h3>Banana Orgânica</h3>
-          <p>R$ 2,50/kg</p>
-          <button onclick="adicionarAoCarrinho('Banana Orgânica', 2.5)">Adicionar</button>
-        </article>
-
+        <!-- Derivados -->
+        <div class="categoria-produtos" id="derivados" hidden>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/azeite.jpg" alt="Azeite de Oliva" />
+            <h3>Azeite de Oliva</h3>
+            <p>R$ 40,00</p>
+            <button onclick="adicionarAoCarrinho('Azeite de Oliva', 40)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/mel.jpg" alt="Mel Puro" />
+            <h3>Mel Puro</h3>
+            <p>R$ 15,00</p>
+            <button onclick="adicionarAoCarrinho('Mel Puro', 15)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/marmelada.jpg" alt="Marmelada" />
+            <h3>Marmelada</h3>
+            <p>R$ 7,00</p>
+            <button onclick="adicionarAoCarrinho('Marmelada', 7)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/biscoito.jpg" alt="Biscoito Artesanal" />
+            <h3>Biscoito Artesanal</h3>
+            <p>R$ 5,00</p>
+            <button onclick="adicionarAoCarrinho('Biscoito Artesanal', 5)">Adicionar</button>
+          </article>
+          <article class="produto-card" tabindex="0">
+            <img src="imagens/geleia.jpg" alt="Geleia de Frutas" />
+            <h3>Geleia de Frutas</h3>
+            <p>R$ 9,00</p>
+            <button onclick="adicionarAoCarrinho('Geleia de Frutas', 9)">Adicionar</button>
+          </article>
+          <!-- Mais derivados -->
+        </div>
       </div>
     </section>
 
@@ -97,10 +242,13 @@
       <form id="form-contato">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required />
+
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required />
+
         <label for="mensagem">Mensagem:</label>
         <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+
         <button type="submit">Enviar</button>
       </form>
     </section>
@@ -120,55 +268,29 @@
       <form id="form-pagamento" onsubmit="finalizarCompra(event)">
         <label for="nome-pagamento">Nome Completo:</label>
         <input type="text" id="nome-pagamento" name="nome-pagamento" required />
+
         <label for="cartao">Número do Cartão:</label>
-        <input type="text" id="cartao" name="cartao" pattern="\d{16}" maxlength="16" placeholder="0000 0000 0000 0000" required />
+        <input type="text" id="cartao" name="cartao" pattern="\\d{16}" maxlength="16" placeholder="0000 0000 0000 0000" required />
+
         <label for="validade">Validade:</label>
         <input type="month" id="validade" name="validade" required />
+
         <label for="cvv">CVV:</label>
-        <input type="password" id="cvv" name="cvv" pattern="\d{3}" maxlength="3" required />
+        <input type="password" id="cvv" name="cvv" pattern="\\d{3}" maxlength="3" required />
+
         <button type="submit">Pagar</button>
         <button type="button" onclick="voltarAoCarrinho()">Voltar ao Carrinho</button>
       </form>
     </section>
   </main>
 
-  <!-- RODAPÉ -->
-  <footer style="text-align:center; padding: 20px; background:#e6ffe6;">
-    <p>Siga-nos nas redes sociais:</p>
-    <a href="https://instagram.com" target="_blank">Instagram</a> |
-    <a href="https://facebook.com" target="_blank">Facebook</a> |
-    <a href="https://tiktok.com" target="_blank">TikTok</a>
-  </footer>
-
   <script>
     // VLibras plugin init
     window.addEventListener('load', () => {
       new window.VLibras.Widget('https://vlibras.gov.br/app');
-
-      // Esconde animação de boas-vindas
-      setTimeout(() => {
-        const animacao = document.getElementById('animacao-boas-vindas');
-        if (animacao) animacao.style.display = 'none';
-      }, 3000);
     });
 
-    // Acessibilidade
-    function aumentarFonte() {
-      document.body.style.fontSize = 'larger';
-    }
-    function alternarContraste() {
-      document.body.classList.toggle('contraste-alto');
-    }
-    function tocarSomAmbiente() {
-      const audio = document.getElementById('somAmbiente');
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
-    }
-
-    // Menu de seções
+    // Menu: alternar entre Loja e Contato
     const btnLoja = document.getElementById('btn-loja');
     const btnContato = document.getElementById('btn-contato');
     const secLoja = document.getElementById('sec-loja');
@@ -182,16 +304,41 @@
       secMostrar.focus();
     }
 
-    btnLoja.addEventListener('click', () => mostrarSecao(secLoja, secContato, btnLoja, btnContato));
-    btnContato.addEventListener('click', () => mostrarSecao(secContato, secLoja, btnContato, btnLoja));
+    btnLoja.addEventListener('click', () => {
+      mostrarSecao(secLoja, secContato, btnLoja, btnContato);
+    });
+
+    btnContato.addEventListener('click', () => {
+      mostrarSecao(secContato, secLoja, btnContato, btnLoja);
+    });
+
+    // Controle categorias
+    const botoesCategoria = document.querySelectorAll('.categoria-btn');
+    const divsCategoria = document.querySelectorAll('.categoria-produtos');
+
+    botoesCategoria.forEach(botao => {
+      botao.addEventListener('click', () => {
+        // Remove active de todos os botões e esconde as categorias
+        botoesCategoria.forEach(b => b.classList.remove('active'));
+        divsCategoria.forEach(div => div.hidden = true);
+
+        // Ativa o botão clicado e mostra a categoria
+        botao.classList.add('active');
+        const categoria = botao.getAttribute('data-categoria');
+        document.getElementById(categoria).hidden = false;
+      });
+    });
 
     // Carrinho
     let carrinho = [];
 
     function adicionarAoCarrinho(nome, preco) {
-      const item = carrinho.find(item => item.nome === nome);
-      if (item) item.quantidade++;
-      else carrinho.push({ nome, preco, quantidade: 1 });
+      const produtoExistente = carrinho.find(p => p.nome === nome);
+      if (produtoExistente) {
+        produtoExistente.quantidade++;
+      } else {
+        carrinho.push({ nome, preco, quantidade: 1 });
+      }
       atualizarCarrinho();
     }
 
@@ -203,65 +350,67 @@
         total += item.preco * item.quantidade;
         const li = document.createElement('li');
         li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
+        
+        // Botão remover
         const btnRemover = document.createElement('button');
         btnRemover.textContent = 'Remover';
-        btnRemover.setAttribute('aria-label', `Remover ${item.nome}`);
-        btnRemover.onclick = () => removerDoCarrinho(index);
+        btnRemover.setAttribute('aria-label', `Remover ${item.nome} do carrinho`);
+        btnRemover.addEventListener('click', () => {
+          removerDoCarrinho(index);
+        });
+
         li.appendChild(btnRemover);
         lista.appendChild(li);
       });
+
       document.getElementById('total-carrinho').textContent = `Total: R$ ${total.toFixed(2)}`;
+
+      // Habilita/desabilita botões finalizar e limpar
       document.getElementById('btn-finalizar').disabled = carrinho.length === 0;
       document.getElementById('btn-limpar').disabled = carrinho.length === 0;
     }
 
-    function removerDoCarrinho(index) {
-      carrinho.splice(index, 1);
+    function removerDoCarrinho(indice) {
+      carrinho.splice(indice, 1);
       atualizarCarrinho();
     }
 
     function limparCarrinho() {
-      if (confirm('Deseja realmente limpar o carrinho?')) {
+      if (confirm('Deseja limpar todo o carrinho?')) {
         carrinho = [];
         atualizarCarrinho();
       }
     }
 
     function mostrarAreaPagamento() {
-      document.querySelector('.produtos').style.display = 'none';
       document.querySelector('.carrinho').style.display = 'none';
       document.getElementById('area-pagamento').style.display = 'block';
-      window.scrollTo(0, 0);
+      document.getElementById('nome-pagamento').focus();
     }
 
     function voltarAoCarrinho() {
-      document.querySelector('.produtos').style.display = 'block';
-      document.querySelector('.carrinho').style.display = 'block';
       document.getElementById('area-pagamento').style.display = 'none';
-      window.scrollTo(0, 0);
+      document.querySelector('.carrinho').style.display = 'block';
     }
 
     function finalizarCompra(event) {
       event.preventDefault();
-      const nome = document.getElementById('nome-pagamento').value.trim();
-      if (carrinho.length === 0) {
-        alert('Seu carrinho está vazio.');
-        voltarAoCarrinho();
-        return;
-      }
-      alert(`Obrigado pela compra, ${nome}!\nTotal: R$ ${carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0).toFixed(2)}`);
+      alert('Compra finalizada com sucesso! Obrigado pela preferência.');
       carrinho = [];
       atualizarCarrinho();
-      document.getElementById('form-pagamento').reset();
       voltarAoCarrinho();
+      document.getElementById('form-pagamento').reset();
     }
 
-    document.getElementById('form-contato').addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Mensagem enviada! Obrigado pelo contato.');
-      this.reset();
+    // Formulário contato (exemplo básico)
+    const formContato = document.getElementById('form-contato');
+    formContato.addEventListener('submit', (event) => {
+      event.preventDefault();
+      alert(`Obrigado, ${formContato.nome.value}! Sua mensagem foi enviada.`);
+      formContato.reset();
     });
 
+    // Inicializar carrinho vazio
     atualizarCarrinho();
   </script>
 </body>
