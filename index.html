@@ -177,22 +177,7 @@
     });
 
     // Modal Libras
-    const btnLibras = document.getElementById('btn-libras');
-    const modalLibras = document.getElementById('modal-libras');
-    const btnFecharLibras = document.getElementById('btn-fechar-libras');
-
-    btnLibras.addEventListener('click', () => {
-      modalLibras.hidden = false;
-      modalLibras.querySelector('video').play();
-      btnFecharLibras.focus();
-    });
-
-    btnFecharLibras.addEventListener('click', () => {
-      modalLibras.hidden = true;
-      modalLibras.querySelector('video').pause();
-      btnLibras.focus();
-    });
-
+    
     // Fechar modal com ESC
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !modalLibras.hidden) {
