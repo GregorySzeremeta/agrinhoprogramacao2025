@@ -1,10 +1,73 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz Agrícola</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .menu a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+    }
+    .quiz-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+    .question {
+      margin-bottom: 1.5rem;
+    }
+    .question p {
+      font-weight: bold;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .resultado-container {
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #333;
+      text-align: center;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -20,27 +83,27 @@
       <div class="quiz-container" id="quiz-container">
         <div class="question">
           <p>1. Qual desses produtos é uma leguminosa?</p>
-          <label><input type="radio" name="q1" value="errado"> Banana</label>
-          <label><input type="radio" name="q1" value="correto"> Feijão</label>
-          <label><input type="radio" name="q1" value="errado"> Tomate</label>
+          <label><input type="radio" name="q1" value="errado"> 🍌 Banana</label>
+          <label><input type="radio" name="q1" value="correto"> 🫘 Feijão</label>
+          <label><input type="radio" name="q1" value="errado"> 🍅 Tomate</label>
         </div>
         <div class="question">
           <p>2. Qual o melhor horário para irrigar plantas?</p>
-          <label><input type="radio" name="q2" value="correto"> De manhã cedo</label>
-          <label><input type="radio" name="q2" value="errado"> Meio-dia</label>
-          <label><input type="radio" name="q2" value="errado"> À noite</label>
+          <label><input type="radio" name="q2" value="correto"> 🌅 De manhã cedo</label>
+          <label><input type="radio" name="q2" value="errado"> ☀️ Meio-dia</label>
+          <label><input type="radio" name="q2" value="errado"> 🌙 À noite</label>
         </div>
         <div class="question">
           <p>3. Qual o principal benefício do adubo orgânico?</p>
-          <label><input type="radio" name="q3" value="correto"> Melhora o solo naturalmente</label>
-          <label><input type="radio" name="q3" value="errado"> Causa menos folhas</label>
-          <label><input type="radio" name="q3" value="errado"> É mais barato</label>
+          <label><input type="radio" name="q3" value="correto"> 🌱 Melhora o solo naturalmente</label>
+          <label><input type="radio" name="q3" value="errado"> 🍂 Causa menos folhas</label>
+          <label><input type="radio" name="q3" value="errado"> 💸 É mais barato</label>
         </div>
         <div class="question">
           <p>4. O que é uma horta vertical?</p>
-          <label><input type="radio" name="q4" value="correto"> Cultivo em paredes ou estruturas suspensas</label>
-          <label><input type="radio" name="q4" value="errado"> Horta de legumes grandes</label>
-          <label><input type="radio" name="q4" value="errado"> Nome antigo de horta</label>
+          <label><input type="radio" name="q4" value="correto"> 🧱 Cultivo em paredes ou estruturas suspensas</label>
+          <label><input type="radio" name="q4" value="errado"> 🥕 Horta de legumes grandes</label>
+          <label><input type="radio" name="q4" value="errado"> 🕰️ Nome antigo de horta</label>
         </div>
         <button onclick="verificarQuiz()">Verificar Respostas</button>
         <div class="resultado-container" id="resultado"></div>
@@ -49,16 +112,26 @@
   </main>
 
   <footer>
-    &copy; 2025 Estação da Terra. Todos os direitos reservados.
+    <p style="text-align: center; padding: 1rem; background: #eee; color: #555;">&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
   </footer>
 
   <script>
     function verificarQuiz() {
       let total = 0;
-      document.querySelectorAll("#quiz-container input:checked").forEach(el => {
+      const inputs = document.querySelectorAll("#quiz-container input:checked");
+      inputs.forEach(el => {
         if (el.value === "correto") total++;
       });
-      document.getElementById("resultado").textContent = `Você acertou ${total} de 4 perguntas!`;
+
+      const resultado = document.getElementById("resultado");
+      resultado.innerHTML = `🎉 Você acertou <strong>${total}</strong> de 4 perguntas!`;
+      resultado.style.background = total >= 3 ? '#d4edda' : '#f8d7da';
+      resultado.style.color = total >= 3 ? '#155724' : '#721c24';
+      resultado.style.border = '1px solid ' + (total >= 3 ? '#c3e6cb' : '#f5c6cb');
+      resultado.style.padding = '10px';
+      resultado.style.borderRadius = '8px';
+      resultado.style.marginTop = '20px';
+      resultado.style.animation = 'fadeIn 0.5s ease-in-out';
     }
   </script>
 </body>
