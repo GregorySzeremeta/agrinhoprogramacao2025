@@ -286,3 +286,16 @@ body.contraste #carrinho button:hover {
     margin: 30px 10px 40px 10px;
   }
 }
+
+/* Acessibilidade extra: fonte maior */
+body.fonte-grande {
+  font-size: 20px;
+}
+
+/* Acessibilidade extra: som ambiente */
+#audio-fundo {
+  display: none;
+}
+body.som-ativo #audio-fundo {
+  display: block;
+}
