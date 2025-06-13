@@ -1,6 +1,4 @@
-/** style.css **/
-
-/* Reset básico */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -8,12 +6,11 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   background-color: #f8f8f8;
   color: #333;
-  line-height: 1.6;
+  transition: 0.3s;
   font-size: 16px;
-  transition: background 0.3s, color 0.3s;
 }
 
 body.contraste {
@@ -24,58 +21,60 @@ body.contraste {
 header {
   background-color: #4CAF50;
   color: white;
-  padding: 1rem;
   text-align: center;
+  padding: 1rem;
 }
 
 header .slogan {
   font-style: italic;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  margin-top: 5px;
 }
 
 .menu ul {
-  list-style: none;
   display: flex;
   justify-content: center;
+  list-style: none;
   gap: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 10px;
 }
 
-.menu ul li a {
+.menu a {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s;
-}
-
-.menu ul li a:hover {
-  color: #d4ffd4;
 }
 
 #acessibilidade {
   position: fixed;
   top: 10px;
   right: 10px;
-  z-index: 10000;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  z-index: 10000;
 }
 
-#acessibilidade button {
-  background-color: #4CAF50;
-  border: none;
+#acessibilidade button,
+#audio-fundo button {
+  background: #4CAF50;
   color: white;
-  padding: 8px;
-  font-size: 16px;
-  cursor: pointer;
+  border: none;
   border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  transition: background-color 0.3s;
 }
 
-#acessibilidade button:hover {
-  background-color: #388E3C;
+#audio-fundo {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  background: white;
+  padding: 5px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 1000;
 }
 
 main {
@@ -84,8 +83,8 @@ main {
 
 h2 {
   text-align: center;
-  margin-bottom: 1rem;
   color: #2E7D32;
+  margin-bottom: 1rem;
 }
 
 .barracas {
@@ -95,111 +94,109 @@ h2 {
 }
 
 .produto-card {
-  background-color: white;
-  border: 1px solid #ccc;
+  background: white;
   border-radius: 12px;
-  padding: 1rem;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+  padding: 1rem;
+  transition: 0.3s;
 }
 
 .produto-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: scale(1.03);
 }
 
 .produto-card img {
-  max-width: 100%;
+  width: 100%;
   height: 140px;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 0.5rem;
 }
 
 .produto-card h3 {
-  margin-bottom: 0.3rem;
-  font-size: 1.2rem;
+  margin-top: 10px;
 }
 
 .produto-card p {
+  color: green;
   font-weight: bold;
-  color: #388E3C;
-  margin-bottom: 0.5rem;
 }
 
 .produto-card button {
-  background-color: #4CAF50;
+  margin-top: 10px;
+  background: #4CAF50;
   color: white;
   border: none;
   padding: 8px 12px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.produto-card button:hover {
-  background-color: #2E7D32;
 }
 
 #carrinho {
-  margin-top: 2rem;
-  background-color: #fff;
+  background: white;
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-top: 2rem;
 }
 
 #carrinho ul {
   list-style: none;
-  margin-top: 1rem;
+  margin-top: 10px;
 }
 
 #carrinho button {
-  background-color: #d32f2f;
-  color: white;
-  border: none;
+  margin-right: 10px;
+  margin-top: 10px;
   padding: 8px 12px;
   border-radius: 8px;
+  border: none;
+  color: white;
+  background: #4CAF50;
   cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s;
 }
 
-#carrinho button:hover {
-  background-color: #b71c1c;
+#btnTopo {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 12px 16px;
+  font-size: 24px;
+  display: none;
+  z-index: 999;
 }
 
 footer {
-  background-color: #4CAF50;
-  color: white;
   text-align: center;
+  background: #4CAF50;
+  color: white;
   padding: 1rem;
   margin-top: 2rem;
 }
 
-/* Estilo para áudio de fundo */
-#audio-fundo {
+/* Animação de boas-vindas */
+.animacao-boas-vindas {
   position: fixed;
-  bottom: 10px;
-  left: 10px;
-  z-index: 10000;
-  background: white;
-  padding: 5px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255,255,255,0.95);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 1s;
 }
-
-/* Estilo LIBRAS VLibras */
-[vw] {
-  z-index: 1000 !important;
+.animacao-boas-vindas h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
 }
-
-/* Animação inicial (opcional) */
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-body {
-  animation: fadeIn 1s ease-in;
+.animacao-boas-vindas p {
+  font-size: 1.2rem;
 }
