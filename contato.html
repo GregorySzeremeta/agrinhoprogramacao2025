@@ -7,48 +7,61 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <header class="header">
-    <h1 class="logo">Estação da Terra</h1>
-    <nav class="nav">
-      <a href="index.html" class="nav-link">Loja</a>
-      <a href="quiz.html" class="nav-link">Quiz</a>
-      <a href="sobre.html" class="nav-link">Sobre</a>
-      <a href="contato.html" class="nav-link active">Contato</a>
+  <header>
+    <h1>Estação da Terra</h1>
+    <nav class="menu-navegacao">
+      <button onclick="window.location.href='index.html'" aria-label="Ir para Loja" class="menu-btn">Loja</button>
+      <button onclick="window.location.href='contato.html'" aria-label="Ir para Contato" class="menu-btn">Contato</button>
+      <button onclick="window.location.href='sobre.html'" aria-label="Ir para Sobre" class="menu-btn">Sobre</button>
+      <button onclick="window.location.href='carrinho.html'" aria-label="Ir para Carrinho" class="menu-btn">Carrinho</button>
+      <button onclick="window.location.href='quiz.html'" aria-label="Ir para Quiz" class="menu-btn">Quiz</button>
+      <button id="botao-acessibilidade" aria-label="Abrir opções de acessibilidade" class="menu-btn">Acessibilidade</button>
     </nav>
   </header>
 
-  <main class="main-content contato-content">
-    <h2>Contato</h2>
-    <form id="form-contato">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required />
+  <main tabindex="0">
+    <section aria-label="Formulário de contato" class="contato-secao">
+      <h2>Fale Conosco</h2>
+      <form id="form-contato" action="#" method="post" novalidate>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required aria-required="true" placeholder="Seu nome" />
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required />
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required aria-required="true" placeholder="seuemail@exemplo.com" />
 
-      <label for="mensagem">Mensagem:</label>
-      <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" rows="5" required aria-required="true" placeholder="Escreva sua mensagem aqui"></textarea>
 
-      <button type="submit">Enviar</button>
-    </form>
-    <p id="msg-sucesso" class="sucesso-msg" style="display:none;">Mensagem enviada com sucesso!</p>
+        <button type="submit" class="btn-enviar" aria-label="Enviar mensagem">Enviar</button>
+      </form>
+    </section>
   </main>
 
-  <script>
-    const form = document.getElementById('form-contato');
-    const msgSucesso = document.getElementById('msg-sucesso');
+  <footer>
+    <p>© 2025 Estação da Terra. Todos os direitos reservados.</p>
+  </footer>
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      // Aqui poderia ser feita a integração com backend
-      form.reset();
-      msgSucesso.style.display = 'block';
-      setTimeout(() => {
-        msgSucesso.style.display = 'none';
-      }, 4000);
+  <script>
+    document.getElementById('botao-acessibilidade').addEventListener('click', () => {
+      alert('Abrir opções de acessibilidade');
+    });
+
+    // Validação simples do formulário (exemplo)
+    document.getElementById('form-contato').addEventListener('submit', function(event) {
+      const nome = this.nome.value.trim();
+      const email = this.email.value.trim();
+      const mensagem = this.mensagem.value.trim();
+
+      if (!nome || !email || !mensagem) {
+        alert('Por favor, preencha todos os campos.');
+        event.preventDefault();
+        return false;
+      }
+
+      alert('Mensagem enviada com sucesso! Obrigado pelo contato.');
+      // Aqui você pode implementar o envio real via backend ou serviço externo
+      event.preventDefault(); // Remover essa linha quando implementar o envio real
     });
   </script>
-
 </body>
 </html>
