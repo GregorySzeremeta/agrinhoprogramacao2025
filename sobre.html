@@ -11,10 +11,41 @@
   <header class="header">
     <h1 class="logo">Estação da Terra</h1>
     <nav class="nav">
-      <a href="index.html" class="nav-link">Loja</a>
-      <a href="quiz.html" class="nav-link">Quiz</a>
-      <a href="sobre.html" class="nav-link active">Sobre</a>
-      <a href="contato.html" class="nav-link">Contato</a>
+    <h1>Estação da Terra</h1>
+<nav>
+  <nav class="menu-navegacao">
+    <button id="btn-loja" aria-label="Ir para Loja" class="menu-btn">Loja</button>
+    <button id="btn-contato" aria-label="Ir para Contato" class="menu-btn">Contato</button>
+    <button id="btn-sobre" aria-label="Ir para Sobre" class="menu-btn">Sobre</button>
+    <button id="btn-carrinho" aria-label="Ir para Carrinho" class="menu-btn">Carrinho</button>
+    <button id="btn-quiz" aria-label="Ir para Quiz" class="menu-btn">Quiz</button>
+    <button id="botao-acessibilidade" aria-label="Abrir opções de acessibilidade" class="menu-btn">Acessibilidade</button>
+  </nav>
+</nav>
+
+<script>
+  // Redirecionamentos dos botões
+  document.getElementById('btn-loja').addEventListener('click', () => {
+    window.location.href = 'index.html'; // ou a página da loja
+  });
+  document.getElementById('btn-contato').addEventListener('click', () => {
+    window.location.href = 'contato.html';
+  });
+  document.getElementById('btn-sobre').addEventListener('click', () => {
+    window.location.href = 'sobre.html';
+  });
+  document.getElementById('btn-carrinho').addEventListener('click', () => {
+    window.location.href = 'carrinho.html';
+  });
+  document.getElementById('btn-quiz').addEventListener('click', () => {
+    window.location.href = 'quiz.html';
+  });
+  document.getElementById('botao-acessibilidade').addEventListener('click', () => {
+    // lógica para abrir opções de acessibilidade aqui
+    alert('Abrir opções de acessibilidade');
+  });
+</script>
+
     </nav>
   </header>
 
