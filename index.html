@@ -20,36 +20,11 @@
     </nav>
   </header>
 
-  <!-- Menu acessibilidade --><div id="menu-acessibilidade" style="position: fixed; top: 20px; left: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px;">
-  <button id="btn-aumentar-fonte" aria-label="Aumentar fonte" style="background-color: #5e936b; border: none; color: white; padding: 8px 12px; border-radius: 6px; font-weight: bold; cursor: pointer;">A+</button>
-  <button id="btn-diminuir-fonte" aria-label="Diminuir fonte" style="background-color: #5e936b; border: none; color: white; padding: 8px 12px; border-radius: 6px; font-weight: bold; cursor: pointer;">A-</button>
-  <button id="btn-modo-escuro" aria-label="Alternar modo escuro" style="background-color: #5e936b; border: none; color: white; padding: 8px 12px; border-radius: 6px; font-weight: bold; cursor: pointer;">🌙</button>
-
-  <script>
-    const btnAumentar = document.getElementById('btn-aumentar-fonte');
-    const btnDiminuir = document.getElementById('btn-diminuir-fonte');
-    const btnModoEscuro = document.getElementById('btn-modo-escuro');
-
-    let fonteAtual = 100; // percentual base
-
-    btnAumentar.addEventListener('click', () => {
-      fonteAtual += 10;
-      document.body.style.fontSize = fonteAtual + '%';
-    });
-
-    btnDiminuir.addEventListener('click', () => {
-      fonteAtual -= 10;
-      if (fonteAtual < 50) fonteAtual = 50;
-      document.body.style.fontSize = fonteAtual + '%';
-    });
-
-    btnModoEscuro.addEventListener('click', () => {
-      document.body.classList.toggle('modo-escuro');
-    });
-  </script>
-</div>
-
-
+  <!-- Menu acessibilidade -->
+   <div id="menu-acessibilidade" style="display:none;">
+    <button id="btn-aumentar-fonte" aria-label="Aumentar fonte">A+</button>
+    <button id="btn-modo-escuro" aria-label="Alternar modo escuro">🌙</button>
+  </div>
 
 
   <!-- Loja -->
