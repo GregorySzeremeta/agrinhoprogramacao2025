@@ -5,30 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Estação da Terra</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Hand Talk LIBRAS 3D -->
+  <script src="https://plugin.handtalk.me/web/latest/handtalk.min.js"></script>
 </head>
 <body>
-  <!-- VLibras -->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
-
   <header>
     <h1>Estação da Terra</h1>
     <nav class="menu-navegacao">
       <button id="btn-loja" class="menu-btn" aria-label="Ir para Loja">Loja</button>
-      <button id="btn-contato" class="menu-btn" aria-label="Ir para Contato">Contato</button>
-      <button id="btn-sobre" class="menu-btn" aria-label="Ir para Sobre">Sobre</button>
-      <button id="btn-carrinho" class="menu-btn" aria-label="Ir para Carrinho">Carrinho</button>
-      <a href="quiz.html">
-        <button class="menu-btn" aria-label="Ir para Quiz">Quiz</button>
-      </a>
       <button id="botao-acessibilidade" class="menu-btn" aria-label="Abrir opções de acessibilidade">Acessibilidade</button>
     </nav>
   </header>
@@ -39,246 +23,276 @@
     <span id="badge-carrinho" aria-live="polite">0</span>
   </button>
 
-  <!-- Menu acessibilidade -->
-  <div id="menu-acessibilidade" style="display:none;">
+  <!-- Menu de três pontinhos -->
+  <div id="menu-flutuante">
+    <button id="btn-menu-flutuante" aria-label="Abrir menu">⋮</button>
+    <div id="opcoes-flutuantes" class="escondido" role="menu" aria-hidden="true">
+      <button id="btn-quiz" role="menuitem">Quiz</button>
+      <button id="btn-contato" role="menuitem">Contato</button>
+      <button id="btn-sobre" role="menuitem">Sobre</button>
+      <button id="btn-carrinho" role="menuitem">Carrinho</button>
+    </div>
+  </div>
+
+  <!-- Menu de acessibilidade -->
+  <div id="menu-acessibilidade" class="escondido" aria-label="Menu de acessibilidade">
     <button id="btn-aumentar-fonte" aria-label="Aumentar fonte">A+</button>
+    <button id="btn-diminuir-fonte" aria-label="Diminuir fonte">A-</button>
     <button id="btn-modo-escuro" aria-label="Alternar modo escuro">🌙</button>
   </div>
 
-  <!-- Loja -->
-  <section id="loja" tabindex="0" aria-label="Seção de loja" style="display: grid;">
-    <!-- Produtos vão ser inseridos aqui via JavaScript -->
-  </section>
+  <main>
+    <section class="produtos" aria-label="Produtos da feira">
+      <!-- Produto 1 -->
+      <article class="produto" tabindex="0">
+        <img src="img/leite.jpg" alt="Leite fresco" />
+        <h2>Leite Fresco</h2>
+        <p>Leite puro direto do campo.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Leite Fresco ao carrinho">Adicionar ao Carrinho</button>
+      </article>
 
-  <!-- Contato -->
-  <section id="contato" tabindex="0" aria-label="Formulário de contato" style="display:none;">
-    <h2>Contato</h2>
-    <form id="form-contato">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required aria-required="true" />
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required aria-required="true" />
-      <label for="mensagem">Mensagem:</label>
-      <textarea id="mensagem" name="mensagem" required aria-required="true"></textarea>
-      <button type="submit" aria-label="Enviar mensagem de contato">Enviar</button>
-    </form>
-    <div id="resposta-contato" aria-live="polite" style="margin-top: 1rem;"></div>
-  </section>
+      <!-- Produto 2 -->
+      <article class="produto" tabindex="0">
+        <img src="img/frutas.jpg" alt="Frutas variadas" />
+        <h2>Frutas da Estação</h2>
+        <p>Mix de frutas frescas e selecionadas.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Frutas da Estação ao carrinho">Adicionar ao Carrinho</button>
+      </article>
 
-  <!-- Sobre -->
-  <section id="sobre" tabindex="0" aria-label="Informações sobre a Estação da Terra" style="display:none;">
-    <h2>Sobre</h2>
-    <p>Bem-vindo à Estação da Terra, seu marketplace sustentável e interativo, que conecta o campo à cidade, colhendo oportunidades para todos.</p>
-    <p>Nossa missão é promover produtos frescos, orgânicos e de qualidade, valorizando o produtor local e incentivando práticas sustentáveis.</p>
-    <p>Junte-se a nós e faça parte desse movimento verde!</p>
-  </section>
+      <!-- Produto 3 -->
+      <article class="produto" tabindex="0">
+        <img src="img/mel.jpg" alt="Mel natural" />
+        <h2>Mel Natural</h2>
+        <p>Mel puro, direto da colmeia.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Mel Natural ao carrinho">Adicionar ao Carrinho</button>
+      </article>
 
-  <!-- Carrinho -->
-  <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" style="display:none;">
-    <h2>Seu Carrinho</h2>
-    <ul id="lista-carrinho" aria-live="polite"></ul>
-    <p id="total-carrinho">Total: R$ 0,00</p>
-    <button id="btn-esvaziar-carrinho" aria-label="Esvaziar carrinho">Esvaziar Carrinho</button>
-    <button id="btn-finalizar-compra" aria-label="Finalizar compra">Finalizar Compra</button>
-  </section>
+      <!-- Produto 4 -->
+      <article class="produto" tabindex="0">
+        <img src="img/queijo.jpg" alt="Queijo artesanal" />
+        <h2>Queijo Artesanal</h2>
+        <p>Queijo feito à mão, sabor único.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Queijo Artesanal ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 5 -->
+      <article class="produto" tabindex="0">
+        <img src="img/verduras.jpg" alt="Verduras frescas" />
+        <h2>Verduras Frescas</h2>
+        <p>Verduras colhidas no dia.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Verduras Frescas ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 6 -->
+      <article class="produto" tabindex="0">
+        <img src="img/graos.jpg" alt="Grãos variados" />
+        <h2>Grãos Selecionados</h2>
+        <p>Grãos com alta qualidade para seu preparo.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Grãos Selecionados ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 7 -->
+      <article class="produto" tabindex="0">
+        <img src="img/sementes.jpg" alt="Sementes variadas" />
+        <h2>Sementes para Plantio</h2>
+        <p>Sementes selecionadas para melhor germinação.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Sementes para Plantio ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 8 -->
+      <article class="produto" tabindex="0">
+        <img src="img/frutas_citricas.jpg" alt="Frutas cítricas" />
+        <h2>Frutas Cítricas</h2>
+        <p>Laranja, limão e tangerina fresquinhos.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Frutas Cítricas ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 9 -->
+      <article class="produto" tabindex="0">
+        <img src="img/melancia.jpg" alt="Melancia fresca" />
+        <h2>Melancia</h2>
+        <p>Melancia doce e suculenta.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Melancia ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 10 -->
+      <article class="produto" tabindex="0">
+        <img src="img/batata.jpg" alt="Batata" />
+        <h2>Batata Orgânica</h2>
+        <p>Batatas cultivadas sem agrotóxicos.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Batata Orgânica ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 11 -->
+      <article class="produto" tabindex="0">
+        <img src="img/cenoura.jpg" alt="Cenoura" />
+        <h2>Cenoura</h2>
+        <p>Cenouras frescas para suas receitas.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Cenoura ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 12 -->
+      <article class="produto" tabindex="0">
+        <img src="img/feijao.jpg" alt="Feijão" />
+        <h2>Feijão</h2>
+        <p>Feijão de ótima qualidade para o dia a dia.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Feijão ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 13 -->
+      <article class="produto" tabindex="0">
+        <img src="img/arroz.jpg" alt="Arroz" />
+        <h2>Arroz</h2>
+        <p>Arroz branco selecionado.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Arroz ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 14 -->
+      <article class="produto" tabindex="0">
+        <img src="img/tomate.jpg" alt="Tomate" />
+        <h2>Tomate</h2>
+        <p>Tomates vermelhos e suculentos.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Tomate ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 15 -->
+      <article class="produto" tabindex="0">
+        <img src="img/alface.jpg" alt="Alface" />
+        <h2>Alface</h2>
+        <p>Alface fresca e crocante.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Alface ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 16 -->
+      <article class="produto" tabindex="0">
+        <img src="img/milho.jpg" alt="Milho" />
+        <h2>Milho</h2>
+        <p>Milho doce colhido na hora.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Milho ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 17 -->
+      <article class="produto" tabindex="0">
+        <img src="img/cebola.jpg" alt="Cebola" />
+        <h2>Cebola</h2>
+        <p>Cebolas selecionadas para seu uso diário.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Cebola ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 18 -->
+      <article class="produto" tabindex="0">
+        <img src="img/laranja.jpg" alt="Laranja" />
+        <h2>Laranja</h2>
+        <p>Laranjas fresquinhas para sucos naturais.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Laranja ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 19 -->
+      <article class="produto" tabindex="0">
+        <img src="img/maca.jpg" alt="Maçã" />
+        <h2>Maçã</h2>
+        <p>Maçãs crocantes e suculentas.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Maçã ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+
+      <!-- Produto 20 -->
+      <article class="produto" tabindex="0">
+        <img src="img/pera.jpg" alt="Pera" />
+        <h2>Pera</h2>
+        <p>Peras doces e fresquinhas.</p>
+        <button class="btn-adicionar" aria-label="Adicionar Pera ao carrinho">Adicionar ao Carrinho</button>
+      </article>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2025 Estação da Terra - Todos os direitos reservados</p>
+    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
   </footer>
 
   <script>
-    // Scripts para funcionamento do site (menu, acessibilidade, carrinho, contato...)
-
-    // Botão de acessibilidade toggle
-    const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
-    const menuAcessibilidade = document.getElementById('menu-acessibilidade');
-    botaoAcessibilidade.addEventListener('click', () => {
-      menuAcessibilidade.style.display = menuAcessibilidade.style.display === 'none' ? 'block' : 'none';
-    });
-
-    // Aumentar fonte
-    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
-    btnAumentarFonte.addEventListener('click', () => {
-      let currentSize = window.getComputedStyle(document.body).fontSize;
-      let newSize = parseFloat(currentSize) + 2;
-      document.body.style.fontSize = newSize + 'px';
-    });
-
-    // Modo escuro
-    const btnModoEscuro = document.getElementById('btn-modo-escuro');
-    btnModoEscuro.addEventListener('click', () => {
-      document.body.classList.toggle('modo-escuro');
-    });
-
-    // Navegação entre seções
-    const btnLoja = document.getElementById('btn-loja');
-    const btnContato = document.getElementById('btn-contato');
-    const btnSobre = document.getElementById('btn-sobre');
-    const btnCarrinhoNav = document.getElementById('btn-carrinho');
-
-    const loja = document.getElementById('loja');
-    const contato = document.getElementById('contato');
-    const sobre = document.getElementById('sobre');
-    const carrinho = document.getElementById('carrinho');
-
-    function esconderTodasSeções() {
-      loja.style.display = 'none';
-      contato.style.display = 'none';
-      sobre.style.display = 'none';
-      carrinho.style.display = 'none';
-    }
-
-    btnLoja.addEventListener('click', () => {
-      esconderTodasSeções();
-      loja.style.display = 'grid';
-      loja.focus();
-    });
-
-    btnContato.addEventListener('click', () => {
-      esconderTodasSeções();
-      contato.style.display = 'block';
-      contato.focus();
-    });
-
-    btnSobre.addEventListener('click', () => {
-      esconderTodasSeções();
-      sobre.style.display = 'block';
-      sobre.focus();
-    });
-
-    btnCarrinhoNav.addEventListener('click', () => {
-      esconderTodasSeções();
-      carrinho.style.display = 'block';
-      carrinho.focus();
-      atualizarCarrinho();
-    });
-
-    esconderTodasSeções();
-    loja.style.display = 'grid';
-
-    // Botão fixo do carrinho
-    const btnCarrinhoFixo = document.getElementById('btn-carrinho-fixo');
-    btnCarrinhoFixo.addEventListener('click', () => {
-      esconderTodasSeções();
-      carrinho.style.display = 'block';
-      carrinho.focus();
-      atualizarCarrinho();
-    });
-
-    // Carrinho
-    const listaCarrinho = document.getElementById('lista-carrinho');
-    const totalCarrinho = document.getElementById('total-carrinho');
-    const btnEsvaziarCarrinho = document.getElementById('btn-esvaziar-carrinho');
-    const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
-    const badgeCarrinho = document.getElementById('badge-carrinho');
-
-    let carrinhoItens = [];
-
-    const produtos = [
-      { nome: 'Maçã Orgânica', preco: 4.50, img: 'img/maca.jpg' },
-      { nome: 'Mel Puro', preco: 15.00, img: 'img/mel.jpg' },
-      { nome: 'Queijo Minas', preco: 20.00, img: 'img/queijo.jpg' },
-      { nome: 'Leite Integral', preco: 5.50, img: 'img/leite.jpg' },
-      { nome: 'Tomate Fresco', preco: 3.00, img: 'img/tomate.jpg' },
-      { nome: 'Arroz Integral', preco: 8.00, img: 'img/arroz.jpg' },
-      { nome: 'Feijão Preto', preco: 7.00, img: 'img/feijao.jpg' },
-      { nome: 'Alface Crespa', preco: 2.50, img: 'img/alface.jpg' },
-      { nome: 'Cenoura Orgânica', preco: 3.20, img: 'img/cenoura.jpg' },
-      { nome: 'Batata Doce', preco: 4.00, img: 'img/batata.jpg' },
-      { nome: 'Abacate', preco: 6.50, img: 'img/abacate.jpg' },
-      { nome: 'Pão Integral', preco: 7.80, img: 'img/pao.jpg' },
-      { nome: 'Café Torrado', preco: 18.00, img: 'img/cafe.jpg' },
-      { nome: 'Chá Verde', preco: 12.00, img: 'img/cha.jpg' },
-      { nome: 'Ovos Caipira', preco: 10.00, img: 'img/ovos.jpg' },
-      { nome: 'Manteiga Artesanal', preco: 14.50, img: 'img/manteiga.jpg' },
-      { nome: 'Melancia', preco: 8.50, img: 'img/melancia.jpg' },
-      { nome: 'Morango', preco: 11.00, img: 'img/morango.jpg' },
-      { nome: 'Abobrinha', preco: 3.70, img: 'img/abobrinha.jpg' },
-      { nome: 'Cebola Roxa', preco: 3.00, img: 'img/cebola.jpg' }
-    ];
-
-    const lojaSection = document.getElementById('loja');
-    produtos.forEach(produto => {
-      const produtoDiv = document.createElement('div');
-      produtoDiv.className = 'produto';
-      produtoDiv.tabIndex = 0;
-      produtoDiv.innerHTML = `
-        <img src="${produto.img}" alt="${produto.nome}" />
-        <h3>${produto.nome}</h3>
-        <p>R$ ${produto.preco.toFixed(2)}</p>
-        <button class="btn-add" data-nome="${produto.nome}" data-preco="${produto.preco}">Adicionar ao carrinho</button>
-      `;
-      lojaSection.appendChild(produtoDiv);
-    });
-
-    function atualizarBadge() {
-      const quantidadeTotal = carrinhoItens.reduce((acc, item) => acc + item.quantidade, 0);
-      badgeCarrinho.style.display = quantidadeTotal > 0 ? 'inline-block' : 'none';
-      badgeCarrinho.textContent = quantidadeTotal;
-    }
-
-    function atualizarCarrinho() {
-      listaCarrinho.innerHTML = '';
-      let total = 0;
-      carrinhoItens.forEach((item, index) => {
-        total += item.preco * item.quantidade;
-        const li = document.createElement('li');
-        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
-        li.tabIndex = 0;
-
-        const btnRemover = document.createElement('button');
-        btnRemover.textContent = 'Remover';
-        btnRemover.setAttribute('aria-label', 'Remover um ' + item.nome + ' do carrinho');
-        btnRemover.addEventListener('click', () => {
-          item.quantidade--;
-          if(item.quantidade === 0){
-            carrinhoItens.splice(index, 1);
-          }
-          atualizarCarrinho();
-          atualizarBadge();
-        });
-
-        li.appendChild(btnRemover);
-        listaCarrinho.appendChild(li);
+    // Inicia widget Hand Talk LIBRAS 3D
+    window.addEventListener('load', () => {
+      new window.HandTalk.Widget({
+        token: 'seu_token_aqui', // troque pelo seu token real Hand Talk
+        position: 'right',
+        videoEnabled: true,
+        pageSpeech: true
       });
-      totalCarrinho.textContent = 'Total: R$ ' + total.toFixed(2);
-      atualizarBadge();
-    }
+    });
 
-    lojaSection.addEventListener('click', e => {
-      if(e.target.classList.contains('btn-add')){
-        const nome = e.target.getAttribute('data-nome');
-        const preco = parseFloat(e.target.getAttribute('data-preco'));
-        const itemExistente = carrinhoItens.find(item => item.nome === nome);
-        if(itemExistente){
-          itemExistente.quantidade++;
-        } else {
-          carrinhoItens.push({nome, preco, quantidade: 1});
-        }
-        alert(nome + ' adicionado ao carrinho!');
-        atualizarCarrinho();
+    // Função para mostrar/esconder menu flutuante
+    const btnMenu = document.getElementById('btn-menu-flutuante');
+    const opcoesMenu = document.getElementById('opcoes-flutuantes');
+    btnMenu.addEventListener('click', () => {
+      const isHidden = opcoesMenu.classList.contains('escondido');
+      if (isHidden) {
+        opcoesMenu.classList.remove('escondido');
+        opcoesMenu.setAttribute('aria-hidden', 'false');
+      } else {
+        opcoesMenu.classList.add('escondido');
+        opcoesMenu.setAttribute('aria-hidden', 'true');
       }
     });
 
-    btnEsvaziarCarrinho.addEventListener('click', () => {
-      carrinhoItens = [];
-      atualizarCarrinho();
+    // Redirecionamento dos botões do menu flutuante
+    document.getElementById('btn-quiz').addEventListener('click', () => {
+      window.location.href = 'quizzes.html';
+    });
+    document.getElementById('btn-contato').addEventListener('click', () => {
+      window.location.href = 'contato.html';
+    });
+    document.getElementById('btn-sobre').addEventListener('click', () => {
+      window.location.href = 'sobre.html';
+    });
+    document.getElementById('btn-carrinho').addEventListener('click', () => {
+      alert('Abrir carrinho de compras (a implementar)');
     });
 
-    btnFinalizarCompra.addEventListener('click', () => {
-      if(carrinhoItens.length === 0){
-        alert('Seu carrinho está vazio!');
-        return;
+    // Mostrar/esconder menu acessibilidade
+    const btnAcessibilidade = document.getElementById('botao-acessibilidade');
+    const menuAcessibilidade = document.getElementById('menu-acessibilidade');
+    btnAcessibilidade.addEventListener('click', () => {
+      if(menuAcessibilidade.classList.contains('escondido')) {
+        menuAcessibilidade.classList.remove('escondido');
+      } else {
+        menuAcessibilidade.classList.add('escondido');
       }
-      window.location.href = 'pagamento.html';
     });
 
-    const formContato = document.getElementById('form-contato');
-    const respostaContato = document.getElementById('resposta-contato');
-    formContato.addEventListener('submit', (e) => {
-      e.preventDefault();
-      respostaContato.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
-      formContato.reset();
+    // Controle de tamanho da fonte
+    const corpo = document.body;
+    let fontSize = 16;
+
+    document.getElementById('btn-aumentar-fonte').addEventListener('click', () => {
+      if (fontSize < 24) {
+        fontSize += 2;
+        corpo.style.fontSize = fontSize + 'px';
+      }
+    });
+
+    document.getElementById('btn-diminuir-fonte').addEventListener('click', () => {
+      if (fontSize > 12) {
+        fontSize -= 2;
+        corpo.style.fontSize = fontSize + 'px';
+      }
+    });
+
+    // Modo escuro / claro
+    document.getElementById('btn-modo-escuro').addEventListener('click', () => {
+      corpo.classList.toggle('modo-escuro');
+    });
+
+    // Adicionar ao carrinho (exemplo simples)
+    const botoesAdicionar = document.querySelectorAll('.btn-adicionar');
+    const badgeCarrinho = document.getElementById('badge-carrinho');
+    let contadorCarrinho = 0;
+
+    botoesAdicionar.forEach(botao => {
+      botao.addEventListener('click', () => {
+        contadorCarrinho++;
+        badgeCarrinho.textContent = contadorCarrinho;
+        alert('Produto adicionado ao carrinho!');
+      });
     });
   </script>
 </body>
