@@ -8,22 +8,44 @@
 </head>
 <body>
   <header>
-    <h1>Estação da Terra</h1>
-    <nav class="menu-navegacao">
-     <button id="btn-loja" class="menu-btn" aria-label="Ir para Loja">Loja</button>
-  <button id="btn-contato" class="menu-btn" aria-label="Ir para Contato">Contato</button>
-  <button id="btn-sobre" class="menu-btn" aria-label="Ir para Sobre">Sobre</button>
-  <button id="btn-carrinho" class="menu-btn" aria-label="Ir para Carrinho">Carrinho</button>
-  <button id="btn-quiz" class="menu-btn" aria-label="Ir para Quiz">Quiz</button> <!-- Novo botão -->
-  <button id="botao-acessibilidade" class="menu-btn" aria-label="Abrir opções de acessibilidade">Acessibilidade</button>
+ <h1>Estação da Terra</h1>
+<nav>
+  <nav class="menu-navegacao">
+    <button id="btn-loja" aria-label="Ir para Loja" class="menu-btn">Loja</button>
+    <button id="btn-contato" aria-label="Ir para Contato" class="menu-btn">Contato</button>
+    <button id="btn-sobre" aria-label="Ir para Sobre" class="menu-btn">Sobre</button>
+    <button id="btn-carrinho" aria-label="Ir para Carrinho" class="menu-btn">Carrinho</button>
+    <button id="btn-quiz" aria-label="Ir para Quiz" class="menu-btn">Quiz</button>
+    <button id="botao-acessibilidade" aria-label="Abrir opções de acessibilidade" class="menu-btn">Acessibilidade</button>
+  </nav>
+</nav>
+
+<script>
+  // Redirecionamentos dos botões
+  document.getElementById('btn-loja').addEventListener('click', () => {
+    window.location.href = 'index.html'; // ou a página da loja
+  });
+  document.getElementById('btn-contato').addEventListener('click', () => {
+    window.location.href = 'contato.html';
+  });
+  document.getElementById('btn-sobre').addEventListener('click', () => {
+    window.location.href = 'sobre.html';
+  });
+  document.getElementById('btn-carrinho').addEventListener('click', () => {
+    window.location.href = 'carrinho.html';
+  });
+  document.getElementById('btn-quiz').addEventListener('click', () => {
+    window.location.href = 'quiz.html';
+  });
+  document.getElementById('botao-acessibilidade').addEventListener('click', () => {
+    // lógica para abrir opções de acessibilidade aqui
+    alert('Abrir opções de acessibilidade');
+  });
+</script>
+
+  </header>
     </nav>
   </header>
-
-  <!-- Botão fixo do carrinho -->
-  <button id="btn-carrinho-fixo" aria-label="Abrir carrinho de compras">
-    🛒
-    <span id="badge-carrinho" aria-live="polite">0</span>
-  </button>
 
   <!-- Menu acessibilidade -->
   <div id="menu-acessibilidade" style="display:none;">
@@ -33,7 +55,7 @@
 
   <!-- Loja -->
   <section id="loja" tabindex="0" aria-label="Seção de loja" style="display: grid;">
-    <!-- Produtos vão ser inseridos aqui via JavaScript -->
+
   </section>
 
   <!-- Contato -->
@@ -73,9 +95,7 @@
   </footer>
 
   <script>
-    // Scripts para funcionamento do site (menu, acessibilidade, carrinho, contato...)
-
-    // Botão de acessibilidade toggle
+    // Script do menu, acessibilidade, carrinho, contato, etc, igual antes, removendo o quiz
     const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
     const menuAcessibilidade = document.getElementById('menu-acessibilidade');
     botaoAcessibilidade.addEventListener('click', () => {
@@ -86,7 +106,6 @@
       }
     });
 
-    // Aumentar fonte
     const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
     btnAumentarFonte.addEventListener('click', () => {
       let currentSize = window.getComputedStyle(document.body).fontSize;
@@ -94,17 +113,15 @@
       document.body.style.fontSize = newSize + 'px';
     });
 
-    // Modo escuro
     const btnModoEscuro = document.getElementById('btn-modo-escuro');
     btnModoEscuro.addEventListener('click', () => {
       document.body.classList.toggle('modo-escuro');
     });
 
-    // Navegação entre seções
     const btnLoja = document.getElementById('btn-loja');
     const btnContato = document.getElementById('btn-contato');
     const btnSobre = document.getElementById('btn-sobre');
-    const btnCarrinhoNav = document.getElementById('btn-carrinho');
+    const btnCarrinho = document.getElementById('btn-carrinho');
 
     const loja = document.getElementById('loja');
     const contato = document.getElementById('contato');
@@ -136,7 +153,7 @@
       sobre.focus();
     });
 
-    btnCarrinhoNav.addEventListener('click', () => {
+    btnCarrinho.addEventListener('click', () => {
       esconderTodasSeções();
       carrinho.style.display = 'block';
       carrinho.focus();
@@ -146,75 +163,31 @@
     esconderTodasSeções();
     loja.style.display = 'grid';
 
-    // Botão fixo do carrinho
-    const btnCarrinhoFixo = document.getElementById('btn-carrinho-fixo');
-    btnCarrinhoFixo.addEventListener('click', () => {
-      esconderTodasSeções();
-      carrinho.style.display = 'block';
-      carrinho.focus();
-      atualizarCarrinho();
-    });
-
-    // Carrinho
+    // Carrinho - igual antes, mantém funcionalidade
+    const botoesAdd = document.querySelectorAll('.btn-add');
     const listaCarrinho = document.getElementById('lista-carrinho');
     const totalCarrinho = document.getElementById('total-carrinho');
     const btnEsvaziarCarrinho = document.getElementById('btn-esvaziar-carrinho');
     const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
-    const badgeCarrinho = document.getElementById('badge-carrinho');
 
     let carrinhoItens = [];
 
-    // Adicionar produtos exemplo (você deve inserir seus produtos reais no JS ou HTML)
-    const produtos = [
-      { nome: 'Maçã Orgânica', preco: 4.50, img: 'img/maca.jpg' },
-      { nome: 'Mel Puro', preco: 15.00, img: 'img/mel.jpg' },
-      { nome: 'Queijo Minas', preco: 20.00, img: 'img/queijo.jpg' },
-      { nome: 'Leite Integral', preco: 5.50, img: 'img/leite.jpg' },
-      { nome: 'Tomate Fresco', preco: 3.00, img: 'img/tomate.jpg' },
-      { nome: 'Arroz Integral', preco: 8.00, img: 'img/arroz.jpg' },
-      { nome: 'Feijão Preto', preco: 7.00, img: 'img/feijao.jpg' },
-      { nome: 'Alface Crespa', preco: 2.50, img: 'img/alface.jpg' },
-      { nome: 'Cenoura Orgânica', preco: 3.20, img: 'img/cenoura.jpg' },
-      { nome: 'Batata Doce', preco: 4.00, img: 'img/batata.jpg' },
-      { nome: 'Abacate', preco: 6.50, img: 'img/abacate.jpg' },
-      { nome: 'Pão Integral', preco: 7.80, img: 'img/pao.jpg' },
-      { nome: 'Café Torrado', preco: 18.00, img: 'img/cafe.jpg' },
-      { nome: 'Chá Verde', preco: 12.00, img: 'img/cha.jpg' },
-      { nome: 'Ovos Caipira', preco: 10.00, img: 'img/ovos.jpg' },
-      { nome: 'Manteiga Artesanal', preco: 14.50, img: 'img/manteiga.jpg' },
-      { nome: 'Melancia', preco: 8.50, img: 'img/melancia.jpg' },
-      { nome: 'Morango', preco: 11.00, img: 'img/morango.jpg' },
-      { nome: 'Abobrinha', preco: 3.70, img: 'img/abobrinha.jpg' },
-      { nome: 'Cebola Roxa', preco: 3.00, img: 'img/cebola.jpg' }
-    ];
-
-    // Renderizar produtos na loja
-    const lojaSection = document.getElementById('loja');
-    produtos.forEach(produto => {
-      const produtoDiv = document.createElement('div');
-      produtoDiv.className = 'produto';
-      produtoDiv.tabIndex = 0;
-      produtoDiv.innerHTML = `
-        <img src="${produto.img}" alt="${produto.nome}" />
-        <h3>${produto.nome}</h3>
-        <p>R$ ${produto.preco.toFixed(2)}</p>
-        <button class="btn-add" data-nome="${produto.nome}" data-preco="${produto.preco}">Adicionar ao carrinho</button>
-      `;
-      lojaSection.appendChild(produtoDiv);
+    botoesAdd.forEach(botao => {
+      botao.addEventListener('click', () => {
+        const nome = botao.getAttribute('data-nome');
+        const preco = parseFloat(botao.getAttribute('data-preco'));
+        const itemExistente = carrinhoItens.find(item => item.nome === nome);
+        if(itemExistente){
+          itemExistente.quantidade++;
+        } else {
+          carrinhoItens.push({nome, preco, quantidade: 1});
+        }
+        alert(nome + ' adicionado ao carrinho!');
+        atualizarCarrinho();
+      });
     });
 
-    // Eventos dos botões "Adicionar ao carrinho"
-    function atualizarBadge() {
-      const quantidadeTotal = carrinhoItens.reduce((acc, item) => acc + item.quantidade, 0);
-      if(quantidadeTotal > 0){
-        badgeCarrinho.style.display = 'inline-block';
-        badgeCarrinho.textContent = quantidadeTotal;
-      } else {
-        badgeCarrinho.style.display = 'none';
-      }
-    }
-
-    function atualizarCarrinho() {
+    function atualizarCarrinho(){
       listaCarrinho.innerHTML = '';
       let total = 0;
       carrinhoItens.forEach((item, index) => {
@@ -222,7 +195,6 @@
         const li = document.createElement('li');
         li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
         li.tabIndex = 0;
-
         const btnRemover = document.createElement('button');
         btnRemover.textContent = 'Remover';
         btnRemover.setAttribute('aria-label', 'Remover um ' + item.nome + ' do carrinho');
@@ -232,31 +204,12 @@
             carrinhoItens.splice(index, 1);
           }
           atualizarCarrinho();
-          atualizarBadge();
         });
-
         li.appendChild(btnRemover);
         listaCarrinho.appendChild(li);
       });
       totalCarrinho.textContent = 'Total: R$ ' + total.toFixed(2);
-      atualizarBadge();
     }
-
-    // Delegação de evento para os botões "Adicionar"
-    lojaSection.addEventListener('click', e => {
-      if(e.target.classList.contains('btn-add')){
-        const nome = e.target.getAttribute('data-nome');
-        const preco = parseFloat(e.target.getAttribute('data-preco'));
-        const itemExistente = carrinhoItens.find(item => item.nome === nome);
-        if(itemExistente){
-          itemExistente.quantidade++;
-        } else {
-          carrinhoItens.push({nome, preco, quantidade: 1});
-        }
-        alert(nome + ' adicionado ao carrinho!');
-        atualizarCarrinho();
-      }
-    });
 
     btnEsvaziarCarrinho.addEventListener('click', () => {
       carrinhoItens = [];
@@ -280,6 +233,7 @@
       respostaContato.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
       formContato.reset();
     });
+
   </script>
 
 </body>

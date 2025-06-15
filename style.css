@@ -12,234 +12,296 @@ html {
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f2f7f2;
-  color: #222;
-  line-height: 1.5;
+  background-color: #f8f8f8;
+  color: #333;
+  line-height: 1.6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+/* Modo escuro */
+body.modo-escuro {
+  background-color: #121212;
+  color: #eee;
+}
+
+body.modo-escuro header,
+body.modo-escuro footer,
+body.modo-escuro nav button,
+body.modo-escuro nav a {
+  background-color: #1f1f1f;
+  color: #eee;
+}
+
+/* Cabeçalho */
 header {
-  background: #2a7a2a;
+  background-color: #4caf50;
   color: white;
   padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 100;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 header h1 {
-  font-weight: 700;
   font-size: 1.8rem;
-  user-select: none;
 }
 
-/* Botão menu hamburguer */
-.menu-toggle-btn {
-  display: none;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 28px;
-  height: 24px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.menu-toggle-btn .bar {
-  width: 100%;
-  height: 3px;
-  background-color: white;
-  border-radius: 2px;
-  transition: 0.3s;
-}
-
-/* Navegação do menu */
-.menu-navegacao {
+nav {
   display: flex;
-  gap: 1rem;
-  flex-wrap: nowrap;
+  gap: 0.8rem;
+  flex-wrap: wrap;
 }
 
-.menu-btn {
-  background: transparent;
-  color: white;
-  border: 2px solid white;
-  padding: 0.4rem 0.9rem;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.menu-btn:hover,
-.menu-btn:focus {
+nav button,
+nav a[role="button"],
+nav a {
   background-color: white;
-  color: #2a7a2a;
-  outline: none;
+  border: none;
+  color: #4caf50;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Menu acessibilidade */
-.menu-acessibilidade {
+nav button:hover,
+nav a[role="button"]:hover,
+nav a:hover {
+  background-color: #45a049;
+  color: white;
+}
+
+nav button:focus,
+nav a[role="button"]:focus,
+nav a:focus {
+  outline: 3px solid #a8d5a3;
+  outline-offset: 2px;
+}
+
+/* Menu de acessibilidade */
+#menu-acessibilidade {
   position: fixed;
   bottom: 1rem;
   right: 1rem;
-  background-color: #2a7a2a;
+  background-color: #4caf50;
+  padding: 0.5rem;
   border-radius: 8px;
-  padding: 0.5rem 0.8rem;
   display: flex;
-  gap: 0.7rem;
-  z-index: 110;
+  gap: 0.5rem;
+  z-index: 100;
 }
 
-.menu-acessibilidade button {
-  font-size: 1.3rem;
-  background: white;
-  color: #2a7a2a;
+#menu-acessibilidade button {
+  background-color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.2rem;
   cursor: pointer;
-  padding: 0.2rem 0.6rem;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
-.menu-acessibilidade button:hover,
-.menu-acessibilidade button:focus {
-  background-color: #1f5e1f;
-  color: white;
+#menu-acessibilidade button:hover,
+#menu-acessibilidade button:focus {
+  background-color: #dcedc8;
   outline: none;
 }
 
-/* Main container */
-main {
-  flex-grow: 1;
+/* Seções principais */
+section {
   padding: 2rem;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 1rem auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
 }
 
-/* Seções */
-.secao {
-  display: none;
+body.modo-escuro section {
+  background-color: #222;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
 
-.secao.ativa {
-  display: block;
-}
-
-/* Produtos grid */
+/* Loja em grid */
 #loja {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-  gap: 1.8rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
 }
 
+/* Card de produto */
 .produto {
-  background: white;
-  border-radius: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   padding: 1rem;
-  box-shadow: 0 0 8px rgb(0 0 0 / 0.1);
+  background-color: #fafafa;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: box-shadow 0.3s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
 }
 
 .produto:hover,
 .produto:focus-within {
-  box-shadow: 0 0 15px rgb(42 122 42 / 0.6);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.produto img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  object-fit: cover;
 }
 
 .produto h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.6rem;
-  color: #2a7a2a;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #2e7d32;
 }
 
 .produto p {
-  font-weight: 700;
+  flex-grow: 1;
   margin-bottom: 1rem;
-  font-size: 1.1rem;
-  color: #444;
+  color: #555;
+  font-size: 0.95rem;
 }
 
-.btn-add {
-  background-color: #2a7a2a;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  padding: 0.5rem 1.1rem;
+.produto .preco {
   font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #388e3c;
 }
 
-.btn-add:hover,
-.btn-add:focus {
-  background-color: #1f5e1f;
+.produto .btn-add {
+  background-color: #4caf50;
+  border: none;
+  padding: 0.6rem;
+  color: white;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.produto .btn-add:hover,
+.produto .btn-add:focus {
+  background-color: #388e3c;
   outline: none;
 }
 
-/* Form contato */
-#contato form {
-  max-width: 500px;
-  margin-top: 1rem;
+/* Formulários */
+form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-#contato label {
+form label {
   font-weight: 600;
-  color: #2a7a2a;
 }
 
-#contato input,
-#contato textarea {
-  padding: 0.7rem;
+form input[type="text"],
+form input[type="email"],
+form textarea {
+  padding: 0.5rem;
   border-radius: 6px;
-  border: 1.8px solid #2a7a2a;
+  border: 1px solid #ccc;
   font-size: 1rem;
-  font-family: inherit;
   resize: vertical;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s ease;
 }
 
-#contato input:focus,
-#contato textarea:focus {
-  border-color: #1f5e1f;
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form textarea:focus {
   outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 4px #81c784;
 }
 
-#contato button {
-  width: fit-content;
-  background-color: #2a7a2a;
+form button[type="submit"] {
+  width: max-content;
+  background-color: #4caf50;
   color: white;
   border: none;
-  padding: 0.6rem 1.4rem;
-  border-radius: 25px;
+  padding: 0.7rem 1.2rem;
   font-weight: 700;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
-#contato button:hover,
-#contato button:focus {
-  background-color: #1f5e1f;
+form button[type="submit"]:hover,
+form button[type="submit"]:focus {
+  background-color: #388e3c;
   outline: none;
 }
 
-/* Seção Sobre */
-#sobre p {
-  max-width: 650px;
+/* Quiz */
+#quiz-container fieldset {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  background-color: #f0f8f0;
+}
+
+body.modo-escuro #quiz-container fieldset {
+  background-color: #2e3b2e;
+  border-color: #4caf50;
+}
+
+#quiz-container legend {
+  font-weight: 700;
+  margin-bottom: 0.8rem;
   font-size: 1.1rem;
-  color: #444;
-  line-height: 1.6;
+}
+
+#quiz-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #2e7d32;
+}
+
+#quiz-container input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+#quiz-container button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  font-weight: 700;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#quiz-container button[type="submit"]:hover,
+#quiz-container button[type="submit"]:focus {
+  background-color: #388e3c;
+  outline: none;
+}
+
+/* Resultados do quiz */
+#resultado-quiz {
+  font-size: 1.2rem;
+  font-weight: 700;
   margin-top: 1rem;
+  color: #2e7d32;
 }
 
 /* Carrinho */
@@ -249,183 +311,74 @@ main {
 }
 
 #carrinho li {
-  background: white;
-  padding: 0.6rem 1rem;
-  margin-bottom: 0.6rem;
-  border-radius: 6px;
-  box-shadow: 0 0 5px rgb(0 0 0 / 0.08);
+  margin-bottom: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-#carrinho button {
-  background-color: #d44;
+#carrinho li button {
+  background-color: #d32f2f;
   border: none;
   color: white;
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
+  border-radius: 6px;
+  padding: 0.2rem 0.6rem;
   cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.3s;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
 }
 
-#carrinho button:hover,
-#carrinho button:focus {
-  background-color: #a22;
+#carrinho li button:hover,
+#carrinho li button:focus {
+  background-color: #b71c1c;
   outline: none;
 }
 
-#total-carrinho {
-  font-weight: 700;
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  color: #2a7a2a;
-}
-
+/* Botões de esvaziar e finalizar compra */
 #btn-esvaziar-carrinho,
 #btn-finalizar-compra {
-  background-color: #2a7a2a;
-  border: none;
+  background-color: #4caf50;
   color: white;
-  padding: 0.6rem 1.4rem;
-  margin-right: 1rem;
-  border-radius: 25px;
-  cursor: pointer;
+  border: none;
+  padding: 0.6rem 1.2rem;
   font-weight: 700;
-  transition: background-color 0.3s;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 #btn-esvaziar-carrinho:hover,
 #btn-esvaziar-carrinho:focus,
 #btn-finalizar-compra:hover,
 #btn-finalizar-compra:focus {
-  background-color: #1f5e1f;
+  background-color: #388e3c;
   outline: none;
 }
 
 /* Footer */
 footer {
-  background-color: #2a7a2a;
+  background-color: #4caf50;
   color: white;
-  padding: 1rem 2rem;
   text-align: center;
+  padding: 1rem 2rem;
+  margin-top: auto;
   font-size: 0.9rem;
-  user-select: none;
 }
 
-/* Responsivo */
-
-/* Tela menor que 900px */
-@media (max-width: 900px) {
-  header h1 {
-    font-size: 1.4rem;
+/* Responsividade */
+@media (max-width: 768px) {
+  nav {
+    justify-content: center;
   }
-
-  .menu-navegacao {
-    position: fixed;
-    top: 64px;
-    right: 0;
-    background-color: #2a7a2a;
-    flex-direction: column;
-    width: 200px;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    border-radius: 0 0 0 8px;
-  }
-
-  .menu-navegacao.aberto {
-    transform: translateX(0);
-  }
-
-  .menu-btn {
-    border: none;
-    border-bottom: 1px solid #3f9a3f;
-    border-radius: 0;
-    padding: 1rem;
-    text-align: left;
-  }
-
-  .menu-btn:last-child {
-    border-bottom: none;
-  }
-
-  .menu-toggle-btn {
-    display: flex;
-  }
-}
-
-/* Tela menor que 480px */
-@media (max-width: 480px) {
-  main {
-    padding: 1rem;
-  }
-
+  
   #loja {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+
+  header, footer {
+    padding: 1rem;
   }
 }
 
-/* Focus visual acessível */
-button:focus,
-input:focus,
-textarea:focus {
-  outline: 3px solid #4caf50;
-  outline-offset: 2px;
-}
-
-/* Modo escuro toggle */
-
-body.dark-mode {
-  background-color: #121a12;
-  color: #e0e0e0;
-}
-
-body.dark-mode header {
-  background-color: #183818;
-}
-
-body.dark-mode .menu-navegacao {
-  background-color: #183818;
-}
-
-body.dark-mode .menu-btn {
-  color: #cfc;
-  border-color: #4caf50;
-}
-
-body.dark-mode .menu-btn:hover,
-body.dark-mode .menu-btn:focus {
-  background-color: #4caf50;
-  color: #0a0;
-}
-
-body.dark-mode .produto {
-  background-color: #263626;
-  box-shadow: 0 0 12px rgb(76 175 80 / 0.6);
-  color: #cfc;
-}
-
-body.dark-mode .btn-add {
-  background-color: #4caf50;
-  color: #122;
-}
-
-body.dark-mode .btn-add:hover,
-body.dark-mode .btn-add:focus {
-  background-color: #3b7a3b;
-  color: white;
-}
-
-body.dark-mode #contato input,
-body.dark-mode #contato textarea {
-  background-color: #334533;
-  border-color: #4caf50;
-  color: #cfc;
-}
-
-/* Scroll suave para menu fixo */
-html {
-  scroll-padding-top: 72px;
-}
