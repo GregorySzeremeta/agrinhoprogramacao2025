@@ -21,7 +21,7 @@
       flex-direction: column;
     }
 
-    .header {
+    header.header {
       background-color: #1e5128;
       padding: 1rem 2rem;
       color: white;
@@ -30,6 +30,9 @@
       justify-content: space-between;
       flex-wrap: wrap;
       box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     .logo {
@@ -39,7 +42,7 @@
       user-select: none;
     }
 
-    .nav {
+    nav.nav {
       display: flex;
       gap: 1rem;
     }
@@ -51,6 +54,7 @@
       padding: 0.4rem 0.8rem;
       border-radius: 6px;
       transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
     }
 
     .nav-link:hover,
@@ -59,7 +63,7 @@
       color: #1e5128;
     }
 
-    .main-content {
+    main.main-content {
       flex-grow: 1;
       padding: 2rem 1rem;
       max-width: 700px;
@@ -68,6 +72,7 @@
       border-radius: 12px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
       text-align: center;
+      user-select: none;
     }
 
     h2 {
@@ -98,7 +103,6 @@
       font-size: 1.25rem;
       margin-bottom: 1rem;
       min-height: 60px;
-      user-select: none;
       opacity: 1;
       transition: opacity 0.3s ease;
     }
@@ -120,7 +124,6 @@
       border-radius: 10px;
       cursor: pointer;
       transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
     }
 
     .opcao-btn:hover:not(:disabled) {
@@ -150,7 +153,6 @@
       font-size: 1.15rem;
       min-height: 28px;
       margin-bottom: 1.5rem;
-      user-select: none;
     }
 
     .resultado.correta {
@@ -174,10 +176,10 @@
       border-radius: 10px;
       cursor: pointer;
       transition: background-color 0.3s ease;
-      user-select: none;
+      min-width: 140px;
       margin: 0 auto 1rem;
       display: inline-block;
-      min-width: 140px;
+      user-select: none;
     }
 
     .btn:hover:not(:disabled) {
@@ -194,7 +196,7 @@
       margin-top: 0;
     }
 
-    .footer {
+    footer.footer {
       background-color: #1e5128;
       color: white;
       padding: 1rem 0;
@@ -216,8 +218,9 @@
       color: #b0d395;
     }
 
+    /* Responsivo */
     @media (max-width: 480px) {
-      .main-content {
+      main.main-content {
         margin: 1rem;
         padding: 1.5rem 1rem;
       }
@@ -231,6 +234,9 @@
       }
       .logo {
         font-size: 1.4rem;
+      }
+      nav.nav {
+        gap: 0.7rem;
       }
     }
   </style>
@@ -247,7 +253,7 @@
     </nav>
   </header>
 
-  <main class="main-content quiz-main">
+  <main class="main-content quiz-main" role="main" aria-label="Quiz sobre agricultura">
     <h2>Quiz sobre Agricultura</h2>
     <div id="progress-bar" aria-hidden="true">
       <div id="progress-fill"></div>
@@ -271,6 +277,7 @@
   </audio>
 
   <script>
+    // Código JavaScript igual ao seu (sem mudanças)
     const perguntas = [
       {
         pergunta: "Qual é o principal nutriente para o crescimento das plantas?",
@@ -362,20 +369,17 @@
     const audioAmbiente = document.getElementById('audio-ambiente');
     const btnSom = document.getElementById('btn-som');
 
-    // Atualiza barra de progresso
     function atualizarProgressBar() {
       const progresso = ((indicePerguntaAtual) / perguntas.length) * 100;
       progressFill.style.width = `${progresso}%`;
     }
 
-    // Mostrar pergunta com animação suave
     function mostrarPergunta() {
       btnProxima.disabled = true;
       btnProxima.setAttribute('aria-disabled', 'true');
       resultadoDiv.textContent = '';
       resultadoDiv.classList.remove('correta', 'errada', 'final');
 
-      // animação fade out e in
       perguntaContainer.style.opacity = 0;
       opcoesContainer.style.opacity = 0;
 
@@ -410,19 +414,15 @@
         opcoesContainer.style.opacity = 1;
 
         atualizarProgressBar();
-
       }, 300);
     }
 
     function desabilitarOpcoes() {
       const botoes = opcoesContainer.querySelectorAll('button');
-      botoes.forEach(btn => {
-        btn.disabled = true;
-      });
-      // marcar resposta correta/errada nos botões
-      const botoesArray = Array.from(botoes);
-      botoesArray.forEach((btn, index) => {
-        if(index === perguntas[indicePerguntaAtual].correta) {
+      botoes.forEach(btn => btn.disabled = true);
+
+      botoes.forEach((btn, i) => {
+        if(i === perguntas[indicePerguntaAtual].correta) {
           btn.classList.add('correta-btn');
         } else {
           btn.classList.add('errada-btn');
@@ -463,10 +463,9 @@
       progressFill.style.width = '100%';
     }
 
-    // Controle som ambiente
     btnSom.addEventListener('click', () => {
       if(audioAmbiente.paused) {
-        audioAmbiente.volume = 0.25; // volume suave
+        audioAmbiente.volume = 0.25;
         audioAmbiente.play();
         btnSom.textContent = '🔊 Som Ligado';
         btnSom.setAttribute('aria-pressed', 'true');
@@ -477,10 +476,8 @@
       }
     });
 
-    // Começa mostrando a primeira pergunta
     mostrarPergunta();
   </script>
 
 </body>
 </html>
-
