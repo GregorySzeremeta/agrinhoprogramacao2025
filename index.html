@@ -8,320 +8,233 @@
 </head>
 <body>
   <header>
-    <h1>Estação da Terra</h1>
-    <nav class="menu-navegacao" role="navigation" aria-label="Menu principal">
-      <button id="btn-loja" aria-label="Ir para Loja" class="menu-btn">Loja</button>
-      <button id="btn-contato" aria-label="Ir para Contato" class="menu-btn">Contato</button>
-      <button id="btn-sobre" aria-label="Ir para Sobre" class="menu-btn">Sobre</button>
-      <button id="btn-carrinho" aria-label="Ir para Carrinho" class="menu-btn">Carrinho</button>
-      <button id="botao-acessibilidade" aria-haspopup="true" aria-expanded="false" aria-controls="menu-acessibilidade" class="menu-btn">Acessibilidade</button>
-      <button id="btn-libras" aria-label="Abrir vídeo de Libras" class="menu-btn">LIBRAS</button>
+ <h1>Estação da Terra</h1>
+<nav>
+  <nav class="menu-navegacao">
+    <button id="btn-loja" aria-label="Ir para Loja" class="menu-btn">Loja</button>
+    <button id="btn-contato" aria-label="Ir para Contato" class="menu-btn">Contato</button>
+    <button id="btn-sobre" aria-label="Ir para Sobre" class="menu-btn">Sobre</button>
+    <button id="btn-carrinho" aria-label="Ir para Carrinho" class="menu-btn">Carrinho</button>
+    <button id="btn-quiz" aria-label="Ir para Quiz" class="menu-btn">Quiz</button>
+    <button id="botao-acessibilidade" aria-label="Abrir opções de acessibilidade" class="menu-btn">Acessibilidade</button>
+  </nav>
+</nav>
+
+<script>
+  // Redirecionamentos dos botões
+  document.getElementById('btn-loja').addEventListener('click', () => {
+    window.location.href = 'index.html'; // ou a página da loja
+  });
+  document.getElementById('btn-contato').addEventListener('click', () => {
+    window.location.href = 'contato.html';
+  });
+  document.getElementById('btn-sobre').addEventListener('click', () => {
+    window.location.href = 'sobre.html';
+  });
+  document.getElementById('btn-carrinho').addEventListener('click', () => {
+    window.location.href = 'carrinho.html';
+  });
+  document.getElementById('btn-quiz').addEventListener('click', () => {
+    window.location.href = 'quiz.html';
+  });
+  document.getElementById('botao-acessibilidade').addEventListener('click', () => {
+    // lógica para abrir opções de acessibilidade aqui
+    alert('Abrir opções de acessibilidade');
+  });
+</script>
+
+  </header>
     </nav>
   </header>
 
   <!-- Menu acessibilidade -->
-  <div id="menu-acessibilidade" class="menu-acessibilidade" aria-hidden="true" style="display:none;">
+  <div id="menu-acessibilidade" style="display:none;">
     <button id="btn-aumentar-fonte" aria-label="Aumentar fonte">A+</button>
-    <button id="btn-diminuir-fonte" aria-label="Diminuir fonte">A-</button>
     <button id="btn-modo-escuro" aria-label="Alternar modo escuro">🌙</button>
   </div>
 
-  <!-- Video Libras -->
-  <div id="modal-libras" class="modal-libras" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="titulo-libras" style="display:none;">
-    <div class="modal-content">
-      <h2 id="titulo-libras">Vídeo explicativo em Libras</h2>
-      <video controls width="320" aria-describedby="descricao-video">
-        <source src="libras-video.mp4" type="video/mp4" />
-        Seu navegador não suporta vídeo em HTML5.
-      </video>
-      <p id="descricao-video">Vídeo explicando o conteúdo do site em Língua Brasileira de Sinais.</p>
-      <button id="btn-fechar-libras" aria-label="Fechar vídeo Libras">Fechar</button>
-    </div>
-  </div>
+  <!-- Loja -->
+  <section id="loja" tabindex="0" aria-label="Seção de loja" style="display: grid;">
 
-  <!-- Seções -->
-  <main>
-    <!-- Loja -->
-    <section id="loja" tabindex="0" aria-label="Seção de loja" class="secao ativa">
-      <h2>Loja</h2>
-      <div class="produtos-grid" aria-live="polite" aria-relevant="additions">
-        <!-- Produtos serão inseridos via JS -->
-      </div>
-    </section>
+  </section>
 
-    <!-- Contato -->
-    <section id="contato" tabindex="0" aria-label="Formulário de contato" class="secao" style="display:none;">
-      <h2>Contato</h2>
-      <form id="form-contato">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required aria-required="true" />
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required aria-required="true" />
-        <label for="mensagem">Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" required aria-required="true"></textarea>
-        <button type="submit" aria-label="Enviar mensagem de contato">Enviar</button>
-      </form>
-      <div id="resposta-contato" aria-live="polite" style="margin-top: 1rem;"></div>
-    </section>
+  <!-- Contato -->
+  <section id="contato" tabindex="0" aria-label="Formulário de contato" style="display:none;">
+    <h2>Contato</h2>
+    <form id="form-contato">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required aria-required="true" />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required aria-required="true" />
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem" required aria-required="true"></textarea>
+      <button type="submit" aria-label="Enviar mensagem de contato">Enviar</button>
+    </form>
+    <div id="resposta-contato" aria-live="polite" style="margin-top: 1rem;"></div>
+  </section>
 
-    <!-- Sobre -->
-    <section id="sobre" tabindex="0" aria-label="Informações sobre a Estação da Terra" class="secao" style="display:none;">
-      <h2>Sobre</h2>
-      <p>Bem-vindo à Estação da Terra, seu marketplace sustentável e interativo, que conecta o campo à cidade, colhendo oportunidades para todos.</p>
-      <p>Nossa missão é promover produtos frescos, orgânicos e de qualidade, valorizando o produtor local e incentivando práticas sustentáveis.</p>
-      <p>Junte-se a nós e faça parte desse movimento verde!</p>
-    </section>
+  <!-- Sobre -->
+  <section id="sobre" tabindex="0" aria-label="Informações sobre a Estação da Terra" style="display:none;">
+    <h2>Sobre</h2>
+    <p>Bem-vindo à Estação da Terra, seu marketplace sustentável e interativo, que conecta o campo à cidade, colhendo oportunidades para todos.</p>
+    <p>Nossa missão é promover produtos frescos, orgânicos e de qualidade, valorizando o produtor local e incentivando práticas sustentáveis.</p>
+    <p>Junte-se a nós e faça parte desse movimento verde!</p>
+  </section>
 
-    <!-- Carrinho -->
-    <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" class="secao" style="display:none;">
-      <h2>Seu Carrinho</h2>
-      <ul id="lista-carrinho" aria-live="polite" aria-relevant="all" tabindex="0"></ul>
-      <p id="total-carrinho">Total: R$ 0,00</p>
-      <button id="btn-esvaziar-carrinho" aria-label="Esvaziar carrinho">Esvaziar Carrinho</button>
-      <button id="btn-finalizar-compra" aria-label="Finalizar compra">Finalizar Compra</button>
-    </section>
-  </main>
+  <!-- Carrinho -->
+  <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" style="display:none;">
+    <h2>Seu Carrinho</h2>
+    <ul id="lista-carrinho" aria-live="polite"></ul>
+    <p id="total-carrinho">Total: R$ 0,00</p>
+    <button id="btn-esvaziar-carrinho" aria-label="Esvaziar carrinho">Esvaziar Carrinho</button>
+    <button id="btn-finalizar-compra" aria-label="Finalizar compra">Finalizar Compra</button>
+  </section>
 
   <footer>
     <p>© 2025 Estação da Terra - Todos os direitos reservados</p>
   </footer>
 
   <script>
-    // Produtos: array com 20 produtos
-    const produtos = [
-     {nome: "Maçã", preco: 4.50, img: "https://i.imgur.com/9rY5EIG.png"},
-    {nome: "Banana", preco: 3.20, img: "https://i.imgur.com/cvVrtqL.png"},
-    {nome: "Laranja", preco: 3.80, img: "https://i.imgur.com/FCkAA8z.png"},
-    {nome: "Melancia", preco: 7.50, img: "https://i.imgur.com/pqjf3Df.png"},
-    {nome: "Alface", preco: 2.80, img: "https://i.imgur.com/GcHvUzz.png"},
-    {nome: "Tomate", preco: 3.60, img: "https://i.imgur.com/nAHBmvF.png"},
-    {nome: "Cenoura", preco: 2.90, img: "https://i.imgur.com/Hx1GlW5.png"},
-    {nome: "Batata", preco: 3.00, img: "https://i.imgur.com/ooGjrxJ.png"},
-    {nome: "Cebola", preco: 2.50, img: "https://i.imgur.com/vGJeH1g.png"},
-    {nome: "Mel", preco: 15.00, img: "https://i.imgur.com/ZHU3EBE.png"},
-    {nome: "Queijo", preco: 25.00, img: "https://i.imgur.com/kRUjPae.png"},
-    {nome: "Leite", preco: 4.00, img: "https://i.imgur.com/txvSEvF.png"},
-    {nome: "Arroz", preco: 8.00, img: "https://i.imgur.com/1JqXPvE.png"},
-    {nome: "Feijão", preco: 7.20, img: "https://i.imgur.com/jqTGP2g.png"},
-    {nome: "Pão", preco: 5.00, img: "https://i.imgur.com/OZMXPLm.png"},
-    {nome: "Ovos", preco: 10.00, img: "https://i.imgur.com/2ww0VsG.png"},
-    {nome: "Café", preco: 20.00, img: "https://i.imgur.com/VKX0D5y.png"},
-    {nome: "Azeite", preco: 18.00, img: "https://i.imgur.com/FGeC7Sw.png"},
-    {nome: "Melão", preco: 6.50, img: "https://i.imgur.com/odFhM8h.png"},
-    {nome: "Morango", preco: 12.00, img: "https://i.imgur.com/KKDCQhu.png"}
-    ];
-
-    const produtosGrid = document.querySelector(".produtos-grid");
-    const carrinhoItens = [];
-
-    // Renderizar produtos
-    function renderizarProdutos() {
-      produtosGrid.innerHTML = "";
-      produtos.forEach((produto, index) => {
-        const div = document.createElement("div");
-        div.className = "produto";
-
-        div.innerHTML = `
-          <h3>${produto.nome}</h3>
-          <p>R$ ${produto.preco.toFixed(2)}</p>
-          <button class="btn-add" aria-label="Adicionar ${produto.nome} ao carrinho" data-index="${index}">Adicionar</button>
-        `;
-        produtosGrid.appendChild(div);
-      });
-    }
-
-    renderizarProdutos();
-
-    // Atualizar carrinho
-    const listaCarrinho = document.getElementById("lista-carrinho");
-    const totalCarrinho = document.getElementById("total-carrinho");
-
-    function atualizarCarrinho() {
-      listaCarrinho.innerHTML = "";
-      let total = 0;
-
-      carrinhoItens.forEach((item, idx) => {
-        total += item.preco * item.quantidade;
-        const li = document.createElement("li");
-        li.tabIndex = 0;
-        li.innerHTML = `
-          ${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}
-          <button aria-label="Remover um ${item.nome} do carrinho" data-index="${idx}" class="btn-remover">Remover</button>
-        `;
-        listaCarrinho.appendChild(li);
-      });
-
-      totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
-      if(carrinhoItens.length === 0){
-        listaCarrinho.innerHTML = "<li>Seu carrinho está vazio.</li>";
-      }
-
-      // Adicionar evento remover aos botões recém criados
-      document.querySelectorAll(".btn-remover").forEach(botao => {
-        botao.addEventListener("click", (e) => {
-          const idx = parseInt(e.target.getAttribute("data-index"));
-          if (carrinhoItens[idx].quantidade > 1) {
-            carrinhoItens[idx].quantidade--;
-          } else {
-            carrinhoItens.splice(idx, 1);
-          }
-          atualizarCarrinho();
-        });
-      });
-    }
-
-    // Adicionar produto ao carrinho
-    produtosGrid.addEventListener("click", (e) => {
-      if (e.target.classList.contains("btn-add")) {
-        const index = parseInt(e.target.getAttribute("data-index"));
-        const produto = produtos[index];
-        const itemExistente = carrinhoItens.find(item => item.nome === produto.nome);
-        if (itemExistente) {
-          itemExistente.quantidade++;
-        } else {
-          carrinhoItens.push({...produto, quantidade: 1});
-        }
-        alert(`${produto.nome} adicionado ao carrinho!`);
-        atualizarCarrinho();
+    // Script do menu, acessibilidade, carrinho, contato, etc, igual antes, removendo o quiz
+    const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
+    const menuAcessibilidade = document.getElementById('menu-acessibilidade');
+    botaoAcessibilidade.addEventListener('click', () => {
+      if(menuAcessibilidade.style.display === 'none' || menuAcessibilidade.style.display === '') {
+        menuAcessibilidade.style.display = 'block';
+      } else {
+        menuAcessibilidade.style.display = 'none';
       }
     });
 
-    // Botões menu
-    const btnLoja = document.getElementById("btn-loja");
-    const btnContato = document.getElementById("btn-contato");
-    const btnSobre = document.getElementById("btn-sobre");
-    const btnCarrinho = document.getElementById("btn-carrinho");
+    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
+    btnAumentarFonte.addEventListener('click', () => {
+      let currentSize = window.getComputedStyle(document.body).fontSize;
+      let newSize = parseFloat(currentSize) + 2;
+      document.body.style.fontSize = newSize + 'px';
+    });
 
-    const loja = document.getElementById("loja");
-    const contato = document.getElementById("contato");
-    const sobre = document.getElementById("sobre");
-    const carrinho = document.getElementById("carrinho");
+    const btnModoEscuro = document.getElementById('btn-modo-escuro');
+    btnModoEscuro.addEventListener('click', () => {
+      document.body.classList.toggle('modo-escuro');
+    });
 
-    function esconderTodasSecoes() {
-      [loja, contato, sobre, carrinho].forEach(secao => {
-        secao.style.display = "none";
-        secao.classList.remove("ativa");
-      });
+    const btnLoja = document.getElementById('btn-loja');
+    const btnContato = document.getElementById('btn-contato');
+    const btnSobre = document.getElementById('btn-sobre');
+    const btnCarrinho = document.getElementById('btn-carrinho');
+
+    const loja = document.getElementById('loja');
+    const contato = document.getElementById('contato');
+    const sobre = document.getElementById('sobre');
+    const carrinho = document.getElementById('carrinho');
+
+    function esconderTodasSeções() {
+      loja.style.display = 'none';
+      contato.style.display = 'none';
+      sobre.style.display = 'none';
+      carrinho.style.display = 'none';
     }
 
-    btnLoja.addEventListener("click", () => {
-      esconderTodasSecoes();
-      loja.style.display = "block";
-      loja.classList.add("ativa");
+    btnLoja.addEventListener('click', () => {
+      esconderTodasSeções();
+      loja.style.display = 'grid';
       loja.focus();
     });
-    btnContato.addEventListener("click", () => {
-      esconderTodasSecoes();
-      contato.style.display = "block";
-      contato.classList.add("ativa");
+
+    btnContato.addEventListener('click', () => {
+      esconderTodasSeções();
+      contato.style.display = 'block';
       contato.focus();
     });
-    btnSobre.addEventListener("click", () => {
-      esconderTodasSecoes();
-      sobre.style.display = "block";
-      sobre.classList.add("ativa");
+
+    btnSobre.addEventListener('click', () => {
+      esconderTodasSeções();
+      sobre.style.display = 'block';
       sobre.focus();
     });
-    btnCarrinho.addEventListener("click", () => {
-      esconderTodasSecoes();
-      carrinho.style.display = "block";
-      carrinho.classList.add("ativa");
+
+    btnCarrinho.addEventListener('click', () => {
+      esconderTodasSeções();
+      carrinho.style.display = 'block';
       carrinho.focus();
       atualizarCarrinho();
     });
 
-    // Inicializa com loja visível
-    esconderTodasSecoes();
-    loja.style.display = "block";
-    loja.classList.add("ativa");
+    esconderTodasSeções();
+    loja.style.display = 'grid';
 
-    // Acessibilidade - menu
-    const botaoAcessibilidade = document.getElementById("botao-acessibilidade");
-    const menuAcessibilidade = document.getElementById("menu-acessibilidade");
-    botaoAcessibilidade.addEventListener("click", () => {
-      const expanded = botaoAcessibilidade.getAttribute("aria-expanded") === "true";
-      botaoAcessibilidade.setAttribute("aria-expanded", !expanded);
-      if(menuAcessibilidade.style.display === "none" || menuAcessibilidade.style.display === "") {
-        menuAcessibilidade.style.display = "block";
-        menuAcessibilidade.setAttribute("aria-hidden", "false");
-      } else {
-        menuAcessibilidade.style.display = "none";
-        menuAcessibilidade.setAttribute("aria-hidden", "true");
-      }
+    // Carrinho - igual antes, mantém funcionalidade
+    const botoesAdd = document.querySelectorAll('.btn-add');
+    const listaCarrinho = document.getElementById('lista-carrinho');
+    const totalCarrinho = document.getElementById('total-carrinho');
+    const btnEsvaziarCarrinho = document.getElementById('btn-esvaziar-carrinho');
+    const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
+
+    let carrinhoItens = [];
+
+    botoesAdd.forEach(botao => {
+      botao.addEventListener('click', () => {
+        const nome = botao.getAttribute('data-nome');
+        const preco = parseFloat(botao.getAttribute('data-preco'));
+        const itemExistente = carrinhoItens.find(item => item.nome === nome);
+        if(itemExistente){
+          itemExistente.quantidade++;
+        } else {
+          carrinhoItens.push({nome, preco, quantidade: 1});
+        }
+        alert(nome + ' adicionado ao carrinho!');
+        atualizarCarrinho();
+      });
     });
 
-    // Aumentar e diminuir fonte
-    const btnAumentarFonte = document.getElementById("btn-aumentar-fonte");
-    const btnDiminuirFonte = document.getElementById("btn-diminuir-fonte");
-    btnAumentarFonte.addEventListener("click", () => {
-      let currentSize = parseFloat(window.getComputedStyle(document.body).fontSize);
-      if(currentSize < 30){
-        document.body.style.fontSize = (currentSize + 2) + "px";
-      }
-    });
-    btnDiminuirFonte.addEventListener("click", () => {
-      let currentSize = parseFloat(window.getComputedStyle(document.body).fontSize);
-      if(currentSize > 12){
-        document.body.style.fontSize = (currentSize - 2) + "px";
-      }
-    });
+    function atualizarCarrinho(){
+      listaCarrinho.innerHTML = '';
+      let total = 0;
+      carrinhoItens.forEach((item, index) => {
+        total += item.preco * item.quantidade;
+        const li = document.createElement('li');
+        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
+        li.tabIndex = 0;
+        const btnRemover = document.createElement('button');
+        btnRemover.textContent = 'Remover';
+        btnRemover.setAttribute('aria-label', 'Remover um ' + item.nome + ' do carrinho');
+        btnRemover.addEventListener('click', () => {
+          item.quantidade--;
+          if(item.quantidade === 0){
+            carrinhoItens.splice(index, 1);
+          }
+          atualizarCarrinho();
+        });
+        li.appendChild(btnRemover);
+        listaCarrinho.appendChild(li);
+      });
+      totalCarrinho.textContent = 'Total: R$ ' + total.toFixed(2);
+    }
 
-    // Modo escuro
-    const btnModoEscuro = document.getElementById("btn-modo-escuro");
-    btnModoEscuro.addEventListener("click", () => {
-      document.body.classList.toggle("modo-escuro");
-    });
-
-    // Esvaziar carrinho
-    document.getElementById("btn-esvaziar-carrinho").addEventListener("click", () => {
-      carrinhoItens.length = 0;
+    btnEsvaziarCarrinho.addEventListener('click', () => {
+      carrinhoItens = [];
       atualizarCarrinho();
     });
 
-    // Finalizar compra
-    document.getElementById("btn-finalizar-compra").addEventListener("click", () => {
+    btnFinalizarCompra.addEventListener('click', () => {
       if(carrinhoItens.length === 0){
-        alert("Seu carrinho está vazio!");
+        alert('Seu carrinho está vazio!');
         return;
       }
-      // Aqui redireciona para página de pagamento
-      window.location.href = "pagamento.html";
+      window.location.href = 'pagamento.html';
     });
 
-    // Formulário contato
-    const formContato = document.getElementById("form-contato");
-    const respostaContato = document.getElementById("resposta-contato");
-    formContato.addEventListener("submit", (e) => {
+    // Formulário de contato
+    const formContato = document.getElementById('form-contato');
+    const respostaContato = document.getElementById('resposta-contato');
+
+    formContato.addEventListener('submit', (e) => {
       e.preventDefault();
-      respostaContato.textContent = "Mensagem enviada com sucesso! Obrigado pelo contato.";
+      respostaContato.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
       formContato.reset();
     });
 
-    // Libras
-    const btnLibras = document.getElementById("btn-libras");
-    const modalLibras = document.getElementById("modal-libras");
-    const btnFecharLibras = document.getElementById("btn-fechar-libras");
-
-    btnLibras.addEventListener("click", () => {
-      modalLibras.style.display = "block";
-      modalLibras.setAttribute("aria-hidden", "false");
-      btnFecharLibras.focus();
-    });
-
-    btnFecharLibras.addEventListener("click", () => {
-      modalLibras.style.display = "none";
-      modalLibras.setAttribute("aria-hidden", "true");
-      btnLibras.focus();
-    });
-
-    // Fechar modal Libras com ESC
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape" && modalLibras.style.display === "block") {
-        modalLibras.style.display = "none";
-        modalLibras.setAttribute("aria-hidden", "true");
-        btnLibras.focus();
-      }
-    });
   </script>
+
 </body>
 </html>
