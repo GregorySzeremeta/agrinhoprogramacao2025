@@ -2,45 +2,56 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Estação da Terra</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- VLibras -->
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
   <header>
     <h1>Estação da Terra</h1>
     <nav class="menu-navegacao">
-      <button id="btn-loja" aria-label="Ir para Loja" class="menu-btn">Loja</button>
-      <button id="btn-contato" aria-label="Ir para Contato" class="menu-btn">Contato</button>
-      <button id="btn-sobre" aria-label="Ir para Sobre" class="menu-btn">Sobre</button>
-      <button id="btn-carrinho" aria-label="Ir para Carrinho" class="menu-btn">Carrinho</button>
-      <button id="btn-quiz" aria-label="Ir para Quiz" class="menu-btn">Quiz</button>
-      <button id="botao-acessibilidade" aria-label="Abrir opções de acessibilidade" class="menu-btn">Acessibilidade</button>
+      <button id="btn-loja">Loja</button>
+      <button id="btn-contato">Contato</button>
+      <button id="btn-sobre">Sobre</button>
+      <button id="btn-carrinho">Carrinho</button>
+      <button id="btn-quiz">Quiz</button>
+      <button id="botao-acessibilidade">Acessibilidade</button>
     </nav>
   </header>
 
-  <!-- Menu acessibilidade -->
-  <div id="menu-acessibilidade" style="display:none;">
-    <button id="btn-aumentar-fonte" aria-label="Aumentar fonte">A+</button>
-    <button id="btn-modo-escuro" aria-label="Alternar modo escuro">🌙</button>
+  <div id="menu-acessibilidade" style="display: none;">
+    <button id="btn-aumentar-fonte">A+</button>
+    <button id="btn-modo-escuro">🌙</button>
   </div>
 
-  <!-- Loja -->
-  <section id="loja" tabindex="0" aria-label="Seção de loja" style="display: grid;">
-    <div class="produto"><h3>Banana</h3><p>R$ 3,00</p><button class="btn-add" data-nome="Banana" data-preco="3.00">Adicionar</button></div>
-    <div class="produto"><h3>Maçã</h3><p>R$ 4,50</p><button class="btn-add" data-nome="Maçã" data-preco="4.50">Adicionar</button></div>
-    <div class="produto"><h3>Queijo Minas</h3><p>R$ 15,00</p><button class="btn-add" data-nome="Queijo Minas" data-preco="15.00">Adicionar</button></div>
-    <div class="produto"><h3>Alface</h3><p>R$ 2,50</p><button class="btn-add" data-nome="Alface" data-preco="2.50">Adicionar</button></div>
-    <div class="produto"><h3>Tomate</h3><p>R$ 5,00</p><button class="btn-add" data-nome="Tomate" data-preco="5.00">Adicionar</button></div>
-    <div class="produto"><h3>Mel Puro</h3><p>R$ 18,00</p><button class="btn-add" data-nome="Mel Puro" data-preco="18.00">Adicionar</button></div>
-    <div class="produto"><h3>Ovos Caipiras (12)</h3><p>R$ 10,00</p><button class="btn-add" data-nome="Ovos Caipiras" data-preco="10.00">Adicionar</button></div>
-    <div class="produto"><h3>Abóbora</h3><p>R$ 7,00</p><button class="btn-add" data-nome="Abóbora" data-preco="7.00">Adicionar</button></div>
-    <div class="produto"><h3>Farinha de Mandioca</h3><p>R$ 6,50</p><button class="btn-add" data-nome="Farinha de Mandioca" data-preco="6.50">Adicionar</button></div>
-    <div class="produto"><h3>Leite Fresco</h3><p>R$ 4,00</p><button class="btn-add" data-nome="Leite Fresco" data-preco="4.00">Adicionar</button></div>
+  <section id="loja" tabindex="0" aria-label="Seção de loja">
+    <div class="produtos">
+      <div class="produto">
+        <img src="img/tomate.jpg" alt="Tomate orgânico" />
+        <h3>Tomate</h3>
+        <p>R$ 5,00</p>
+        <button class="btn-add" data-nome="Tomate" data-preco="5.00">Adicionar</button>
+      </div>
+      <div class="produto">
+        <img src="img/leite.jpg" alt="Leite integral" />
+        <h3>Leite</h3>
+        <p>R$ 4,50</p>
+        <button class="btn-add" data-nome="Leite" data-preco="4.50">Adicionar</button>
+      </div>
+      <!-- Adicione mais produtos aqui -->
+    </div>
   </section>
 
-  <!-- Contato -->
-  <section id="contato" tabindex="0" aria-label="Formulário de contato" style="display:none;">
+  <section id="contato" style="display: none;">
     <h2>Contato</h2>
     <form id="form-contato">
       <label for="nome">Nome:</label>
@@ -54,14 +65,17 @@
     <div id="resposta-contato"></div>
   </section>
 
-  <!-- Sobre -->
-  <section id="sobre" tabindex="0" aria-label="Informações sobre a Estação da Terra" style="display:none;">
+  <section id="sobre" style="display: none;">
     <h2>Sobre</h2>
-    <p>Bem-vindo à Estação da Terra, seu marketplace sustentável e interativo.</p>
+    <p>Marketplace sustentável e interativo: do campo à cidade, colhendo oportunidades.</p>
   </section>
 
-  <!-- Carrinho -->
-  <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" style="display:none;">
+  <section id="quiz" style="display: none;">
+    <h2>Quiz</h2>
+    <p>10 perguntas sobre agricultura virão aqui...</p>
+  </section>
+
+  <section id="carrinho" style="display: none;">
     <h2>Seu Carrinho</h2>
     <ul id="lista-carrinho"></ul>
     <p id="total-carrinho">Total: R$ 0,00</p>
@@ -74,136 +88,103 @@
   </footer>
 
   <script>
-    // Navegação
-    const btnLoja = document.getElementById('btn-loja');
-    const btnContato = document.getElementById('btn-contato');
-    const btnSobre = document.getElementById('btn-sobre');
-    const btnCarrinho = document.getElementById('btn-carrinho');
-
-    const loja = document.getElementById('loja');
-    const contato = document.getElementById('contato');
-    const sobre = document.getElementById('sobre');
-    const carrinho = document.getElementById('carrinho');
+    new window.VLibras.Widget();
 
     function esconderTodasSeções() {
-      loja.style.display = 'none';
-      contato.style.display = 'none';
-      sobre.style.display = 'none';
-      carrinho.style.display = 'none';
+      document.querySelectorAll('section').forEach(s => s.style.display = 'none');
     }
 
-    btnLoja.addEventListener('click', () => {
-      esconderTodasSeções();
-      loja.style.display = 'grid';
-      loja.focus();
-    });
-
-    btnContato.addEventListener('click', () => {
-      esconderTodasSeções();
-      contato.style.display = 'block';
-      contato.focus();
-    });
-
-    btnSobre.addEventListener('click', () => {
-      esconderTodasSeções();
-      sobre.style.display = 'block';
-      sobre.focus();
-    });
-
-    btnCarrinho.addEventListener('click', () => {
-      esconderTodasSeções();
-      carrinho.style.display = 'block';
-      carrinho.focus();
+    document.getElementById('btn-loja').onclick = () => {
+      esconderTodasSeções(); document.getElementById('loja').style.display = 'block';
+    };
+    document.getElementById('btn-contato').onclick = () => {
+      esconderTodasSeções(); document.getElementById('contato').style.display = 'block';
+    };
+    document.getElementById('btn-sobre').onclick = () => {
+      esconderTodasSeções(); document.getElementById('sobre').style.display = 'block';
+    };
+    document.getElementById('btn-carrinho').onclick = () => {
+      esconderTodasSeções(); document.getElementById('carrinho').style.display = 'block';
       atualizarCarrinho();
-    });
+    };
+    document.getElementById('btn-quiz').onclick = () => {
+      esconderTodasSeções(); document.getElementById('quiz').style.display = 'block';
+    };
 
-    esconderTodasSeções();
-    loja.style.display = 'grid';
+    document.getElementById('botao-acessibilidade').onclick = () => {
+      const menu = document.getElementById('menu-acessibilidade');
+      menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+    };
 
-    // Carrinho
-    let carrinhoItens = [];
+    document.getElementById('btn-aumentar-fonte').onclick = () => {
+      const fontSize = parseFloat(getComputedStyle(document.body).fontSize);
+      document.body.style.fontSize = (fontSize + 2) + 'px';
+    };
+
+    document.getElementById('btn-modo-escuro').onclick = () => {
+      document.body.classList.toggle('modo-escuro');
+    };
+
     const listaCarrinho = document.getElementById('lista-carrinho');
     const totalCarrinho = document.getElementById('total-carrinho');
-    const btnEsvaziarCarrinho = document.getElementById('btn-esvaziar-carrinho');
-    const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
+    let carrinhoItens = [];
 
-    function atualizarCarrinho(){
+    document.querySelectorAll('.btn-add').forEach(btn => {
+      btn.onclick = () => {
+        const nome = btn.dataset.nome;
+        const preco = parseFloat(btn.dataset.preco);
+        const existente = carrinhoItens.find(p => p.nome === nome);
+        if (existente) {
+          existente.quantidade++;
+        } else {
+          carrinhoItens.push({ nome, preco, quantidade: 1 });
+        }
+        atualizarCarrinho();
+        alert(`${nome} adicionado ao carrinho!`);
+      };
+    });
+
+    function atualizarCarrinho() {
       listaCarrinho.innerHTML = '';
       let total = 0;
-      carrinhoItens.forEach((item, index) => {
-        total += item.preco * item.quantidade;
+      carrinhoItens.forEach((item, i) => {
         const li = document.createElement('li');
         li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
         const btnRemover = document.createElement('button');
         btnRemover.textContent = 'Remover';
-        btnRemover.addEventListener('click', () => {
+        btnRemover.onclick = () => {
           item.quantidade--;
-          if(item.quantidade === 0){
-            carrinhoItens.splice(index, 1);
-          }
+          if (item.quantidade === 0) carrinhoItens.splice(i, 1);
           atualizarCarrinho();
-        });
+        };
         li.appendChild(btnRemover);
         listaCarrinho.appendChild(li);
+        total += item.preco * item.quantidade;
       });
-      totalCarrinho.textContent = 'Total: R$ ' + total.toFixed(2);
+      totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
     }
 
-    document.querySelectorAll('.btn-add').forEach(botao => {
-      botao.addEventListener('click', () => {
-        const nome = botao.getAttribute('data-nome');
-        const preco = parseFloat(botao.getAttribute('data-preco'));
-        const itemExistente = carrinhoItens.find(item => item.nome === nome);
-        if(itemExistente){
-          itemExistente.quantidade++;
-        } else {
-          carrinhoItens.push({nome, preco, quantidade: 1});
-        }
-        alert(nome + ' adicionado ao carrinho!');
-        atualizarCarrinho();
-      });
-    });
-
-    btnEsvaziarCarrinho.addEventListener('click', () => {
+    document.getElementById('btn-esvaziar-carrinho').onclick = () => {
       carrinhoItens = [];
       atualizarCarrinho();
-    });
+    };
 
-    btnFinalizarCompra.addEventListener('click', () => {
-      if(carrinhoItens.length === 0){
+    document.getElementById('btn-finalizar-compra').onclick = () => {
+      if (carrinhoItens.length === 0) {
         alert('Seu carrinho está vazio!');
         return;
       }
       window.location.href = 'pagamento.html';
-    });
+    };
 
-    // Acessibilidade
-    const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
-    const menuAcessibilidade = document.getElementById('menu-acessibilidade');
-    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
-    const btnModoEscuro = document.getElementById('btn-modo-escuro');
-
-    botaoAcessibilidade.addEventListener('click', () => {
-      menuAcessibilidade.style.display = menuAcessibilidade.style.display === 'none' ? 'block' : 'none';
-    });
-
-    btnAumentarFonte.addEventListener('click', () => {
-      let size = window.getComputedStyle(document.body).fontSize;
-      document.body.style.fontSize = (parseFloat(size) + 2) + 'px';
-    });
-
-    btnModoEscuro.addEventListener('click', () => {
-      document.body.classList.toggle('modo-escuro');
-    });
-
-    // Contato
-    const formContato = document.getElementById('form-contato');
-    const respostaContato = document.getElementById('resposta-contato');
-    formContato.addEventListener('submit', (e) => {
+    document.getElementById('form-contato').addEventListener('submit', e => {
       e.preventDefault();
-      respostaContato.textContent = 'Mensagem enviada com sucesso!';
-      formContato.reset();
+      document.getElementById('resposta-contato').textContent = 'Mensagem enviada com sucesso!';
+      e.target.reset();
     });
+
+    esconderTodasSeções();
+    document.getElementById('loja').style.display = 'block';
   </script>
 </body>
 </html>
