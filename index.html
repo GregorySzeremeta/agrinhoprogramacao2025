@@ -7,215 +7,170 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- VLibras - Sistema de Libras -->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-button"></div>
-    </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
-
   <header>
     <h1>Estação da Terra</h1>
-    <nav class="menu-navegacao">
-      <button id="btn-loja" aria-label="Ir para Loja" class="menu-btn">Loja</button>
-      <button id="btn-contato" aria-label="Ir para Contato" class="menu-btn">Contato</button>
-      <button id="btn-sobre" aria-label="Ir para Sobre" class="menu-btn">Sobre</button>
-      <button id="btn-carrinho" aria-label="Ir para Carrinho" class="menu-btn">Carrinho</button>
-      <button id="btn-quiz" aria-label="Ir para Quiz" class="menu-btn">Quiz</button>
-      <button id="botao-acessibilidade" aria-label="Abrir opções de acessibilidade" class="menu-btn">Acessibilidade</button>
+
+    <button class="menu-toggle-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-navegacao">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <nav id="menu-navegacao" class="menu-navegacao" role="navigation" aria-label="Menu principal">
+      <button id="btn-loja" class="menu-btn" aria-label="Ir para Loja">Loja</button>
+      <button id="btn-contato" class="menu-btn" aria-label="Ir para Contato">Contato</button>
+      <button id="btn-sobre" class="menu-btn" aria-label="Ir para Sobre">Sobre</button>
+      <button id="btn-carrinho" class="menu-btn" aria-label="Ir para Carrinho">Carrinho</button>
+      <button id="btn-quiz" class="menu-btn" aria-label="Ir para Quiz">Quiz</button>
+      <button id="botao-acessibilidade" class="menu-btn" aria-label="Abrir opções de acessibilidade">Acessibilidade</button>
     </nav>
   </header>
 
-  <!-- Menu acessibilidade -->
-  <div id="menu-acessibilidade" style="display:none;">
+  <div id="menu-acessibilidade" class="menu-acessibilidade" aria-label="Menu de acessibilidade" hidden>
     <button id="btn-aumentar-fonte" aria-label="Aumentar fonte">A+</button>
     <button id="btn-modo-escuro" aria-label="Alternar modo escuro">🌙</button>
   </div>
 
-  <!-- Loja -->
-  <section id="loja" tabindex="0" aria-label="Seção de loja" style="display: grid;">
-    <div class="produto"><h3>Banana</h3><p>R$ 3,00</p><button class="btn-add" data-nome="Banana" data-preco="3.00">Adicionar</button></div>
-    <div class="produto"><h3>Maçã</h3><p>R$ 4,50</p><button class="btn-add" data-nome="Maçã" data-preco="4.50">Adicionar</button></div>
-    <div class="produto"><h3>Queijo Minas</h3><p>R$ 15,00</p><button class="btn-add" data-nome="Queijo Minas" data-preco="15.00">Adicionar</button></div>
-    <div class="produto"><h3>Alface</h3><p>R$ 2,50</p><button class="btn-add" data-nome="Alface" data-preco="2.50">Adicionar</button></div>
-    <div class="produto"><h3>Tomate</h3><p>R$ 5,00</p><button class="btn-add" data-nome="Tomate" data-preco="5.00">Adicionar</button></div>
-    <div class="produto"><h3>Mel Puro</h3><p>R$ 18,00</p><button class="btn-add" data-nome="Mel Puro" data-preco="18.00">Adicionar</button></div>
-    <div class="produto"><h3>Ovos Caipiras (12)</h3><p>R$ 10,00</p><button class="btn-add" data-nome="Ovos Caipiras" data-preco="10.00">Adicionar</button></div>
-    <div class="produto"><h3>Abóbora</h3><p>R$ 7,00</p><button class="btn-add" data-nome="Abóbora" data-preco="7.00">Adicionar</button></div>
-    <div class="produto"><h3>Farinha de Mandioca</h3><p>R$ 6,50</p><button class="btn-add" data-nome="Farinha de Mandioca" data-preco="6.50">Adicionar</button></div>
-    <div class="produto"><h3>Leite Fresco</h3><p>R$ 4,00</p><button class="btn-add" data-nome="Leite Fresco" data-preco="4.00">Adicionar</button></div>
-  </section>
+  <main>
+    <!-- Seção Loja -->
+    <section id="loja" tabindex="0" aria-label="Seção de loja" class="secao ativa">
+      <div class="produto">
+        <h3>Banana</h3>
+        <p>R$ 3,00</p>
+        <button class="btn-add" data-nome="Banana" data-preco="3.00">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Maçã</h3>
+        <p>R$ 4,50</p>
+        <button class="btn-add" data-nome="Maçã" data-preco="4.50">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Laranja</h3>
+        <p>R$ 3,20</p>
+        <button class="btn-add" data-nome="Laranja" data-preco="3.20">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Leite Integral</h3>
+        <p>R$ 5,00</p>
+        <button class="btn-add" data-nome="Leite Integral" data-preco="5.00">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Queijo Minas</h3>
+        <p>R$ 12,00</p>
+        <button class="btn-add" data-nome="Queijo Minas" data-preco="12.00">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Mel Puro</h3>
+        <p>R$ 15,00</p>
+        <button class="btn-add" data-nome="Mel Puro" data-preco="15.00">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Tomate</h3>
+        <p>R$ 4,00</p>
+        <button class="btn-add" data-nome="Tomate" data-preco="4.00">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Alface</h3>
+        <p>R$ 2,50</p>
+        <button class="btn-add" data-nome="Alface" data-preco="2.50">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Arroz Integral</h3>
+        <p>R$ 8,00</p>
+        <button class="btn-add" data-nome="Arroz Integral" data-preco="8.00">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Feijão Preto</h3>
+        <p>R$ 7,50</p>
+        <button class="btn-add" data-nome="Feijão Preto" data-preco="7.50">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Abacaxi</h3>
+        <p>R$ 6,00</p>
+        <button class="btn-add" data-nome="Abacaxi" data-preco="6.00">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Batata Doce</h3>
+        <p>R$ 3,80</p>
+        <button class="btn-add" data-nome="Batata Doce" data-preco="3.80">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Cenoura</h3>
+        <p>R$ 2,80</p>
+        <button class="btn-add" data-nome="Cenoura" data-preco="2.80">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Leite Desnatado</h3>
+        <p>R$ 4,80</p>
+        <button class="btn-add" data-nome="Leite Desnatado" data-preco="4.80">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Queijo Prato</h3>
+        <p>R$ 14,00</p>
+        <button class="btn-add" data-nome="Queijo Prato" data-preco="14.00">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Mel Silvestre</h3>
+        <p>R$ 18,00</p>
+        <button class="btn-add" data-nome="Mel Silvestre" data-preco="18.00">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Alho</h3>
+        <p>R$ 5,00</p>
+        <button class="btn-add" data-nome="Alho" data-preco="5.00">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Grão de Bico</h3>
+        <p>R$ 7,00</p>
+        <button class="btn-add" data-nome="Grão de Bico" data-preco="7.00">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Lentilha</h3>
+        <p>R$ 6,50</p>
+        <button class="btn-add" data-nome="Lentilha" data-preco="6.50">Adicionar</button>
+      </div>
+      <div class="produto">
+        <h3>Morango</h3>
+        <p>R$ 9,00</p>
+        <button class="btn-add" data-nome="Morango" data-preco="9.00">Adicionar</button>
+      </div>
+    </section>
 
-  <!-- Contato -->
-  <section id="contato" tabindex="0" aria-label="Formulário de contato" style="display:none;">
-    <h2>Contato</h2>
-    <form id="form-contato">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required />
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required />
-      <label for="mensagem">Mensagem:</label>
-      <textarea id="mensagem" name="mensagem" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-    <div id="resposta-contato"></div>
-  </section>
+    <!-- Seção Contato -->
+    <section id="contato" tabindex="0" aria-label="Formulário de contato" class="secao">
+      <h2>Contato</h2>
+      <form id="form-contato">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      <div id="resposta-contato"></div>
+    </section>
 
-  <!-- Sobre -->
-  <section id="sobre" tabindex="0" aria-label="Informações sobre a Estação da Terra" style="display:none;">
-    <h2>Sobre</h2>
-    <p>Bem-vindo à Estação da Terra, seu marketplace sustentável e interativo.</p>
-  </section>
+    <!-- Seção Sobre -->
+    <section id="sobre" tabindex="0" aria-label="Informações sobre a Estação da Terra" class="secao">
+      <h2>Sobre</h2>
+      <p>Bem-vindo à Estação da Terra, seu marketplace sustentável e interativo. Trabalhamos para trazer o melhor dos produtos naturais direto do campo para a sua casa, prezando por qualidade, frescor e sustentabilidade.</p>
+    </section>
 
-  <!-- Carrinho -->
-  <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" style="display:none;">
-    <h2>Seu Carrinho</h2>
-    <ul id="lista-carrinho"></ul>
-    <p id="total-carrinho">Total: R$ 0,00</p>
-    <button id="btn-esvaziar-carrinho">Esvaziar Carrinho</button>
-    <button id="btn-finalizar-compra">Finalizar Compra</button>
-  </section>
+    <!-- Seção Carrinho -->
+    <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" class="secao">
+      <h2>Seu Carrinho</h2>
+      <ul id="lista-carrinho" aria-live="polite"></ul>
+      <p id="total-carrinho">Total: R$ 0,00</p>
+      <button id="btn-esvaziar-carrinho">Esvaziar Carrinho</button>
+      <button id="btn-finalizar-compra">Finalizar Compra</button>
+    </section>
+  </main>
 
   <footer>
     <p>© 2025 Estação da Terra - Todos os direitos reservados</p>
   </footer>
 
-  <script>
-    // Navegação
-    const btnLoja = document.getElementById('btn-loja');
-    const btnContato = document.getElementById('btn-contato');
-    const btnSobre = document.getElementById('btn-sobre');
-    const btnCarrinho = document.getElementById('btn-carrinho');
-
-    const loja = document.getElementById('loja');
-    const contato = document.getElementById('contato');
-    const sobre = document.getElementById('sobre');
-    const carrinho = document.getElementById('carrinho');
-
-    function esconderTodasSeções() {
-      loja.style.display = 'none';
-      contato.style.display = 'none';
-      sobre.style.display = 'none';
-      carrinho.style.display = 'none';
-    }
-
-    btnLoja.addEventListener('click', () => {
-      esconderTodasSeções();
-      loja.style.display = 'grid';
-      loja.focus();
-    });
-
-    btnContato.addEventListener('click', () => {
-      esconderTodasSeções();
-      contato.style.display = 'block';
-      contato.focus();
-    });
-
-    btnSobre.addEventListener('click', () => {
-      esconderTodasSeções();
-      sobre.style.display = 'block';
-      sobre.focus();
-    });
-
-    btnCarrinho.addEventListener('click', () => {
-      esconderTodasSeções();
-      carrinho.style.display = 'block';
-      carrinho.focus();
-      atualizarCarrinho();
-    });
-
-    esconderTodasSeções();
-    loja.style.display = 'grid';
-
-    // Carrinho
-    let carrinhoItens = [];
-    const listaCarrinho = document.getElementById('lista-carrinho');
-    const totalCarrinho = document.getElementById('total-carrinho');
-    const btnEsvaziarCarrinho = document.getElementById('btn-esvaziar-carrinho');
-    const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
-
-    function atualizarCarrinho(){
-      listaCarrinho.innerHTML = '';
-      let total = 0;
-      carrinhoItens.forEach((item, index) => {
-        total += item.preco * item.quantidade;
-        const li = document.createElement('li');
-        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
-        const btnRemover = document.createElement('button');
-        btnRemover.textContent = 'Remover';
-        btnRemover.addEventListener('click', () => {
-          item.quantidade--;
-          if(item.quantidade === 0){
-            carrinhoItens.splice(index, 1);
-          }
-          atualizarCarrinho();
-        });
-        li.appendChild(btnRemover);
-        listaCarrinho.appendChild(li);
-      });
-      totalCarrinho.textContent = 'Total: R$ ' + total.toFixed(2);
-    }
-
-    document.querySelectorAll('.btn-add').forEach(botao => {
-      botao.addEventListener('click', () => {
-        const nome = botao.getAttribute('data-nome');
-        const preco = parseFloat(botao.getAttribute('data-preco'));
-        const itemExistente = carrinhoItens.find(item => item.nome === nome);
-        if(itemExistente){
-          itemExistente.quantidade++;
-        } else {
-          carrinhoItens.push({nome, preco, quantidade: 1});
-        }
-        alert(nome + ' adicionado ao carrinho!');
-        atualizarCarrinho();
-      });
-    });
-
-    btnEsvaziarCarrinho.addEventListener('click', () => {
-      carrinhoItens = [];
-      atualizarCarrinho();
-    });
-
-    btnFinalizarCompra.addEventListener('click', () => {
-      if(carrinhoItens.length === 0){
-        alert('Seu carrinho está vazio!');
-        return;
-      }
-      window.location.href = 'pagamento.html';
-    });
-
-    // Acessibilidade
-    const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
-    const menuAcessibilidade = document.getElementById('menu-acessibilidade');
-    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
-    const btnModoEscuro = document.getElementById('btn-modo-escuro');
-
-    botaoAcessibilidade.addEventListener('click', () => {
-      menuAcessibilidade.style.display = menuAcessibilidade.style.display === 'none' ? 'block' : 'none';
-    });
-
-    btnAumentarFonte.addEventListener('click', () => {
-      let size = window.getComputedStyle(document.body).fontSize;
-      document.body.style.fontSize = (parseFloat(size) + 2) + 'px';
-    });
-
-    btnModoEscuro.addEventListener('click', () => {
-      document.body.classList.toggle('modo-escuro');
-    });
-
-    // Contato
-    const formContato = document.getElementById('form-contato');
-    const respostaContato = document.getElementById('resposta-contato');
-    formContato.addEventListener('submit', (e) => {
-      e.preventDefault();
-      respostaContato.textContent = 'Mensagem enviada com sucesso!';
-      formContato.reset();
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
