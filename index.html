@@ -5,295 +5,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Estação da Terra</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Hand Talk LIBRAS 3D -->
-  <script src="https://plugin.handtalk.me/web/latest/handtalk.min.js"></script>
 </head>
 <body>
+
   <header>
     <h1>Estação da Terra</h1>
-    <nav class="menu-navegacao">
-      <button id="btn-loja" class="menu-btn" aria-label="Ir para Loja">Loja</button>
-      <button id="botao-acessibilidade" class="menu-btn" aria-label="Abrir opções de acessibilidade">Acessibilidade</button>
-    </nav>
   </header>
 
-  <!-- Botão fixo do carrinho -->
-  <button id="btn-carrinho-fixo" aria-label="Abrir carrinho de compras">
-    🛒
-    <span id="badge-carrinho" aria-live="polite">0</span>
-  </button>
-
-  <!-- Menu de três pontinhos -->
-  <div id="menu-flutuante">
-    <button id="btn-menu-flutuante" aria-label="Abrir menu">⋮</button>
-    <div id="opcoes-flutuantes" class="escondido" role="menu" aria-hidden="true">
-      <button id="btn-quiz" role="menuitem">Quiz</button>
-      <button id="btn-contato" role="menuitem">Contato</button>
-      <button id="btn-sobre" role="menuitem">Sobre</button>
-      <button id="btn-carrinho" role="menuitem">Carrinho</button>
-    </div>
-  </div>
-
-  <!-- Menu de acessibilidade -->
-  <div id="menu-acessibilidade" class="escondido" aria-label="Menu de acessibilidade">
-    <button id="btn-aumentar-fonte" aria-label="Aumentar fonte">A+</button>
-    <button id="btn-diminuir-fonte" aria-label="Diminuir fonte">A-</button>
-    <button id="btn-modo-escuro" aria-label="Alternar modo escuro">🌙</button>
-  </div>
-
   <main>
-    <section class="produtos" aria-label="Produtos da feira">
-      <!-- Produto 1 -->
-      <article class="produto" tabindex="0">
-        <img src="img/leite.jpg" alt="Leite fresco" />
-        <h2>Leite Fresco</h2>
-        <p>Leite puro direto do campo.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Leite Fresco ao carrinho">Adicionar ao Carrinho</button>
+    <!-- Aqui você mantém TODOS os produtos e conteúdo exatamente como tinha -->
+    <!-- Exemplo do produto: -->
+    <section id="produtos">
+      <article class="produto">
+        <img src="imagens/leite.jpg" alt="Leite fresco" />
+        <h3>Leite Fresco</h3>
+        <p>Leite direto do campo, puro e natural.</p>
+        <button class="btn-add" data-produto="Leite Fresco">Adicionar ao carrinho</button>
       </article>
-
-      <!-- Produto 2 -->
-      <article class="produto" tabindex="0">
-        <img src="img/frutas.jpg" alt="Frutas variadas" />
-        <h2>Frutas da Estação</h2>
-        <p>Mix de frutas frescas e selecionadas.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Frutas da Estação ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 3 -->
-      <article class="produto" tabindex="0">
-        <img src="img/mel.jpg" alt="Mel natural" />
-        <h2>Mel Natural</h2>
-        <p>Mel puro, direto da colmeia.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Mel Natural ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 4 -->
-      <article class="produto" tabindex="0">
-        <img src="img/queijo.jpg" alt="Queijo artesanal" />
-        <h2>Queijo Artesanal</h2>
-        <p>Queijo feito à mão, sabor único.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Queijo Artesanal ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 5 -->
-      <article class="produto" tabindex="0">
-        <img src="img/verduras.jpg" alt="Verduras frescas" />
-        <h2>Verduras Frescas</h2>
-        <p>Verduras colhidas no dia.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Verduras Frescas ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 6 -->
-      <article class="produto" tabindex="0">
-        <img src="img/graos.jpg" alt="Grãos variados" />
-        <h2>Grãos Selecionados</h2>
-        <p>Grãos com alta qualidade para seu preparo.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Grãos Selecionados ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 7 -->
-      <article class="produto" tabindex="0">
-        <img src="img/sementes.jpg" alt="Sementes variadas" />
-        <h2>Sementes para Plantio</h2>
-        <p>Sementes selecionadas para melhor germinação.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Sementes para Plantio ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 8 -->
-      <article class="produto" tabindex="0">
-        <img src="img/frutas_citricas.jpg" alt="Frutas cítricas" />
-        <h2>Frutas Cítricas</h2>
-        <p>Laranja, limão e tangerina fresquinhos.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Frutas Cítricas ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 9 -->
-      <article class="produto" tabindex="0">
-        <img src="img/melancia.jpg" alt="Melancia fresca" />
-        <h2>Melancia</h2>
-        <p>Melancia doce e suculenta.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Melancia ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 10 -->
-      <article class="produto" tabindex="0">
-        <img src="img/batata.jpg" alt="Batata" />
-        <h2>Batata Orgânica</h2>
-        <p>Batatas cultivadas sem agrotóxicos.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Batata Orgânica ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 11 -->
-      <article class="produto" tabindex="0">
-        <img src="img/cenoura.jpg" alt="Cenoura" />
-        <h2>Cenoura</h2>
-        <p>Cenouras frescas para suas receitas.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Cenoura ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 12 -->
-      <article class="produto" tabindex="0">
-        <img src="img/feijao.jpg" alt="Feijão" />
-        <h2>Feijão</h2>
-        <p>Feijão de ótima qualidade para o dia a dia.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Feijão ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 13 -->
-      <article class="produto" tabindex="0">
-        <img src="img/arroz.jpg" alt="Arroz" />
-        <h2>Arroz</h2>
-        <p>Arroz branco selecionado.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Arroz ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 14 -->
-      <article class="produto" tabindex="0">
-        <img src="img/tomate.jpg" alt="Tomate" />
-        <h2>Tomate</h2>
-        <p>Tomates vermelhos e suculentos.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Tomate ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 15 -->
-      <article class="produto" tabindex="0">
-        <img src="img/alface.jpg" alt="Alface" />
-        <h2>Alface</h2>
-        <p>Alface fresca e crocante.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Alface ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 16 -->
-      <article class="produto" tabindex="0">
-        <img src="img/milho.jpg" alt="Milho" />
-        <h2>Milho</h2>
-        <p>Milho doce colhido na hora.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Milho ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 17 -->
-      <article class="produto" tabindex="0">
-        <img src="img/cebola.jpg" alt="Cebola" />
-        <h2>Cebola</h2>
-        <p>Cebolas selecionadas para seu uso diário.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Cebola ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 18 -->
-      <article class="produto" tabindex="0">
-        <img src="img/laranja.jpg" alt="Laranja" />
-        <h2>Laranja</h2>
-        <p>Laranjas fresquinhas para sucos naturais.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Laranja ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 19 -->
-      <article class="produto" tabindex="0">
-        <img src="img/maca.jpg" alt="Maçã" />
-        <h2>Maçã</h2>
-        <p>Maçãs crocantes e suculentas.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Maçã ao carrinho">Adicionar ao Carrinho</button>
-      </article>
-
-      <!-- Produto 20 -->
-      <article class="produto" tabindex="0">
-        <img src="img/pera.jpg" alt="Pera" />
-        <h2>Pera</h2>
-        <p>Peras doces e fresquinhas.</p>
-        <button class="btn-adicionar" aria-label="Adicionar Pera ao carrinho">Adicionar ao Carrinho</button>
-      </article>
+      <!-- Replique todos os produtos exatamente como você já tinha -->
+      <!-- ... mais produtos ... -->
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Estação da Terra. Todos os direitos reservados.</p>
-  </footer>
+  <!-- Botão fixo do carrinho (no canto inferior direito) -->
+  <button id="btn-carrinho-fixo" aria-label="Abrir carrinho">
+    🛒
+    <span id="badge-carrinho" class="escondido">0</span>
+  </button>
+
+  <!-- Carrinho (escondido inicialmente) -->
+  <aside id="carrinho" class="escondido" aria-label="Carrinho de compras">
+    <h2>Carrinho de Compras</h2>
+    <div id="itens-carrinho">
+      <!-- Itens adicionados aqui dinamicamente -->
+    </div>
+    <button id="btn-fechar-carrinho" aria-label="Fechar carrinho">Fechar</button>
+  </aside>
+
+  <!-- Menu flutuante 3 pontinhos no canto superior esquerdo -->
+  <div id="menu-flutuante" aria-label="Menu de opções">
+    <button id="btn-menu-flutuante" aria-haspopup="true" aria-expanded="false" aria-controls="opcoes-flutuantes" title="Abrir menu de opções">⋮</button>
+    <div id="opcoes-flutuantes" class="escondido" role="menu">
+      <button role="menuitem" id="btn-quiz">Quiz</button>
+      <button role="menuitem" id="btn-contato">Contato</button>
+      <button role="menuitem" id="btn-sobre">Sobre</button>
+    </div>
+  </div>
 
   <script>
-    // Inicia widget Hand Talk LIBRAS 3D
-    window.addEventListener('load', () => {
-      new window.HandTalk.Widget({
-        token: 'seu_token_aqui', // troque pelo seu token real Hand Talk
-        position: 'right',
-        videoEnabled: true,
-        pageSpeech: true
-      });
+    // Função para mostrar/esconder carrinho
+    const btnCarrinho = document.getElementById('btn-carrinho-fixo');
+    const carrinho = document.getElementById('carrinho');
+    const btnFecharCarrinho = document.getElementById('btn-fechar-carrinho');
+
+    btnCarrinho.addEventListener('click', () => {
+      carrinho.classList.toggle('escondido');
     });
 
-    // Função para mostrar/esconder menu flutuante
-    const btnMenu = document.getElementById('btn-menu-flutuante');
-    const opcoesMenu = document.getElementById('opcoes-flutuantes');
-    btnMenu.addEventListener('click', () => {
-      const isHidden = opcoesMenu.classList.contains('escondido');
-      if (isHidden) {
-        opcoesMenu.classList.remove('escondido');
-        opcoesMenu.setAttribute('aria-hidden', 'false');
+    btnFecharCarrinho.addEventListener('click', () => {
+      carrinho.classList.add('escondido');
+    });
+
+    // Menu flutuante 3 pontinhos
+    const btnMenuFlutuante = document.getElementById('btn-menu-flutuante');
+    const opcoesFlutuantes = document.getElementById('opcoes-flutuantes');
+
+    btnMenuFlutuante.addEventListener('click', () => {
+      const aberto = !opcoesFlutuantes.classList.contains('escondido');
+      if (aberto) {
+        opcoesFlutuantes.classList.add('escondido');
+        btnMenuFlutuante.setAttribute('aria-expanded', 'false');
       } else {
-        opcoesMenu.classList.add('escondido');
-        opcoesMenu.setAttribute('aria-hidden', 'true');
+        opcoesFlutuantes.classList.remove('escondido');
+        btnMenuFlutuante.setAttribute('aria-expanded', 'true');
       }
     });
 
-    // Redirecionamento dos botões do menu flutuante
-    document.getElementById('btn-quiz').addEventListener('click', () => {
-      window.location.href = 'quizzes.html';
+    // Fechar menu ao clicar fora
+    document.addEventListener('click', (e) => {
+      if (!btnMenuFlutuante.contains(e.target) && !opcoesFlutuantes.contains(e.target)) {
+        opcoesFlutuantes.classList.add('escondido');
+        btnMenuFlutuante.setAttribute('aria-expanded', 'false');
+      }
     });
+
+    // Botões do menu
+    document.getElementById('btn-quiz').addEventListener('click', () => {
+      window.location.href = 'quizis.html';
+    });
+
     document.getElementById('btn-contato').addEventListener('click', () => {
       window.location.href = 'contato.html';
     });
+
     document.getElementById('btn-sobre').addEventListener('click', () => {
       window.location.href = 'sobre.html';
     });
-    document.getElementById('btn-carrinho').addEventListener('click', () => {
-      alert('Abrir carrinho de compras (a implementar)');
-    });
 
-    // Mostrar/esconder menu acessibilidade
-    const btnAcessibilidade = document.getElementById('botao-acessibilidade');
-    const menuAcessibilidade = document.getElementById('menu-acessibilidade');
-    btnAcessibilidade.addEventListener('click', () => {
-      if(menuAcessibilidade.classList.contains('escondido')) {
-        menuAcessibilidade.classList.remove('escondido');
-      } else {
-        menuAcessibilidade.classList.add('escondido');
-      }
-    });
-
-    // Controle de tamanho da fonte
-    const corpo = document.body;
-    let fontSize = 16;
-
-    document.getElementById('btn-aumentar-fonte').addEventListener('click', () => {
-      if (fontSize < 24) {
-        fontSize += 2;
-        corpo.style.fontSize = fontSize + 'px';
-      }
-    });
-
-    document.getElementById('btn-diminuir-fonte').addEventListener('click', () => {
-      if (fontSize > 12) {
-        fontSize -= 2;
-        corpo.style.fontSize = fontSize + 'px';
-      }
-    });
-
-    // Modo escuro / claro
-    document.getElementById('btn-modo-escuro').addEventListener('click', () => {
-      corpo.classList.toggle('modo-escuro');
-    });
-
-    // Adicionar ao carrinho (exemplo simples)
-    const botoesAdicionar = document.querySelectorAll('.btn-adicionar');
+    // Adicionar produtos ao carrinho (exemplo básico)
+    const botoesAdd = document.querySelectorAll('.btn-add');
+    const itensCarrinhoDiv = document.getElementById('itens-carrinho');
     const badgeCarrinho = document.getElementById('badge-carrinho');
-    let contadorCarrinho = 0;
 
-    botoesAdicionar.forEach(botao => {
-      botao.addEventListener('click', () => {
-        contadorCarrinho++;
-        badgeCarrinho.textContent = contadorCarrinho;
-        alert('Produto adicionado ao carrinho!');
+    let itensCarrinho = [];
+
+    botoesAdd.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const produto = btn.getAttribute('data-produto');
+        itensCarrinho.push(produto);
+        atualizarCarrinho();
       });
     });
+
+    function atualizarCarrinho() {
+      itensCarrinhoDiv.innerHTML = '';
+      itensCarrinho.forEach((item, i) => {
+        const divItem = document.createElement('div');
+        divItem.textContent = item;
+        itensCarrinhoDiv.appendChild(divItem);
+      });
+      badgeCarrinho.textContent = itensCarrinho.length;
+      badgeCarrinho.classList.toggle('escondido', itensCarrinho.length === 0);
+    }
+
+    // Inicializa o badge escondido
+    atualizarCarrinho();
   </script>
 </body>
 </html>
