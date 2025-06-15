@@ -1,3 +1,5 @@
+/* style.css */
+
 /* Reset básico */
 * {
   margin: 0;
@@ -5,240 +7,235 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f9f7;
-  color: #222;
-  line-height: 1.6;
   font-size: 16px;
-  min-height: 100vh;
-  padding: 20px;
+  background-color: #f8f8f8;
+  color: #333;
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* Header */
+.modo-escuro {
+  background-color: #121212;
+  color: #e4e4e4;
+}
+
 header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-header h1 {
-  font-size: 2.8rem;
-  color: #2e7d32;
-  font-weight: 700;
-}
-
-/* Produtos */
-#produtos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
-  gap: 20px;
-  margin-bottom: 80px;
-}
-
-.produto {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(46,125,50,0.15);
-  padding: 15px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.produto:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 24px rgba(46,125,50,0.25);
-}
-
-.produto img {
-  max-width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.produto h3 {
-  color: #2e7d32;
-  margin-bottom: 8px;
-  font-weight: 600;
-}
-
-.produto p {
-  color: #555;
-  margin-bottom: 12px;
-  font-size: 0.9rem;
-}
-
-/* Botão adicionar */
-.btn-add {
-  background-color: #4caf50;
+  background-color: #4CAF50;
   color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav.menu-navegacao {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.menu-btn {
+  background-color: white;
+  color: #4CAF50;
+  border: 2px solid #4CAF50;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
   cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.25s ease;
-  width: 100%;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
-.btn-add:hover {
-  background-color: #388e3c;
+.menu-btn:hover {
+  background-color: #4CAF50;
+  color: white;
 }
 
-/* Botão fixo do carrinho */
 #btn-carrinho-fixo {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #2e7d32;
-  border: none;
+  background-color: #4CAF50;
   color: white;
-  font-size: 28px;
-  width: 58px;
-  height: 58px;
+  border: none;
   border-radius: 50%;
+  padding: 1rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(46,125,50,0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 110;
-  transition: background-color 0.3s ease;
+  z-index: 999;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-#btn-carrinho-fixo:hover {
-  background-color: #1b4d22;
-}
-
-/* Badge do carrinho */
 #badge-carrinho {
+  background: red;
+  color: white;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 50%;
   position: absolute;
-  top: 6px;
-  right: 6px;
-  background: #ff3d00;
-  color: white;
-  font-size: 12px;
-  padding: 3px 7px;
-  border-radius: 50%;
-  font-weight: 700;
+  top: -5px;
+  right: -5px;
+  display: none;
 }
 
-.escondido {
-  display: none !important;
-}
-
-/* Carrinho lateral */
-#carrinho {
+#menu-acessibilidade {
   position: fixed;
-  top: 0;
-  right: 0;
-  width: 320px;
-  height: 100vh;
-  background: white;
-  box-shadow: -6px 0 20px rgba(0,0,0,0.15);
-  padding: 20px;
-  overflow-y: auto;
-  z-index: 105;
-  display: flex;
-  flex-direction: column;
-}
-
-#carrinho h2 {
-  color: #2e7d32;
-  margin-bottom: 15px;
-}
-
-#itens-carrinho div {
-  padding: 10px 8px;
-  border-bottom: 1px solid #eee;
-  font-size: 1rem;
-  color: #333;
-}
-
-/* Botão fechar carrinho */
-#btn-fechar-carrinho {
-  margin-top: auto;
-  background-color: #e53935;
-  border: none;
-  color: white;
-  padding: 12px 0;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#btn-fechar-carrinho:hover {
-  background-color: #ab000d;
-}
-
-/* Menu flutuante 3 pontinhos - canto superior esquerdo */
-#menu-flutuante {
-  position: fixed;
-  top: 15px;
-  left: 20px;
-  z-index: 120;
-  user-select: none;
-}
-
-#btn-menu-flutuante {
-  background: #2e7d32;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 42px;
-  height: 42px;
-  font-size: 28px;
-  cursor: pointer;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 1;
-  transition: background-color 0.3s ease;
-}
-
-#btn-menu-flutuante:hover {
-  background: #1b4d22;
-}
-
-#opcoes-flutuantes {
-  margin-top: 8px;
+  bottom: 90px;
+  right: 20px;
   background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border: 2px solid #4CAF50;
+  border-radius: 10px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 998;
+}
+
+#menu-acessibilidade button {
+  margin: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+section {
+  padding: 2rem;
+}
+
+section h2 {
+  margin-bottom: 1rem;
+  color: #4CAF50;
+}
+
+#loja {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.produto {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.produto:hover {
+  transform: scale(1.03);
+}
+
+.produto img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.produto h3 {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.produto p {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.btn-add {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-add:hover {
+  background-color: #388E3C;
+}
+
+#lista-carrinho li {
+  margin-bottom: 0.5rem;
+  list-style: none;
+}
+
+#lista-carrinho button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.7rem;
+  margin-left: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#btn-esvaziar-carrinho,
+#btn-finalizar-compra {
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+form {
+  max-width: 500px;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  min-width: 120px;
 }
 
-#opcoes-flutuantes button {
-  background: none;
+form label {
+  margin: 0.5rem 0 0.2rem;
+}
+
+form input, form textarea {
+  padding: 0.5rem;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+form button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
   border: none;
-  padding: 10px 15px;
-  font-size: 1rem;
-  color: #2e7d32;
-  text-align: left;
-  cursor: pointer;
+  padding: 0.6rem;
   border-radius: 8px;
-  transition: background-color 0.25s ease;
+  cursor: pointer;
 }
 
-#opcoes-flutuantes button:hover {
-  background-color: #e6f2e9;
+footer {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
 }
 
-/* Responsividade básica */
+/* Responsivo */
 @media (max-width: 600px) {
-  #produtos {
-    grid-template-columns: 1fr 1fr;
+  .menu-btn {
+    flex: 1 1 100%;
+    margin: 0.3rem 0;
   }
 
-  #carrinho {
-    width: 100%;
-    height: 50vh;
-    bottom: 0;
-    top: auto;
-    right: 0;
-    border-radius: 12px 12px 0 0;
+  #loja {
+    grid-template-columns: 1fr;
+  }
+
+  #btn-carrinho-fixo {
+    padding: 0.8rem;
+    font-size: 1.2rem;
   }
 }
