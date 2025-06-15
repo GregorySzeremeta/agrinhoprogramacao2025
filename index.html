@@ -10,20 +10,14 @@
   <header>
     <h1>Estação da Terra</h1>
     <nav class="menu-navegacao">
-     <button id="btn-loja" class="menu-btn" aria-label="Ir para Loja">Loja</button>
-  <button id="btn-contato" class="menu-btn" aria-label="Ir para Contato">Contato</button>
-  <button id="btn-sobre" class="menu-btn" aria-label="Ir para Sobre">Sobre</button>
-  <button id="btn-carrinho" class="menu-btn" aria-label="Ir para Carrinho">Carrinho</button>
-  <button id="btn-quiz" class="menu-btn" aria-label="Ir para Quiz">Quiz</button> <!-- Novo botão -->
-  <button id="botao-acessibilidade" class="menu-btn" aria-label="Abrir opções de acessibilidade">Acessibilidade</button>
+      <button id="btn-loja" aria-label="Ir para Loja" class="menu-btn">Loja</button>
+      <button id="btn-contato" aria-label="Ir para Contato" class="menu-btn">Contato</button>
+      <button id="btn-sobre" aria-label="Ir para Sobre" class="menu-btn">Sobre</button>
+      <button id="btn-carrinho" aria-label="Ir para Carrinho" class="menu-btn">Carrinho</button>
+      <button id="btn-quiz" aria-label="Ir para Quiz" class="menu-btn">Quiz</button>
+      <button id="botao-acessibilidade" aria-label="Abrir opções de acessibilidade" class="menu-btn">Acessibilidade</button>
     </nav>
   </header>
-
-  <!-- Botão fixo do carrinho -->
-  <button id="btn-carrinho-fixo" aria-label="Abrir carrinho de compras">
-    🛒
-    <span id="badge-carrinho" aria-live="polite">0</span>
-  </button>
 
   <!-- Menu acessibilidade -->
   <div id="menu-acessibilidade" style="display:none;">
@@ -33,7 +27,16 @@
 
   <!-- Loja -->
   <section id="loja" tabindex="0" aria-label="Seção de loja" style="display: grid;">
-    <!-- Produtos vão ser inseridos aqui via JavaScript -->
+    <div class="produto"><h3>Banana</h3><p>R$ 3,00</p><button class="btn-add" data-nome="Banana" data-preco="3.00">Adicionar</button></div>
+    <div class="produto"><h3>Maçã</h3><p>R$ 4,50</p><button class="btn-add" data-nome="Maçã" data-preco="4.50">Adicionar</button></div>
+    <div class="produto"><h3>Queijo Minas</h3><p>R$ 15,00</p><button class="btn-add" data-nome="Queijo Minas" data-preco="15.00">Adicionar</button></div>
+    <div class="produto"><h3>Alface</h3><p>R$ 2,50</p><button class="btn-add" data-nome="Alface" data-preco="2.50">Adicionar</button></div>
+    <div class="produto"><h3>Tomate</h3><p>R$ 5,00</p><button class="btn-add" data-nome="Tomate" data-preco="5.00">Adicionar</button></div>
+    <div class="produto"><h3>Mel Puro</h3><p>R$ 18,00</p><button class="btn-add" data-nome="Mel Puro" data-preco="18.00">Adicionar</button></div>
+    <div class="produto"><h3>Ovos Caipiras (12)</h3><p>R$ 10,00</p><button class="btn-add" data-nome="Ovos Caipiras" data-preco="10.00">Adicionar</button></div>
+    <div class="produto"><h3>Abóbora</h3><p>R$ 7,00</p><button class="btn-add" data-nome="Abóbora" data-preco="7.00">Adicionar</button></div>
+    <div class="produto"><h3>Farinha de Mandioca</h3><p>R$ 6,50</p><button class="btn-add" data-nome="Farinha de Mandioca" data-preco="6.50">Adicionar</button></div>
+    <div class="produto"><h3>Leite Fresco</h3><p>R$ 4,00</p><button class="btn-add" data-nome="Leite Fresco" data-preco="4.00">Adicionar</button></div>
   </section>
 
   <!-- Contato -->
@@ -41,31 +44,29 @@
     <h2>Contato</h2>
     <form id="form-contato">
       <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required aria-required="true" />
+      <input type="text" id="nome" name="nome" required />
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required aria-required="true" />
+      <input type="email" id="email" name="email" required />
       <label for="mensagem">Mensagem:</label>
-      <textarea id="mensagem" name="mensagem" required aria-required="true"></textarea>
-      <button type="submit" aria-label="Enviar mensagem de contato">Enviar</button>
+      <textarea id="mensagem" name="mensagem" required></textarea>
+      <button type="submit">Enviar</button>
     </form>
-    <div id="resposta-contato" aria-live="polite" style="margin-top: 1rem;"></div>
+    <div id="resposta-contato"></div>
   </section>
 
   <!-- Sobre -->
   <section id="sobre" tabindex="0" aria-label="Informações sobre a Estação da Terra" style="display:none;">
     <h2>Sobre</h2>
-    <p>Bem-vindo à Estação da Terra, seu marketplace sustentável e interativo, que conecta o campo à cidade, colhendo oportunidades para todos.</p>
-    <p>Nossa missão é promover produtos frescos, orgânicos e de qualidade, valorizando o produtor local e incentivando práticas sustentáveis.</p>
-    <p>Junte-se a nós e faça parte desse movimento verde!</p>
+    <p>Bem-vindo à Estação da Terra, seu marketplace sustentável e interativo.</p>
   </section>
 
   <!-- Carrinho -->
   <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" style="display:none;">
     <h2>Seu Carrinho</h2>
-    <ul id="lista-carrinho" aria-live="polite"></ul>
+    <ul id="lista-carrinho"></ul>
     <p id="total-carrinho">Total: R$ 0,00</p>
-    <button id="btn-esvaziar-carrinho" aria-label="Esvaziar carrinho">Esvaziar Carrinho</button>
-    <button id="btn-finalizar-compra" aria-label="Finalizar compra">Finalizar Compra</button>
+    <button id="btn-esvaziar-carrinho">Esvaziar Carrinho</button>
+    <button id="btn-finalizar-compra">Finalizar Compra</button>
   </section>
 
   <footer>
@@ -73,38 +74,11 @@
   </footer>
 
   <script>
-    // Scripts para funcionamento do site (menu, acessibilidade, carrinho, contato...)
-
-    // Botão de acessibilidade toggle
-    const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
-    const menuAcessibilidade = document.getElementById('menu-acessibilidade');
-    botaoAcessibilidade.addEventListener('click', () => {
-      if(menuAcessibilidade.style.display === 'none' || menuAcessibilidade.style.display === '') {
-        menuAcessibilidade.style.display = 'block';
-      } else {
-        menuAcessibilidade.style.display = 'none';
-      }
-    });
-
-    // Aumentar fonte
-    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
-    btnAumentarFonte.addEventListener('click', () => {
-      let currentSize = window.getComputedStyle(document.body).fontSize;
-      let newSize = parseFloat(currentSize) + 2;
-      document.body.style.fontSize = newSize + 'px';
-    });
-
-    // Modo escuro
-    const btnModoEscuro = document.getElementById('btn-modo-escuro');
-    btnModoEscuro.addEventListener('click', () => {
-      document.body.classList.toggle('modo-escuro');
-    });
-
-    // Navegação entre seções
+    // Navegação
     const btnLoja = document.getElementById('btn-loja');
     const btnContato = document.getElementById('btn-contato');
     const btnSobre = document.getElementById('btn-sobre');
-    const btnCarrinhoNav = document.getElementById('btn-carrinho');
+    const btnCarrinho = document.getElementById('btn-carrinho');
 
     const loja = document.getElementById('loja');
     const contato = document.getElementById('contato');
@@ -136,7 +110,7 @@
       sobre.focus();
     });
 
-    btnCarrinhoNav.addEventListener('click', () => {
+    btnCarrinho.addEventListener('click', () => {
       esconderTodasSeções();
       carrinho.style.display = 'block';
       carrinho.focus();
@@ -146,107 +120,39 @@
     esconderTodasSeções();
     loja.style.display = 'grid';
 
-    // Botão fixo do carrinho
-    const btnCarrinhoFixo = document.getElementById('btn-carrinho-fixo');
-    btnCarrinhoFixo.addEventListener('click', () => {
-      esconderTodasSeções();
-      carrinho.style.display = 'block';
-      carrinho.focus();
-      atualizarCarrinho();
-    });
-
     // Carrinho
+    let carrinhoItens = [];
     const listaCarrinho = document.getElementById('lista-carrinho');
     const totalCarrinho = document.getElementById('total-carrinho');
     const btnEsvaziarCarrinho = document.getElementById('btn-esvaziar-carrinho');
     const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
-    const badgeCarrinho = document.getElementById('badge-carrinho');
 
-    let carrinhoItens = [];
-
-    // Adicionar produtos exemplo (você deve inserir seus produtos reais no JS ou HTML)
-    const produtos = [
-      { nome: 'Maçã Orgânica', preco: 4.50, img: 'img/maca.jpg' },
-      { nome: 'Mel Puro', preco: 15.00, img: 'img/mel.jpg' },
-      { nome: 'Queijo Minas', preco: 20.00, img: 'img/queijo.jpg' },
-      { nome: 'Leite Integral', preco: 5.50, img: 'img/leite.jpg' },
-      { nome: 'Tomate Fresco', preco: 3.00, img: 'img/tomate.jpg' },
-      { nome: 'Arroz Integral', preco: 8.00, img: 'img/arroz.jpg' },
-      { nome: 'Feijão Preto', preco: 7.00, img: 'img/feijao.jpg' },
-      { nome: 'Alface Crespa', preco: 2.50, img: 'img/alface.jpg' },
-      { nome: 'Cenoura Orgânica', preco: 3.20, img: 'img/cenoura.jpg' },
-      { nome: 'Batata Doce', preco: 4.00, img: 'img/batata.jpg' },
-      { nome: 'Abacate', preco: 6.50, img: 'img/abacate.jpg' },
-      { nome: 'Pão Integral', preco: 7.80, img: 'img/pao.jpg' },
-      { nome: 'Café Torrado', preco: 18.00, img: 'img/cafe.jpg' },
-      { nome: 'Chá Verde', preco: 12.00, img: 'img/cha.jpg' },
-      { nome: 'Ovos Caipira', preco: 10.00, img: 'img/ovos.jpg' },
-      { nome: 'Manteiga Artesanal', preco: 14.50, img: 'img/manteiga.jpg' },
-      { nome: 'Melancia', preco: 8.50, img: 'img/melancia.jpg' },
-      { nome: 'Morango', preco: 11.00, img: 'img/morango.jpg' },
-      { nome: 'Abobrinha', preco: 3.70, img: 'img/abobrinha.jpg' },
-      { nome: 'Cebola Roxa', preco: 3.00, img: 'img/cebola.jpg' }
-    ];
-
-    // Renderizar produtos na loja
-    const lojaSection = document.getElementById('loja');
-    produtos.forEach(produto => {
-      const produtoDiv = document.createElement('div');
-      produtoDiv.className = 'produto';
-      produtoDiv.tabIndex = 0;
-      produtoDiv.innerHTML = `
-        <img src="${produto.img}" alt="${produto.nome}" />
-        <h3>${produto.nome}</h3>
-        <p>R$ ${produto.preco.toFixed(2)}</p>
-        <button class="btn-add" data-nome="${produto.nome}" data-preco="${produto.preco}">Adicionar ao carrinho</button>
-      `;
-      lojaSection.appendChild(produtoDiv);
-    });
-
-    // Eventos dos botões "Adicionar ao carrinho"
-    function atualizarBadge() {
-      const quantidadeTotal = carrinhoItens.reduce((acc, item) => acc + item.quantidade, 0);
-      if(quantidadeTotal > 0){
-        badgeCarrinho.style.display = 'inline-block';
-        badgeCarrinho.textContent = quantidadeTotal;
-      } else {
-        badgeCarrinho.style.display = 'none';
-      }
-    }
-
-    function atualizarCarrinho() {
+    function atualizarCarrinho(){
       listaCarrinho.innerHTML = '';
       let total = 0;
       carrinhoItens.forEach((item, index) => {
         total += item.preco * item.quantidade;
         const li = document.createElement('li');
         li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
-        li.tabIndex = 0;
-
         const btnRemover = document.createElement('button');
         btnRemover.textContent = 'Remover';
-        btnRemover.setAttribute('aria-label', 'Remover um ' + item.nome + ' do carrinho');
         btnRemover.addEventListener('click', () => {
           item.quantidade--;
           if(item.quantidade === 0){
             carrinhoItens.splice(index, 1);
           }
           atualizarCarrinho();
-          atualizarBadge();
         });
-
         li.appendChild(btnRemover);
         listaCarrinho.appendChild(li);
       });
       totalCarrinho.textContent = 'Total: R$ ' + total.toFixed(2);
-      atualizarBadge();
     }
 
-    // Delegação de evento para os botões "Adicionar"
-    lojaSection.addEventListener('click', e => {
-      if(e.target.classList.contains('btn-add')){
-        const nome = e.target.getAttribute('data-nome');
-        const preco = parseFloat(e.target.getAttribute('data-preco'));
+    document.querySelectorAll('.btn-add').forEach(botao => {
+      botao.addEventListener('click', () => {
+        const nome = botao.getAttribute('data-nome');
+        const preco = parseFloat(botao.getAttribute('data-preco'));
         const itemExistente = carrinhoItens.find(item => item.nome === nome);
         if(itemExistente){
           itemExistente.quantidade++;
@@ -255,7 +161,7 @@
         }
         alert(nome + ' adicionado ao carrinho!');
         atualizarCarrinho();
-      }
+      });
     });
 
     btnEsvaziarCarrinho.addEventListener('click', () => {
@@ -271,16 +177,33 @@
       window.location.href = 'pagamento.html';
     });
 
-    // Formulário de contato
+    // Acessibilidade
+    const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
+    const menuAcessibilidade = document.getElementById('menu-acessibilidade');
+    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
+    const btnModoEscuro = document.getElementById('btn-modo-escuro');
+
+    botaoAcessibilidade.addEventListener('click', () => {
+      menuAcessibilidade.style.display = menuAcessibilidade.style.display === 'none' ? 'block' : 'none';
+    });
+
+    btnAumentarFonte.addEventListener('click', () => {
+      let size = window.getComputedStyle(document.body).fontSize;
+      document.body.style.fontSize = (parseFloat(size) + 2) + 'px';
+    });
+
+    btnModoEscuro.addEventListener('click', () => {
+      document.body.classList.toggle('modo-escuro');
+    });
+
+    // Contato
     const formContato = document.getElementById('form-contato');
     const respostaContato = document.getElementById('resposta-contato');
-
     formContato.addEventListener('submit', (e) => {
       e.preventDefault();
-      respostaContato.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
+      respostaContato.textContent = 'Mensagem enviada com sucesso!';
       formContato.reset();
     });
   </script>
-
 </body>
 </html>
