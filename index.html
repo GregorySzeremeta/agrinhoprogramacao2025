@@ -4,329 +4,211 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Estação da Terra</title>
+
+  <!-- Model viewer para 3D -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <h1>Estação da Terra</h1>
-    <nav class="menu-navegacao" role="navigation" aria-label="Menu principal">
-      <button id="btn-loja" aria-label="Ir para Loja" class="menu-btn">Loja</button>
-      <button id="btn-contato" aria-label="Ir para Contato" class="menu-btn">Contato</button>
-      <button id="btn-sobre" aria-label="Ir para Sobre" class="menu-btn">Sobre</button>
-      <button id="btn-carrinho" aria-label="Ir para Carrinho" class="menu-btn">Carrinho</button>
-      <button id="btn-quiz" aria-label="Ir para Quiz" class="menu-btn">Quiz</button>
-      <button id="botao-acessibilidade" aria-label="Abrir opções de acessibilidade" class="menu-btn">Acessibilidade</button>
-    </nav>
+    <!-- Botão carrinho com imagem PNG -->
+    <button id="btn-carrinho" aria-label="Abrir carrinho de compras">
+      <img src="images/carrinho.png" alt="Ícone carrinho de compras" />
+      <span id="contador-carrinho" aria-live="polite" aria-atomic="true" class="contador-carrinho">0</span>
+    </button>
   </header>
 
-  <!-- Botão fixo do carrinho -->
-  <button id="btn-carrinho-fixo" aria-label="Abrir carrinho">
-    <img src="img/carrinho.svg" alt="" aria-hidden="true" />
-    <span id="contador-carrinho" aria-live="polite" class="contador-carrinho">0</span>
-  </button>
+  <main>
+    <section id="produtos">
+      <h2>Produtos</h2>
+      <div class="grid-produtos">
+        <!-- Produtos exemplo -->
+        <div class="produto-card">
+          <img src="images/banana.jpg" alt="Banana" />
+          <h3>Banana</h3>
+          <p>R$ 3,50</p>
+          <button class="btn-add" aria-label="Adicionar Banana ao carrinho">Adicionar</button>
+        </div>
+        <div class="produto-card">
+          <img src="images/mel.jpg" alt="Mel" />
+          <h3>Mel</h3>
+          <p>R$ 15,00</p>
+          <button class="btn-add" aria-label="Adicionar Mel ao carrinho">Adicionar</button>
+        </div>
+        <!-- Adicione seus produtos aqui -->
+      </div>
+    </section>
+  </main>
 
-  <!-- Menu acessibilidade -->
-  <div id="menu-acessibilidade" class="menu-acessibilidade" aria-label="Opções de acessibilidade" hidden>
-    <button id="btn-aumentar-fonte" aria-label="Aumentar fonte">A+</button>
-    <button id="btn-diminuir-fonte" aria-label="Diminuir fonte">A-</button>
-    <button id="btn-modo-escuro" aria-label="Alternar modo escuro">🌙</button>
-    <button id="btn-modo-daltonico" aria-label="Ativar filtro para daltonismo">🟦</button>
-    <button id="btn-libras" aria-label="Abrir vídeo em LIBRAS">LIBRAS</button>
-    <button id="btn-fechar-acessibilidade" aria-label="Fechar opções de acessibilidade">✖</button>
-  </div>
-
-  <!-- Modal LIBRAS -->
-  <div id="modal-libras" class="modal-libras" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-libras">
+  <!-- Modal do carrinho -->
+  <div id="modal-carrinho" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titulo-carrinho">
     <div class="modal-conteudo">
-      <h2 id="titulo-modal-libras">Vídeo em LIBRAS</h2>
-      <video controls width="320" height="240" tabindex="0" aria-label="Vídeo de explicação em LIBRAS">
-        <source src="img/libras.mp4" type="video/mp4" />
-        Seu navegador não suporta vídeo.
-      </video>
-      <button id="btn-fechar-libras" aria-label="Fechar vídeo LIBRAS">Fechar</button>
+      <h2 id="titulo-carrinho">Carrinho de Compras</h2>
+      <ul id="lista-carrinho"></ul>
+      <button id="btn-esvaziar-carrinho">Esvaziar Carrinho</button>
+      <button id="btn-finalizar-compra">Finalizar Compra</button>
+      <button id="btn-fechar-carrinho" aria-label="Fechar carrinho">Fechar</button>
     </div>
   </div>
 
-  <!-- Seções -->
-  <section id="loja" tabindex="0" aria-label="Seção de loja" style="display: grid;">
-    <!-- Aqui será o conteúdo da loja -->
-  </section>
+  <!-- Botão acessibilidade fixo canto inferior esquerdo -->
+  <button id="btn-acessibilidade" aria-haspopup="true" aria-expanded="false" aria-controls="menu-acessibilidade" aria-label="Abrir opções de acessibilidade" title="Acessibilidade">⚙️</button>
 
-  <section id="contato" tabindex="0" aria-label="Formulário de contato" style="display:none;">
-    <h2>Contato</h2>
-    <form id="form-contato">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required aria-required="true" />
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required aria-required="true" />
-      <label for="mensagem">Mensagem:</label>
-      <textarea id="mensagem" name="mensagem" required aria-required="true"></textarea>
-      <button type="submit" aria-label="Enviar mensagem de contato">Enviar</button>
-    </form>
-    <div id="resposta-contato" aria-live="polite" style="margin-top: 1rem;"></div>
-  </section>
+  <!-- Menu de acessibilidade -->
+  <div id="menu-acessibilidade" class="menu-acessibilidade" aria-hidden="true" role="region" aria-label="Opções de acessibilidade">
+    <button id="btn-modo-escuro" aria-pressed="false">Modo Escuro</button>
+    <button id="btn-modo-daltonico" aria-pressed="false">Modo Daltonico</button>
+    <button id="btn-aumentar-fonte">Aumentar Fonte</button>
+    <button id="btn-diminuir-fonte">Diminuir Fonte</button>
+    <button id="btn-libras" aria-haspopup="dialog" aria-controls="modal-libras">Abrir LIBRAS 3D</button>
+  </div>
 
-  <section id="sobre" tabindex="0" aria-label="Informações sobre a Estação da Terra" style="display:none;">
-    <h2>Sobre</h2>
-    <p>Bem-vindo à Estação da Terra, seu marketplace sustentável e interativo, que conecta o campo à cidade, colhendo oportunidades para todos.</p>
-    <p>Nossa missão é promover produtos frescos, orgânicos e de qualidade, valorizando o produtor local e incentivando práticas sustentáveis.</p>
-    <p>Junte-se a nós e faça parte desse movimento verde!</p>
-  </section>
-
-  <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" style="display:none;">
-    <h2>Seu Carrinho</h2>
-    <ul id="lista-carrinho" aria-live="polite"></ul>
-    <p id="total-carrinho">Total: R$ 0,00</p>
-    <button id="btn-esvaziar-carrinho" aria-label="Esvaziar carrinho">Esvaziar Carrinho</button>
-    <button id="btn-finalizar-compra" aria-label="Finalizar compra">Finalizar Compra</button>
-  </section>
-
-  <footer>
-    <p>© 2025 Estação da Terra - Todos os direitos reservados</p>
-  </footer>
+  <!-- Modal LIBRAS 3D -->
+  <div id="modal-libras" class="modal-libras" aria-hidden="true" role="dialog" aria-labelledby="titulo-libras">
+    <div class="modal-conteudo">
+      <h2 id="titulo-libras">Intérprete LIBRAS 3D</h2>
+      <model-viewer 
+        src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" 
+        alt="Modelo 3D intérprete LIBRAS" 
+        camera-controls auto-rotate 
+        style="width: 100%; max-width: 400px; height: 400px;">
+      </model-viewer>
+      <button id="btn-fechar-libras">Fechar</button>
+    </div>
+  </div>
 
   <script>
-    // Navegação das seções
-    const btnLoja = document.getElementById('btn-loja');
-    const btnContato = document.getElementById('btn-contato');
-    const btnSobre = document.getElementById('btn-sobre');
-    const btnCarrinho = document.getElementById('btn-carrinho');
-    const btnQuiz = document.getElementById('btn-quiz');
-    const btnCarrinhoFixo = document.getElementById('btn-carrinho-fixo');
-
-    const loja = document.getElementById('loja');
-    const contato = document.getElementById('contato');
-    const sobre = document.getElementById('sobre');
-    const carrinho = document.getElementById('carrinho');
-
-    function esconderTodasSeções() {
-      loja.style.display = 'none';
-      contato.style.display = 'none';
-      sobre.style.display = 'none';
-      carrinho.style.display = 'none';
-    }
-
-    btnLoja.addEventListener('click', () => {
-      esconderTodasSeções();
-      loja.style.display = 'grid';
-      loja.focus();
-    });
-
-    btnContato.addEventListener('click', () => {
-      esconderTodasSeções();
-      contato.style.display = 'block';
-      contato.focus();
-    });
-
-    btnSobre.addEventListener('click', () => {
-      esconderTodasSeções();
-      sobre.style.display = 'block';
-      sobre.focus();
-    });
-
-    btnCarrinho.addEventListener('click', () => {
-      esconderTodasSeções();
-      carrinho.style.display = 'block';
-      carrinho.focus();
-      atualizarCarrinho();
-    });
-
-    btnCarrinhoFixo.addEventListener('click', () => {
-      esconderTodasSeções();
-      carrinho.style.display = 'block';
-      carrinho.focus();
-      atualizarCarrinho();
-    });
-
-    btnQuiz.addEventListener('click', () => {
-      window.location.href = 'quiz.html';
-    });
-
-    // Inicializa com loja visível
-    esconderTodasSeções();
-    loja.style.display = 'grid';
-
-    // Produtos exemplo (20 produtos)
-    const produtos = [
-      {nome:'Maçã', preco:3.50, img:'img/maca.png'},
-      {nome:'Banana', preco:2.20, img:'img/banana.png'},
-      {nome:'Laranja', preco:3.00, img:'img/laranja.png'},
-      {nome:'Mel', preco:15.00, img:'img/mel.png'},
-      {nome:'Leite', preco:5.00, img:'img/leite.png'},
-      {nome:'Queijo', preco:12.00, img:'img/queijo.png'},
-      {nome:'Alface', preco:4.50, img:'img/alface.png'},
-      {nome:'Tomate', preco:4.00, img:'img/tomate.png'},
-      {nome:'Cenoura', preco:3.80, img:'img/cenoura.png'},
-      {nome:'Feijão', preco:8.50, img:'img/feijao.png'},
-      {nome:'Arroz', preco:7.00, img:'img/arroz.png'},
-      {nome:'Café', preco:10.00, img:'img/cafe.png'},
-      {nome:'Farinha', preco:6.00, img:'img/farinha.png'},
-      {nome:'Abacaxi', preco:4.50, img:'img/abacaxi.png'},
-      {nome:'Pera', preco:4.00, img:'img/pera.png'},
-      {nome:'Melancia', preco:7.00, img:'img/melancia.png'},
-      {nome:'Chá', preco:5.50, img:'img/cha.png'},
-      {nome:'Azeite', preco:18.00, img:'img/azeite.png'},
-      {nome:'Ervas', preco:9.00, img:'img/ervas.png'},
-      {nome:'Semente', preco:11.00, img:'img/semente.png'}
-    ];
-
-    // Mostrar produtos na loja
-    function mostrarProdutos(){
-      loja.innerHTML = '';
-      produtos.forEach((produto, i) => {
-        const card = document.createElement('article');
-        card.className = 'produto-card';
-        card.innerHTML = `
-          <img src="${produto.img}" alt="${produto.nome}" />
-          <h3>${produto.nome}</h3>
-          <p>R$ ${produto.preco.toFixed(2)}</p>
-          <button class="btn-add" data-nome="${produto.nome}" data-preco="${produto.preco}">Adicionar ao carrinho</button>
-        `;
-        loja.appendChild(card);
-      });
-      adicionarEventosBotoes();
-    }
-
-    mostrarProdutos();
-
-    // Carrinho
-    let carrinhoItens = [];
-
-    const listaCarrinho = document.getElementById('lista-carrinho');
-    const totalCarrinho = document.getElementById('total-carrinho');
-    const btnEsvaziarCarrinho = document.getElementById('btn-esvaziar-carrinho');
-    const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
-    const contadorCarrinho = document.getElementById('contador-carrinho');
-
-    function adicionarEventosBotoes(){
-      const botoesAdd = document.querySelectorAll('.btn-add');
-      botoesAdd.forEach(botao => {
-        botao.addEventListener('click', () => {
-          const nome = botao.getAttribute('data-nome');
-          const preco = parseFloat(botao.getAttribute('data-preco'));
-          const itemExistente = carrinhoItens.find(item => item.nome === nome);
-          if(itemExistente){
-            itemExistente.quantidade++;
-          } else {
-            carrinhoItens.push({nome, preco, quantidade: 1});
-          }
-          alert(nome + ' adicionado ao carrinho!');
-          atualizarCarrinho();
-        });
-      });
-    }
-
-    function atualizarCarrinho(){
-      listaCarrinho.innerHTML = '';
-      let total = 0;
-      let quantidadeTotal = 0;
-      carrinhoItens.forEach((item, index) => {
-        total += item.preco * item.quantidade;
-        quantidadeTotal += item.quantidade;
-
-        const li = document.createElement('li');
-        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
-        li.tabIndex = 0;
-
-        const btnRemover = document.createElement('button');
-        btnRemover.textContent = 'Remover';
-        btnRemover.setAttribute('aria-label', 'Remover um ' + item.nome + ' do carrinho');
-        btnRemover.addEventListener('click', () => {
-          item.quantidade--;
-          if(item.quantidade === 0){
-            carrinhoItens.splice(index, 1);
-          }
-          atualizarCarrinho();
-        });
-
-        li.appendChild(btnRemover);
-        listaCarrinho.appendChild(li);
-      });
-
-      totalCarrinho.textContent = 'Total: R$ ' + total.toFixed(2);
-      contadorCarrinho.textContent = quantidadeTotal;
-      contadorCarrinho.style.display = quantidadeTotal > 0 ? 'inline' : 'none';
-    }
-
-    btnEsvaziarCarrinho.addEventListener('click', () => {
-      carrinhoItens = [];
-      atualizarCarrinho();
-    });
-
-    btnFinalizarCompra.addEventListener('click', () => {
-      if(carrinhoItens.length === 0){
-        alert('Seu carrinho está vazio!');
-        return;
-      }
-      window.location.href = 'pagamento.html';
-    });
-
-    // Formulário de contato
-    const formContato = document.getElementById('form-contato');
-    const respostaContato = document.getElementById('resposta-contato');
-
-    formContato.addEventListener('submit', (e) => {
-      e.preventDefault();
-      respostaContato.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
-      formContato.reset();
-    });
-
-    // Acessibilidade
-    const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
+    // Acessibilidade - abrir/fechar menu
+    const btnAcessibilidade = document.getElementById('btn-acessibilidade');
     const menuAcessibilidade = document.getElementById('menu-acessibilidade');
-    const btnFecharAcessibilidade = document.getElementById('btn-fechar-acessibilidade');
-    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
-    const btnDiminuirFonte = document.getElementById('btn-diminuir-fonte');
+
+    btnAcessibilidade.addEventListener('click', () => {
+      const expanded = btnAcessibilidade.getAttribute('aria-expanded') === 'true';
+      btnAcessibilidade.setAttribute('aria-expanded', !expanded);
+      menuAcessibilidade.style.display = expanded ? 'none' : 'flex';
+      menuAcessibilidade.setAttribute('aria-hidden', expanded);
+    });
+
+    // Modo escuro
     const btnModoEscuro = document.getElementById('btn-modo-escuro');
-    const btnModoDaltonico = document.getElementById('btn-modo-daltonico');
-    const btnLibras = document.getElementById('btn-libras');
-    const modalLibras = document.getElementById('modal-libras');
-    const btnFecharLibras = document.getElementById('btn-fechar-libras');
-
-    botaoAcessibilidade.addEventListener('click', () => {
-      if(menuAcessibilidade.hasAttribute('hidden')){
-        menuAcessibilidade.removeAttribute('hidden');
-      } else {
-        menuAcessibilidade.setAttribute('hidden', '');
-      }
-    });
-
-    btnFecharAcessibilidade.addEventListener('click', () => {
-      menuAcessibilidade.setAttribute('hidden', '');
-    });
-
-    btnAumentarFonte.addEventListener('click', () => {
-      let currentSize = window.getComputedStyle(document.body).fontSize;
-      let newSize = parseFloat(currentSize) + 2;
-      document.body.style.fontSize = newSize + 'px';
-    });
-
-    btnDiminuirFonte.addEventListener('click', () => {
-      let currentSize = window.getComputedStyle(document.body).fontSize;
-      let newSize = parseFloat(currentSize) - 2;
-      if(newSize >= 12){
-        document.body.style.fontSize = newSize + 'px';
-      }
-    });
-
     btnModoEscuro.addEventListener('click', () => {
+      const ativo = btnModoEscuro.getAttribute('aria-pressed') === 'true';
+      btnModoEscuro.setAttribute('aria-pressed', !ativo);
       document.body.classList.toggle('modo-escuro');
     });
 
+    // Modo daltônico (filtro invertido como exemplo)
+    const btnModoDaltonico = document.getElementById('btn-modo-daltonico');
     btnModoDaltonico.addEventListener('click', () => {
+      const ativo = btnModoDaltonico.getAttribute('aria-pressed') === 'true';
+      btnModoDaltonico.setAttribute('aria-pressed', !ativo);
       document.body.classList.toggle('modo-daltonico');
     });
 
-    btnLibras.addEventListener('click', () => {
-      modalLibras.setAttribute('aria-hidden', 'false');
+    // Aumentar/diminuir fonte
+    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
+    const btnDiminuirFonte = document.getElementById('btn-diminuir-fonte');
+
+    btnAumentarFonte.addEventListener('click', () => {
+      let fontSize = parseFloat(getComputedStyle(document.body).fontSize);
+      if (fontSize < 24) {
+        document.body.style.fontSize = (fontSize + 2) + 'px';
+      }
+    });
+    btnDiminuirFonte.addEventListener('click', () => {
+      let fontSize = parseFloat(getComputedStyle(document.body).fontSize);
+      if (fontSize > 12) {
+        document.body.style.fontSize = (fontSize - 2) + 'px';
+      }
+    });
+
+    // Abrir e fechar modal LIBRAS
+    const btnAbrirLibras = document.getElementById('btn-libras');
+    const modalLibras = document.getElementById('modal-libras');
+    const btnFecharLibras = document.getElementById('btn-fechar-libras');
+
+    btnAbrirLibras.addEventListener('click', () => {
       modalLibras.style.display = 'flex';
+      modalLibras.setAttribute('aria-hidden', 'false');
     });
-
     btnFecharLibras.addEventListener('click', () => {
-      modalLibras.setAttribute('aria-hidden', 'true');
       modalLibras.style.display = 'none';
+      modalLibras.setAttribute('aria-hidden', 'true');
     });
 
+    // Modal carrinho
+    const btnCarrinho = document.getElementById('btn-carrinho');
+    const modalCarrinho = document.getElementById('modal-carrinho');
+    const btnFecharCarrinho = document.getElementById('btn-fechar-carrinho');
+    const btnEsvaziarCarrinho = document.getElementById('btn-esvaziar-carrinho');
+    const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
+    const listaCarrinho = document.getElementById('lista-carrinho');
+    const contadorCarrinho = document.getElementById('contador-carrinho');
+    const botoesAdd = document.querySelectorAll('.btn-add');
+
+    let carrinho = [];
+
+    // Atualiza contador do carrinho
+    function atualizarContador() {
+      contadorCarrinho.textContent = carrinho.length;
+      contadorCarrinho.style.display = carrinho.length > 0 ? 'inline-block' : 'none';
+    }
+    atualizarContador();
+
+    // Renderiza itens no modal do carrinho
+    function renderizarCarrinho() {
+      listaCarrinho.innerHTML = '';
+      if (carrinho.length === 0) {
+        listaCarrinho.innerHTML = '<li>Carrinho vazio</li>';
+      } else {
+        carrinho.forEach((item, i) => {
+          const li = document.createElement('li');
+          li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
+          listaCarrinho.appendChild(li);
+        });
+      }
+    }
+
+    // Abrir modal carrinho
+    btnCarrinho.addEventListener('click', () => {
+      modalCarrinho.style.display = 'flex';
+      modalCarrinho.setAttribute('aria-hidden', 'false');
+      renderizarCarrinho();
+    });
+    // Fechar modal carrinho
+    btnFecharCarrinho.addEventListener('click', () => {
+      modalCarrinho.style.display = 'none';
+      modalCarrinho.setAttribute('aria-hidden', 'true');
+    });
+    // Esvaziar carrinho
+    btnEsvaziarCarrinho.addEventListener('click', () => {
+      carrinho = [];
+      atualizarContador();
+      renderizarCarrinho();
+    });
+    // Finalizar compra (apenas alerta)
+    btnFinalizarCompra.addEventListener('click', () => {
+      alert('Compra finalizada! Obrigado!');
+      carrinho = [];
+      atualizarContador();
+      renderizarCarrinho();
+      modalCarrinho.style.display = 'none';
+      modalCarrinho.setAttribute('aria-hidden', 'true');
+    });
+
+    // Adicionar produtos ao carrinho
+    botoesAdd.forEach((btn, idx) => {
+      btn.addEventListener('click', () => {
+        const produtoCard = btn.parentElement;
+        const nome = produtoCard.querySelector('h3').textContent;
+        const precoTexto = produtoCard.querySelector('p').textContent.replace('R$ ', '').replace(',', '.');
+        const preco = parseFloat(precoTexto);
+        carrinho.push({ nome, preco });
+        atualizarContador();
+      });
+    });
   </script>
 </body>
 </html>
