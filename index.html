@@ -7,15 +7,29 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
   <header>
     <h1>Estação da Terra</h1>
     <nav class="menu-navegacao">
-     <button id="btn-loja" class="menu-btn" aria-label="Ir para Loja">Loja</button>
-  <button id="btn-contato" class="menu-btn" aria-label="Ir para Contato">Contato</button>
-  <button id="btn-sobre" class="menu-btn" aria-label="Ir para Sobre">Sobre</button>
-  <button id="btn-carrinho" class="menu-btn" aria-label="Ir para Carrinho">Carrinho</button>
-  <button id="btn-quiz" class="menu-btn" aria-label="Ir para Quiz">Quiz</button> <!-- Novo botão -->
-  <button id="botao-acessibilidade" class="menu-btn" aria-label="Abrir opções de acessibilidade">Acessibilidade</button>
+      <button id="btn-loja" class="menu-btn" aria-label="Ir para Loja">Loja</button>
+      <button id="btn-contato" class="menu-btn" aria-label="Ir para Contato">Contato</button>
+      <button id="btn-sobre" class="menu-btn" aria-label="Ir para Sobre">Sobre</button>
+      <button id="btn-carrinho" class="menu-btn" aria-label="Ir para Carrinho">Carrinho</button>
+      <a href="quizzes.html">
+        <button class="menu-btn" aria-label="Ir para Quiz">Quiz</button>
+      </a>
+      <button id="botao-acessibilidade" class="menu-btn" aria-label="Abrir opções de acessibilidade">Acessibilidade</button>
     </nav>
   </header>
 
@@ -79,11 +93,7 @@
     const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
     const menuAcessibilidade = document.getElementById('menu-acessibilidade');
     botaoAcessibilidade.addEventListener('click', () => {
-      if(menuAcessibilidade.style.display === 'none' || menuAcessibilidade.style.display === '') {
-        menuAcessibilidade.style.display = 'block';
-      } else {
-        menuAcessibilidade.style.display = 'none';
-      }
+      menuAcessibilidade.style.display = menuAcessibilidade.style.display === 'none' ? 'block' : 'none';
     });
 
     // Aumentar fonte
@@ -164,7 +174,6 @@
 
     let carrinhoItens = [];
 
-    // Adicionar produtos exemplo (você deve inserir seus produtos reais no JS ou HTML)
     const produtos = [
       { nome: 'Maçã Orgânica', preco: 4.50, img: 'img/maca.jpg' },
       { nome: 'Mel Puro', preco: 15.00, img: 'img/mel.jpg' },
@@ -188,7 +197,6 @@
       { nome: 'Cebola Roxa', preco: 3.00, img: 'img/cebola.jpg' }
     ];
 
-    // Renderizar produtos na loja
     const lojaSection = document.getElementById('loja');
     produtos.forEach(produto => {
       const produtoDiv = document.createElement('div');
@@ -203,15 +211,10 @@
       lojaSection.appendChild(produtoDiv);
     });
 
-    // Eventos dos botões "Adicionar ao carrinho"
     function atualizarBadge() {
       const quantidadeTotal = carrinhoItens.reduce((acc, item) => acc + item.quantidade, 0);
-      if(quantidadeTotal > 0){
-        badgeCarrinho.style.display = 'inline-block';
-        badgeCarrinho.textContent = quantidadeTotal;
-      } else {
-        badgeCarrinho.style.display = 'none';
-      }
+      badgeCarrinho.style.display = quantidadeTotal > 0 ? 'inline-block' : 'none';
+      badgeCarrinho.textContent = quantidadeTotal;
     }
 
     function atualizarCarrinho() {
@@ -242,7 +245,6 @@
       atualizarBadge();
     }
 
-    // Delegação de evento para os botões "Adicionar"
     lojaSection.addEventListener('click', e => {
       if(e.target.classList.contains('btn-add')){
         const nome = e.target.getAttribute('data-nome');
@@ -271,16 +273,13 @@
       window.location.href = 'pagamento.html';
     });
 
-    // Formulário de contato
     const formContato = document.getElementById('form-contato');
     const respostaContato = document.getElementById('resposta-contato');
-
     formContato.addEventListener('submit', (e) => {
       e.preventDefault();
       respostaContato.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
       formContato.reset();
     });
   </script>
-
 </body>
 </html>
