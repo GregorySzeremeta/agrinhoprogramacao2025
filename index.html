@@ -8,233 +8,461 @@
 </head>
 <body>
   <header>
- <h1>Estação da Terra</h1>
-<nav>
-  <nav class="menu-navegacao">
-    <button id="btn-loja" aria-label="Ir para Loja" class="menu-btn">Loja</button>
-    <button id="btn-contato" aria-label="Ir para Contato" class="menu-btn">Contato</button>
-    <button id="btn-sobre" aria-label="Ir para Sobre" class="menu-btn">Sobre</button>
-    <button id="btn-carrinho" aria-label="Ir para Carrinho" class="menu-btn">Carrinho</button>
-    <button id="btn-quiz" aria-label="Ir para Quiz" class="menu-btn">Quiz</button>
-    <button id="botao-acessibilidade" aria-label="Abrir opções de acessibilidade" class="menu-btn">Acessibilidade</button>
-  </nav>
-</nav>
-
-<script>
-  // Redirecionamentos dos botões
-  document.getElementById('btn-loja').addEventListener('click', () => {
-    window.location.href = 'index.html'; // ou a página da loja
-  });
-  document.getElementById('btn-contato').addEventListener('click', () => {
-    window.location.href = 'contato.html';
-  });
-  document.getElementById('btn-sobre').addEventListener('click', () => {
-    window.location.href = 'sobre.html';
-  });
-  document.getElementById('btn-carrinho').addEventListener('click', () => {
-    window.location.href = 'carrinho.html';
-  });
-  document.getElementById('btn-quiz').addEventListener('click', () => {
-    window.location.href = 'quiz.html';
-  });
-  document.getElementById('botao-acessibilidade').addEventListener('click', () => {
-    // lógica para abrir opções de acessibilidade aqui
-    alert('Abrir opções de acessibilidade');
-  });
-</script>
-
-  </header>
+    <h1>Estação da Terra</h1>
+    <nav role="navigation" aria-label="Menu principal">
+      <button id="btn-loja" class="menu-btn" aria-label="Ir para Loja">Loja</button>
+      <button id="btn-contato" class="menu-btn" aria-label="Ir para Contato">Contato</button>
+      <button id="btn-sobre" class="menu-btn" aria-label="Ir para Sobre">Sobre</button>
+      <button id="btn-carrinho" class="menu-btn" aria-label="Ir para Carrinho">Carrinho</button>
+      <button id="btn-quiz" class="menu-btn" aria-label="Ir para Quiz">Quiz</button>
+      <button id="btn-acessibilidade" class="menu-btn" aria-label="Abrir opções de acessibilidade">Acessibilidade</button>
     </nav>
   </header>
 
   <!-- Menu acessibilidade -->
-  <div id="menu-acessibilidade" style="display:none;">
+  <div id="menu-acessibilidade" style="display:none;" aria-label="Opções de acessibilidade">
     <button id="btn-aumentar-fonte" aria-label="Aumentar fonte">A+</button>
     <button id="btn-modo-escuro" aria-label="Alternar modo escuro">🌙</button>
   </div>
 
-  <!-- Loja -->
-  <section id="loja" tabindex="0" aria-label="Seção de loja" style="display: grid;">
+  <!-- Seção Loja -->
+  <main>
+    <section id="loja" tabindex="0" aria-label="Loja - Produtos" style="display:block;">
+      <div class="produtos-container">
 
-  </section>
+        <!-- Produto 1 -->
+        <article class="produto" tabindex="0" aria-label="Produto Arroz Integral">
+          <img src="img/arroz_integral.jpg" alt="Pacote de arroz integral" />
+          <h3>Arroz Integral</h3>
+          <p>Pacote 1kg de arroz integral orgânico.</p>
+          <p class="preco">R$ 12,00</p>
+          <button class="btn-add" data-nome="Arroz Integral" data-preco="12.00" aria-label="Adicionar Arroz Integral ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/arroz.mp4" muted loop width="100"></video>
+          </div>
+        </article>
 
-  <!-- Contato -->
-  <section id="contato" tabindex="0" aria-label="Formulário de contato" style="display:none;">
-    <h2>Contato</h2>
-    <form id="form-contato">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required aria-required="true" />
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required aria-required="true" />
-      <label for="mensagem">Mensagem:</label>
-      <textarea id="mensagem" name="mensagem" required aria-required="true"></textarea>
-      <button type="submit" aria-label="Enviar mensagem de contato">Enviar</button>
-    </form>
-    <div id="resposta-contato" aria-live="polite" style="margin-top: 1rem;"></div>
-  </section>
+        <!-- Produto 2 -->
+        <article class="produto" tabindex="0" aria-label="Produto Feijão Preto">
+          <img src="img/feijao_preto.jpg" alt="Pacote de feijão preto" />
+          <h3>Feijão Preto</h3>
+          <p>Pacote 1kg de feijão preto orgânico.</p>
+          <p class="preco">R$ 10,00</p>
+          <button class="btn-add" data-nome="Feijão Preto" data-preco="10.00" aria-label="Adicionar Feijão Preto ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/feijao.mp4" muted loop width="100"></video>
+          </div>
+        </article>
 
-  <!-- Sobre -->
-  <section id="sobre" tabindex="0" aria-label="Informações sobre a Estação da Terra" style="display:none;">
-    <h2>Sobre</h2>
-    <p>Bem-vindo à Estação da Terra, seu marketplace sustentável e interativo, que conecta o campo à cidade, colhendo oportunidades para todos.</p>
-    <p>Nossa missão é promover produtos frescos, orgânicos e de qualidade, valorizando o produtor local e incentivando práticas sustentáveis.</p>
-    <p>Junte-se a nós e faça parte desse movimento verde!</p>
-  </section>
+        <!-- Produto 3 -->
+        <article class="produto" tabindex="0" aria-label="Produto Mel Silvestre">
+          <img src="img/mel_silvestre.jpg" alt="Pote de mel silvestre" />
+          <h3>Mel Silvestre</h3>
+          <p>Pote 500g de mel silvestre puro.</p>
+          <p class="preco">R$ 18,00</p>
+          <button class="btn-add" data-nome="Mel Silvestre" data-preco="18.00" aria-label="Adicionar Mel Silvestre ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/mel.mp4" muted loop width="100"></video>
+          </div>
+        </article>
 
-  <!-- Carrinho -->
-  <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" style="display:none;">
-    <h2>Seu Carrinho</h2>
-    <ul id="lista-carrinho" aria-live="polite"></ul>
-    <p id="total-carrinho">Total: R$ 0,00</p>
-    <button id="btn-esvaziar-carrinho" aria-label="Esvaziar carrinho">Esvaziar Carrinho</button>
-    <button id="btn-finalizar-compra" aria-label="Finalizar compra">Finalizar Compra</button>
-  </section>
+        <!-- Produto 4 -->
+        <article class="produto" tabindex="0" aria-label="Produto Queijo Minas">
+          <img src="img/queijo_minas.jpg" alt="Pedaço de queijo minas frescal" />
+          <h3>Queijo Minas</h3>
+          <p>200g de queijo minas frescal artesanal.</p>
+          <p class="preco">R$ 22,00</p>
+          <button class="btn-add" data-nome="Queijo Minas" data-preco="22.00" aria-label="Adicionar Queijo Minas ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/queijo.mp4" muted loop width="100"></video>
+          </div>
+        </article>
 
-  <footer>
-    <p>© 2025 Estação da Terra - Todos os direitos reservados</p>
-  </footer>
+        <!-- Produto 5 -->
+        <article class="produto" tabindex="0" aria-label="Produto Banana Nanica">
+          <img src="img/banana_nanica.jpg" alt="Cacho de banana nanica" />
+          <h3>Banana Nanica</h3>
+          <p>1kg de banana nanica orgânica.</p>
+          <p class="preco">R$ 8,00</p>
+          <button class="btn-add" data-nome="Banana Nanica" data-preco="8.00" aria-label="Adicionar Banana Nanica ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/banana.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 6 -->
+        <article class="produto" tabindex="0" aria-label="Produto Maçã Fuji">
+          <img src="img/maca_fuji.jpg" alt="Maçãs Fuji" />
+          <h3>Maçã Fuji</h3>
+          <p>1kg de maçã Fuji fresca e crocante.</p>
+          <p class="preco">R$ 12,50</p>
+          <button class="btn-add" data-nome="Maçã Fuji" data-preco="12.50" aria-label="Adicionar Maçã Fuji ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/maca.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 7 -->
+        <article class="produto" tabindex="0" aria-label="Produto Tomate">
+          <img src="img/tomate.jpg" alt="Tomates vermelhos" />
+          <h3>Tomate</h3>
+          <p>1kg de tomate orgânico fresco.</p>
+          <p class="preco">R$ 9,00</p>
+          <button class="btn-add" data-nome="Tomate" data-preco="9.00" aria-label="Adicionar Tomate ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/tomate.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 8 -->
+        <article class="produto" tabindex="0" aria-label="Produto Alface">
+          <img src="img/alface.jpg" alt="Cabeça de alface" />
+          <h3>Alface</h3>
+          <p>Unidade de alface crespa orgânica.</p>
+          <p class="preco">R$ 4,00</p>
+          <button class="btn-add" data-nome="Alface" data-preco="4.00" aria-label="Adicionar Alface ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/alface.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 9 -->
+        <article class="produto" tabindex="0" aria-label="Produto Cenoura">
+          <img src="img/cenoura.jpg" alt="Cenouras frescas" />
+          <h3>Cenoura</h3>
+          <p>1kg de cenoura orgânica.</p>
+          <p class="preco">R$ 7,00</p>
+          <button class="btn-add" data-nome="Cenoura" data-preco="7.00" aria-label="Adicionar Cenoura ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/cenoura.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 10 -->
+        <article class="produto" tabindex="0" aria-label="Produto Laranja">
+          <img src="img/laranja.jpg" alt="Laranjas frescas" />
+          <h3>Laranja</h3>
+          <p>1kg de laranja suculenta orgânica.</p>
+          <p class="preco">R$ 6,00</p>
+          <button class="btn-add" data-nome="Laranja" data-preco="6.00" aria-label="Adicionar Laranja ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/laranja.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 11 -->
+        <article class="produto" tabindex="0" aria-label="Produto Batata Doce">
+          <img src="img/batata_doce.jpg" alt="Batatas doces" />
+          <h3>Batata Doce</h3>
+          <p>1kg de batata doce orgânica.</p>
+          <p class="preco">R$ 8,50</p>
+          <button class="btn-add" data-nome="Batata Doce" data-preco="8.50" aria-label="Adicionar Batata Doce ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/batata.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 12 -->
+        <article class="produto" tabindex="0" aria-label="Produto Abóbora">
+          <img src="img/abobora.jpg" alt="Abóbora cortada" />
+          <h3>Abóbora</h3>
+          <p>1kg de abóbora orgânica.</p>
+          <p class="preco">R$ 7,50</p>
+          <button class="btn-add" data-nome="Abóbora" data-preco="7.50" aria-label="Adicionar Abóbora ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/abobora.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 13 -->
+        <article class="produto" tabindex="0" aria-label="Produto Pepino">
+          <img src="img/pepino.jpg" alt="Pepino fresco" />
+          <h3>Pepino</h3>
+          <p>Unidade de pepino orgânico.</p>
+          <p class="preco">R$ 3,00</p>
+          <button class="btn-add" data-nome="Pepino" data-preco="3.00" aria-label="Adicionar Pepino ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/pepino.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 14 -->
+        <article class="produto" tabindex="0" aria-label="Produto Melancia">
+          <img src="img/melancia.jpg" alt="Melancia fatiada" />
+          <h3>Melancia</h3>
+          <p>1 unidade média de melancia orgânica.</p>
+          <p class="preco">R$ 15,00</p>
+          <button class="btn-add" data-nome="Melancia" data-preco="15.00" aria-label="Adicionar Melancia ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/melancia.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 15 -->
+        <article class="produto" tabindex="0" aria-label="Produto Morango">
+          <img src="img/morango.jpg" alt="Caixa de morangos frescos" />
+          <h3>Morango</h3>
+          <p>Caixa 300g de morangos frescos.</p>
+          <p class="preco">R$ 14,00</p>
+          <button class="btn-add" data-nome="Morango" data-preco="14.00" aria-label="Adicionar Morango ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/morango.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 16 -->
+        <article class="produto" tabindex="0" aria-label="Produto Pêssego">
+          <img src="img/pessego.jpg" alt="Pêssegos frescos" />
+          <h3>Pêssego</h3>
+          <p>1kg de pêssegos orgânicos.</p>
+          <p class="preco">R$ 16,00</p>
+          <button class="btn-add" data-nome="Pêssego" data-preco="16.00" aria-label="Adicionar Pêssego ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/pessego.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 17 -->
+        <article class="produto" tabindex="0" aria-label="Produto Cebola">
+          <img src="img/cebola.jpg" alt="Cebolas frescas" />
+          <h3>Cebola</h3>
+          <p>1kg de cebola orgânica.</p>
+          <p class="preco">R$ 6,50</p>
+          <button class="btn-add" data-nome="Cebola" data-preco="6.50" aria-label="Adicionar Cebola ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/cebola.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 18 -->
+        <article class="produto" tabindex="0" aria-label="Produto Alho">
+          <img src="img/alho.jpg" alt="Cabeças de alho" />
+          <h3>Alho</h3>
+          <p>Pacote com 200g de alho orgânico.</p>
+          <p class="preco">R$ 9,00</p>
+          <button class="btn-add" data-nome="Alho" data-preco="9.00" aria-label="Adicionar Alho ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/alho.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 19 -->
+        <article class="produto" tabindex="0" aria-label="Produto Melão">
+          <img src="img/melao.jpg" alt="Melão cortado" />
+          <h3>Melão</h3>
+          <p>1 unidade média de melão orgânico.</p>
+          <p class="preco">R$ 13,00</p>
+          <button class="btn-add" data-nome="Melão" data-preco="13.00" aria-label="Adicionar Melão ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/melao.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+        <!-- Produto 20 -->
+        <article class="produto" tabindex="0" aria-label="Produto Pimenta">
+          <img src="img/pimenta.jpg" alt="Pimenta fresca" />
+          <h3>Pimenta</h3>
+          <p>100g de pimenta fresca orgânica.</p>
+          <p class="preco">R$ 5,00</p>
+          <button class="btn-add" data-nome="Pimenta" data-preco="5.00" aria-label="Adicionar Pimenta ao carrinho">Adicionar</button>
+          <div class="libras" aria-hidden="true">
+            <video src="libras/pimenta.mp4" muted loop width="100"></video>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" tabindex="0" aria-label="Formulário de contato" style="display:none;">
+      <h2>Contato</h2>
+      <form id="form-contato">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required aria-required="true" />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required aria-required="true" />
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" required aria-required="true"></textarea>
+        <button type="submit" aria-label="Enviar mensagem de contato">Enviar</button>
+      </form>
+      <div id="resposta-contato" aria-live="polite" style="margin-top: 1rem;"></div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" tabindex="0" aria-label="Sobre Estação da Terra" style="display:none;">
+      <h2>Sobre</h2>
+      <p>
+        A Estação da Terra é uma feira virtual que conecta produtores rurais a consumidores urbanos, promovendo sustentabilidade e alimentos frescos.
+      </p>
+    </section>
+
+    <!-- Carrinho -->
+    <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" style="display:none;">
+      <h2>Carrinho</h2>
+      <div id="itens-carrinho" aria-live="polite"></div>
+      <p id="total-carrinho">Total: R$ 0,00</p>
+      <button id="btn-esvaziar" aria-label="Esvaziar carrinho">Esvaziar carrinho</button>
+      <button id="btn-finalizar" aria-label="Finalizar compra">Finalizar Compra</button>
+    </section>
+
+  </main>
+
+  <audio id="musica-ambiente" src="audio/musica_ambiente.mp3" loop preload="auto"></audio>
+  <button id="btn-som-ambiente" aria-label="Alternar som ambiente">🔈</button>
 
   <script>
-    // Script do menu, acessibilidade, carrinho, contato, etc, igual antes, removendo o quiz
-    const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
+    // Controle das seções do menu
+    const btnLoja = document.getElementById('btn-loja');
+    const btnContato = document.getElementById('btn-contato');
+    const btnSobre = document.getElementById('btn-sobre');
+    const btnCarrinho = document.getElementById('btn-carrinho');
+    const btnQuiz = document.getElementById('btn-quiz');
+
+    const secLoja = document.getElementById('loja');
+    const secContato = document.getElementById('contato');
+    const secSobre = document.getElementById('sobre');
+    const secCarrinho = document.getElementById('carrinho');
+
+    btnLoja.addEventListener('click', () => {
+      secLoja.style.display = 'block';
+      secContato.style.display = 'none';
+      secSobre.style.display = 'none';
+      secCarrinho.style.display = 'none';
+    });
+
+    btnContato.addEventListener('click', () => {
+      secContato.style.display = 'block';
+      secLoja.style.display = 'none';
+      secSobre.style.display = 'none';
+      secCarrinho.style.display = 'none';
+    });
+
+    btnSobre.addEventListener('click', () => {
+      secSobre.style.display = 'block';
+      secLoja.style.display = 'none';
+      secContato.style.display = 'none';
+      secCarrinho.style.display = 'none';
+    });
+
+    btnCarrinho.addEventListener('click', () => {
+      secCarrinho.style.display = 'block';
+      secLoja.style.display = 'none';
+      secContato.style.display = 'none';
+      secSobre.style.display = 'none';
+      atualizarCarrinho();
+    });
+
+    btnQuiz.addEventListener('click', () => {
+      // Redirecionar para quiz.html
+      window.location.href = 'quiz.html';
+    });
+
+    // Acessibilidade
+    const btnAcessibilidade = document.getElementById('btn-acessibilidade');
     const menuAcessibilidade = document.getElementById('menu-acessibilidade');
-    botaoAcessibilidade.addEventListener('click', () => {
-      if(menuAcessibilidade.style.display === 'none' || menuAcessibilidade.style.display === '') {
+    btnAcessibilidade.addEventListener('click', () => {
+      if (menuAcessibilidade.style.display === 'none') {
         menuAcessibilidade.style.display = 'block';
       } else {
         menuAcessibilidade.style.display = 'none';
       }
     });
 
-    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
-    btnAumentarFonte.addEventListener('click', () => {
-      let currentSize = window.getComputedStyle(document.body).fontSize;
-      let newSize = parseFloat(currentSize) + 2;
-      document.body.style.fontSize = newSize + 'px';
-    });
-
+    // Modo escuro
     const btnModoEscuro = document.getElementById('btn-modo-escuro');
     btnModoEscuro.addEventListener('click', () => {
       document.body.classList.toggle('modo-escuro');
     });
 
-    const btnLoja = document.getElementById('btn-loja');
-    const btnContato = document.getElementById('btn-contato');
-    const btnSobre = document.getElementById('btn-sobre');
-    const btnCarrinho = document.getElementById('btn-carrinho');
-
-    const loja = document.getElementById('loja');
-    const contato = document.getElementById('contato');
-    const sobre = document.getElementById('sobre');
-    const carrinho = document.getElementById('carrinho');
-
-    function esconderTodasSeções() {
-      loja.style.display = 'none';
-      contato.style.display = 'none';
-      sobre.style.display = 'none';
-      carrinho.style.display = 'none';
-    }
-
-    btnLoja.addEventListener('click', () => {
-      esconderTodasSeções();
-      loja.style.display = 'grid';
-      loja.focus();
+    // Aumentar fonte
+    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
+    btnAumentarFonte.addEventListener('click', () => {
+      const style = window.getComputedStyle(document.body);
+      let fontSize = parseFloat(style.fontSize);
+      fontSize += 2;
+      document.body.style.fontSize = fontSize + 'px';
     });
 
-    btnContato.addEventListener('click', () => {
-      esconderTodasSeções();
-      contato.style.display = 'block';
-      contato.focus();
+    // Formulário contato
+    const formContato = document.getElementById('form-contato');
+    const respostaContato = document.getElementById('resposta-contato');
+    formContato.addEventListener('submit', (e) => {
+      e.preventDefault();
+      respostaContato.textContent = "Mensagem enviada! Obrigado pelo contato.";
+      formContato.reset();
     });
 
-    btnSobre.addEventListener('click', () => {
-      esconderTodasSeções();
-      sobre.style.display = 'block';
-      sobre.focus();
-    });
+    // Carrinho de compras
+    let carrinho = [];
 
-    btnCarrinho.addEventListener('click', () => {
-      esconderTodasSeções();
-      carrinho.style.display = 'block';
-      carrinho.focus();
-      atualizarCarrinho();
-    });
-
-    esconderTodasSeções();
-    loja.style.display = 'grid';
-
-    // Carrinho - igual antes, mantém funcionalidade
     const botoesAdd = document.querySelectorAll('.btn-add');
-    const listaCarrinho = document.getElementById('lista-carrinho');
-    const totalCarrinho = document.getElementById('total-carrinho');
-    const btnEsvaziarCarrinho = document.getElementById('btn-esvaziar-carrinho');
-    const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
-
-    let carrinhoItens = [];
-
     botoesAdd.forEach(botao => {
       botao.addEventListener('click', () => {
         const nome = botao.getAttribute('data-nome');
         const preco = parseFloat(botao.getAttribute('data-preco'));
-        const itemExistente = carrinhoItens.find(item => item.nome === nome);
-        if(itemExistente){
-          itemExistente.quantidade++;
-        } else {
-          carrinhoItens.push({nome, preco, quantidade: 1});
-        }
-        alert(nome + ' adicionado ao carrinho!');
-        atualizarCarrinho();
+        adicionarAoCarrinho(nome, preco);
       });
     });
 
-    function atualizarCarrinho(){
-      listaCarrinho.innerHTML = '';
-      let total = 0;
-      carrinhoItens.forEach((item, index) => {
-        total += item.preco * item.quantidade;
-        const li = document.createElement('li');
-        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
-        li.tabIndex = 0;
-        const btnRemover = document.createElement('button');
-        btnRemover.textContent = 'Remover';
-        btnRemover.setAttribute('aria-label', 'Remover um ' + item.nome + ' do carrinho');
-        btnRemover.addEventListener('click', () => {
-          item.quantidade--;
-          if(item.quantidade === 0){
-            carrinhoItens.splice(index, 1);
-          }
-          atualizarCarrinho();
-        });
-        li.appendChild(btnRemover);
-        listaCarrinho.appendChild(li);
-      });
-      totalCarrinho.textContent = 'Total: R$ ' + total.toFixed(2);
+    const itensCarrinho = document.getElementById('itens-carrinho');
+    const totalCarrinho = document.getElementById('total-carrinho');
+    const btnEsvaziar = document.getElementById('btn-esvaziar');
+    const btnFinalizar = document.getElementById('btn-finalizar');
+
+    function adicionarAoCarrinho(nome, preco) {
+      const itemExistente = carrinho.find(item => item.nome === nome);
+      if (itemExistente) {
+        itemExistente.quantidade++;
+      } else {
+        carrinho.push({nome, preco, quantidade: 1});
+      }
+      atualizarCarrinho();
+      alert(nome + ' adicionado ao carrinho.');
     }
 
-    btnEsvaziarCarrinho.addEventListener('click', () => {
-      carrinhoItens = [];
+    function atualizarCarrinho() {
+      itensCarrinho.innerHTML = '';
+      let total = 0;
+      carrinho.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
+        itensCarrinho.appendChild(itemDiv);
+        total += item.preco * item.quantidade;
+      });
+      totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
+    }
+
+    btnEsvaziar.addEventListener('click', () => {
+      carrinho = [];
       atualizarCarrinho();
     });
 
-    btnFinalizarCompra.addEventListener('click', () => {
-      if(carrinhoItens.length === 0){
-        alert('Seu carrinho está vazio!');
+    btnFinalizar.addEventListener('click', () => {
+      if (carrinho.length === 0) {
+        alert('O carrinho está vazio.');
         return;
       }
-      window.location.href = 'pagamento.html';
+      alert('Compra finalizada! Obrigado.');
+      carrinho = [];
+      atualizarCarrinho();
     });
 
-    // Formulário de contato
-    const formContato = document.getElementById('form-contato');
-    const respostaContato = document.getElementById('resposta-contato');
+    // Música ambiente
+    const musicaAmbiente = document.getElementById('musica-ambiente');
+    const btnSomAmbiente = document.getElementById('btn-som-ambiente');
+    let somLigado = false;
 
-    formContato.addEventListener('submit', (e) => {
-      e.preventDefault();
-      respostaContato.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
-      formContato.reset();
+    btnSomAmbiente.addEventListener('click', () => {
+      if (!somLigado) {
+        musicaAmbiente.play();
+        btnSomAmbiente.textContent = '🔊';
+      } else {
+        musicaAmbiente.pause();
+        btnSomAmbiente.textContent = '🔈';
+      }
+      somLigado = !somLigado;
     });
 
   </script>
-
 </body>
 </html>
