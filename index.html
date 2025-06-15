@@ -9,34 +9,49 @@
 <body>
   <header>
     <h1>Estação da Terra</h1>
-    <nav class="menu-navegacao">
-     <button id="btn-loja" class="menu-btn" aria-label="Ir para Loja">Loja</button>
-  <button id="btn-contato" class="menu-btn" aria-label="Ir para Contato">Contato</button>
-  <button id="btn-sobre" class="menu-btn" aria-label="Ir para Sobre">Sobre</button>
-  <button id="btn-carrinho" class="menu-btn" aria-label="Ir para Carrinho">Carrinho</button>
-  <button id="btn-quiz" class="menu-btn" aria-label="Ir para Quiz">Quiz</button> <!-- Novo botão -->
-  <button id="botao-acessibilidade" class="menu-btn" aria-label="Abrir opções de acessibilidade">Acessibilidade</button>
+    <nav class="menu-navegacao" role="navigation" aria-label="Menu principal">
+      <button id="btn-loja" aria-label="Ir para Loja" class="menu-btn">Loja</button>
+      <button id="btn-contato" aria-label="Ir para Contato" class="menu-btn">Contato</button>
+      <button id="btn-sobre" aria-label="Ir para Sobre" class="menu-btn">Sobre</button>
+      <button id="btn-carrinho" aria-label="Ir para Carrinho" class="menu-btn">Carrinho</button>
+      <button id="btn-quiz" aria-label="Ir para Quiz" class="menu-btn">Quiz</button>
+      <button id="botao-acessibilidade" aria-label="Abrir opções de acessibilidade" class="menu-btn">Acessibilidade</button>
     </nav>
   </header>
 
   <!-- Botão fixo do carrinho -->
-  <button id="btn-carrinho-fixo" aria-label="Abrir carrinho de compras">
-    🛒
-    <span id="badge-carrinho" aria-live="polite">0</span>
+  <button id="btn-carrinho-fixo" aria-label="Abrir carrinho">
+    <img src="img/carrinho.svg" alt="" aria-hidden="true" />
+    <span id="contador-carrinho" aria-live="polite" class="contador-carrinho">0</span>
   </button>
 
   <!-- Menu acessibilidade -->
-  <div id="menu-acessibilidade" style="display:none;">
+  <div id="menu-acessibilidade" class="menu-acessibilidade" aria-label="Opções de acessibilidade" hidden>
     <button id="btn-aumentar-fonte" aria-label="Aumentar fonte">A+</button>
+    <button id="btn-diminuir-fonte" aria-label="Diminuir fonte">A-</button>
     <button id="btn-modo-escuro" aria-label="Alternar modo escuro">🌙</button>
+    <button id="btn-modo-daltonico" aria-label="Ativar filtro para daltonismo">🟦</button>
+    <button id="btn-libras" aria-label="Abrir vídeo em LIBRAS">LIBRAS</button>
+    <button id="btn-fechar-acessibilidade" aria-label="Fechar opções de acessibilidade">✖</button>
   </div>
 
-  <!-- Loja -->
+  <!-- Modal LIBRAS -->
+  <div id="modal-libras" class="modal-libras" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-libras">
+    <div class="modal-conteudo">
+      <h2 id="titulo-modal-libras">Vídeo em LIBRAS</h2>
+      <video controls width="320" height="240" tabindex="0" aria-label="Vídeo de explicação em LIBRAS">
+        <source src="img/libras.mp4" type="video/mp4" />
+        Seu navegador não suporta vídeo.
+      </video>
+      <button id="btn-fechar-libras" aria-label="Fechar vídeo LIBRAS">Fechar</button>
+    </div>
+  </div>
+
+  <!-- Seções -->
   <section id="loja" tabindex="0" aria-label="Seção de loja" style="display: grid;">
-    <!-- Produtos vão ser inseridos aqui via JavaScript -->
+    <!-- Aqui será o conteúdo da loja -->
   </section>
 
-  <!-- Contato -->
   <section id="contato" tabindex="0" aria-label="Formulário de contato" style="display:none;">
     <h2>Contato</h2>
     <form id="form-contato">
@@ -51,7 +66,6 @@
     <div id="resposta-contato" aria-live="polite" style="margin-top: 1rem;"></div>
   </section>
 
-  <!-- Sobre -->
   <section id="sobre" tabindex="0" aria-label="Informações sobre a Estação da Terra" style="display:none;">
     <h2>Sobre</h2>
     <p>Bem-vindo à Estação da Terra, seu marketplace sustentável e interativo, que conecta o campo à cidade, colhendo oportunidades para todos.</p>
@@ -59,7 +73,6 @@
     <p>Junte-se a nós e faça parte desse movimento verde!</p>
   </section>
 
-  <!-- Carrinho -->
   <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" style="display:none;">
     <h2>Seu Carrinho</h2>
     <ul id="lista-carrinho" aria-live="polite"></ul>
@@ -73,38 +86,13 @@
   </footer>
 
   <script>
-    // Scripts para funcionamento do site (menu, acessibilidade, carrinho, contato...)
-
-    // Botão de acessibilidade toggle
-    const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
-    const menuAcessibilidade = document.getElementById('menu-acessibilidade');
-    botaoAcessibilidade.addEventListener('click', () => {
-      if(menuAcessibilidade.style.display === 'none' || menuAcessibilidade.style.display === '') {
-        menuAcessibilidade.style.display = 'block';
-      } else {
-        menuAcessibilidade.style.display = 'none';
-      }
-    });
-
-    // Aumentar fonte
-    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
-    btnAumentarFonte.addEventListener('click', () => {
-      let currentSize = window.getComputedStyle(document.body).fontSize;
-      let newSize = parseFloat(currentSize) + 2;
-      document.body.style.fontSize = newSize + 'px';
-    });
-
-    // Modo escuro
-    const btnModoEscuro = document.getElementById('btn-modo-escuro');
-    btnModoEscuro.addEventListener('click', () => {
-      document.body.classList.toggle('modo-escuro');
-    });
-
-    // Navegação entre seções
+    // Navegação das seções
     const btnLoja = document.getElementById('btn-loja');
     const btnContato = document.getElementById('btn-contato');
     const btnSobre = document.getElementById('btn-sobre');
-    const btnCarrinhoNav = document.getElementById('btn-carrinho');
+    const btnCarrinho = document.getElementById('btn-carrinho');
+    const btnQuiz = document.getElementById('btn-quiz');
+    const btnCarrinhoFixo = document.getElementById('btn-carrinho-fixo');
 
     const loja = document.getElementById('loja');
     const contato = document.getElementById('contato');
@@ -136,18 +124,13 @@
       sobre.focus();
     });
 
-    btnCarrinhoNav.addEventListener('click', () => {
+    btnCarrinho.addEventListener('click', () => {
       esconderTodasSeções();
       carrinho.style.display = 'block';
       carrinho.focus();
       atualizarCarrinho();
     });
 
-    esconderTodasSeções();
-    loja.style.display = 'grid';
-
-    // Botão fixo do carrinho
-    const btnCarrinhoFixo = document.getElementById('btn-carrinho-fixo');
     btnCarrinhoFixo.addEventListener('click', () => {
       esconderTodasSeções();
       carrinho.style.display = 'block';
@@ -155,70 +138,92 @@
       atualizarCarrinho();
     });
 
+    btnQuiz.addEventListener('click', () => {
+      window.location.href = 'quiz.html';
+    });
+
+    // Inicializa com loja visível
+    esconderTodasSeções();
+    loja.style.display = 'grid';
+
+    // Produtos exemplo (20 produtos)
+    const produtos = [
+      {nome:'Maçã', preco:3.50, img:'img/maca.png'},
+      {nome:'Banana', preco:2.20, img:'img/banana.png'},
+      {nome:'Laranja', preco:3.00, img:'img/laranja.png'},
+      {nome:'Mel', preco:15.00, img:'img/mel.png'},
+      {nome:'Leite', preco:5.00, img:'img/leite.png'},
+      {nome:'Queijo', preco:12.00, img:'img/queijo.png'},
+      {nome:'Alface', preco:4.50, img:'img/alface.png'},
+      {nome:'Tomate', preco:4.00, img:'img/tomate.png'},
+      {nome:'Cenoura', preco:3.80, img:'img/cenoura.png'},
+      {nome:'Feijão', preco:8.50, img:'img/feijao.png'},
+      {nome:'Arroz', preco:7.00, img:'img/arroz.png'},
+      {nome:'Café', preco:10.00, img:'img/cafe.png'},
+      {nome:'Farinha', preco:6.00, img:'img/farinha.png'},
+      {nome:'Abacaxi', preco:4.50, img:'img/abacaxi.png'},
+      {nome:'Pera', preco:4.00, img:'img/pera.png'},
+      {nome:'Melancia', preco:7.00, img:'img/melancia.png'},
+      {nome:'Chá', preco:5.50, img:'img/cha.png'},
+      {nome:'Azeite', preco:18.00, img:'img/azeite.png'},
+      {nome:'Ervas', preco:9.00, img:'img/ervas.png'},
+      {nome:'Semente', preco:11.00, img:'img/semente.png'}
+    ];
+
+    // Mostrar produtos na loja
+    function mostrarProdutos(){
+      loja.innerHTML = '';
+      produtos.forEach((produto, i) => {
+        const card = document.createElement('article');
+        card.className = 'produto-card';
+        card.innerHTML = `
+          <img src="${produto.img}" alt="${produto.nome}" />
+          <h3>${produto.nome}</h3>
+          <p>R$ ${produto.preco.toFixed(2)}</p>
+          <button class="btn-add" data-nome="${produto.nome}" data-preco="${produto.preco}">Adicionar ao carrinho</button>
+        `;
+        loja.appendChild(card);
+      });
+      adicionarEventosBotoes();
+    }
+
+    mostrarProdutos();
+
     // Carrinho
+    let carrinhoItens = [];
+
     const listaCarrinho = document.getElementById('lista-carrinho');
     const totalCarrinho = document.getElementById('total-carrinho');
     const btnEsvaziarCarrinho = document.getElementById('btn-esvaziar-carrinho');
     const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
-    const badgeCarrinho = document.getElementById('badge-carrinho');
+    const contadorCarrinho = document.getElementById('contador-carrinho');
 
-    let carrinhoItens = [];
-
-    // Adicionar produtos exemplo (você deve inserir seus produtos reais no JS ou HTML)
-    const produtos = [
-      { nome: 'Maçã Orgânica', preco: 4.50, img: 'img/maca.jpg' },
-      { nome: 'Mel Puro', preco: 15.00, img: 'img/mel.jpg' },
-      { nome: 'Queijo Minas', preco: 20.00, img: 'img/queijo.jpg' },
-      { nome: 'Leite Integral', preco: 5.50, img: 'img/leite.jpg' },
-      { nome: 'Tomate Fresco', preco: 3.00, img: 'img/tomate.jpg' },
-      { nome: 'Arroz Integral', preco: 8.00, img: 'img/arroz.jpg' },
-      { nome: 'Feijão Preto', preco: 7.00, img: 'img/feijao.jpg' },
-      { nome: 'Alface Crespa', preco: 2.50, img: 'img/alface.jpg' },
-      { nome: 'Cenoura Orgânica', preco: 3.20, img: 'img/cenoura.jpg' },
-      { nome: 'Batata Doce', preco: 4.00, img: 'img/batata.jpg' },
-      { nome: 'Abacate', preco: 6.50, img: 'img/abacate.jpg' },
-      { nome: 'Pão Integral', preco: 7.80, img: 'img/pao.jpg' },
-      { nome: 'Café Torrado', preco: 18.00, img: 'img/cafe.jpg' },
-      { nome: 'Chá Verde', preco: 12.00, img: 'img/cha.jpg' },
-      { nome: 'Ovos Caipira', preco: 10.00, img: 'img/ovos.jpg' },
-      { nome: 'Manteiga Artesanal', preco: 14.50, img: 'img/manteiga.jpg' },
-      { nome: 'Melancia', preco: 8.50, img: 'img/melancia.jpg' },
-      { nome: 'Morango', preco: 11.00, img: 'img/morango.jpg' },
-      { nome: 'Abobrinha', preco: 3.70, img: 'img/abobrinha.jpg' },
-      { nome: 'Cebola Roxa', preco: 3.00, img: 'img/cebola.jpg' }
-    ];
-
-    // Renderizar produtos na loja
-    const lojaSection = document.getElementById('loja');
-    produtos.forEach(produto => {
-      const produtoDiv = document.createElement('div');
-      produtoDiv.className = 'produto';
-      produtoDiv.tabIndex = 0;
-      produtoDiv.innerHTML = `
-        <img src="${produto.img}" alt="${produto.nome}" />
-        <h3>${produto.nome}</h3>
-        <p>R$ ${produto.preco.toFixed(2)}</p>
-        <button class="btn-add" data-nome="${produto.nome}" data-preco="${produto.preco}">Adicionar ao carrinho</button>
-      `;
-      lojaSection.appendChild(produtoDiv);
-    });
-
-    // Eventos dos botões "Adicionar ao carrinho"
-    function atualizarBadge() {
-      const quantidadeTotal = carrinhoItens.reduce((acc, item) => acc + item.quantidade, 0);
-      if(quantidadeTotal > 0){
-        badgeCarrinho.style.display = 'inline-block';
-        badgeCarrinho.textContent = quantidadeTotal;
-      } else {
-        badgeCarrinho.style.display = 'none';
-      }
+    function adicionarEventosBotoes(){
+      const botoesAdd = document.querySelectorAll('.btn-add');
+      botoesAdd.forEach(botao => {
+        botao.addEventListener('click', () => {
+          const nome = botao.getAttribute('data-nome');
+          const preco = parseFloat(botao.getAttribute('data-preco'));
+          const itemExistente = carrinhoItens.find(item => item.nome === nome);
+          if(itemExistente){
+            itemExistente.quantidade++;
+          } else {
+            carrinhoItens.push({nome, preco, quantidade: 1});
+          }
+          alert(nome + ' adicionado ao carrinho!');
+          atualizarCarrinho();
+        });
+      });
     }
 
-    function atualizarCarrinho() {
+    function atualizarCarrinho(){
       listaCarrinho.innerHTML = '';
       let total = 0;
+      let quantidadeTotal = 0;
       carrinhoItens.forEach((item, index) => {
         total += item.preco * item.quantidade;
+        quantidadeTotal += item.quantidade;
+
         const li = document.createElement('li');
         li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
         li.tabIndex = 0;
@@ -232,31 +237,16 @@
             carrinhoItens.splice(index, 1);
           }
           atualizarCarrinho();
-          atualizarBadge();
         });
 
         li.appendChild(btnRemover);
         listaCarrinho.appendChild(li);
       });
-      totalCarrinho.textContent = 'Total: R$ ' + total.toFixed(2);
-      atualizarBadge();
-    }
 
-    // Delegação de evento para os botões "Adicionar"
-    lojaSection.addEventListener('click', e => {
-      if(e.target.classList.contains('btn-add')){
-        const nome = e.target.getAttribute('data-nome');
-        const preco = parseFloat(e.target.getAttribute('data-preco'));
-        const itemExistente = carrinhoItens.find(item => item.nome === nome);
-        if(itemExistente){
-          itemExistente.quantidade++;
-        } else {
-          carrinhoItens.push({nome, preco, quantidade: 1});
-        }
-        alert(nome + ' adicionado ao carrinho!');
-        atualizarCarrinho();
-      }
-    });
+      totalCarrinho.textContent = 'Total: R$ ' + total.toFixed(2);
+      contadorCarrinho.textContent = quantidadeTotal;
+      contadorCarrinho.style.display = quantidadeTotal > 0 ? 'inline' : 'none';
+    }
 
     btnEsvaziarCarrinho.addEventListener('click', () => {
       carrinhoItens = [];
@@ -280,7 +270,63 @@
       respostaContato.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
       formContato.reset();
     });
-  </script>
 
+    // Acessibilidade
+    const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
+    const menuAcessibilidade = document.getElementById('menu-acessibilidade');
+    const btnFecharAcessibilidade = document.getElementById('btn-fechar-acessibilidade');
+    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
+    const btnDiminuirFonte = document.getElementById('btn-diminuir-fonte');
+    const btnModoEscuro = document.getElementById('btn-modo-escuro');
+    const btnModoDaltonico = document.getElementById('btn-modo-daltonico');
+    const btnLibras = document.getElementById('btn-libras');
+    const modalLibras = document.getElementById('modal-libras');
+    const btnFecharLibras = document.getElementById('btn-fechar-libras');
+
+    botaoAcessibilidade.addEventListener('click', () => {
+      if(menuAcessibilidade.hasAttribute('hidden')){
+        menuAcessibilidade.removeAttribute('hidden');
+      } else {
+        menuAcessibilidade.setAttribute('hidden', '');
+      }
+    });
+
+    btnFecharAcessibilidade.addEventListener('click', () => {
+      menuAcessibilidade.setAttribute('hidden', '');
+    });
+
+    btnAumentarFonte.addEventListener('click', () => {
+      let currentSize = window.getComputedStyle(document.body).fontSize;
+      let newSize = parseFloat(currentSize) + 2;
+      document.body.style.fontSize = newSize + 'px';
+    });
+
+    btnDiminuirFonte.addEventListener('click', () => {
+      let currentSize = window.getComputedStyle(document.body).fontSize;
+      let newSize = parseFloat(currentSize) - 2;
+      if(newSize >= 12){
+        document.body.style.fontSize = newSize + 'px';
+      }
+    });
+
+    btnModoEscuro.addEventListener('click', () => {
+      document.body.classList.toggle('modo-escuro');
+    });
+
+    btnModoDaltonico.addEventListener('click', () => {
+      document.body.classList.toggle('modo-daltonico');
+    });
+
+    btnLibras.addEventListener('click', () => {
+      modalLibras.setAttribute('aria-hidden', 'false');
+      modalLibras.style.display = 'flex';
+    });
+
+    btnFecharLibras.addEventListener('click', () => {
+      modalLibras.setAttribute('aria-hidden', 'true');
+      modalLibras.style.display = 'none';
+    });
+
+  </script>
 </body>
 </html>
