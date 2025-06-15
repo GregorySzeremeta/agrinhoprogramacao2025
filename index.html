@@ -2,187 +2,92 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Estação da Terra</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- VLibras -->
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 </head>
 <body>
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-
   <header>
-    <h1>Estação da Terra</h1>
-    <nav class="menu-navegacao">
-      <button id="btn-loja">Loja</button>
-      <button id="btn-contato">Contato</button>
-      <button id="btn-sobre">Sobre</button>
-      <button id="btn-carrinho">Carrinho</button>
-      <button id="quiz.html">Quiz</button>
-      <button id="botao-acessibilidade">Acessibilidade</button>
+ <h1>Estação da Terra</h1>
+<nav>
+  <nav class="menu-navegacao">
+    <button id="btn-loja" aria-label="Ir para Loja" class="menu-btn">Loja</button>
+    <button id="btn-contato" aria-label="Ir para Contato" class="menu-btn">Contato</button>
+    <button id="btn-sobre" aria-label="Ir para Sobre" class="menu-btn">Sobre</button>
+    <button id="btn-carrinho" aria-label="Ir para Carrinho" class="menu-btn">Carrinho</button>
+    <button id="btn-quiz" aria-label="Ir para Quiz" class="menu-btn">Quiz</button>
+    <button id="botao-acessibilidade" aria-label="Abrir opções de acessibilidade" class="menu-btn">Acessibilidade</button>
+  </nav>
+</nav>
+
+<script>
+  // Redirecionamentos dos botões
+  document.getElementById('btn-loja').addEventListener('click', () => {
+    window.location.href = 'index.html'; // ou a página da loja
+  });
+  document.getElementById('btn-contato').addEventListener('click', () => {
+    window.location.href = 'contato.html';
+  });
+  document.getElementById('btn-sobre').addEventListener('click', () => {
+    window.location.href = 'sobre.html';
+  });
+  document.getElementById('btn-carrinho').addEventListener('click', () => {
+    window.location.href = 'carrinho.html';
+  });
+  document.getElementById('btn-quiz').addEventListener('click', () => {
+    window.location.href = 'quiz.html';
+  });
+  document.getElementById('botao-acessibilidade').addEventListener('click', () => {
+    // lógica para abrir opções de acessibilidade aqui
+    alert('Abrir opções de acessibilidade');
+  });
+</script>
+
+  </header>
     </nav>
   </header>
 
-  <div id="menu-acessibilidade" style="display: none;">
-    <button id="btn-aumentar-fonte">A+</button>
-    <button id="btn-modo-escuro">🌙</button>
+  <!-- Menu acessibilidade -->
+  <div id="menu-acessibilidade" style="display:none;">
+    <button id="btn-aumentar-fonte" aria-label="Aumentar fonte">A+</button>
+    <button id="btn-modo-escuro" aria-label="Alternar modo escuro">🌙</button>
   </div>
 
-  <section id="loja" tabindex="0" aria-label="Seção de loja">
-    <div class="produtos">
-      <div class="produto">
-        <img src="img/tomate.jpg" alt="Tomate orgânico" />
-        <h3>Tomate</h3>
-        <p>R$ 5,00</p>
-        <button class="btn-add" data-nome="Tomate" data-preco="5.00">Adicionar</button>
-      </div>
-      <div class="produto">
-        <img src="img/leite.jpg" alt="Leite integral" />
-        <h3>Leite</h3>
-        <p>R$ 4,50</p>
-        <button class="btn-add" data-nome="Leite" data-preco="4.50">Adicionar</button>
-      </div>
-<article>
-  <img src="imagens/alface.jpg" alt="Alface">
-  <h3>Alface</h3>
-  <p>Alface fresca, crocante e rica em vitaminas, perfeita para saladas.</p>
-  <p class="preco">R$ 3,00</p>
-  <button data-nome="Alface" data-preco="3.00">Adicionar ao carrinho</button>
-</article>
+  <!-- Loja -->
+  <section id="loja" tabindex="0" aria-label="Seção de loja" style="display: grid;">
 
-<article>
-  <img src="imagens/ovo.jpg" alt="Ovo">
-  <h3>Ovo</h3>
-  <p>Ovo fresco de granja, fonte de proteína e ingrediente versátil no dia a dia.</p>
-  <p class="preco">R$ 1,50</p>
-  <button data-nome="Ovo" data-preco="1.50">Adicionar ao carrinho</button>
-</article>
-
-<article>
-  <img src="imagens/mel.jpg" alt="Mel">
-  <h3>Mel</h3>
-  <p>Mel natural e puro, direto da colmeia, ideal para adoçar alimentos.</p>
-  <p class="preco">R$ 25,00</p>
-  <button data-nome="Mel" data-preco="25.00">Adicionar ao carrinho</button>
-</article>
-
-<article>
-  <img src="imagens/tomate.jpg" alt="Tomate">
-  <h3>Tomate</h3>
-  <p>Tomates vermelhos e suculentos, ricos em sabor, ótimos para saladas e molhos.</p>
-  <p class="preco">R$ 4,00</p>
-  <button data-nome="Tomate" data-preco="4.00">Adicionar ao carrinho</button>
-</article>
-
-<article>
-  <img src="imagens/alho.jpg" alt="Alho">
-  <h3>Alho</h3>
-  <p>Alho fresco, saboroso e aromático, realça o gosto de diversos pratos.</p>
-  <p class="preco">R$ 1,50</p>
-  <button data-nome="Alho" data-preco="1.50">Adicionar ao carrinho</button>
-</article>
-
-<article>
-  <img src="imagens/pao.jpg" alt="Pão">
-  <h3>Pão</h3>
-  <p>Pão artesanal fresco, macio por dentro e crocante por fora, ideal para o café da manhã.</p>
-  <p class="preco">R$ 3,50</p>
-  <button data-nome="Pão" data-preco="3.50">Adicionar ao carrinho</button>
-</article>
-
-<article>
-  <img src="imagens/salsinha.jpg" alt="Salsinha">
-  <h3>Salsinha</h3>
-  <p>Salsinha fresca, erva aromática versátil, rica em vitaminas e sabor, para incrementar qualquer prato.</p>
-  <p class="preco">R$ 2,00</p>
-  <button data-nome="Salsinha" data-preco="2.00">Adicionar ao carrinho</button>
-</article>
-
-<article>
-  <img src="imagens/cenoura.jpg" alt="Cenoura">
-  <h3>Cenoura</h3>
-  <p>Cenouras crocantes e adocicadas, fonte de betacaroteno, ótimas para saladas e sucos.</p>
-  <p class="preco">R$ 1,50</p>
-  <button data-nome="Cenoura" data-preco="1.50">Adicionar ao carrinho</button>
-</article>
-
-<article>
-  <img src="imagens/leite.jpg" alt="Leite">
-  <h3>Leite</h3>
-  <p>Leite fresco, fonte de cálcio e proteínas, ideal para consumo diário.</p>
-  <p class="preco">R$ 4,50</p>
-  <button data-nome="Leite" data-preco="4.50">Adicionar ao carrinho</button>
-</article>
-
-<article>
-  <img src="imagens/feijao.jpg" alt="Feijão">
-  <h3>Feijão</h3>
-  <p>Feijão nutritivo, rico em proteínas e fibras, ingrediente tradicional da culinária brasileira.</p>
-  <p class="preco">R$ 6,50</p>
-  <button data-nome="Feijão" data-preco="6.50">Adicionar ao carrinho</button>
-</article>
-
-<article>
-  <img src="imagens/arroz.jpg" alt="Arroz">
-  <h3>Arroz</h3>
-  <p>Arroz branco de qualidade, grãos soltos e macios, perfeito para acompanhar suas refeições.</p>
-  <p class="preco">R$ 5,00</p>
-  <button data-nome="Arroz" data-preco="5.00">Adicionar ao carrinho</button>
-</article>
-
-<article>
-  <img src="imagens/hortela.jpg" alt="Hortelã">
-  <h3>Hortelã</h3>
-  <p>Hortelã fresca, aroma refrescante, excelente para chás, sucos e temperos.</p>
-  <p class="preco">R$ 3,00</p>
-  <button data-nome="Hortelã" data-preco="3.00">Adicionar ao carrinho</button>
-</article>
-
-<article>
-  <img src="imagens/laranja.jpg" alt="Laranja">
-  <h3>Laranja</h3>
-  <p>Laranjas suculentas e doces, ricas em vitamina C, perfeitas para sucos naturais.</p>
-  <p class="preco">R$ 2,00</p>
-  <button data-nome="Laranja" data-preco="2.00">Adicionar ao carrinho</button>
-</article>
-    </div>
   </section>
 
-  <section id="contato" style="display: none;">
+  <!-- Contato -->
+  <section id="contato" tabindex="0" aria-label="Formulário de contato" style="display:none;">
     <h2>Contato</h2>
     <form id="form-contato">
       <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required />
+      <input type="text" id="nome" name="nome" required aria-required="true" />
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required />
+      <input type="email" id="email" name="email" required aria-required="true" />
       <label for="mensagem">Mensagem:</label>
-      <textarea id="mensagem" name="mensagem" required></textarea>
-      <button type="submit">Enviar</button>
+      <textarea id="mensagem" name="mensagem" required aria-required="true"></textarea>
+      <button type="submit" aria-label="Enviar mensagem de contato">Enviar</button>
     </form>
-    <div id="resposta-contato"></div>
+    <div id="resposta-contato" aria-live="polite" style="margin-top: 1rem;"></div>
   </section>
 
-  <section id="sobre" style="display: none;">
+  <!-- Sobre -->
+  <section id="sobre" tabindex="0" aria-label="Informações sobre a Estação da Terra" style="display:none;">
     <h2>Sobre</h2>
-    <p>Marketplace sustentável e interativo: do campo à cidade, colhendo oportunidades.</p>
+    <p>Bem-vindo à Estação da Terra, seu marketplace sustentável e interativo, que conecta o campo à cidade, colhendo oportunidades para todos.</p>
+    <p>Nossa missão é promover produtos frescos, orgânicos e de qualidade, valorizando o produtor local e incentivando práticas sustentáveis.</p>
+    <p>Junte-se a nós e faça parte desse movimento verde!</p>
   </section>
 
-  <section id="quiz" style="display: none;">
-    <h2>Quiz</h2>
-    <p>10 perguntas sobre agricultura virão aqui...</p>
-  </section>
-
-  <section id="carrinho" style="display: none;">
+  <!-- Carrinho -->
+  <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" style="display:none;">
     <h2>Seu Carrinho</h2>
-    <ul id="lista-carrinho"></ul>
+    <ul id="lista-carrinho" aria-live="polite"></ul>
     <p id="total-carrinho">Total: R$ 0,00</p>
-    <button id="btn-esvaziar-carrinho">Esvaziar Carrinho</button>
-    <button id="btn-finalizar-compra">Finalizar Compra</button>
+    <button id="btn-esvaziar-carrinho" aria-label="Esvaziar carrinho">Esvaziar Carrinho</button>
+    <button id="btn-finalizar-compra" aria-label="Finalizar compra">Finalizar Compra</button>
   </section>
 
   <footer>
@@ -190,103 +95,146 @@
   </footer>
 
   <script>
-    new window.VLibras.Widget();
-
-    function esconderTodasSeções() {
-      document.querySelectorAll('section').forEach(s => s.style.display = 'none');
-    }
-
-    document.getElementById('btn-loja').onclick = () => {
-      esconderTodasSeções(); document.getElementById('loja').style.display = 'block';
-    };
-    document.getElementById('btn-contato').onclick = () => {
-      esconderTodasSeções(); document.getElementById('contato').style.display = 'block';
-    };
-    document.getElementById('btn-sobre').onclick = () => {
-      esconderTodasSeções(); document.getElementById('sobre').style.display = 'block';
-    };
-    document.getElementById('btn-carrinho').onclick = () => {
-      esconderTodasSeções(); document.getElementById('carrinho').style.display = 'block';
-      atualizarCarrinho();
-    };
-    document.getElementById('btn-quiz').onclick = () => {
-      esconderTodasSeções(); document.getElementById('quiz').style.display = 'block';
-    };
-
-    document.getElementById('botao-acessibilidade').onclick = () => {
-      const menu = document.getElementById('menu-acessibilidade');
-      menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-    };
-
-    document.getElementById('btn-aumentar-fonte').onclick = () => {
-      const fontSize = parseFloat(getComputedStyle(document.body).fontSize);
-      document.body.style.fontSize = (fontSize + 2) + 'px';
-    };
-
-    document.getElementById('btn-modo-escuro').onclick = () => {
-      document.body.classList.toggle('modo-escuro');
-    };
-
-    const listaCarrinho = document.getElementById('lista-carrinho');
-    const totalCarrinho = document.getElementById('total-carrinho');
-    let carrinhoItens = [];
-
-    document.querySelectorAll('.btn-add').forEach(btn => {
-      btn.onclick = () => {
-        const nome = btn.dataset.nome;
-        const preco = parseFloat(btn.dataset.preco);
-        const existente = carrinhoItens.find(p => p.nome === nome);
-        if (existente) {
-          existente.quantidade++;
-        } else {
-          carrinhoItens.push({ nome, preco, quantidade: 1 });
-        }
-        atualizarCarrinho();
-        alert(`${nome} adicionado ao carrinho!`);
-      };
+    // Script do menu, acessibilidade, carrinho, contato, etc, igual antes, removendo o quiz
+    const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
+    const menuAcessibilidade = document.getElementById('menu-acessibilidade');
+    botaoAcessibilidade.addEventListener('click', () => {
+      if(menuAcessibilidade.style.display === 'none' || menuAcessibilidade.style.display === '') {
+        menuAcessibilidade.style.display = 'block';
+      } else {
+        menuAcessibilidade.style.display = 'none';
+      }
     });
 
-    function atualizarCarrinho() {
-      listaCarrinho.innerHTML = '';
-      let total = 0;
-      carrinhoItens.forEach((item, i) => {
-        const li = document.createElement('li');
-        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
-        const btnRemover = document.createElement('button');
-        btnRemover.textContent = 'Remover';
-        btnRemover.onclick = () => {
-          item.quantidade--;
-          if (item.quantidade === 0) carrinhoItens.splice(i, 1);
-          atualizarCarrinho();
-        };
-        li.appendChild(btnRemover);
-        listaCarrinho.appendChild(li);
-        total += item.preco * item.quantidade;
-      });
-      totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
+    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
+    btnAumentarFonte.addEventListener('click', () => {
+      let currentSize = window.getComputedStyle(document.body).fontSize;
+      let newSize = parseFloat(currentSize) + 2;
+      document.body.style.fontSize = newSize + 'px';
+    });
+
+    const btnModoEscuro = document.getElementById('btn-modo-escuro');
+    btnModoEscuro.addEventListener('click', () => {
+      document.body.classList.toggle('modo-escuro');
+    });
+
+    const btnLoja = document.getElementById('btn-loja');
+    const btnContato = document.getElementById('btn-contato');
+    const btnSobre = document.getElementById('btn-sobre');
+    const btnCarrinho = document.getElementById('btn-carrinho');
+
+    const loja = document.getElementById('loja');
+    const contato = document.getElementById('contato');
+    const sobre = document.getElementById('sobre');
+    const carrinho = document.getElementById('carrinho');
+
+    function esconderTodasSeções() {
+      loja.style.display = 'none';
+      contato.style.display = 'none';
+      sobre.style.display = 'none';
+      carrinho.style.display = 'none';
     }
 
-    document.getElementById('btn-esvaziar-carrinho').onclick = () => {
+    btnLoja.addEventListener('click', () => {
+      esconderTodasSeções();
+      loja.style.display = 'grid';
+      loja.focus();
+    });
+
+    btnContato.addEventListener('click', () => {
+      esconderTodasSeções();
+      contato.style.display = 'block';
+      contato.focus();
+    });
+
+    btnSobre.addEventListener('click', () => {
+      esconderTodasSeções();
+      sobre.style.display = 'block';
+      sobre.focus();
+    });
+
+    btnCarrinho.addEventListener('click', () => {
+      esconderTodasSeções();
+      carrinho.style.display = 'block';
+      carrinho.focus();
+      atualizarCarrinho();
+    });
+
+    esconderTodasSeções();
+    loja.style.display = 'grid';
+
+    // Carrinho - igual antes, mantém funcionalidade
+    const botoesAdd = document.querySelectorAll('.btn-add');
+    const listaCarrinho = document.getElementById('lista-carrinho');
+    const totalCarrinho = document.getElementById('total-carrinho');
+    const btnEsvaziarCarrinho = document.getElementById('btn-esvaziar-carrinho');
+    const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
+
+    let carrinhoItens = [];
+
+    botoesAdd.forEach(botao => {
+      botao.addEventListener('click', () => {
+        const nome = botao.getAttribute('data-nome');
+        const preco = parseFloat(botao.getAttribute('data-preco'));
+        const itemExistente = carrinhoItens.find(item => item.nome === nome);
+        if(itemExistente){
+          itemExistente.quantidade++;
+        } else {
+          carrinhoItens.push({nome, preco, quantidade: 1});
+        }
+        alert(nome + ' adicionado ao carrinho!');
+        atualizarCarrinho();
+      });
+    });
+
+    function atualizarCarrinho(){
+      listaCarrinho.innerHTML = '';
+      let total = 0;
+      carrinhoItens.forEach((item, index) => {
+        total += item.preco * item.quantidade;
+        const li = document.createElement('li');
+        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
+        li.tabIndex = 0;
+        const btnRemover = document.createElement('button');
+        btnRemover.textContent = 'Remover';
+        btnRemover.setAttribute('aria-label', 'Remover um ' + item.nome + ' do carrinho');
+        btnRemover.addEventListener('click', () => {
+          item.quantidade--;
+          if(item.quantidade === 0){
+            carrinhoItens.splice(index, 1);
+          }
+          atualizarCarrinho();
+        });
+        li.appendChild(btnRemover);
+        listaCarrinho.appendChild(li);
+      });
+      totalCarrinho.textContent = 'Total: R$ ' + total.toFixed(2);
+    }
+
+    btnEsvaziarCarrinho.addEventListener('click', () => {
       carrinhoItens = [];
       atualizarCarrinho();
-    };
+    });
 
-    document.getElementById('btn-finalizar-compra').onclick = () => {
-      if (carrinhoItens.length === 0) {
+    btnFinalizarCompra.addEventListener('click', () => {
+      if(carrinhoItens.length === 0){
         alert('Seu carrinho está vazio!');
         return;
       }
       window.location.href = 'pagamento.html';
-    };
-
-    document.getElementById('form-contato').addEventListener('submit', e => {
-      e.preventDefault();
-      document.getElementById('resposta-contato').textContent = 'Mensagem enviada com sucesso!';
-      e.target.reset();
     });
 
-    esconderTodasSeções();
-    document.getElementById('loja').style.display = 'block';
+    // Formulário de contato
+    const formContato = document.getElementById('form-contato');
+    const respostaContato = document.getElementById('resposta-contato');
+
+    formContato.addEventListener('submit', (e) => {
+      e.preventDefault();
+      respostaContato.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
+      formContato.reset();
+    });
+
   </script>
+
 </body>
 </html>
