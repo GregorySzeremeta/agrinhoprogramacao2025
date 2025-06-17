@@ -46,7 +46,7 @@
       alert('Abrir opções de acessibilidade');
     });
 
-    // Validação simples do formulário (exemplo)
+    
     document.getElementById('form-contato').addEventListener('submit', function(event) {
       const nome = this.nome.value.trim();
       const email = this.email.value.trim();
@@ -59,8 +59,7 @@
       }
 
       alert('Mensagem enviada com sucesso! Obrigado pelo contato.');
-      // Aqui você pode implementar o envio real via backend ou serviço externo
-      event.preventDefault(); // Remover essa linha quando implementar o envio real
+      event.preventDefault();
     });
   </script>
 </body>
