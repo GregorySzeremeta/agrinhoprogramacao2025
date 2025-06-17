@@ -1,235 +1,213 @@
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja de Produtos Naturais</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
 
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #f9f9f9;
-  color: #333;
-  transition: background 0.3s, color 0.3s;
-  padding-bottom: 3rem;
-}
+  <!-- Modo Escuro -->
+  <input type="checkbox" id="toggle-darkmode" hidden>
+  <label for="toggle-darkmode" class="btn-toggle-dark">🌙 Modo Escuro</label>
 
-header {
-  background-color: #4CAF50;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-}
+  <!-- Acessibilidade -->
+  <div id="acessibilidade">
+    <input type="radio" name="contraste" id="normal" checked hidden>
+    <input type="radio" name="contraste" id="alto-contraste" hidden>
+    <label for="normal" class="btn-acess">Normal</label>
+    <label for="alto-contraste" class="btn-acess">Alto Contraste</label>
+  </div>
 
-nav a {
-  color: white;
-  margin: 0 1rem;
-  text-decoration: none;
-  font-weight: bold;
-}
+  <header>
+    <h1>Loja de Produtos Naturais</h1>
+    <nav>
+      <a href="#loja">Loja</a>
+      <a href="#contato">Contato</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+  </header>
 
-nav a:hover {
-  text-decoration: underline;
-}
+  <!-- Carrinho -->
+  <input type="checkbox" id="toggle-carrinho" hidden>
+  <label for="toggle-carrinho" id="btn-carrinho">🛒 Carrinho</label>
 
-h2 {
-  margin: 2rem 0 1rem;
-  text-align: center;
-}
+  <div id="carrinho-modal">
+    <h2>Seu Carrinho</h2>
+    <p>Produtos selecionados (visual apenas)</p>
+    <label for="toggle-carrinho" class="btn-close">Fechar</label>
+  </div>
 
-.produtos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  padding: 1rem;
-}
+  <!-- Loja -->
+  <section id="loja">
+    <h2>Produtos</h2>
 
-.produto {
-  background: #fff;
-  border: 1px solid #ccc;
-  padding: 1rem;
-  text-align: center;
-  border-radius: 8px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
+    <div class="produtos-grid">
 
-.produto:hover {
-  transform: translateY(-5px);
-  box-shadow: 4px 4px 10px rgba(0,0,0,0.15);
-}
+      <div class="produto">
+        <img src="img/maca.jpg" alt="Maçã Orgânica">
+        <h3>Maçã Orgânica</h3>
+        <p>R$ 4,50</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-.produto img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
+      <div class="produto">
+        <img src="img/mel.jpg" alt="Mel Puro">
+        <h3>Mel Puro</h3>
+        <p>R$ 15,00</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-.btn-add {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  background: #4CAF50;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
+      <div class="produto">
+        <img src="img/queijo.jpg" alt="Queijo Minas">
+        <h3>Queijo Minas</h3>
+        <p>R$ 20,00</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-label input[type="checkbox"]:checked + .btn-add {
-  background: #2E7D32;
-}
+      <div class="produto">
+        <img src="img/leite.jpg" alt="Leite Integral">
+        <h3>Leite Integral</h3>
+        <p>R$ 5,50</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-#btn-carrinho, .btn-close {
-  display: inline-block;
-  margin: 1rem;
-  padding: 0.5rem 1rem;
-  background: #ff9800;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
+      <div class="produto">
+        <img src="img/tomate.jpg" alt="Tomate Fresco">
+        <h3>Tomate Fresco</h3>
+        <p>R$ 3,00</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-#carrinho-modal {
-  display: none;
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: white;
-  border: 2px solid #ff9800;
-  padding: 1rem;
-  z-index: 1000;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
-}
+      <div class="produto">
+        <img src="img/arroz.jpg" alt="Arroz Integral">
+        <h3>Arroz Integral</h3>
+        <p>R$ 8,00</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-#toggle-carrinho:checked ~ #carrinho-modal {
-  display: block;
-}
+      <div class="produto">
+        <img src="img/feijao.jpg" alt="Feijão Preto">
+        <h3>Feijão Preto</h3>
+        <p>R$ 7,00</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  max-width: 400px;
-  margin: 0 auto 2rem;
-}
+      <div class="produto">
+        <img src="img/alface.jpg" alt="Alface Crespa">
+        <h3>Alface Crespa</h3>
+        <p>R$ 2,50</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-form input, form textarea {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+      <div class="produto">
+        <img src="img/cenoura.jpg" alt="Cenoura Orgânica">
+        <h3>Cenoura Orgânica</h3>
+        <p>R$ 3,20</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-form button {
-  background: #4CAF50;
-  color: white;
-  border: none;
-  padding: 0.7rem;
-  border-radius: 5px;
-  cursor: pointer;
-}
+      <div class="produto">
+        <img src="img/batata.jpg" alt="Batata Doce">
+        <h3>Batata Doce</h3>
+        <p>R$ 4,00</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-form button:hover {
-  background: #388E3C;
-}
+      <div class="produto">
+        <img src="img/abacate.jpg" alt="Abacate">
+        <h3>Abacate</h3>
+        <p>R$ 6,50</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-/* Modo Escuro */
-#toggle-darkmode:checked ~ * {
-  background-color: #121212;
-  color: #f1f1f1;
-}
+      <div class="produto">
+        <img src="img/pao.jpg" alt="Pão Integral">
+        <h3>Pão Integral</h3>
+        <p>R$ 7,80</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-#toggle-darkmode:checked ~ header,
-#toggle-darkmode:checked ~ footer {
-  background-color: #1E1E1E;
-}
+      <div class="produto">
+        <img src="img/cafe.jpg" alt="Café Torrado">
+        <h3>Café Torrado</h3>
+        <p>R$ 18,00</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-#toggle-darkmode:checked ~ section,
-#toggle-darkmode:checked ~ #carrinho-modal {
-  background-color: #1E1E1E;
-}
+      <div class="produto">
+        <img src="img/cha.jpg" alt="Chá Verde">
+        <h3>Chá Verde</h3>
+        <p>R$ 12,00</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-#toggle-darkmode:checked ~ .produtos-grid .produto {
-  background-color: #222;
-  border-color: #444;
-}
+      <div class="produto">
+        <img src="img/ovos.jpg" alt="Ovos Caipira">
+        <h3>Ovos Caipira</h3>
+        <p>R$ 10,00</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-.btn-toggle-dark {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  background: #555;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  z-index: 999;
-}
+      <div class="produto">
+        <img src="img/manteiga.jpg" alt="Manteiga Artesanal">
+        <h3>Manteiga Artesanal</h3>
+        <p>R$ 14,50</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-#toggle-darkmode:checked + .btn-toggle-dark {
-  background: #333;
-}
+      <div class="produto">
+        <img src="img/melancia.jpg" alt="Melancia">
+        <h3>Melancia</h3>
+        <p>R$ 8,50</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-/* Alto Contraste */
-#alto-contraste:checked ~ * {
-  background-color: black;
-  color: yellow;
-}
+      <div class="produto">
+        <img src="img/morango.jpg" alt="Morango">
+        <h3>Morango</h3>
+        <p>R$ 11,00</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-#alto-contraste:checked ~ header,
-#alto-contraste:checked ~ footer {
-  background-color: black;
-}
+      <div class="produto">
+        <img src="img/abobrinha.jpg" alt="Abobrinha">
+        <h3>Abobrinha</h3>
+        <p>R$ 3,70</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-#alto-contraste:checked ~ .produtos-grid .produto {
-  background-color: black;
-  border-color: yellow;
-}
+      <div class="produto">
+        <img src="img/cebola.jpg" alt="Cebola Roxa">
+        <h3>Cebola Roxa</h3>
+        <p>R$ 3,00</p>
+        <label><input type="checkbox" hidden><span class="btn-add">Adicionar</span></label>
+      </div>
 
-#alto-contraste:checked ~ form input,
-#alto-contraste:checked ~ form textarea {
-  background: black;
-  color: yellow;
-  border: 1px solid yellow;
-}
+    </div>
+  </section>
 
-.btn-acess {
-  position: fixed;
-  top: 4rem;
-  right: 1rem;
-  background: #333;
-  color: white;
-  padding: 0.3rem 0.7rem;
-  margin-top: 0.3rem;
-  border-radius: 4px;
-  cursor: pointer;
-  z-index: 999;
-}
+  <!-- Contato -->
+  <section id="contato">
+    <h2>Contato</h2>
+    <form>
+      <label>Nome:<input type="text" name="nome"></label>
+      <label>Email:<input type="email" name="email"></label>
+      <label>Mensagem:<textarea name="mensagem"></textarea></label>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
 
-#normal:checked ~ .btn-acess[for="normal"],
-#alto-contraste:checked ~ .btn-acess[for="alto-contraste"] {
-  background: yellow;
-  color: black;
-}
+  <!-- Sobre -->
+  <section id="sobre">
+    <h2>Sobre Nós</h2>
+    <p>Somos uma loja de produtos naturais.</p>
+  </section>
 
-footer {
-  text-align: center;
-  padding: 1rem;
-  background: #4CAF50;
-  color: white;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-}
+  <footer>
+    &copy; 2025 Loja de Produtos Naturais
+  </footer>
 
-@media (max-width: 600px) {
-  .produtos-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .btn-toggle-dark, .btn-acess {
-    right: 0.5rem;
-    top: auto;
-    bottom: 1rem;
-  }
-}
+</body>
+</html>
