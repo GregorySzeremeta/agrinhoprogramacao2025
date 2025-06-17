@@ -1,10 +1,11 @@
-    /* Reset básico */
+    /* Resetizinho */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /*para o corpo do texto*/
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #a8d5ba, #d1e8e2);
@@ -14,6 +15,7 @@
       flex-direction: column;
     }
 
+    /*pra ir certo mesmo o header de tudo*/
     header.header {
       background-color: #1e5128;
       padding: 1rem 2rem;
@@ -28,6 +30,8 @@
       z-index: 10;
     }
 
+
+    /*A Logo*/
     .logo {
       font-weight: 700;
       font-size: 1.8rem;
@@ -56,6 +60,8 @@
       color: #1e5128;
     }
 
+
+    /*conteudo que ta aparecendo no meio tlgd*/
     main.main-content {
       flex-grow: 1;
       padding: 2rem 1rem;
@@ -75,6 +81,7 @@
       user-select: none;
     }
 
+    /*barra de progresso, que fica la aumentando toda vez q faz um coisa do quizzzz*/
     #progress-bar {
       width: 100%;
       height: 8px;
@@ -160,6 +167,8 @@
       color: #1565c0;
     }
 
+
+    /*botãozinho chiuque*/
     .btn {
       background-color: #1e5128;
       color: white;
@@ -197,21 +206,9 @@
       user-select: none;
     }
 
-    #btn-som {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.3rem;
-      cursor: pointer;
-      user-select: none;
-      transition: color 0.3s ease;
-    }
 
-    #btn-som:hover {
-      color: #b0d395;
-    }
 
-    /* Responsivo */
+    /* Responsivo DNVVVVV */
     @media (max-width: 480px) {
       main.main-content {
         margin: 1rem;

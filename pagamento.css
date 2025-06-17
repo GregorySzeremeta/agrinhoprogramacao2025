@@ -1,4 +1,5 @@
- /* Estilos específicos para a página de pagamento */
+ /* style para geralzão*/
+
     body {
       background-color: #f8f8f8;
       color: #333;
@@ -9,6 +10,9 @@
       flex-direction: column;
       align-items: center;
     }
+
+    /*coisa para o pagamento*/
+
     .container {
       background: white;
       padding: 30px 25px;
@@ -22,6 +26,10 @@
       text-align: center;
       margin-bottom: 25px;
     }
+
+
+    /*continua para o pagamento, eu acho*/
+
     label {
       display: block;
       font-weight: 600;
@@ -29,6 +37,9 @@
       margin-bottom: 8px;
       color: #2c3e50;
     }
+
+/*para ficar legal o coisa de escrever as coisa nossa*/
+
     input[type="text"],
     input[type="email"],
     input[type="number"],
@@ -41,6 +52,8 @@
       font-size: 1rem;
       transition: border-color 0.3s ease;
     }
+
+
     input[type="text"]:focus,
     input[type="email"]:focus,
     input[type="number"]:focus,
@@ -57,7 +70,7 @@
       margin-top: 20px;
     }
     .pagamento-opcoes label {
-      font-weight: 600;
+      font-weight: 600; /*tamanho da fonte da coisa escrita né*/
       margin-top: 12px;
       display: flex;
       align-items: center;
@@ -69,7 +82,10 @@
       accent-color: #27ae60;
       cursor: pointer;
     }
-    /* Campos adicionais aparecerão condicionalmente */
+
+
+    /* Cartão ou pixxxxxx*/
+
     .campo-cartao,
     .campo-pix,
     .campo-boleto {
@@ -79,13 +95,17 @@
       flex-direction: column;
       gap: 10px;
     }
-    /* Exibir conforme selecionado */
+
+
+    /*Pra aparecer os coisa pra pagar*/
     input#pag-cartao:checked ~ .campo-cartao,
     input#pag-pix:checked ~ .campo-pix,
     input#pag-boleto:checked ~ .campo-boleto {
       display: flex;
     }
-    /* Botão finalizar */
+
+
+    /* terminar botão */
     button#finalizar-pagamento {
       margin-top: 30px;
       background-color: #27ae60;
@@ -102,7 +122,11 @@
     button#finalizar-pagamento:hover {
       background-color: #219150;
     }
+
+
+
     /* Responsividade */
+
     @media (max-width: 500px) {
       .container {
         padding: 20px 15px;
