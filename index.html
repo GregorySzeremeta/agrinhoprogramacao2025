@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estação da Terra</title>
+  <title>Estação da Terra - Loja</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,11 +16,9 @@
     </div>
   </div>
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
 
-  <!-- Cabeçalho / Menu -->
+  <!-- Cabeçalho -->
   <header>
     <h1>Estação da Terra</h1>
     <nav class="menu-navegacao">
@@ -28,47 +26,46 @@
       <a href="#" id="btn-contato" class="menu-btn">Contato</a>
       <a href="#" id="btn-sobre" class="menu-btn">Sobre</a>
       <a href="#" id="btn-carrinho" class="menu-btn">Carrinho</a>
-      <a href="quiz.html" id="quiz" class="menu-btn">Quiz</a>
+      <a href="quiz.html" class="menu-btn">Quiz</a>
       <button id="botao-acessibilidade" class="menu-btn">Acessibilidade</button>
     </nav>
   </header>
 
-  <!-- Botão Carrinho Fixo -->
-  <button id="btn-carrinho-fixo" aria-label="Abrir carrinho">
-    🛒 <span id="badge-carrinho">0</span>
-  </button>
+  <!-- Botão Carrinho fixo -->
+  <button id="btn-carrinho-fixo">🛒 <span id="badge-carrinho">0</span></button>
 
   <!-- Menu Acessibilidade -->
   <div id="menu-acessibilidade" style="display:none;">
-    <button id="btn-aumentar-fonte">A+</button>
-    <button id="btn-modo-escuro">🌙</button>
+    <button id="btn-aumentar-fonte">Aumentar Fonte</button>
+    <button id="btn-modo-escuro">Modo Escuro</button>
   </div>
 
   <!-- Seções -->
-  <section id="loja" style="display:grid;">
-    <!-- Produtos aparecerão via JS -->
-  </section>
+  <section id="loja" tabindex="0" aria-label="Seção Loja"></section>
 
-  <section id="contato" style="display:none;">
+  <section id="contato" tabindex="0" style="display:none;">
     <h2>Contato</h2>
     <form id="form-contato">
       <label for="nome">Nome:</label>
       <input type="text" id="nome" name="nome" required>
+
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required>
+
       <label for="mensagem">Mensagem:</label>
       <textarea id="mensagem" name="mensagem" required></textarea>
+
       <button type="submit">Enviar</button>
     </form>
     <div id="resposta-contato"></div>
   </section>
 
-  <section id="sobre" style="display:none;">
+  <section id="sobre" tabindex="0" style="display:none;">
     <h2>Sobre Nós</h2>
-    <p>Bem-vindo à Estação da Terra! Vendemos alimentos naturais e orgânicos.</p>
+    <p>Somos a Estação da Terra! Trazemos produtos orgânicos e naturais direto da fazenda para você.</p>
   </section>
 
-  <section id="carrinho" style="display:none;">
+  <section id="carrinho" tabindex="0" style="display:none;">
     <h2>Seu Carrinho</h2>
     <ul id="lista-carrinho"></ul>
     <p id="total-carrinho">Total: R$ 0,00</p>
@@ -77,140 +74,140 @@
   </section>
 
   <footer>
-    <p>© 2025 Estação da Terra - Todos os direitos reservados.</p>
+    <p>&copy; 2025 Estação da Terra - Todos os direitos reservados</p>
   </footer>
 
   <script>
-    // Acessibilidade
-    document.getElementById('botao-acessibilidade').onclick = () => {
-      const menu = document.getElementById('menu-acessibilidade');
-      menu.style.display = (menu.style.display === 'none') ? 'block' : 'none';
-    };
-
-    document.getElementById('btn-aumentar-fonte').onclick = () => {
-      let size = parseFloat(window.getComputedStyle(document.body).fontSize);
-      document.body.style.fontSize = (size + 2) + 'px';
-    };
-
-    document.getElementById('btn-modo-escuro').onclick = () => {
-      document.body.classList.toggle('modo-escuro');
-    };
-
-    // Navegação
-    function esconderTodas() {
-      document.getElementById('loja').style.display = 'none';
-      document.getElementById('contato').style.display = 'none';
-      document.getElementById('sobre').style.display = 'none';
-      document.getElementById('carrinho').style.display = 'none';
-    }
-
-    document.getElementById('btn-loja').onclick = () => {
-      esconderTodas();
-      document.getElementById('loja').style.display = 'grid';
-    };
-
-    document.getElementById('btn-contato').onclick = () => {
-      esconderTodas();
-      document.getElementById('contato').style.display = 'block';
-    };
-
-    document.getElementById('btn-sobre').onclick = () => {
-      esconderTodas();
-      document.getElementById('sobre').style.display = 'block';
-    };
-
-    document.getElementById('btn-carrinho').onclick = () => {
-      esconderTodas();
-      document.getElementById('carrinho').style.display = 'block';
-      atualizarCarrinho();
-    };
-
-    document.getElementById('btn-carrinho-fixo').onclick = () => {
-      esconderTodas();
-      document.getElementById('carrinho').style.display = 'block';
-      atualizarCarrinho();
-    };
-
-    // Produtos Loja
+    // Produtos
     const produtos = [
       { nome: 'Maçã Orgânica', preco: 4.50, img: 'img/maca.jpg' },
       { nome: 'Mel Puro', preco: 15.00, img: 'img/mel.jpg' },
-      { nome: 'Queijo Minas', preco: 20.00, img: 'img/queijo.jpg' }
+      { nome: 'Queijo Minas', preco: 20.00, img: 'img/queijo.jpg' },
+      { nome: 'Leite Integral', preco: 5.50, img: 'img/leite.jpg' },
+      { nome: 'Tomate Fresco', preco: 3.00, img: 'img/tomate.jpg' },
+      { nome: 'Arroz Integral', preco: 8.00, img: 'img/arroz.jpg' },
+      { nome: 'Feijão Preto', preco: 7.00, img: 'img/feijao.jpg' },
+      { nome: 'Alface Crespa', preco: 2.50, img: 'img/alface.jpg' },
+      { nome: 'Cenoura Orgânica', preco: 3.20, img: 'img/cenoura.jpg' },
+      { nome: 'Batata Doce', preco: 4.00, img: 'img/batata.jpg' },
+      { nome: 'Abacate', preco: 6.50, img: 'img/abacate.jpg' },
+      { nome: 'Pão Integral', preco: 7.80, img: 'img/pao.jpg' },
+      { nome: 'Café Torrado', preco: 18.00, img: 'img/cafe.jpg' },
+      { nome: 'Chá Verde', preco: 12.00, img: 'img/cha.jpg' },
+      { nome: 'Ovos Caipira', preco: 10.00, img: 'img/ovos.jpg' },
+      { nome: 'Manteiga Artesanal', preco: 14.50, img: 'img/manteiga.jpg' },
+      { nome: 'Melancia', preco: 8.50, img: 'img/melancia.jpg' },
+      { nome: 'Morango', preco: 11.00, img: 'img/morango.jpg' },
+      { nome: 'Abobrinha', preco: 3.70, img: 'img/abobrinha.jpg' },
+      { nome: 'Cebola Roxa', preco: 3.00, img: 'img/cebola.jpg' }
     ];
 
     const loja = document.getElementById('loja');
-    produtos.forEach(p => {
+    produtos.forEach(produto => {
       const div = document.createElement('div');
       div.className = 'produto';
       div.innerHTML = `
-        <img src="${p.img}" alt="${p.nome}">
-        <h3>${p.nome}</h3>
-        <p>R$ ${p.preco.toFixed(2)}</p>
-        <button class="btn-add" data-nome="${p.nome}" data-preco="${p.preco}">Adicionar ao Carrinho</button>
+        <img src="${produto.img}" alt="${produto.nome}">
+        <h3>${produto.nome}</h3>
+        <p>R$ ${produto.preco.toFixed(2)}</p>
+        <button class="btn-add" data-nome="${produto.nome}" data-preco="${produto.preco}">Adicionar ao Carrinho</button>
       `;
       loja.appendChild(div);
     });
 
     // Carrinho
     let carrinhoItens = [];
-    const badge = document.getElementById('badge-carrinho');
-
-    loja.addEventListener('click', e => {
-      if (e.target.classList.contains('btn-add')) {
-        const nome = e.target.getAttribute('data-nome');
-        const preco = parseFloat(e.target.getAttribute('data-preco'));
-        const item = carrinhoItens.find(i => i.nome === nome);
-        if (item) {
-          item.quantidade++;
-        } else {
-          carrinhoItens.push({ nome, preco, quantidade: 1 });
-        }
-        atualizarCarrinho();
-        alert(nome + ' adicionado ao carrinho!');
-      }
-    });
 
     function atualizarCarrinho() {
       const lista = document.getElementById('lista-carrinho');
+      const total = document.getElementById('total-carrinho');
+      const badge = document.getElementById('badge-carrinho');
       lista.innerHTML = '';
-      let total = 0;
-      carrinhoItens.forEach((item, index) => {
-        total += item.preco * item.quantidade;
+      let soma = 0;
+      carrinhoItens.forEach(item => {
         const li = document.createElement('li');
-        li.innerHTML = `
-          ${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}
-          <button onclick="removerItem(${index})">Remover</button>
-        `;
+        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
         lista.appendChild(li);
+        soma += item.preco;
       });
-      document.getElementById('total-carrinho').textContent = 'Total: R$ ' + total.toFixed(2);
-      badge.textContent = carrinhoItens.reduce((acc, i) => acc + i.quantidade, 0);
+      total.textContent = `Total: R$ ${soma.toFixed(2)}`;
+      badge.textContent = carrinhoItens.length;
     }
 
-    function removerItem(index) {
-      carrinhoItens[index].quantidade--;
-      if (carrinhoItens[index].quantidade === 0) {
-        carrinhoItens.splice(index, 1);
+    document.addEventListener('click', e => {
+      if (e.target.classList.contains('btn-add')) {
+        const nome = e.target.getAttribute('data-nome');
+        const preco = parseFloat(e.target.getAttribute('data-preco'));
+        carrinhoItens.push({ nome, preco });
+        atualizarCarrinho();
       }
-      atualizarCarrinho();
-    }
+    });
 
-    document.getElementById('btn-esvaziar-carrinho').onclick = () => {
+    document.getElementById('btn-esvaziar-carrinho').addEventListener('click', () => {
       carrinhoItens = [];
       atualizarCarrinho();
-    };
+    });
 
-    document.getElementById('btn-finalizar-compra').onclick = () => {
-      window.location.href = 'pagamento.html';
-    };
+    document.getElementById('btn-finalizar-compra').addEventListener('click', () => {
+      alert('Compra finalizada com sucesso!');
+      carrinhoItens = [];
+      atualizarCarrinho();
+    });
 
-    // Contato
-    document.getElementById('form-contato').addEventListener('submit', e => {
-      e.preventDefault();
-      document.getElementById('resposta-contato').textContent = 'Mensagem enviada com sucesso!';
-      e.target.reset();
+    // Navegação
+    const contato = document.getElementById('contato');
+    const sobre = document.getElementById('sobre');
+    const carrinho = document.getElementById('carrinho');
+
+    function esconderSeções() {
+      loja.style.display = 'none';
+      contato.style.display = 'none';
+      sobre.style.display = 'none';
+      carrinho.style.display = 'none';
+    }
+
+    document.getElementById('btn-loja').addEventListener('click', () => {
+      esconderSeções();
+      loja.style.display = 'grid';
+    });
+
+    document.getElementById('btn-contato').addEventListener('click', () => {
+      esconderSeções();
+      contato.style.display = 'block';
+    });
+
+    document.getElementById('btn-sobre').addEventListener('click', () => {
+      esconderSeções();
+      sobre.style.display = 'block';
+    });
+
+    document.getElementById('btn-carrinho').addEventListener('click', () => {
+      esconderSeções();
+      carrinho.style.display = 'block';
+      atualizarCarrinho();
+    });
+
+    document.getElementById('btn-carrinho-fixo').addEventListener('click', () => {
+      esconderSeções();
+      carrinho.style.display = 'block';
+      atualizarCarrinho();
+    });
+
+    // Acessibilidade
+    const menuAcess = document.getElementById('menu-acessibilidade');
+    document.getElementById('botao-acessibilidade').addEventListener('click', () => {
+      menuAcess.style.display = menuAcess.style.display === 'none' ? 'block' : 'none';
+    });
+
+    document.getElementById('btn-aumentar-fonte').addEventListener('click', () => {
+      document.body.style.fontSize = (parseFloat(getComputedStyle(document.body).fontSize) + 2) + 'px';
+    });
+
+    document.getElementById('btn-modo-escuro').addEventListener('click', () => {
+      document.body.classList.toggle('modo-escuro');
     });
   </script>
 
 </body>
 </html>
+
