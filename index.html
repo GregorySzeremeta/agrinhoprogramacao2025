@@ -1,285 +1,235 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Estação da Terra</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <!-- VLibras -->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <header>
-    <h1>Estação da Terra</h1>
-    <nav class="menu-navegacao">
-      <button id="btn-loja" class="menu-btn" aria-label="Ir para Loja">Loja</button>
-      <button id="btn-contato" class="menu-btn" aria-label="Ir para Contato">Contato</button>
-      <button id="btn-sobre" class="menu-btn" aria-label="Ir para Sobre">Sobre</button>
-      <button id="btn-carrinho" class="menu-btn" aria-label="Ir para Carrinho">Carrinho</button>
-      <a href="quiz.html">
-        <button class="menu-btn" aria-label="Ir para Quiz">Quiz</button>
-      </a>
-      <button id="botao-acessibilidade" class="menu-btn" aria-label="Abrir opções de acessibilidade">Acessibilidade</button>
-    </nav>
-  </header>
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: background 0.3s, color 0.3s;
+  padding-bottom: 3rem;
+}
 
-  <!-- Botão fixo do carrinho -->
-  <button id="btn-carrinho-fixo" aria-label="Abrir carrinho de compras">
-    🛒
-    <span id="badge-carrinho" aria-live="polite">0</span>
-  </button>
+header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
 
-  <!-- Menu acessibilidade -->
-  <div id="menu-acessibilidade" style="display:none;">
-    <button id="btn-aumentar-fonte" aria-label="Aumentar fonte">A+</button>
-    <button id="btn-modo-escuro" aria-label="Alternar modo escuro">🌙</button>
-  </div>
+nav a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
 
-  <!-- Loja -->
-  <section id="loja" tabindex="0" aria-label="Seção de loja" style="display: grid;">
-    <!-- Produtos vão ser inseridos aqui via JavaScript -->
-  </section>
+nav a:hover {
+  text-decoration: underline;
+}
 
-  <!-- Contato -->
-  <section id="contato" tabindex="0" aria-label="Formulário de contato" style="display:none;">
-    <h2>Contato</h2>
-    <form id="form-contato">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required aria-required="true" />
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required aria-required="true" />
-      <label for="mensagem">Mensagem:</label>
-      <textarea id="mensagem" name="mensagem" required aria-required="true"></textarea>
-      <button type="submit" aria-label="Enviar mensagem de contato">Enviar</button>
-    </form>
-    <div id="resposta-contato" aria-live="polite" style="margin-top: 1rem;"></div>
-  </section>
+h2 {
+  margin: 2rem 0 1rem;
+  text-align: center;
+}
 
-  <!-- Sobre -->
-  <section id="sobre" tabindex="0" aria-label="Informações sobre a Estação da Terra" style="display:none;">
-    <h2>Sobre</h2>
-    <p>Bem-vindo à Estação da Terra, seu marketplace sustentável e interativo, que conecta o campo à cidade, colhendo oportunidades para todos.</p>
-    <p>Nossa missão é promover produtos frescos, orgânicos e de qualidade, valorizando o produtor local e incentivando práticas sustentáveis.</p>
-    <p>Junte-se a nós e faça parte desse movimento verde!</p>
-  </section>
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
 
-  <!-- Carrinho -->
-  <section id="carrinho" tabindex="0" aria-label="Carrinho de compras" style="display:none;">
-    <h2>Seu Carrinho</h2>
-    <ul id="lista-carrinho" aria-live="polite"></ul>
-    <p id="total-carrinho">Total: R$ 0,00</p>
-    <button id="btn-esvaziar-carrinho" aria-label="Esvaziar carrinho">Esvaziar Carrinho</button>
-    <button id="btn-finalizar-compra" aria-label="Finalizar compra">Finalizar Compra</button>
-  </section>
+.produto {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
-  <footer>
-    <p>© 2025 Estação da Terra - Todos os direitos reservados</p>
-  </footer>
+.produto:hover {
+  transform: translateY(-5px);
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.15);
+}
 
-  <script>
-    // Scripts para funcionamento do site (menu, acessibilidade, carrinho, contato...)
+.produto img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
 
-    // Botão de acessibilidade toggle
-    const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
-    const menuAcessibilidade = document.getElementById('menu-acessibilidade');
-    botaoAcessibilidade.addEventListener('click', () => {
-      menuAcessibilidade.style.display = menuAcessibilidade.style.display === 'none' ? 'block' : 'none';
-    });
+.btn-add {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: #4CAF50;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-    // Aumentar fonte
-    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
-    btnAumentarFonte.addEventListener('click', () => {
-      let currentSize = window.getComputedStyle(document.body).fontSize;
-      let newSize = parseFloat(currentSize) + 2;
-      document.body.style.fontSize = newSize + 'px';
-    });
+label input[type="checkbox"]:checked + .btn-add {
+  background: #2E7D32;
+}
 
-    // Modo escuro
-    const btnModoEscuro = document.getElementById('btn-modo-escuro');
-    btnModoEscuro.addEventListener('click', () => {
-      document.body.classList.toggle('modo-escuro');
-    });
+#btn-carrinho, .btn-close {
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  background: #ff9800;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-    // Navegação entre seções
-    const btnLoja = document.getElementById('btn-loja');
-    const btnContato = document.getElementById('btn-contato');
-    const btnSobre = document.getElementById('btn-sobre');
-    const btnCarrinhoNav = document.getElementById('btn-carrinho');
+#carrinho-modal {
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 2px solid #ff9800;
+  padding: 1rem;
+  z-index: 1000;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+}
 
-    const loja = document.getElementById('loja');
-    const contato = document.getElementById('contato');
-    const sobre = document.getElementById('sobre');
-    const carrinho = document.getElementById('carrinho');
+#toggle-carrinho:checked ~ #carrinho-modal {
+  display: block;
+}
 
-    function esconderTodasSeções() {
-      loja.style.display = 'none';
-      contato.style.display = 'none';
-      sobre.style.display = 'none';
-      carrinho.style.display = 'none';
-    }
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 400px;
+  margin: 0 auto 2rem;
+}
 
-    btnLoja.addEventListener('click', () => {
-      esconderTodasSeções();
-      loja.style.display = 'grid';
-      loja.focus();
-    });
+form input, form textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
-    btnContato.addEventListener('click', () => {
-      esconderTodasSeções();
-      contato.style.display = 'block';
-      contato.focus();
-    });
+form button {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.7rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-    btnSobre.addEventListener('click', () => {
-      esconderTodasSeções();
-      sobre.style.display = 'block';
-      sobre.focus();
-    });
+form button:hover {
+  background: #388E3C;
+}
 
-    btnCarrinhoNav.addEventListener('click', () => {
-      esconderTodasSeções();
-      carrinho.style.display = 'block';
-      carrinho.focus();
-      atualizarCarrinho();
-    });
+/* Modo Escuro */
+#toggle-darkmode:checked ~ * {
+  background-color: #121212;
+  color: #f1f1f1;
+}
 
-    esconderTodasSeções();
-    loja.style.display = 'grid';
+#toggle-darkmode:checked ~ header,
+#toggle-darkmode:checked ~ footer {
+  background-color: #1E1E1E;
+}
 
-    // Botão fixo do carrinho
-    const btnCarrinhoFixo = document.getElementById('btn-carrinho-fixo');
-    btnCarrinhoFixo.addEventListener('click', () => {
-      esconderTodasSeções();
-      carrinho.style.display = 'block';
-      carrinho.focus();
-      atualizarCarrinho();
-    });
+#toggle-darkmode:checked ~ section,
+#toggle-darkmode:checked ~ #carrinho-modal {
+  background-color: #1E1E1E;
+}
 
-    // Carrinho
-    const listaCarrinho = document.getElementById('lista-carrinho');
-    const totalCarrinho = document.getElementById('total-carrinho');
-    const btnEsvaziarCarrinho = document.getElementById('btn-esvaziar-carrinho');
-    const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
-    const badgeCarrinho = document.getElementById('badge-carrinho');
+#toggle-darkmode:checked ~ .produtos-grid .produto {
+  background-color: #222;
+  border-color: #444;
+}
 
-    let carrinhoItens = [];
+.btn-toggle-dark {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #555;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 999;
+}
 
-    const produtos = [
-      { nome: 'Maçã Orgânica', preco: 4.50, img: 'img/maca.jpg' },
-      { nome: 'Mel Puro', preco: 15.00, img: 'img/mel.jpg' },
-      { nome: 'Queijo Minas', preco: 20.00, img: 'img/queijo.jpg' },
-      { nome: 'Leite Integral', preco: 5.50, img: 'img/leite.jpg' },
-      { nome: 'Tomate Fresco', preco: 3.00, img: 'img/tomate.jpg' },
-      { nome: 'Arroz Integral', preco: 8.00, img: 'img/arroz.jpg' },
-      { nome: 'Feijão Preto', preco: 7.00, img: 'img/feijao.jpg' },
-      { nome: 'Alface Crespa', preco: 2.50, img: 'img/alface.jpg' },
-      { nome: 'Cenoura Orgânica', preco: 3.20, img: 'img/cenoura.jpg' },
-      { nome: 'Batata Doce', preco: 4.00, img: 'img/batata.jpg' },
-      { nome: 'Abacate', preco: 6.50, img: 'img/abacate.jpg' },
-      { nome: 'Pão Integral', preco: 7.80, img: 'img/pao.jpg' },
-      { nome: 'Café Torrado', preco: 18.00, img: 'img/cafe.jpg' },
-      { nome: 'Chá Verde', preco: 12.00, img: 'img/cha.jpg' },
-      { nome: 'Ovos Caipira', preco: 10.00, img: 'img/ovos.jpg' },
-      { nome: 'Manteiga Artesanal', preco: 14.50, img: 'img/manteiga.jpg' },
-      { nome: 'Melancia', preco: 8.50, img: 'img/melancia.jpg' },
-      { nome: 'Morango', preco: 11.00, img: 'img/morango.jpg' },
-      { nome: 'Abobrinha', preco: 3.70, img: 'img/abobrinha.jpg' },
-      { nome: 'Cebola Roxa', preco: 3.00, img: 'img/cebola.jpg' }
-    ];
+#toggle-darkmode:checked + .btn-toggle-dark {
+  background: #333;
+}
 
-    const lojaSection = document.getElementById('loja');
-    produtos.forEach(produto => {
-      const produtoDiv = document.createElement('div');
-      produtoDiv.className = 'produto';
-      produtoDiv.tabIndex = 0;
-      produtoDiv.innerHTML = `
-        <img src="${produto.img}" alt="${produto.nome}" />
-        <h3>${produto.nome}</h3>
-        <p>R$ ${produto.preco.toFixed(2)}</p>
-        <button class="btn-add" data-nome="${produto.nome}" data-preco="${produto.preco}">Adicionar ao carrinho</button>
-      `;
-      lojaSection.appendChild(produtoDiv);
-    });
+/* Alto Contraste */
+#alto-contraste:checked ~ * {
+  background-color: black;
+  color: yellow;
+}
 
-    function atualizarBadge() {
-      const quantidadeTotal = carrinhoItens.reduce((acc, item) => acc + item.quantidade, 0);
-      badgeCarrinho.style.display = quantidadeTotal > 0 ? 'inline-block' : 'none';
-      badgeCarrinho.textContent = quantidadeTotal;
-    }
+#alto-contraste:checked ~ header,
+#alto-contraste:checked ~ footer {
+  background-color: black;
+}
 
-    function atualizarCarrinho() {
-      listaCarrinho.innerHTML = '';
-      let total = 0;
-      carrinhoItens.forEach((item, index) => {
-        total += item.preco * item.quantidade;
-        const li = document.createElement('li');
-        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
-        li.tabIndex = 0;
+#alto-contraste:checked ~ .produtos-grid .produto {
+  background-color: black;
+  border-color: yellow;
+}
 
-        const btnRemover = document.createElement('button');
-        btnRemover.textContent = 'Remover';
-        btnRemover.setAttribute('aria-label', 'Remover um ' + item.nome + ' do carrinho');
-        btnRemover.addEventListener('click', () => {
-          item.quantidade--;
-          if(item.quantidade === 0){
-            carrinhoItens.splice(index, 1);
-          }
-          atualizarCarrinho();
-          atualizarBadge();
-        });
+#alto-contraste:checked ~ form input,
+#alto-contraste:checked ~ form textarea {
+  background: black;
+  color: yellow;
+  border: 1px solid yellow;
+}
 
-        li.appendChild(btnRemover);
-        listaCarrinho.appendChild(li);
-      });
-      totalCarrinho.textContent = 'Total: R$ ' + total.toFixed(2);
-      atualizarBadge();
-    }
+.btn-acess {
+  position: fixed;
+  top: 4rem;
+  right: 1rem;
+  background: #333;
+  color: white;
+  padding: 0.3rem 0.7rem;
+  margin-top: 0.3rem;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 999;
+}
 
-    lojaSection.addEventListener('click', e => {
-      if(e.target.classList.contains('btn-add')){
-        const nome = e.target.getAttribute('data-nome');
-        const preco = parseFloat(e.target.getAttribute('data-preco'));
-        const itemExistente = carrinhoItens.find(item => item.nome === nome);
-        if(itemExistente){
-          itemExistente.quantidade++;
-        } else {
-          carrinhoItens.push({nome, preco, quantidade: 1});
-        }
-        alert(nome + ' adicionado ao carrinho!');
-        atualizarCarrinho();
-      }
-    });
+#normal:checked ~ .btn-acess[for="normal"],
+#alto-contraste:checked ~ .btn-acess[for="alto-contraste"] {
+  background: yellow;
+  color: black;
+}
 
-    btnEsvaziarCarrinho.addEventListener('click', () => {
-      carrinhoItens = [];
-      atualizarCarrinho();
-    });
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #4CAF50;
+  color: white;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
 
-    btnFinalizarCompra.addEventListener('click', () => {
-      if(carrinhoItens.length === 0){
-        alert('Seu carrinho está vazio!');
-        return;
-      }
-      window.location.href = 'pagamento.html';
-    });
+@media (max-width: 600px) {
+  .produtos-grid {
+    grid-template-columns: 1fr;
+  }
 
-    const formContato = document.getElementById('form-contato');
-    const respostaContato = document.getElementById('resposta-contato');
-    formContato.addEventListener('submit', (e) => {
-      e.preventDefault();
-      respostaContato.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
-      formContato.reset();
-    });
-  </script>
-</body>
-</html>
+  .btn-toggle-dark, .btn-acess {
+    right: 0.5rem;
+    top: auto;
+    bottom: 1rem;
+  }
+}
