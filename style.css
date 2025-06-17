@@ -1,5 +1,4 @@
-/* Reset básico */
-* {
+ {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -16,7 +15,6 @@ body {
   flex-direction: column;
 }
 
-/* ---------- Header ---------- */
 header {
   background-color: #3a6b35;
   color: white;
@@ -57,7 +55,7 @@ header h1 {
   outline: none;
 }
 
-/* ---------- Botão fixo do carrinho ---------- */
+/* Botão fixo do carrinho */
 #btn-carrinho-fixo {
   position: fixed;
   bottom: 1.5rem;
@@ -84,6 +82,7 @@ header h1 {
   outline: none;
 }
 
+/* Badge do carrinho */
 #badge-carrinho {
   background-color: #d93b3b;
   color: white;
@@ -97,7 +96,7 @@ header h1 {
   display: none;
 }
 
-/* ---------- Menu de Acessibilidade ---------- */
+/* Menu de acessibilidade */
 #menu-acessibilidade {
   position: fixed;
   bottom: 5.5rem;
@@ -129,7 +128,7 @@ header h1 {
   outline: none;
 }
 
-/* ---------- Seções Gerais ---------- */
+/* Seções (loja, contato, sobre, carrinho) */
 section {
   flex-grow: 1;
   max-width: 1200px;
@@ -150,7 +149,7 @@ section h2 {
   user-select: none;
 }
 
-/* ---------- Loja - Grid de Produtos ---------- */
+/* Loja - grid de produtos */
 #loja {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -169,8 +168,8 @@ section h2 {
   cursor: default;
 }
 
-.produto:hover,
-.produto:focus-within {
+.produto:focus-within,
+.produto:hover {
   box-shadow: 0 8px 16px rgb(58 107 53 / 0.3);
   outline: none;
 }
@@ -214,7 +213,7 @@ section h2 {
   outline: none;
 }
 
-/* ---------- Formulário Contato ---------- */
+/* Formulário contato */
 form {
   display: flex;
   flex-direction: column;
@@ -269,7 +268,7 @@ form button[type="submit"]:focus {
   outline: none;
 }
 
-/* ---------- Carrinho ---------- */
+/* Carrinho */
 #lista-carrinho {
   list-style-type: none;
   margin-bottom: 1rem;
@@ -334,7 +333,7 @@ form button[type="submit"]:focus {
   outline: none;
 }
 
-/* ---------- Footer ---------- */
+/* Footer */
 footer {
   background-color: #3a6b35;
   color: white;
@@ -345,32 +344,43 @@ footer {
   margin-top: auto;
 }
 
-/* ---------- Modo Escuro ---------- */
+/* Modo escuro */
 body.modo-escuro {
   background-color: #1e2818;
   color: #c7d2b2;
 }
 
-body.modo-escuro header,
-body.modo-escuro #menu-acessibilidade {
+body.modo-escuro header {
   background-color: #2a4420;
 }
 
-body.modo-escuro .menu-btn,
-body.modo-escuro #menu-acessibilidade button,
-body.modo-escuro #btn-carrinho-fixo {
+body.modo-escuro .menu-btn {
   background-color: #416a2a;
   color: #d4deb1;
 }
 
 body.modo-escuro .menu-btn:hover,
-body.modo-escuro .menu-btn:focus,
-body.modo-escuro #btn-carrinho-fixo:hover,
-body.modo-escuro #btn-carrinho-fixo:focus,
-body.modo-escuro #menu-acessibilidade button:hover,
-body.modo-escuro #menu-acessibilidade button:focus {
+body.modo-escuro .menu-btn:focus {
   background-color: #2b4718;
   color: #e0f1a1;
+}
+
+body.modo-escuro #btn-carrinho-fixo {
+  background-color: #416a2a;
+}
+
+body.modo-escuro #btn-carrinho-fixo:hover,
+body.modo-escuro #btn-carrinho-fixo:focus {
+  background-color: #2b4718;
+}
+
+body.modo-escuro #menu-acessibilidade {
+  background-color: #2a4420;
+}
+
+body.modo-escuro #menu-acessibilidade button {
+  background-color: #416a2a;
+  color: #d4deb1;
 }
 
 body.modo-escuro section {
@@ -378,7 +388,8 @@ body.modo-escuro section {
   color: #c7d2b2;
 }
 
-/* ---------- Responsivo ---------- */
+/* Responsivo */
+
 /* Tablets */
 @media (max-width: 900px) {
   header {
@@ -427,12 +438,14 @@ body.modo-escuro section {
     padding: 1rem;
   }
 
+  /* Botão fixo carrinho menor */
   #btn-carrinho-fixo {
     width: 3rem;
     height: 3rem;
     font-size: 1.3rem;
   }
 
+  /* Menu acessibilidade menor */
   #menu-acessibilidade {
     flex-direction: column;
     gap: 0.3rem;
