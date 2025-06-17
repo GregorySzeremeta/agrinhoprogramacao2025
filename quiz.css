@@ -213,6 +213,10 @@
      background-color: #4caf50;
     }
 
+    .Audiozinho p{
+      font-size: 0.5em;
+    }
+
 
     /* Responsivo DNVVVVV */
     @media (max-width: 480px) {
