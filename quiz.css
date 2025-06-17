@@ -205,7 +205,13 @@
       text-align: center;
       user-select: none;
     }
-
+  
+    .audio-ambiente{
+      color: #1565c0;
+      border: solid 2px #2e7d32;
+     border-radius: 5px;
+     background-color: #4caf50;
+    }
 
 
     /* Responsivo DNVVVVV */
