@@ -33,7 +33,7 @@
     </nav>
   </header>
 
-  <!-- Botão fixo do carrinho -->
+  <!-- Botão do carrinho -->
   <button id="btn-carrinho-fixo" aria-label="Abrir carrinho de compras">
     🛒
     <span id="badge-carrinho" aria-live="polite">0</span>
@@ -48,7 +48,6 @@
 
   <!-- Loja -->
   <section id="loja" tabindex="0" aria-label="Seção de loja" style="display: grid;">
-    <!-- Produtos vão ser inseridos aqui via JavaScript -->
   </section>
 
   <!-- Contato -->
@@ -88,9 +87,6 @@
   </footer>
 
   <script>
-    // Scripts para funcionamento do site (menu, acessibilidade, carrinho, contato...)
-
-    
 // Botão de acessibilidade toggle
 const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
 const menuAcessibilidade = document.getElementById('menu-acessibilidade');
@@ -98,7 +94,7 @@ botaoAcessibilidade.addEventListener('click', () => {
   menuAcessibilidade.style.display = menuAcessibilidade.style.display === 'none' ? 'block' : 'none';
 });
 
-// Aumentar fonte
+// Aumentar letra
 const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
 btnAumentarFonte.addEventListener('click', () => {
   let currentSize = window.getComputedStyle(document.body).fontSize;
@@ -106,7 +102,7 @@ btnAumentarFonte.addEventListener('click', () => {
   document.body.style.fontSize = newSize + 'px';
 });
 
-// Diminuir fonte
+// Diminuir lrtra
 const btnDiminuirFonte = document.getElementById('btn-diminuir-fonte');
 btnDiminuirFonte.addEventListener('click', () => {
   let currentSize = window.getComputedStyle(document.body).fontSize;
@@ -122,7 +118,7 @@ btnModoEscuro.addEventListener('click', () => {
   document.body.classList.toggle('modo-escuro');
 });
 
-    // Navegação entre seções
+    // sessões
     const btnLoja = document.getElementById('btn-loja');
     const btnContato = document.getElementById('btn-contato');
     const btnSobre = document.getElementById('btn-sobre');
@@ -168,7 +164,7 @@ btnModoEscuro.addEventListener('click', () => {
     esconderTodasSeções();
     loja.style.display = 'grid';
 
-    // Botão fixo do carrinho
+    // Botão do carrinho
     const btnCarrinhoFixo = document.getElementById('btn-carrinho-fixo');
     btnCarrinhoFixo.addEventListener('click', () => {
       esconderTodasSeções();
