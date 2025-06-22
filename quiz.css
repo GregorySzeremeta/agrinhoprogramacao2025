@@ -1,231 +1,233 @@
-    /* Resetizinho */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    /*para o corpo do texto*/
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #a8d5ba, #d1e8e2);
-      color: #2c3e50;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+/* Corpo do texto */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #a8d5ba, #d1e8e2);
+  color: #2c3e50;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-    /*pra ir certo mesmo o header de tudo*/
-    header.header {
-      background-color: #1e5128;
-      padding: 1rem 2rem;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+/* Header */
+header.header {
+  background-color: #1e5128;
+  padding: 1rem 2rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 
+/* Logo */
+.logo {
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  user-select: none;
+}
 
-    /*A Logo*/
-    .logo {
-      font-weight: 700;
-      font-size: 1.8rem;
-      letter-spacing: 2px;
-      user-select: none;
-    }
+/* Navegação */
+nav.nav {
+  display: flex;
+  gap: 1rem;
+}
 
-    nav.nav {
-      display: flex;
-      gap: 1rem;
-    }
+.nav-link {
+  color: #dff0d8;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+}
 
-    .nav-link {
-      color: #dff0d8;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
-    }
+.nav-link:hover,
+.nav-link.active {
+  background-color: #9cd39c;
+  color: #1e5128;
+}
 
-    .nav-link:hover,
-    .nav-link.active {
-      background-color: #9cd39c;
-      color: #1e5128;
-    }
+/* Conteúdo principal */
+main.main-content {
+  flex-grow: 1;
+  padding: 2rem 1rem;
+  max-width: 700px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+  user-select: none;
+}
 
+h2 {
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  letter-spacing: 1.1px;
+  user-select: none;
+}
 
-    /*conteudo que ta aparecendo no meio tlgd*/
-    main.main-content {
-      flex-grow: 1;
-      padding: 2rem 1rem;
-      max-width: 700px;
-      margin: 2rem auto;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      text-align: center;
-      user-select: none;
-    }
+/* Barra de progresso */
+#progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #eee;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
 
-    h2 {
-      margin-bottom: 1.5rem;
-      color: #2c3e50;
-      letter-spacing: 1.1px;
-      user-select: none;
-    }
+#progress-fill {
+  height: 100%;
+  background: #4caf50;
+  width: 0;
+  transition: width 0.4s ease;
+  border-radius: 8px;
+}
 
-    /*barra de progresso, que fica la aumentando toda vez q faz um coisa do quizzzz*/
-    #progress-bar {
-      width: 100%;
-      height: 8px;
-      background: #eee;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      overflow: hidden;
-    }
+/* Pergunta */
+.pergunta {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  min-height: 60px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
 
-    #progress-fill {
-      height: 100%;
-      background: #4caf50;
-      width: 0;
-      transition: width 0.4s ease;
-      border-radius: 8px;
-    }
+/* Container de opções */
+.opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
 
-    .pergunta {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-      min-height: 60px;
-      opacity: 1;
-      transition: opacity 0.3s ease;
-    }
+/* Botões das opções */
+.opcao-btn {
+  background-color: #e7f0e9;
+  border: 2px solid #4caf50;
+  padding: 12px 18px;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-    .opcoes {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 1.5rem;
-      opacity: 1;
-      transition: opacity 0.3s ease;
-    }
+.opcao-btn:hover:not(:disabled) {
+  background-color: #b6d7b9;
+  color: #1b3a16;
+}
 
-    .opcao-btn {
-      background-color: #e7f0e9;
-      border: 2px solid #4caf50;
-      padding: 12px 18px;
-      font-size: 1rem;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
+.opcao-btn:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
 
-    .opcao-btn:hover:not(:disabled) {
-      background-color: #b6d7b9;
-      color: #1b3a16;
-    }
+/* Botões corretos e errados */
+.correta-btn {
+  background-color: #4caf50 !important;
+  border-color: #3a7d20 !important;
+  color: white !important;
+}
 
-    .opcao-btn:disabled {
-      cursor: default;
-      opacity: 0.7;
-    }
+.errada-btn {
+  background-color: #e74c3c !important;
+  border-color: #a83e27 !important;
+  color: white !important;
+}
 
-    .correta-btn {
-      background-color: #4caf50 !important;
-      border-color: #3a7d20 !important;
-      color: white !important;
-    }
+/* Resultado */
+.resultado {
+  font-weight: 700;
+  font-size: 1.15rem;
+  min-height: 28px;
+  margin-bottom: 1.5rem;
+}
 
-    .errada-btn {
-      background-color: #e74c3c !important;
-      border-color: #a83e27 !important;
-      color: white !important;
-    }
+.resultado.correta {
+  color: #2e7d32;
+}
 
-    .resultado {
-      font-weight: 700;
-      font-size: 1.15rem;
-      min-height: 28px;
-      margin-bottom: 1.5rem;
-    }
+.resultado.errada {
+  color: #c62828;
+}
 
-    .resultado.correta {
-      color: #2e7d32;
-    }
+.resultado.final {
+  color: #1565c0;
+}
 
-    .resultado.errada {
-      color: #c62828;
-    }
+/* Botões principais */
+.btn {
+  background-color: #1e5128;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  min-width: 140px;
+  margin: 0 auto 1rem;
+  display: inline-block;
+  user-select: none;
+}
 
-    .resultado.final {
-      color: #1565c0;
-    }
+.btn:hover:not(:disabled) {
+  background-color: #4caf50;
+}
 
+.btn:disabled {
+  background-color: #a5d6a7;
+  cursor: default;
+}
 
-    /*botãozinho chiuque*/
-    .btn {
-      background-color: #1e5128;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 1rem;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      min-width: 140px;
-      margin: 0 auto 1rem;
-      display: inline-block;
-      user-select: none;
-    }
+.btn-reiniciar {
+  background-color: #4caf50;
+  margin-top: 0;
+}
 
-    .btn:hover:not(:disabled) {
-      background-color: #4caf50;
-    }
+/* Footer */
+footer.footer {
+  background-color: #1e5128;
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+  user-select: none;
+}
 
-    .btn:disabled {
-      background-color: #a5d6a7;
-      cursor: default;
-    }
-
-    .btn-reiniciar {
-      background-color: #4caf50;
-      margin-top: 0;
-    }
-
-    footer.footer {
-      background-color: #1e5128;
-      color: white;
-      padding: 1rem 0;
-      text-align: center;
-      user-select: none;
-    }
-
-
-
-    /* Responsivo DNVVVVV */
-    @media (max-width: 480px) {
-      main.main-content {
-        margin: 1rem;
-        padding: 1.5rem 1rem;
-      }
-      .opcao-btn {
-        font-size: 0.9rem;
-        padding: 10px 16px;
-      }
-      .btn {
-        min-width: 120px;
-        padding: 10px 18px;
-      }
-      .logo {
-        font-size: 1.4rem;
-      }
-      nav.nav {
-        gap: 0.7rem;
-      }
-    }
+/* Responsivo */
+@media (max-width: 480px) {
+  main.main-content {
+    margin: 1rem;
+    padding: 1.5rem 1rem;
+  }
+  .opcao-btn {
+    font-size: 0.9rem;
+    padding: 10px 16px;
+  }
+  .btn {
+    min-width: 120px;
+    padding: 10px 18px;
+  }
+  .logo {
+    font-size: 1.4rem;
+  }
+  nav.nav {
+    gap: 0.7rem;
+  }
+}
