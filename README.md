@@ -33,8 +33,8 @@ Todas as imagens que utilizei são de domínio público, obtidas no banco [PxHer
 Sou **Gregory Szeremeta**, idealizador e desenvolvedor deste projeto. Estou sempre aberto a colaborações, dúvidas e sugestões.
 
 ✉️ [gregoryszeremetasass@gmail.com](mailto:gregoryszeremetasass@gmail.com)  
-📸 [Instagram]([https://instagram.com/](https://www.instagram.com/gregory_szeremeta/?next=%2F))  
-🐙 [GitHub]([https://github.com/](https://github.com/GregorySzeremeta))
+📸 [Instagram](https://www.instagram.com/gregory_szeremeta/?next=%2F)  
+🐙 [GitHub](https://github.com/GregorySzeremeta)
 
 ## 📚 Projeto Agrinho
 
