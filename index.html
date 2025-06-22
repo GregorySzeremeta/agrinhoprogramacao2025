@@ -183,26 +183,26 @@ btnModoEscuro.addEventListener('click', () => {
     let carrinhoItens = [];
 
     const produtos = [
-      { nome: 'Maçã Orgânica', preco: 4.50, img: 'img/maca.jpg' },
-      { nome: 'Mel Puro', preco: 15.00, img: 'img/mel.jpg' },
-      { nome: 'Queijo Minas', preco: 20.00, img: 'img/queijo.jpg' },
-      { nome: 'Leite Integral', preco: 5.50, img: 'img/leite.jpg' },
-      { nome: 'Tomate Fresco', preco: 3.00, img: 'img/tomate.jpg' },
-      { nome: 'Arroz Integral', preco: 8.00, img: 'img/arroz.jpg' },
-      { nome: 'Feijão Preto', preco: 7.00, img: 'img/feijao.jpg' },
-      { nome: 'Alface Crespa', preco: 2.50, img: 'img/alface.jpg' },
-      { nome: 'Cenoura Orgânica', preco: 3.20, img: 'img/cenoura.jpg' },
-      { nome: 'Batata Doce', preco: 4.00, img: 'img/batata.jpg' },
-      { nome: 'Abacate', preco: 6.50, img: 'img/abacate.jpg' },
-      { nome: 'Pão Integral', preco: 7.80, img: 'img/pao.jpg' },
-      { nome: 'Café Torrado', preco: 18.00, img: 'img/cafe.jpg' },
-      { nome: 'Chá Verde', preco: 12.00, img: 'img/cha.jpg' },
-      { nome: 'Ovos Caipira', preco: 10.00, img: 'img/ovos.jpg' },
-      { nome: 'Manteiga Artesanal', preco: 14.50, img: 'img/manteiga.jpg' },
-      { nome: 'Melancia', preco: 8.50, img: 'img/melancia.jpg' },
-      { nome: 'Morango', preco: 11.00, img: 'img/morango.jpg' },
-      { nome: 'Abobrinha', preco: 3.70, img: 'img/abobrinha.jpg' },
-      { nome: 'Cebola Roxa', preco: 3.00, img: 'img/cebola.jpg' }
+       { nome: 'Maçã Orgânica', preco: 4.50, img: 'img/maca.jpg', licenca: '“Organic Apple” por JabberWok via Wikimedia Commons – CC BY‑SA 3.0' },
+      { nome: 'Mel Puro', preco: 15.00, img: 'img/mel.jpg', licenca: 'Foto royalty‑free de pote de mel – [autor] via [fonte] – licença XYZ' },
+      { nome: 'Queijo Minas', preco: 20.00, img: 'img/queijo.jpg', licenca: 'Imagem royalty‑free de queijo artesanal – [autor] via [fonte]' },
+      { nome: 'Leite Integral', preco: 5.50, img: 'img/leite.jpg', licenca: 'Imagem royalty‑free de leite fresco – [autor] via [fonte]' },
+      { nome: 'Tomate Fresco', preco: 3.00, img: 'img/tomate.jpg', licenca: 'Imagem royalty‑free de tomates frescos – [autor] via [fonte]' },
+      { nome: 'Arroz Integral', preco: 8.00, img: 'img/arroz.jpg', licenca: 'Imagem royalty‑free de grãos de arroz – [autor] via [fonte]' },
+      { nome: 'Feijão Preto', preco: 7.00, img: 'img/feijao.jpg', licenca: 'Imagem royalty‑free de feijão preto – [autor] via [fonte]' },
+      { nome: 'Alface Crespa', preco: 2.50, img: 'img/alface.jpg', licenca: 'Imagem royalty‑free de alface – [autor] via [fonte]' },
+      { nome: 'Cenoura Orgânica', preco: 3.20, img: 'img/cenoura.jpg', licenca: 'Imagem royalty‑free de cenoura – [autor] via [fonte]' },
+      { nome: 'Batata Doce', preco: 4.00, img: 'img/batata.jpg', licenca: 'Imagem royalty‑free de batata doce – [autor] via [fonte]' },
+      { nome: 'Abacate', preco: 6.50, img: 'img/abacate.jpg', licenca: 'Imagem royalty‑free de abacate – [autor] via [fonte]' },
+      { nome: 'Pão Integral', preco: 7.80, img: 'img/pao.jpg', licenca: 'Imagem royalty‑free de pão integral – [autor] via [fonte]' },
+      { nome: 'Café Torrado', preco: 18.00, img: 'img/cafe.jpg', licenca: 'Imagem royalty‑free de grãos de café – [autor] via [fonte]' },
+      { nome: 'Chá Verde', preco: 12.00, img: 'img/cha.jpg', licenca: 'Imagem royalty‑free de chá verde – [autor] via [fonte]' },
+      { nome: 'Ovos Caipira', preco: 10.00, img: 'img/ovos.jpg', licenca: 'Imagem royalty‑free de ovos caipiras – [autor] via [fonte]' },
+      { nome: 'Manteiga Artesanal', preco: 14.50, img: 'img/manteiga.jpg', licenca: 'Imagem royalty‑free de manteiga artesanal – [autor] via [fonte]' },
+      { nome: 'Melancia', preco: 8.50, img: 'img/melancia.jpg', licenca: 'Imagem royalty‑free de melancia – [autor] via [fonte]' },
+      { nome: 'Morango', preco: 11.00, img: 'img/morango.jpg', licenca: 'Imagem royalty‑free de morango – [autor] via [fonte]' },
+      { nome: 'Abobrinha', preco: 3.70, img: 'img/abobrinha.jpg', licenca: 'Imagem royalty‑free de abobrinha – [autor] via [fonte]' },
+      { nome: 'Cebola Roxa', preco: 3.00, img: 'img/cebola.jpg', licenca: 'Imagem royalty‑free de cebola roxa – [autor] via [fonte]' }
     ];
 
     const lojaSection = document.getElementById('loja');
