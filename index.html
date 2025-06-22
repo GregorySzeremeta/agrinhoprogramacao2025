@@ -182,18 +182,64 @@ btnModoEscuro.addEventListener('click', () => {
 
     let carrinhoItens = [];
 
-    const produtos = [
-      { nome: 'Mel Puro', preco: 15.00, img: 'img/mel.jpg' },
-      { nome: 'Queijo Minas', preco: 20.00, img: 'img/queijo.jpg' },
-      { nome: 'Leite Integral', preco: 5.50, img: 'img/leite.jpg' },
-      { nome: 'Tomate Fresco', preco: 3.00, img: 'img/tomate.jpg' },
-      { nome: 'Arroz Integral', preco: 8.00, img: 'img/arroz.jpg' },
-      { nome: 'Alface Crespa', preco: 2.50, img: 'img/alface.jpg' },
-      { nome: 'Cenoura Orgânica', preco: 3.20, img: 'img/cenoura.jpg' },
-      { nome: 'Batata Doce', preco: 4.00, img: 'img/batata.jpg' },
-      { nome: 'Abacate', preco: 6.50, img: 'img/abacate.jpg' },
-     
-    ];
+const produtos = [
+  {
+    nome: 'Mel Puro',
+    preco: 15.00,
+    img: 'img/mel.jpg',
+    descricao: 'Mel natural e puro. <a href="https://pxhere.com/pt/photo/964038" target="_blank">Ver imagem</a>'
+  },
+  {
+    nome: 'Queijo Minas',
+    preco: 20.00,
+    img: 'img/queijo.jpg',
+    descricao: 'Queijo artesanal fresco. <a href="https://pxhere.com/pt/photo/908832" target="_blank">Ver imagem</a>'
+  },
+  {
+    nome: 'Leite Integral',
+    preco: 5.50,
+    img: 'img/leite.jpg',
+    descricao: 'Leite fresco integral. <a href="https://pxhere.com/pt/photo/1362675" target="_blank">Ver imagem</a>'
+  },
+  {
+    nome: 'Tomate Fresco',
+    preco: 3.00,
+    img: 'img/tomate.jpg',
+    descricao: 'Tomates vermelhos e suculentos. <a href="https://pxhere.com/pt/photo/1221993" target="_blank">Ver imagem</a>'
+  },
+  {
+    nome: 'Arroz Integral',
+    preco: 8.00,
+    img: 'img/arroz.jpg',
+    descricao: 'Arroz integral saudável. <a href="https://pxhere.com/pt/photo/780256" target="_blank">Ver imagem</a>'
+  },
+  {
+    nome: 'Alface Crespa',
+    preco: 2.50,
+    img: 'img/alface.jpg',
+    descricao: 'Alface crocante e fresca. <a href="https://pxhere.com/pt/photo/819489" target="_blank">Ver imagem</a>'
+  },
+  {
+    nome: 'Cenoura Orgânica',
+    preco: 3.20,
+    img: 'img/cenoura.jpg',
+    descricao: 'Cenouras orgânicas frescas. <a href="https://pxhere.com/pt/photo/589966" target="_blank">Ver imagem</a>'
+  },
+  {
+    nome: 'Batata Doce',
+    preco: 4.00,
+    img: 'img/batata.jpg',
+    descricao: 'Batata doce saudável. <a href="https://pxhere.com/pt/photo/548417" target="_blank">Ver imagem</a>'
+  },
+  {
+    nome: 'Abacate',
+    preco: 6.50,
+    img: 'img/abacate.jpg',
+    descricao: 'Abacate maduro e cremoso. <a href="https://pxhere.com/pt/photo/26715" target="_blank">Ver imagem</a>'
+  }
+];
+
+  
 
     const lojaSection = document.getElementById('loja');
     produtos.forEach(produto => {
